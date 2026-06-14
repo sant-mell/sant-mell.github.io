@@ -1,6 +1,7 @@
 # Netlify configuration for the Next.js static export.
-# Build produces ./out (output: "export" in next.config.ts), which Netlify
-# serves as a static site. Works alongside the GitHub Pages workflow.
+# `next build` with `output: "export"` (see next.config.ts) emits a fully
+# static site into ./out, which Netlify serves directly. No SSR runtime is
+# needed, so this deploys as a plain static site alongside GitHub Pages.
 
 [build]
   command = "npm run build"
@@ -8,8 +9,16 @@
 
 [build.environment]
   NODE_VERSION = "20"
+  # Avoid the first-run telemetry prompt blocking the CI build.
+  NEXT_TELEMETRY_DISABLED = "1"
 
-# Static export already emits 404.html; let Netlify use it.
+# Long-cache the immutable build assets Next emits under /_next.
+[[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Static export already emits 404.html; serve it for unknown paths.
 [[redirects]]
   from = "/*"
   to = "/404.html"

@@ -51,7 +51,7 @@ const profile: ProfileCardProps = {
   role: "Multicultural CS (ITC) student @ Tec de Monterrey, Santa Fe",
   status: "online",
   avatar: "/profile.jpg",
-  tags: ["Open to Work", "Cybersecurity", "CCNA Track", "Mexico City"],
+  tags: [],
   isVerified: true,
   followers: 142,
   followersLabel: "LinkedIn connections",
@@ -502,7 +502,7 @@ function Aurora() {
  * ------------------------------------------------------------------------- */
 
 const NEUMORPHIC =
-  "rounded-3xl bg-gray-100 dark:bg-white/[0.05] dark:border dark:border-white/10 dark:backdrop-blur-xl shadow-[12px_12px_24px_rgba(0,0,0,0.12),-12px_-12px_24px_rgba(255,255,255,0.9)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.45)]";
+  "rounded-3xl bg-zinc-100 dark:bg-white/[0.05] dark:border dark:border-white/10 dark:backdrop-blur-xl shadow-[12px_12px_24px_rgba(0,0,0,0.12),-12px_-12px_24px_rgba(255,255,255,0.9)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.45)]";
 
 function SectionHeading({
   eyebrow,
@@ -522,7 +522,7 @@ function SectionHeading({
         {title}
       </h2>
       {children && (
-        <p className="mt-4 text-base leading-relaxed text-gray-600 dark:text-gray-400">
+        <p className="mt-4 text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
           {children}
         </p>
       )}
@@ -562,7 +562,7 @@ export default function Home() {
           <div className="mx-auto mt-12 h-[300px] w-full max-w-md sm:h-[360px]">
             <GlobeViz className="h-full w-full" />
           </div>
-          <p className="mt-2 text-center text-xs font-mono uppercase tracking-[0.25em] text-gray-500 dark:text-gray-400">
+          <p className="mt-2 text-center text-xs font-mono uppercase tracking-[0.25em] text-zinc-500 dark:text-zinc-400">
             Sao Paulo · Rotterdam · Mexico City
           </p>
         </Reveal>
@@ -595,10 +595,10 @@ export default function Home() {
                 <div className="float-slow text-4xl" style={{ animationDelay: `${i * 0.6}s` }}>
                   {item.flag}
                 </div>
-                <h3 className="mt-3 font-semibold text-gray-900 transition-colors group-hover:text-zinc-700 dark:text-white dark:group-hover:text-zinc-300">
+                <h3 className="mt-3 font-semibold text-zinc-900 transition-colors group-hover:text-zinc-700 dark:text-white dark:group-hover:text-zinc-300">
                   {item.title}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+                <p className="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
                   {item.body}
                 </p>
               </div>
@@ -682,12 +682,12 @@ export default function Home() {
                   <p className="text-xs font-mono uppercase tracking-widest text-zinc-700 dark:text-zinc-300">
                     {project.subtitle}
                   </p>
-                  <CardTitle className="mt-1 text-xl text-gray-900 transition-colors group-hover:text-zinc-700 dark:text-white dark:group-hover:text-zinc-300">
+                  <CardTitle className="mt-1 text-xl text-zinc-900 transition-colors group-hover:text-zinc-700 dark:text-white dark:group-hover:text-zinc-300">
                     {project.title}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="flex flex-1 flex-col">
-                  <p className="flex-1 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+                  <p className="flex-1 text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
                     {project.description}
                   </p>
                   <div className="mt-4 flex flex-wrap gap-2">
@@ -718,7 +718,7 @@ export default function Home() {
 
         <Reveal delay={150}>
           <div className="mx-auto mt-14 max-w-xl">
-            <p className="mb-4 text-center text-xs font-mono uppercase tracking-[0.25em] text-gray-500 dark:text-gray-400">
+            <p className="mb-4 text-center text-xs font-mono uppercase tracking-[0.25em] text-zinc-500 dark:text-zinc-400">
               Explore the repositories
             </p>
             <FileTree data={projectFiles} />
@@ -759,19 +759,19 @@ export default function Home() {
             <Reveal key={exp.role + exp.org} delay={i * 100}>
               <div className={cn(NEUMORPHIC, "group p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-zinc-500/20")}>
                 <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                  <h3 className="flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white">
+                  <h3 className="flex items-center gap-2 text-lg font-semibold text-zinc-900 dark:text-white">
                     <Briefcase className="h-4 w-4 text-zinc-700 dark:text-zinc-300" />
                     {exp.role}
                   </h3>
-                  <span className="font-mono text-xs text-gray-500 dark:text-gray-400">
+                  <span className="font-mono text-xs text-zinc-500 dark:text-zinc-400">
                     {exp.period}
                   </span>
                 </div>
                 <p className="mt-1 text-sm font-medium text-zinc-700 dark:text-zinc-300">
                   {exp.org}
-                  <span className="text-gray-400 dark:text-gray-500"> · {exp.location}</span>
+                  <span className="text-zinc-400 dark:text-zinc-500"> · {exp.location}</span>
                 </p>
-                <p className="mt-3 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+                <p className="mt-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
                   {exp.detail}
                 </p>
               </div>
@@ -790,13 +790,13 @@ export default function Home() {
                 <span className="rounded-xl bg-zinc-700/10 p-2 text-zinc-700 dark:bg-zinc-300/10 dark:text-zinc-300">
                   <Users className="h-5 w-5" />
                 </span>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">
                   Leadership & Community
                 </h3>
               </div>
               <ul className="mt-5 space-y-3">
                 {leadership.map((item) => (
-                  <li key={item} className="flex gap-3 text-sm text-gray-600 dark:text-gray-300">
+                  <li key={item} className="flex gap-3 text-sm text-zinc-600 dark:text-zinc-300">
                     <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-500" />
                     {item}
                   </li>
@@ -811,7 +811,7 @@ export default function Home() {
                 <span className="rounded-xl bg-zinc-700/10 p-2 text-zinc-700 dark:bg-zinc-300/10 dark:text-zinc-300">
                   <BookOpen className="h-5 w-5" />
                 </span>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">
                   Relevant Coursework
                 </h3>
               </div>
@@ -853,10 +853,10 @@ export default function Home() {
                   <p className="gradient-text mt-4 text-4xl font-bold tracking-tight">
                     {metric.value}
                   </p>
-                  <p className="mt-1 text-sm font-semibold text-gray-700 dark:text-gray-200">
+                  <p className="mt-1 text-sm font-semibold text-zinc-700 dark:text-zinc-200">
                     {metric.label}
                   </p>
-                  <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                  <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
                     {metric.detail}
                   </p>
                 </div>
@@ -883,7 +883,7 @@ export default function Home() {
                     <span className="rounded-xl bg-zinc-700/10 p-2 text-zinc-700 transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110 dark:bg-zinc-300/10 dark:text-zinc-300">
                       <Icon className="h-5 w-5" />
                     </span>
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                    <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">
                       {cluster.title}
                     </h3>
                   </div>
@@ -917,10 +917,10 @@ export default function Home() {
             <Reveal key={cert.name} delay={i * 100}>
               <div className={cn(NEUMORPHIC, "group h-full p-6 text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-zinc-500/20")}>
                 <BadgeCheck className="mx-auto h-8 w-8 text-zinc-700 transition-transform duration-300 group-hover:scale-125 dark:text-zinc-300" />
-                <h3 className="mt-4 text-sm font-semibold text-gray-900 dark:text-white">
+                <h3 className="mt-4 text-sm font-semibold text-zinc-900 dark:text-white">
                   {cert.name}
                 </h3>
-                <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
                   {cert.issuer}
                 </p>
                 <p className="mt-1 font-mono text-xs text-zinc-700 dark:text-zinc-300">
@@ -943,13 +943,13 @@ export default function Home() {
       </section>
 
       {/* FOOTER */}
-      <footer className="border-t border-gray-200 px-4 py-12 dark:border-gray-800">
+      <footer className="border-t border-zinc-200 px-4 py-12 dark:border-zinc-800">
         <div className="mx-auto flex max-w-4xl flex-col items-center justify-between gap-6 sm:flex-row">
           <div className="text-center sm:text-left">
-            <p className="font-semibold text-gray-900 dark:text-white">
+            <p className="font-semibold text-zinc-900 dark:text-white">
               Santiago Aguilar Mello
             </p>
-            <p className="flex items-center justify-center gap-1.5 text-sm text-gray-500 dark:text-gray-400 sm:justify-start">
+            <p className="flex items-center justify-center gap-1.5 text-sm text-zinc-500 dark:text-zinc-400 sm:justify-start">
               <MapPin className="h-3.5 w-3.5" />
               Mexico City, Mexico · Open to remote and global roles
             </p>
@@ -958,27 +958,27 @@ export default function Home() {
             <a
               href={MAILTO_URL}
               aria-label="Email Santiago"
-              className="text-gray-500 transition-all hover:-translate-y-1 hover:text-zinc-700 dark:text-gray-400 dark:hover:text-zinc-300"
+              className="text-zinc-500 transition-all hover:-translate-y-1 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300"
             >
               <Mail className="h-5 w-5" />
             </a>
             <LinkPreview
               url={GITHUB_URL}
-              className="text-gray-500 transition-all hover:-translate-y-1 hover:text-zinc-700 dark:text-gray-400 dark:hover:text-zinc-300"
+              className="text-zinc-500 transition-all hover:-translate-y-1 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300"
             >
               <GithubMark className="h-5 w-5" />
               <span className="sr-only">GitHub profile</span>
             </LinkPreview>
             <LinkPreview
               url={LINKEDIN_URL}
-              className="text-gray-500 transition-all hover:-translate-y-1 hover:text-zinc-700 dark:text-gray-400 dark:hover:text-zinc-300"
+              className="text-zinc-500 transition-all hover:-translate-y-1 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300"
             >
               <LinkedinMark className="h-5 w-5" />
               <span className="sr-only">LinkedIn profile</span>
             </LinkPreview>
           </div>
         </div>
-        <p className="mt-8 text-center text-xs text-gray-400 dark:text-gray-600">
+        <p className="mt-8 text-center text-xs text-zinc-400 dark:text-zinc-600">
           © {new Date().getFullYear()} Santiago Aguilar Mello. Built with Next.js
           16, React 19 and Tailwind CSS 4.
         </p>

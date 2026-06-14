@@ -1,6 +1,6 @@
 "use client"
 
-import { Star, MessageCircle, UserPlus, Download } from "lucide-react"
+import { MessageCircle, UserPlus, Download } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import AnimatedTextCycle from "@/components/ui/animated-text-cycle"
@@ -38,7 +38,7 @@ export default function AnimatedProfileCard({
       {/* Animated Grid Background (decorative; hidden when reduced motion is preferred) */}
       <div className="absolute inset-0 opacity-20 motion-reduce:hidden" aria-hidden="true">
         <div
-          className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent"
+          className="absolute inset-0 bg-gradient-to-r from-transparent via-zinc-300 dark:via-zinc-600 to-transparent"
           style={{
             backgroundImage: `
               linear-gradient(rgba(156, 163, 175, 0.3) 1px, transparent 1px),
@@ -51,7 +51,7 @@ export default function AnimatedProfileCard({
       </div>
 
       {/* Cycling tagline */}
-      <h1 className="relative z-10 max-w-3xl text-center text-3xl font-light leading-tight text-gray-600 dark:text-gray-300 sm:text-5xl">
+      <h1 className="relative z-10 whitespace-nowrap px-2 text-center font-light leading-tight text-zinc-600 dark:text-zinc-300 text-[clamp(1rem,4.8vw,3rem)]">
         Santiago is a{" "}
         <AnimatedTextCycle
           words={[
@@ -96,53 +96,20 @@ export default function AnimatedProfileCard({
 function ProfileCard({
   name,
   role,
-  status,
   avatar,
   tags = [],
-  isVerified,
   followers,
   followersLabel = "followers",
   connectUrl,
   messageUrl,
 }: ProfileCardProps) {
   return (
-    <div className="group relative overflow-hidden rounded-3xl bg-white dark:bg-gray-800 p-6 w-80 shadow-[12px_12px_24px_rgba(0,0,0,0.15),-12px_-12px_24px_rgba(255,255,255,0.9)] dark:shadow-[12px_12px_24px_rgba(0,0,0,0.3),-12px_-12px_24px_rgba(255,255,255,0.1)] transition-all duration-500 hover:shadow-[20px_20px_40px_rgba(0,0,0,0.2),-20px_-20px_40px_rgba(255,255,255,1)] dark:hover:shadow-[20px_20px_40px_rgba(0,0,0,0.4),-20px_-20px_40px_rgba(255,255,255,0.15)] hover:scale-105 hover:-translate-y-2">
-      {/* Status indicator with pulse animation */}
-      <div className="absolute right-4 top-4 z-10">
-        <div className="relative" role="status" aria-label={`Status: ${status}`}>
-          <div
-            className={cn(
-              "h-3 w-3 rounded-full border-2 border-white dark:border-gray-800 transition-all duration-300 group-hover:scale-125",
-              status === "online"
-                ? "bg-green-500 group-hover:shadow-[0_0_20px_rgba(34,197,94,0.6)]"
-                : status === "away"
-                  ? "bg-amber-500"
-                  : "bg-gray-400",
-            )}
-          ></div>
-          {status === "online" && (
-            <div className="absolute inset-0 h-3 w-3 rounded-full bg-green-500 animate-ping opacity-30"></div>
-          )}
-        </div>
-      </div>
-
-      {/* Verified badge with bounce animation */}
-      {isVerified && (
-        <div className="absolute right-4 top-10 z-10">
-          <div
-            className="rounded-full bg-zinc-600 dark:bg-zinc-700 p-1 shadow-[2px_2px_4px_rgba(0,0,0,0.1)] dark:shadow-[2px_2px_4px_rgba(0,0,0,0.3)] transition-all duration-300 group-hover:scale-110 group-hover:rotate-12 group-hover:shadow-[0_0_15px_rgba(113,113,122,0.5)]"
-            role="img"
-            aria-label="Verified"
-          >
-            <Star className="h-3 w-3 fill-white text-white" aria-hidden="true" />
-          </div>
-        </div>
-      )}
+    <div className="group relative overflow-hidden rounded-3xl bg-white dark:bg-zinc-800 p-6 w-80 shadow-[12px_12px_24px_rgba(0,0,0,0.15),-12px_-12px_24px_rgba(255,255,255,0.9)] dark:shadow-[12px_12px_24px_rgba(0,0,0,0.3),-12px_-12px_24px_rgba(255,255,255,0.1)] transition-all duration-500 hover:shadow-[20px_20px_40px_rgba(0,0,0,0.2),-20px_-20px_40px_rgba(255,255,255,1)] dark:hover:shadow-[20px_20px_40px_rgba(0,0,0,0.4),-20px_-20px_40px_rgba(255,255,255,0.15)] hover:scale-105 hover:-translate-y-2">
 
       {/* Profile Photo with enhanced hover effects */}
       <div className="mb-4 flex justify-center relative z-10">
         <div className="relative group-hover:animate-pulse">
-          <div className="h-28 w-28 overflow-hidden rounded-full bg-white dark:bg-gray-700 p-1 shadow-[inset_6px_6px_12px_rgba(0,0,0,0.1),inset_-6px_-6px_12px_rgba(255,255,255,0.9)] dark:shadow-[inset_6px_6px_12px_rgba(0,0,0,0.3),inset_-6px_-6px_12px_rgba(255,255,255,0.1)] transition-all duration-500 group-hover:shadow-[inset_8px_8px_16px_rgba(0,0,0,0.15),inset_-8px_-8px_16px_rgba(255,255,255,1)] dark:group-hover:shadow-[inset_8px_8px_16px_rgba(0,0,0,0.4),inset_-8px_-8px_16px_rgba(255,255,255,0.15)] group-hover:scale-110">
+          <div className="h-28 w-28 overflow-hidden rounded-full bg-white dark:bg-zinc-700 p-1 shadow-[inset_6px_6px_12px_rgba(0,0,0,0.1),inset_-6px_-6px_12px_rgba(255,255,255,0.9)] dark:shadow-[inset_6px_6px_12px_rgba(0,0,0,0.3),inset_-6px_-6px_12px_rgba(255,255,255,0.1)] transition-all duration-500 group-hover:shadow-[inset_8px_8px_16px_rgba(0,0,0,0.15),inset_-8px_-8px_16px_rgba(255,255,255,1)] dark:group-hover:shadow-[inset_8px_8px_16px_rgba(0,0,0,0.4),inset_-8px_-8px_16px_rgba(255,255,255,0.15)] group-hover:scale-110">
             <img
               src={avatar}
               alt={name}
@@ -157,15 +124,15 @@ function ProfileCard({
 
       {/* Profile Info with slide-up animation */}
       <div className="text-center relative z-10 transition-transform duration-300 group-hover:-translate-y-1">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 transition-colors duration-300 group-hover:text-zinc-700 dark:group-hover:text-zinc-300">
+        <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100 transition-colors duration-300 group-hover:text-zinc-700 dark:group-hover:text-zinc-300">
           {name}
         </h3>
-        <p className="mt-1 text-sm text-gray-500 dark:text-gray-400 transition-colors duration-300 group-hover:text-gray-700 dark:group-hover:text-gray-300">
+        <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400 transition-colors duration-300 group-hover:text-zinc-700 dark:group-hover:text-zinc-300">
           {role}
         </p>
 
         {typeof followers === "number" && (
-          <p className="mt-2 text-xs text-gray-400 dark:text-gray-500 transition-all duration-300 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 group-hover:font-medium">
+          <p className="mt-2 text-xs text-zinc-400 dark:text-zinc-500 transition-all duration-300 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 group-hover:font-medium">
             {followers.toLocaleString()} {followersLabel}
           </p>
         )}
@@ -178,7 +145,7 @@ function ProfileCard({
             <span
               key={tag}
               className={cn(
-                "inline-block rounded-full bg-white dark:bg-gray-700 px-3 py-1 text-xs font-medium text-gray-600 dark:text-gray-300 shadow-[2px_2px_4px_rgba(0,0,0,0.05),-2px_-2px_4px_rgba(255,255,255,0.8)] dark:shadow-[2px_2px_4px_rgba(0,0,0,0.2),-2px_-2px_4px_rgba(255,255,255,0.1)] transition-all duration-300 group-hover:scale-105",
+                "inline-block rounded-full bg-white dark:bg-zinc-700 px-3 py-1 text-xs font-medium text-zinc-600 dark:text-zinc-300 shadow-[2px_2px_4px_rgba(0,0,0,0.05),-2px_-2px_4px_rgba(255,255,255,0.8)] dark:shadow-[2px_2px_4px_rgba(0,0,0,0.2),-2px_-2px_4px_rgba(255,255,255,0.1)] transition-all duration-300 group-hover:scale-105",
                 tag === "Open to Work" &&
                   "text-zinc-700 dark:text-zinc-300 group-hover:bg-zinc-100dark:group-hover:bg-zinc-800/30 group-hover:shadow-[0_0_10px_rgba(113,113,122,0.3)]",
               )}
@@ -196,14 +163,14 @@ function ProfileCard({
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Connect on LinkedIn"
-          className="flex-1 rounded-full bg-white dark:bg-gray-700 py-4 text-sm font-medium text-zinc-700 dark:text-zinc-300 shadow-[6px_6px_12px_rgba(0,0,0,0.1),-6px_-6px_12px_rgba(255,255,255,0.9)] dark:shadow-[6px_6px_12px_rgba(0,0,0,0.2),-6px_-6px_12px_rgba(255,255,255,0.1)] transition-all duration-300 hover:shadow-[2px_2px_4px_rgba(0,0,0,0.05),-2px_-2px_4px_rgba(255,255,255,0.8)] dark:hover:shadow-[2px_2px_4px_rgba(0,0,0,0.15),-2px_-2px_4px_rgba(255,255,255,0.05)] hover:scale-95 active:scale-90 group-hover:bg-zinc-100dark:group-hover:bg-zinc-800/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-600 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-800"
+          className="flex-1 rounded-full bg-white dark:bg-zinc-700 py-4 text-sm font-medium text-zinc-700 dark:text-zinc-300 shadow-[6px_6px_12px_rgba(0,0,0,0.1),-6px_-6px_12px_rgba(255,255,255,0.9)] dark:shadow-[6px_6px_12px_rgba(0,0,0,0.2),-6px_-6px_12px_rgba(255,255,255,0.1)] transition-all duration-300 hover:shadow-[2px_2px_4px_rgba(0,0,0,0.05),-2px_-2px_4px_rgba(255,255,255,0.8)] dark:hover:shadow-[2px_2px_4px_rgba(0,0,0,0.15),-2px_-2px_4px_rgba(255,255,255,0.05)] hover:scale-95 active:scale-90 group-hover:bg-zinc-100dark:group-hover:bg-zinc-800/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-600 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-zinc-800"
         >
           <UserPlus className="mx-auto h-4 w-4 transition-transform duration-300 hover:scale-110" aria-hidden="true" />
         </a>
         <a
           href={messageUrl}
           aria-label="Send an email"
-          className="flex-1 rounded-full bg-white dark:bg-gray-700 py-4 text-sm font-medium text-gray-700 dark:text-gray-300 shadow-[6px_6px_12px_rgba(0,0,0,0.1),-6px_-6px_12px_rgba(255,255,255,0.9)] dark:shadow-[6px_6px_12px_rgba(0,0,0,0.2),-6px_-6px_12px_rgba(255,255,255,0.1)] transition-all duration-300 hover:shadow-[2px_2px_4px_rgba(0,0,0,0.05),-2px_-2px_4px_rgba(255,255,255,0.8)] dark:hover:shadow-[2px_2px_4px_rgba(0,0,0,0.15),-2px_-2px_4px_rgba(255,255,255,0.05)] hover:scale-95 active:scale-90 group-hover:bg-gray-50 dark:group-hover:bg-gray-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-600 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-800"
+          className="flex-1 rounded-full bg-white dark:bg-zinc-700 py-4 text-sm font-medium text-zinc-700 dark:text-zinc-300 shadow-[6px_6px_12px_rgba(0,0,0,0.1),-6px_-6px_12px_rgba(255,255,255,0.9)] dark:shadow-[6px_6px_12px_rgba(0,0,0,0.2),-6px_-6px_12px_rgba(255,255,255,0.1)] transition-all duration-300 hover:shadow-[2px_2px_4px_rgba(0,0,0,0.05),-2px_-2px_4px_rgba(255,255,255,0.8)] dark:hover:shadow-[2px_2px_4px_rgba(0,0,0,0.15),-2px_-2px_4px_rgba(255,255,255,0.05)] hover:scale-95 active:scale-90 group-hover:bg-zinc-50 dark:group-hover:bg-zinc-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-600 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-zinc-800"
         >
           <MessageCircle className="mx-auto h-4 w-4 transition-transform duration-300 hover:scale-110" aria-hidden="true" />
         </a>

@@ -101,22 +101,21 @@ export default function RadialOrbitalTimeline({
   }, []);
 
   useEffect(() => {
-    let rotationTimer: ReturnType<typeof setInterval>;
+    if (!autoRotate || prefersReducedMotion) return;
 
-    if (autoRotate && !prefersReducedMotion) {
-      rotationTimer = setInterval(() => {
-        setRotationAngle((prev) => {
-          const newAngle = (prev + 0.3) % 360;
-          return Number(newAngle.toFixed(3));
-        });
-      }, 50);
-    }
+    let frameId: number;
+    let last = performance.now();
 
-    return () => {
-      if (rotationTimer) {
-        clearInterval(rotationTimer);
-      }
+    const tick = (now: number) => {
+      const delta = now - last;
+      last = now;
+      // ~6 degrees per second, smoothed by the real frame delta.
+      setRotationAngle((prev) => (prev + delta * 0.006) % 360);
+      frameId = requestAnimationFrame(tick);
     };
+
+    frameId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frameId);
   }, [autoRotate, prefersReducedMotion]);
 
   const centerViewOnNode = (nodeId: number) => {
@@ -207,6 +206,12 @@ export default function RadialOrbitalTimeline({
               transform: `translate(${position.x}px, ${position.y}px)`,
               zIndex: isExpanded ? 200 : position.zIndex,
               opacity: isExpanded ? 1 : position.opacity,
+              // While spinning, update position every frame with no easing so it
+              // does not rubber-band. When paused on a node, ease the transform
+              // so the click-to-center motion is smooth.
+              transition: autoRotate
+                ? "opacity 0.4s ease-out"
+                : "transform 0.7s ease, opacity 0.7s ease",
             };
 
             return (
@@ -217,7 +222,7 @@ export default function RadialOrbitalTimeline({
                 tabIndex={0}
                 aria-expanded={Boolean(isExpanded)}
                 aria-label={`${item.title}, ${item.date}`}
-                className="absolute transition-all duration-700 cursor-pointer rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                className="absolute cursor-pointer rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                 style={nodeStyle}
                 onClick={(e) => {
                   e.stopPropagation();
