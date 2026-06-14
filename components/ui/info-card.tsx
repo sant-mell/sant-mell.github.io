@@ -30,11 +30,28 @@ export interface AnimatedProfileCardProps {
   profile: ProfileCardProps
   /** Optional CV download link rendered as a prominent button below the card. */
   cvUrl?: string
+  /** Localized "Santiago is a" lead-in for the morphing tagline. */
+  taglinePrefix?: string
+  /** Localized roles cycled by the morphing tagline. */
+  roles?: string[]
+  /** Localized label for the CV download button. */
+  cvLabel?: string
 }
 
 export default function AnimatedProfileCard({
   profile,
   cvUrl,
+  taglinePrefix = "Santiago is a",
+  roles = [
+    "CS Student",
+    "Cybersecurity enthusiast",
+    "CCNA candidate",
+    "Network engineer",
+    "Polyglot",
+    "Global citizen",
+    "Problem solver",
+  ],
+  cvLabel = "Download CV (PDF)",
 }: AnimatedProfileCardProps) {
   return (
     <div className="min-h-screen flex flex-col items-center w-full justify-center gap-8 p-4 relative overflow-hidden">
@@ -56,18 +73,10 @@ export default function AnimatedProfileCard({
       {/* Morphing tagline */}
       <h1 className="relative z-10 flex flex-col items-center gap-3 px-2 text-center">
         <span className="font-light leading-tight text-zinc-600 dark:text-zinc-300 text-[clamp(1rem,4.8vw,2.25rem)]">
-          Santiago is a
+          {taglinePrefix}
         </span>
         <GooeyText
-          texts={[
-            "CS Student",
-            "Cybersecurity enthusiast",
-            "CCNA candidate",
-            "Network engineer",
-            "Polyglot",
-            "Global citizen",
-            "Problem solver",
-          ]}
+          texts={roles}
           morphTime={1}
           cooldownTime={1.4}
           className="flex h-14 w-full items-center justify-center sm:h-20"
@@ -85,7 +94,7 @@ export default function AnimatedProfileCard({
         >
           <a href={cvUrl} target="_blank" rel="noopener noreferrer">
             <Download className="mr-2 h-4 w-4" aria-hidden="true" />
-            Download CV (PDF)
+            {cvLabel}
           </a>
         </Button>
       )}
@@ -144,9 +153,7 @@ function ProfileCard({
             <span
               key={tag}
               className={cn(
-                "inline-block rounded-full bg-white dark:bg-zinc-700 px-3 py-1 text-xs font-medium text-zinc-600 dark:text-zinc-300 shadow-[2px_2px_4px_rgba(0,0,0,0.05),-2px_-2px_4px_rgba(255,255,255,0.8)] dark:shadow-[2px_2px_4px_rgba(0,0,0,0.2),-2px_-2px_4px_rgba(255,255,255,0.1)] transition-all duration-300 group-hover:scale-105",
-                tag === "Open to Work" &&
-                  "text-zinc-700 dark:text-zinc-300 group-hover:bg-zinc-100dark:group-hover:bg-zinc-800/30 group-hover:shadow-[0_0_10px_rgba(113,113,122,0.3)]",
+                "inline-block rounded-full bg-white dark:bg-zinc-700 px-3 py-1 text-xs font-medium text-zinc-700 dark:text-zinc-300 shadow-[2px_2px_4px_rgba(0,0,0,0.05),-2px_-2px_4px_rgba(255,255,255,0.8)] dark:shadow-[2px_2px_4px_rgba(0,0,0,0.2),-2px_-2px_4px_rgba(255,255,255,0.1)] transition-all duration-300 group-hover:scale-105 group-hover:shadow-[0_0_10px_rgba(113,113,122,0.3)]",
               )}
             >
               {tag}

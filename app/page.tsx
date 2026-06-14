@@ -33,6 +33,7 @@ import { LinkPreview } from "@/components/ui/link-preview";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { translations, LOCALES, type Locale } from "@/lib/i18n";
 
 /* Heavy WebGL/3D widgets are below the fold. Load them client-side only and
  * code-split them out of the initial bundle so first paint stays fast. */
@@ -50,7 +51,8 @@ const ShaderBackground = dynamic(
 );
 
 /* ----------------------------------------------------------------------------
- * Constants and data
+ * Language-neutral data (icons, URLs, dates, numbers, tech-stack chips, and
+ * proper nouns). All human-readable prose comes from `@/lib/i18n` by locale.
  * ------------------------------------------------------------------------- */
 
 const LINKEDIN_URL = "https://www.linkedin.com/in/santiago-aguilar-b1702a270/";
@@ -58,15 +60,6 @@ const GITHUB_URL = "https://github.com/sant-mell";
 const EMAIL = "sant.mell016@gmail.com";
 const MAILTO_URL = `mailto:${EMAIL}`;
 const CV_URL = "/cv.pdf";
-
-const profile: ProfileCardProps = {
-  name: "Santiago Aguilar Mello",
-  role: "Multicultural CS (ITC) student @ Tec de Monterrey, Santa Fe",
-  avatar: "/profile.jpg",
-  tags: ["Open to Work"],
-  connectUrl: LINKEDIN_URL,
-  messageUrl: MAILTO_URL,
-};
 
 interface TimelineNode {
   id: number;
@@ -80,91 +73,14 @@ interface TimelineNode {
   energy: number;
 }
 
-const systemsTimeline: TimelineNode[] = [
-  {
-    id: 1,
-    title: "IBDP, Rotterdam (NL)",
-    date: "2022-2024",
-    content:
-      "International Baccalaureate Diploma at Rotterdam International Secondary School, scoring 33/45 with an Excellence in English award. Cross-cultural readiness for global, distributed teams.",
-    category: "Education",
-    icon: Globe,
-    relatedIds: [2, 3],
-    status: "completed",
-    energy: 100,
-  },
-  {
-    id: 2,
-    title: "Polyglot: PT / ES / EN / NL",
-    date: "Ongoing",
-    content:
-      "Native Portuguese and Spanish, English C2, Dutch A1. A core soft skill and a real asset for distributed teams that span multiple time zones and languages.",
-    category: "Skills",
-    icon: Languages,
-    relatedIds: [1, 3],
-    status: "completed",
-    energy: 95,
-  },
-  {
-    id: 3,
-    title: "Tec de Monterrey, ITC",
-    date: "2024-Present",
-    content:
-      "B.S. in Computer Science and Technology at Campus Santa Fe, Mexico City. GPA 96.33. Coursework spanning data structures, networks, databases, embedded systems, and cybersecurity.",
-    category: "Education",
-    icon: GraduationCap,
-    relatedIds: [1, 2, 4],
-    status: "in-progress",
-    energy: 90,
-  },
-  {
-    id: 4,
-    title: "Teaching & Peer Mentorship",
-    date: "2024-Present",
-    content:
-      "Python instructor for middle-school students, English teacher in the Netherlands, and a graduate Peer Mentor at Tec, guiding new students through their first year.",
-    category: "Experience",
-    icon: BookOpen,
-    relatedIds: [3, 5],
-    status: "in-progress",
-    energy: 85,
-  },
-  {
-    id: 5,
-    title: "IoT & Systems Engineering",
-    date: "2025",
-    content:
-      "An ESP32 IoT smart-parking prototype, a DFA-based lexer with parallel processing, and data structures in C++. Hands-on work at the hardware and machine layer.",
-    category: "Projects",
-    icon: Cpu,
-    relatedIds: [4, 6],
-    status: "completed",
-    energy: 90,
-  },
-  {
-    id: 6,
-    title: "START Hack: Aquaroute",
-    date: "2026",
-    content:
-      "First hackathon. Built Aquaroute in 36 hours: a SaaS that routes water trucks to the most water-stressed areas using satellite climate data and a weighted variation of Dijkstra's algorithm.",
-    category: "Projects",
-    icon: Network,
-    relatedIds: [5, 7],
-    status: "completed",
-    energy: 80,
-  },
-  {
-    id: 7,
-    title: "Target: CCNA & Cybersecurity",
-    date: "2026+",
-    content:
-      "Working toward the Cisco CCNA certification and a cybersecurity or network engineering internship, with a focus on remote, global infrastructure roles.",
-    category: "Career",
-    icon: Shield,
-    relatedIds: [6],
-    status: "pending",
-    energy: 20,
-  },
+const TIMELINE_META: Omit<TimelineNode, "title" | "content" | "category">[] = [
+  { id: 1, date: "2022-2024", icon: Globe, relatedIds: [2, 3], status: "completed", energy: 100 },
+  { id: 2, date: "Ongoing", icon: Languages, relatedIds: [1, 3], status: "completed", energy: 95 },
+  { id: 3, date: "2024-Present", icon: GraduationCap, relatedIds: [1, 2, 4], status: "in-progress", energy: 90 },
+  { id: 4, date: "2024-Present", icon: BookOpen, relatedIds: [3, 5], status: "in-progress", energy: 85 },
+  { id: 5, date: "2025", icon: Cpu, relatedIds: [4, 6], status: "completed", energy: 90 },
+  { id: 6, date: "2026", icon: Network, relatedIds: [5, 7], status: "completed", energy: 80 },
+  { id: 7, date: "2026+", icon: Shield, relatedIds: [6], status: "pending", energy: 20 },
 ];
 
 interface Project {
@@ -177,20 +93,16 @@ interface Project {
   liveUrl?: string;
 }
 
-const projects: Project[] = [
+const PROJECT_META: Omit<Project, "description">[] = [
   {
     title: "IoT Smart Parking System",
     subtitle: "ESP32 · MQTT · Python",
-    description:
-      "A full IoT prototype with occupancy detection, automated barrier control, and cloud telemetry. Embedded firmware on ESP32 talking to cloud services over MQTT.",
     stack: ["C++ / Arduino", "ESP32", "MQTT", "Python", "ThingSpeak"],
     repoUrl: "https://github.com/sant-mell/smart-parking-iot",
   },
   {
     title: "Aquaroute (START Hack)",
     subtitle: "SaaS · Algorithm Design",
-    description:
-      "A hackathon prototype that routes Mexican water trucks to the most water-stressed areas. Combines satellite climate data with a weighted, safety-aware variation of Dijkstra's algorithm, backed by a validated business model.",
     stack: ["Algorithm Design", "Dijkstra Variant", "Satellite Data", "SaaS"],
     repoUrl:
       "https://www.linkedin.com/posts/santiago-aguilar-b1702a270_starthackmexico-tecdemonterrey-lovable-ugcPost-7429695225133957120-GuHB/",
@@ -198,16 +110,12 @@ const projects: Project[] = [
   {
     title: "The Fool's Descent (TC2005B)",
     subtitle: "JavaScript · Node · MySQL",
-    description:
-      "An 8-credit flagship team project: a roguelike card game built from scratch, including its own game engine (no framework). An HTML5 Canvas client, an Express API, and a MySQL layer with stored procedures and triggers, with OOP, real state management, and strict version control.",
     stack: ["JavaScript", "HTML5 Canvas", "Node.js / Express", "MySQL", "Git"],
     repoUrl: "https://github.com/sant-mell/videoGame-TC2005B.501",
   },
   {
     title: "Breakout",
     subtitle: "JavaScript · HTML5 Canvas",
-    description:
-      "A browser Breakout clone with a twist: the paddle tilts to aim the ball into corners. Three levels, each with its own music theme (disco, hip hop, rock). Built from scratch on a custom Canvas engine (no game framework), with vector math and a delta-time game loop.",
     stack: ["JavaScript", "HTML5 Canvas", "Game Loop", "Collision Detection"],
     repoUrl: "https://github.com/sant-mell/myTC2005B/tree/main/Videojuegos/Breakout",
     liveUrl:
@@ -216,16 +124,12 @@ const projects: Project[] = [
   {
     title: "DFA Lexer / Compiler",
     subtitle: "Python · Automata Theory",
-    description:
-      "A hand-built DFA lexer (explicit transition table, no regex) extended into a parallel syntax highlighter, benchmarked at about 6x speedup over a sequential baseline on 16 cores. The low-level parsing logic behind secure code and deep packet inspection.",
     stack: ["Python", "Multiprocessing", "Automata / DFA", "Benchmarking"],
     repoUrl: "https://github.com/sant-mell/parallel-syntax-highlighter",
   },
   {
     title: "Next.js Portfolio",
     subtitle: "Next.js 16 · React 19",
-    description:
-      "This site. React 19, Tailwind 4, and a static export build, with a glassy dark UI over an animated WebGL shader background, an interactive three.js globe, a radial career orbit, and live link previews.",
     stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4"],
     repoUrl: "https://github.com/sant-mell/sant-mell.github.io",
   },
@@ -241,82 +145,49 @@ interface Experience {
   detail: string;
 }
 
-const experiences: Experience[] = [
+const EXPERIENCE_META: Omit<Experience, "role" | "detail">[] = [
   {
-    role: "English Language Teacher",
     org: "Pro English BV (Self-employed)",
     orgUrl: "https://engelsvoorbengels.nl/",
     period: "Jul 2025 - Present",
     location: "Rotterdam, Netherlands",
-    detail:
-      "Immersive, play-based English instruction for around 165 children (ages 4 to 12) in a multicultural summer-camp setting, using four languages to support classroom management and cross-cultural understanding.",
   },
   {
-    role: "Computer Science Instructor",
     org: "Logaritmia MX",
     orgUrl: "https://www.linkedin.com/company/logaritmia-mx/",
     period: "Jan 2025 - May 2025",
     location: "Telesecundaria, Mexico",
-    detail:
-      "Designed and taught a Python curriculum for middle-school students: variables, loops, conditionals, functions, and problem solving with Replit and Turtle, plus assessments and feedback.",
   },
   {
-    role: "Volunteer & Peer Mentor",
     org: "Tec de Monterrey",
     orgUrl: "https://tec.mx",
     period: "2024 - Present",
     location: "Campus Santa Fe",
-    detail:
-      "Graduate of the Peer Mentorship Program. Guides new students through the academic and social adaptation to university life.",
   },
   {
-    role: "Media Logistics Assistant",
     org: "DPG Media Nederland",
     orgUrl: "https://www.dpgmedia.nl",
     period: "Jun 2022 - Aug 2022",
     location: "South Holland, Netherlands",
-    detail:
-      "Optimized last-mile print distribution routes for NRC, De Telegraaf, AD, and others under strict daily time constraints.",
   },
 ];
 
 interface LeadershipItem {
-  /** Text before the linkable keyword. */
   pre?: string;
-  /** The keyword itself (linked with a hover preview when `url` is set). */
   link: string;
-  /** Optional official URL for the keyword. */
   url?: string;
-  /** Text after the linkable keyword. */
   post?: string;
 }
 
-const leadership: LeadershipItem[] = [
-  { pre: "Vice President, ", link: "Krei Student Society", url: "https://www.instagram.com/kreicsf/", post: " (Campus Santa Fe)" },
-  { link: "Advanced Competitive Programming Team", post: " (CSF)" },
-  { link: "COPARMEX", url: "https://coparmex.org.mx", post: " Chapter member (CSF)" },
-  { link: "Peer Mentor", url: "https://conecta.tec.mx/es/noticias/laguna/educacion/peer-mentors-jovenes-acompanando-jovenes-en-el-tec", post: ", Tec de Monterrey" },
+const LEADERSHIP_META: { link: string; url?: string }[] = [
+  { link: "Krei Student Society", url: "https://www.instagram.com/kreicsf/" },
+  { link: "Advanced Competitive Programming Team" },
+  { link: "COPARMEX", url: "https://coparmex.org.mx" },
   {
-    pre: "Head of Charity, ",
-    link: "RISS Netherlands",
-    url: "https://riss.wolfert.nl",
-    post: " (Buy a Tulip Help a Girl, Red Cross relief)",
+    link: "Peer Mentor",
+    url: "https://conecta.tec.mx/es/noticias/laguna/educacion/peer-mentors-jovenes-acompanando-jovenes-en-el-tec",
   },
-];
-
-const coursework: string[] = [
-  "Data Structures",
-  "OOP (C++)",
-  "Computer Networks",
-  "Computer Cybersecurity",
-  "Embedded Systems & IoT",
-  "Databases",
-  "Software Engineering",
-  "Web Development",
-  "Advanced AI for Data Science",
-  "Data Analytics & AI Tools",
-  "Computational Thinking",
-  "Differential Equations",
+  { link: "RISS Netherlands", url: "https://riss.wolfert.nl" },
 ];
 
 interface Certification {
@@ -328,22 +199,19 @@ interface Certification {
   url?: string;
 }
 
-const certifications: Certification[] = [
+const CERT_META: Omit<Certification, "name">[] = [
   {
-    name: "Universitas 21 Global Citizenship",
     issuer: "Common Purpose",
     issuerUrl: "https://commonpurpose.org",
     date: "Apr 2026",
     url: "https://students.learn.commonpurpose.org/badges/badge.php?hash=c0442df8bdb7d00a1d43171b2e55713295fb1f87",
   },
   {
-    name: "IB Diploma, 33/45",
     issuer: "Rotterdam International Secondary School",
     issuerUrl: "https://riss.wolfert.nl",
     date: "2024",
   },
   {
-    name: "Excellence in English Award",
     issuer: "RISS, Netherlands",
     issuerUrl: "https://riss.wolfert.nl",
     date: "2024",
@@ -357,11 +225,11 @@ interface Metric {
   icon: ComponentType<{ className?: string }>;
 }
 
-const metrics: Metric[] = [
-  { label: "University GPA", value: "96.33", detail: "out of 100, Tec de Monterrey", icon: Award },
-  { label: "IB Diploma", value: "33/45", detail: "Excellence in English", icon: GraduationCap },
-  { label: "Expected Graduation", value: "2028", detail: "B.S. Computer Science (ITC)", icon: TrendingUp },
-  { label: "Languages", value: "4", detail: "two native, English C2", icon: Languages },
+const METRIC_META: Omit<Metric, "label" | "detail">[] = [
+  { value: "96.33", icon: Award },
+  { value: "33/45", icon: GraduationCap },
+  { value: "2028", icon: TrendingUp },
+  { value: "4", icon: Languages },
 ];
 
 interface SkillCluster {
@@ -370,22 +238,25 @@ interface SkillCluster {
   skills: string[];
 }
 
-const skillClusters: SkillCluster[] = [
+const SKILL_META: Omit<SkillCluster, "title">[] = [
   {
-    title: "Languages",
     icon: Cpu,
     skills: ["C++", "Python", "TypeScript", "JavaScript", "SQL", "HTML / CSS", "Racket"],
   },
   {
-    title: "Systems & Networking",
     icon: Network,
     skills: ["Linux / Bash", "Networking", "MQTT", "ESP-IDF", "Arduino (ESP32)", "Embedded C"],
   },
   {
-    title: "Tools & Web",
     icon: CircuitBoard,
     skills: ["Git / GitHub", "Next.js", "React", "Node.js", "ThingSpeak"],
   },
+];
+
+const WHEREFROM_META: { icon: ComponentType<{ className?: string }> }[] = [
+  { icon: Globe },
+  { icon: GraduationCap },
+  { icon: Cpu },
 ];
 
 /* ----------------------------------------------------------------------------
@@ -405,6 +276,42 @@ function LinkedinMark({ className }: { className?: string }) {
     <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor" className={className}>
       <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z" />
     </svg>
+  );
+}
+
+/* ----------------------------------------------------------------------------
+ * Language switcher
+ * ------------------------------------------------------------------------- */
+
+function LanguageSwitcher({
+  locale,
+  setLocale,
+}: {
+  locale: Locale;
+  setLocale: (l: Locale) => void;
+}) {
+  return (
+    <div className="fixed top-4 left-1/2 z-50 -translate-x-1/2">
+      <div className="flex items-center gap-1 rounded-full border border-white/10 bg-white/10 p-1 shadow-[0_8px_32px_rgba(0,0,0,0.45)] backdrop-blur-xl">
+        {LOCALES.map((l) => (
+          <button
+            key={l.code}
+            type="button"
+            onClick={() => setLocale(l.code)}
+            aria-pressed={locale === l.code}
+            aria-label={l.name}
+            className={cn(
+              "rounded-full px-3 py-1 font-mono text-xs font-semibold uppercase tracking-wider transition-all",
+              locale === l.code
+                ? "bg-white text-zinc-900"
+                : "text-zinc-300 hover:text-white",
+            )}
+          >
+            {l.label}
+          </button>
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -511,24 +418,99 @@ function SectionHeading({
  * ------------------------------------------------------------------------- */
 
 export default function Home() {
+  const [locale, setLocale] = useState<Locale>("en");
+
+  // Restore the visitor's last choice, then keep <html lang> and storage in sync.
+  useEffect(() => {
+    const saved = localStorage.getItem("locale") as Locale | null;
+    if (saved && LOCALES.some((l) => l.code === saved)) setLocale(saved);
+  }, []);
+  useEffect(() => {
+    document.documentElement.lang = locale;
+    localStorage.setItem("locale", locale);
+  }, [locale]);
+
+  const t = translations[locale];
+
+  const profile: ProfileCardProps = {
+    name: "Santiago Aguilar Mello",
+    role: t.hero.cardRole,
+    avatar: "/profile.jpg",
+    tags: [t.hero.openToWork],
+    connectUrl: LINKEDIN_URL,
+    messageUrl: MAILTO_URL,
+  };
+
+  const projects: Project[] = PROJECT_META.map((p, i) => ({
+    ...p,
+    description: t.projectDescriptions[i],
+  }));
+  const experiences: Experience[] = EXPERIENCE_META.map((e, i) => ({
+    ...e,
+    role: t.experiences[i].role,
+    detail: t.experiences[i].detail,
+  }));
+  const systemsTimeline: TimelineNode[] = TIMELINE_META.map((n, i) => ({
+    ...n,
+    title: t.timelineNodes[i].title,
+    content: t.timelineNodes[i].content,
+    category: t.timelineNodes[i].category,
+  }));
+  const certifications: Certification[] = CERT_META.map((c, i) => ({
+    ...c,
+    name: t.certNames[i],
+  }));
+  const metrics: Metric[] = METRIC_META.map((m, i) => ({
+    ...m,
+    label: t.metrics[i].label,
+    detail: t.metrics[i].detail,
+  }));
+  const skillClusters: SkillCluster[] = SKILL_META.map((s, i) => ({
+    ...s,
+    title: t.skillTitles[i],
+  }));
+  const leadership: LeadershipItem[] = LEADERSHIP_META.map((l, i) => ({
+    ...l,
+    pre: t.leadership[i].pre,
+    post: t.leadership[i].post,
+  }));
+  const whereFrom = WHEREFROM_META.map((w, i) => ({
+    ...w,
+    title: t.whereFrom[i].title,
+    body: t.whereFrom[i].body,
+  }));
+  const coursework = t.coursework;
+  const languageBadges = t.languageBadges;
+
   return (
     <main className="relative isolate dark bg-black text-white">
       {/* Page-wide animated grayscale background */}
       <div className="fixed inset-0 -z-10">
         <ShaderBackground />
       </div>
+
+      <LanguageSwitcher locale={locale} setLocale={setLocale} />
+
       {/* HERO */}
       <section>
-        <AnimatedProfileCard profile={profile} cvUrl={CV_URL} />
+        <AnimatedProfileCard
+          profile={profile}
+          cvUrl={CV_URL}
+          taglinePrefix={t.hero.prefix}
+          roles={t.hero.roles}
+          cvLabel={t.hero.cv}
+        />
       </section>
 
       {/* PROJECTS */}
       <section className="relative overflow-hidden px-4 py-24 sm:py-28">
         <Aurora />
         <Reveal>
-          <SectionHeading eyebrow="Projects" title="A few things I have built">
-            From embedded IoT hardware up to full-stack systems and modern web
-            architecture.
+          <SectionHeading
+            eyebrow={t.sections.projects.eyebrow}
+            title={t.sections.projects.title}
+          >
+            {t.sections.projects.intro}
           </SectionHeading>
         </Reveal>
 
@@ -573,7 +555,7 @@ export default function Home() {
                         className="inline-flex items-center gap-2 rounded-full bg-zinc-900 px-3 py-1.5 text-sm font-semibold text-white transition-transform hover:scale-105 dark:bg-white dark:text-zinc-900"
                       >
                         <Play className="h-3.5 w-3.5" aria-hidden="true" />
-                        Play in browser
+                        {t.ui.playInBrowser}
                       </a>
                     )}
                     <LinkPreview
@@ -583,12 +565,12 @@ export default function Home() {
                       {project.repoUrl.includes("linkedin.com") ? (
                         <>
                           <LinkedinMark className="h-4 w-4" />
-                          View on LinkedIn
+                          {t.ui.viewOnLinkedin}
                         </>
                       ) : (
                         <>
                           <GithubMark className="h-4 w-4" />
-                          View on GitHub
+                          {t.ui.viewOnGithub}
                         </>
                       )}
                     </LinkPreview>
@@ -604,9 +586,11 @@ export default function Home() {
       <section className="relative overflow-hidden px-4 py-24 sm:py-28">
         <Aurora />
         <Reveal>
-          <SectionHeading eyebrow="Skills" title="Technical toolkit">
-            Languages, systems, and the networking foundation behind a Cisco
-            CCNA and cybersecurity track.
+          <SectionHeading
+            eyebrow={t.sections.skills.eyebrow}
+            title={t.sections.skills.title}
+          >
+            {t.sections.skills.intro}
           </SectionHeading>
         </Reveal>
 
@@ -646,8 +630,11 @@ export default function Home() {
       <section className="relative overflow-hidden px-4 py-24 sm:py-28">
         <Aurora />
         <Reveal>
-          <SectionHeading eyebrow="On GitHub" title="What I have been building">
-            My public commit history. Hover the link to preview the profile.
+          <SectionHeading
+            eyebrow={t.sections.github.eyebrow}
+            title={t.sections.github.title}
+          >
+            {t.sections.github.intro}
           </SectionHeading>
         </Reveal>
 
@@ -679,15 +666,17 @@ export default function Home() {
       <section className="relative overflow-hidden px-4 py-24 sm:py-28">
         <Aurora />
         <Reveal>
-          <SectionHeading eyebrow="Experience" title="Where I have worked">
-            Teaching, mentoring, and getting things done across cultures and
-            time zones. The soft skills that round out the technical ones.
+          <SectionHeading
+            eyebrow={t.sections.experience.eyebrow}
+            title={t.sections.experience.title}
+          >
+            {t.sections.experience.intro}
           </SectionHeading>
         </Reveal>
 
         <div className="mx-auto mt-12 max-w-3xl space-y-5">
           {experiences.map((exp, i) => (
-            <Reveal key={exp.role + exp.org} delay={i * 100}>
+            <Reveal key={exp.org} delay={i * 100}>
               <div className={cn(NEUMORPHIC, "group p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-zinc-500/20")}>
                 <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
                   <h3 className="flex items-center gap-2 text-lg font-semibold text-zinc-900 dark:text-white">
@@ -728,7 +717,7 @@ export default function Home() {
                   <Users className="h-5 w-5" />
                 </span>
                 <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">
-                  Leadership & Community
+                  {t.leadershipTitle}
                 </h3>
               </div>
               <ul className="mt-5 space-y-3">
@@ -759,7 +748,7 @@ export default function Home() {
                   <BookOpen className="h-5 w-5" />
                 </span>
                 <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">
-                  Relevant Coursework
+                  {t.courseworkTitle}
                 </h3>
               </div>
               <div className="mt-5 flex flex-wrap gap-2">
@@ -782,7 +771,10 @@ export default function Home() {
       <section className="relative overflow-hidden px-4 py-24 sm:py-28">
         <Aurora />
         <Reveal>
-          <SectionHeading eyebrow="Academics" title="How I am doing at Tec" />
+          <SectionHeading
+            eyebrow={t.sections.academics.eyebrow}
+            title={t.sections.academics.title}
+          />
         </Reveal>
 
         <div className="mx-auto mt-12 grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -817,7 +809,10 @@ export default function Home() {
       <section className="relative overflow-hidden px-4 pb-24 sm:pb-28">
         <Aurora />
         <Reveal>
-          <SectionHeading eyebrow="Certifications" title="Certifications & awards" />
+          <SectionHeading
+            eyebrow={t.sections.certifications.eyebrow}
+            title={t.sections.certifications.title}
+          />
         </Reveal>
 
         <div className="mx-auto mt-12 grid max-w-4xl gap-6 sm:grid-cols-3">
@@ -845,7 +840,7 @@ export default function Home() {
                     url={cert.url}
                     className="mt-3 inline-block rounded-full border border-zinc-300 px-3 py-1 text-xs font-medium text-zinc-700 transition-colors hover:bg-zinc-900 hover:text-white dark:border-zinc-600 dark:text-zinc-300 dark:hover:bg-white dark:hover:text-zinc-900"
                   >
-                    View credential
+                    {t.ui.viewCredential}
                   </LinkPreview>
                 )}
               </div>
@@ -858,14 +853,12 @@ export default function Home() {
       <section className="relative overflow-hidden">
         <div className="absolute top-0 left-0 right-0 z-20 pt-8 text-center pointer-events-none">
           <p className="text-xs font-mono uppercase tracking-[0.25em] text-white/50">
-            My path so far
+            {t.timeline.eyebrow}
           </p>
           <h2 className="gradient-text mt-2 text-2xl font-bold">
-            From the IB Diploma to the CCNA track
+            {t.timeline.title}
           </h2>
-          <p className="mt-2 text-xs text-white/40">
-            Click a node to see more
-          </p>
+          <p className="mt-2 text-xs text-white/40">{t.timeline.hint}</p>
         </div>
         <div className="relative z-10">
           <RadialOrbitalTimeline timelineData={systemsTimeline} />
@@ -876,14 +869,11 @@ export default function Home() {
       <section className="relative overflow-hidden px-4 py-24 sm:py-28">
         <Aurora />
         <Reveal>
-          <SectionHeading eyebrow="Where I'm from" title="Three countries, four languages">
-            That path runs across the globe. I grew up in a Brazilian-Portuguese
-            household, did the IB Diploma in the Netherlands, and now study
-            Computer Science in Mexico City. I hold Mexican, Brazilian, and
-            Portuguese (EU) citizenship, so I can work across the EU, Mexico, and
-            Brazil without sponsorship. Working across cultures and time zones is
-            just how I have always lived, and it is where my soft skills in
-            communication and adaptability come from.
+          <SectionHeading
+            eyebrow={t.sections.whereFrom.eyebrow}
+            title={t.sections.whereFrom.title}
+          >
+            {t.sections.whereFrom.intro}
           </SectionHeading>
         </Reveal>
 
@@ -892,28 +882,12 @@ export default function Home() {
             <GlobeViz className="h-full w-full" />
           </div>
           <p className="mt-2 text-center text-xs font-mono uppercase tracking-[0.25em] text-zinc-500 dark:text-zinc-400">
-            Sao Paulo · Rotterdam · Mexico City
+            {t.globeCaption}
           </p>
         </Reveal>
 
         <div className="mx-auto mt-12 grid max-w-4xl gap-6 sm:grid-cols-3">
-          {[
-            {
-              icon: Globe,
-              title: "Brazilian Roots",
-              body: "Native Portuguese and Spanish speaker with a multicultural foundation and an early international mindset.",
-            },
-            {
-              icon: GraduationCap,
-              title: "IB Diploma, Netherlands",
-              body: "Completed the International Baccalaureate (33/45) at Rotterdam International Secondary School with an Excellence in English award.",
-            },
-            {
-              icon: Cpu,
-              title: "CS, Mexico City",
-              body: "Studying Computer Science and Technology at Tec de Monterrey, Campus Santa Fe, in the Santa Fe district of Mexico City.",
-            },
-          ].map((item, i) => (
+          {whereFrom.map((item, i) => (
             <Reveal key={item.title} delay={i * 120}>
               <div
                 className={cn(
@@ -940,12 +914,7 @@ export default function Home() {
 
         <Reveal delay={150}>
           <div className="mx-auto mt-8 flex max-w-3xl flex-wrap justify-center gap-3">
-            {[
-              "Portuguese, Native",
-              "Spanish, Native",
-              "English, C2",
-              "Dutch, A1",
-            ].map((lang) => (
+            {languageBadges.map((lang) => (
               <Badge
                 key={lang}
                 variant="secondary"
@@ -967,12 +936,11 @@ export default function Home() {
             </p>
             <p className="flex items-center justify-center gap-1.5 text-sm text-zinc-500 dark:text-zinc-400 sm:justify-start">
               <MapPin className="h-3.5 w-3.5" />
-              Greater Mexico City · Open to internships, remote, and global roles
+              {t.footer.location}
             </p>
             <p className="mt-1 flex items-center justify-center gap-1.5 text-sm text-zinc-500 dark:text-zinc-400 sm:justify-start">
               <BadgeCheck className="h-3.5 w-3.5" />
-              Mexican, Brazilian, and Portuguese (EU) citizen · eligible to work in
-              the EU, Mexico, and Brazil with no sponsorship
+              {t.footer.citizenship}
             </p>
           </div>
           <div className="flex items-center gap-5">
@@ -1000,8 +968,7 @@ export default function Home() {
           </div>
         </div>
         <p className="mt-8 text-center text-xs text-zinc-400 dark:text-zinc-600">
-          © {new Date().getFullYear()} Santiago Aguilar Mello. Built with Next.js
-          16, React 19 and Tailwind CSS 4.
+          © {new Date().getFullYear()} Santiago Aguilar Mello. {t.footer.builtWith}
         </p>
       </footer>
     </main>
