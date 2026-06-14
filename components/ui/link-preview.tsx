@@ -100,6 +100,8 @@ export const LinkPreview = ({
               className
             )}
             href={url}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             {children}
           </a>
@@ -131,6 +133,8 @@ export const LinkPreview = ({
               >
                 <Link
                   href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={`Preview of ${url}`}
                   className="block p-1 bg-white border-2 border-transparent shadow rounded-xl hover:border-neutral-200 dark:hover:border-neutral-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                   style={{ fontSize: 0 }}
