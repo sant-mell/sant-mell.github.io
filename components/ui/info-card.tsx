@@ -3,6 +3,7 @@
 import { Star, MessageCircle, UserPlus, Download } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import AnimatedTextCycle from "@/components/ui/animated-text-cycle"
 
 export type ProfileStatus = "online" | "offline" | "away"
 
@@ -33,7 +34,7 @@ export default function AnimatedProfileCard({
   cvUrl,
 }: AnimatedProfileCardProps) {
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex flex-col items-center w-full justify-center gap-8 p-4 relative overflow-hidden">
+    <div className="min-h-screen flex flex-col items-center w-full justify-center gap-8 p-4 relative overflow-hidden">
       {/* Animated Grid Background (decorative; hidden when reduced motion is preferred) */}
       <div className="absolute inset-0 opacity-20 motion-reduce:hidden" aria-hidden="true">
         <div
@@ -48,6 +49,24 @@ export default function AnimatedProfileCard({
           }}
         />
       </div>
+
+      {/* Cycling tagline */}
+      <h1 className="relative z-10 max-w-3xl text-center text-3xl font-light leading-tight text-gray-600 dark:text-gray-300 sm:text-5xl">
+        Santiago is a{" "}
+        <AnimatedTextCycle
+          words={[
+            "CS Student",
+            "Cybersecurity enthusiast",
+            "CCNA candidate",
+            "Network engineer",
+            "Polyglot",
+            "Global citizen",
+            "Problem solver",
+          ]}
+          interval={2600}
+          className="gradient-text"
+        />
+      </h1>
 
       <ProfileCard {...profile} />
 

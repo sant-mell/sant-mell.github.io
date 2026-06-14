@@ -65,6 +65,37 @@ function arcPoints(a: THREE.Vector3, b: THREE.Vector3, segments = 48): THREE.Vec
   return points;
 }
 
+// Equirectangular land/sea mask: oceans render light, land renders dark in the
+// source image. We invert and desaturate it on the GPU so continents read as
+// raised light-gray landmasses over a darker ocean, in keeping with the
+// grayscale theme.
+const LAND_MASK_URL =
+  "https://unpkg.com/three-globe/example/img/earth-water.png";
+
+function LandSphere() {
+  const texture = useLoader(THREE.TextureLoader, LAND_MASK_URL);
+
+  const material = useMemo(() => {
+    const mat = new THREE.MeshBasicMaterial({ map: texture });
+    mat.onBeforeCompile = (shader) => {
+      shader.fragmentShader = shader.fragmentShader.replace(
+        "#include <dithering_fragment>",
+        `float _lum = dot(gl_FragColor.rgb, vec3(0.299, 0.587, 0.114));
+         float _land = 1.0 - _lum;
+         gl_FragColor.rgb = vec3(0.14 + _land * 0.64);
+         #include <dithering_fragment>`,
+      );
+    };
+    return mat;
+  }, [texture]);
+
+  return (
+    <mesh material={material}>
+      <sphereGeometry args={[RADIUS * 0.99, 64, 64]} />
+    </mesh>
+  );
+}
+
 function GlobeMesh() {
   const group = useRef<THREE.Group>(null);
 
@@ -90,20 +121,26 @@ function GlobeMesh() {
 
   return (
     <group ref={group}>
-      {/* Wireframe sphere */}
+      {/* Textured land/sea sphere (continents) */}
+      <Suspense
+        fallback={
+          <mesh>
+            <sphereGeometry args={[RADIUS * 0.985, 48, 48]} />
+            <meshBasicMaterial color="#1c1c1f" />
+          </mesh>
+        }
+      >
+        <LandSphere />
+      </Suspense>
+      {/* Faint wireframe shell for the atmosphere/graticule */}
       <mesh>
-        <icosahedronGeometry args={[RADIUS, 6]} />
-        <meshBasicMaterial color="#52525b" wireframe transparent opacity={0.25} />
-      </mesh>
-      {/* Solid inner sphere for depth */}
-      <mesh>
-        <sphereGeometry args={[RADIUS * 0.985, 48, 48]} />
-        <meshBasicMaterial color="#09090b" transparent opacity={0.85} />
+        <icosahedronGeometry args={[RADIUS * 1.004, 6]} />
+        <meshBasicMaterial color="#52525b" wireframe transparent opacity={0.18} />
       </mesh>
       {/* Latitude / longitude lines via a faint wire shell */}
       <mesh>
-        <sphereGeometry args={[RADIUS * 1.001, 24, 16]} />
-        <meshBasicMaterial color="#a1a1aa" wireframe transparent opacity={0.08} />
+        <sphereGeometry args={[RADIUS * 1.002, 24, 16]} />
+        <meshBasicMaterial color="#a1a1aa" wireframe transparent opacity={0.06} />
       </mesh>
       {arcs.map((pts, i) => (
         <Line key={i} points={pts} color="#ffffff" lineWidth={1} transparent opacity={0.45} />

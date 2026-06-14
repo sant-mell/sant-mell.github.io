@@ -502,7 +502,7 @@ function Aurora() {
  * ------------------------------------------------------------------------- */
 
 const NEUMORPHIC =
-  "rounded-3xl bg-gray-100 dark:bg-gray-800 shadow-[12px_12px_24px_rgba(0,0,0,0.12),-12px_-12px_24px_rgba(255,255,255,0.9)] dark:shadow-[12px_12px_24px_rgba(0,0,0,0.4),-12px_-12px_24px_rgba(255,255,255,0.04)]";
+  "rounded-3xl bg-gray-100 dark:bg-white/[0.05] dark:border dark:border-white/10 dark:backdrop-blur-xl shadow-[12px_12px_24px_rgba(0,0,0,0.12),-12px_-12px_24px_rgba(255,255,255,0.9)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.45)]";
 
 function SectionHeading({
   eyebrow,
@@ -536,7 +536,11 @@ function SectionHeading({
 
 export default function Home() {
   return (
-    <main className="bg-gray-100 dark:bg-gray-900">
+    <main className="relative isolate dark bg-black text-white">
+      {/* Page-wide animated grayscale background */}
+      <div className="fixed inset-0 -z-10">
+        <ShaderBackground />
+      </div>
       {/* HERO */}
       <section>
         <AnimatedProfileCard profile={profile} cvUrl={CV_URL} />
@@ -722,9 +726,8 @@ export default function Home() {
         </Reveal>
       </section>
 
-      {/* SYSTEMS TIMELINE (dark island) */}
-      <section className="dark relative overflow-hidden bg-black">
-        <ShaderBackground />
+      {/* SYSTEMS TIMELINE */}
+      <section className="relative overflow-hidden">
         <div className="absolute top-0 left-0 right-0 z-20 pt-8 text-center pointer-events-none">
           <p className="text-xs font-mono uppercase tracking-[0.25em] text-white/50">
             My path so far

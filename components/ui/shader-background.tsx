@@ -4,8 +4,7 @@ import { useEffect, useState } from "react";
 import { MeshGradient } from "@paper-design/shaders-react";
 import { cn } from "@/lib/utils";
 
-// Grayscale animated mesh gradient. Scoped to dark sections so it never
-// fights the light neumorphic theme used elsewhere on the page.
+// Grayscale animated mesh gradient used as the page-wide background.
 export default function ShaderBackground({ className }: { className?: string }) {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
