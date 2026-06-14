@@ -148,4 +148,6 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
   .float-slow, .aurora-blob, .spin-slow, .gradient-text { animation: none; }
+  .shine:hover::after { animation: none; }
+  * { scroll-behavior: auto; }
 }
