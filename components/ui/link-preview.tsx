@@ -73,14 +73,14 @@ export const LinkPreview = ({
   return (
     <>
       {isMounted ? (
-        <div className="hidden">
+        <div className="hidden" aria-hidden="true">
           <Image
             src={src}
             width={width}
             height={height}
             quality={quality}
             priority={true}
-            alt="hidden image"
+            alt=""
           />
         </div>
       ) : null}
@@ -95,7 +95,10 @@ export const LinkPreview = ({
         <HoverCardPrimitive.Trigger asChild>
           <a
             onMouseMove={handleMouseMove}
-            className={cn("text-black dark:text-white", className)}
+            className={cn(
+              "text-black dark:text-white rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+              className
+            )}
             href={url}
           >
             {children}
@@ -128,7 +131,8 @@ export const LinkPreview = ({
               >
                 <Link
                   href={url}
-                  className="block p-1 bg-white border-2 border-transparent shadow rounded-xl hover:border-neutral-200 dark:hover:border-neutral-800"
+                  aria-label={`Preview of ${url}`}
+                  className="block p-1 bg-white border-2 border-transparent shadow rounded-xl hover:border-neutral-200 dark:hover:border-neutral-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                   style={{ fontSize: 0 }}
                 >
                   <Image
@@ -138,7 +142,7 @@ export const LinkPreview = ({
                     quality={quality}
                     priority={true}
                     className="rounded-lg"
-                    alt="preview image"
+                    alt={`Website preview of ${url}`}
                   />
                 </Link>
               </motion.div>
