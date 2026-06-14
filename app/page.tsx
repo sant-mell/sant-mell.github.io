@@ -208,22 +208,6 @@ const projects: Project[] = [
     repoUrl: GITHUB_URL,
   },
   {
-    title: "Data Structures in C++",
-    subtitle: "C++ · Algorithms",
-    description:
-      "BSTs, AVL trees, heaps, queues, hash logs, BFS / DFS, and Dijkstra, each with a full time and space complexity analysis. Foundations done properly.",
-    stack: ["C++", "Trees & Heaps", "Graphs", "Complexity Analysis"],
-    repoUrl: "https://github.com/sant-mell/data-structures-cpp",
-  },
-  {
-    title: "Cat Cafe Database",
-    subtitle: "MySQL · Database Design",
-    description:
-      "A normalized MySQL database for a cat cafe chain: ER modeling, foreign keys, a many-to-many junction table, seed data, and example queries, alongside a formal normalization exercise.",
-    stack: ["MySQL", "ER Modeling", "SQL", "Normalization"],
-    repoUrl: "https://github.com/sant-mell/catcafe-database",
-  },
-  {
     title: "Next.js Portfolio",
     subtitle: "Next.js 16 · React 19",
     description:
@@ -247,6 +231,7 @@ const experiences: Experience[] = [
   {
     role: "English Language Teacher",
     org: "Pro English BV (Self-employed)",
+    orgUrl: "https://engelsvoorbengels.nl/",
     period: "Jul 2025 - Present",
     location: "Rotterdam, Netherlands",
     detail:
@@ -296,7 +281,7 @@ const leadership: LeadershipItem[] = [
   { pre: "Vice President, ", link: "Krei Student Society", url: "https://www.instagram.com/kreicsf/", post: " (Campus Santa Fe)" },
   { link: "Advanced Competitive Programming Team", post: " (CSF)" },
   { link: "COPARMEX", url: "https://coparmex.org.mx", post: " Chapter member (CSF)" },
-  { link: "Peer Mentor", url: "https://tec.mx", post: ", Tec de Monterrey" },
+  { link: "Peer Mentor", url: "https://conecta.tec.mx/es/noticias/laguna/educacion/peer-mentors-jovenes-acompanando-jovenes-en-el-tec", post: ", Tec de Monterrey" },
   {
     pre: "Head of Charity, ",
     link: "RISS Netherlands",
@@ -831,14 +816,12 @@ export default function Home() {
                   {cert.date}
                 </p>
                 {cert.url && (
-                  <a
-                    href={cert.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <LinkPreview
+                    url={cert.url}
                     className="mt-3 inline-block rounded-full border border-zinc-300 px-3 py-1 text-xs font-medium text-zinc-700 transition-colors hover:bg-zinc-900 hover:text-white dark:border-zinc-600 dark:text-zinc-300 dark:hover:bg-white dark:hover:text-zinc-900"
                   >
                     View credential
-                  </a>
+                  </LinkPreview>
                 )}
               </div>
             </Reveal>
