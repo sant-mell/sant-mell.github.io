@@ -6,6 +6,8 @@ const nextConfig: NextConfig = {
   images: {
     // No Image Optimization server on static hosts — serve images as-is.
     unoptimized: true,
+    // LinkPreview requests screenshots at quality 50; declare it explicitly.
+    qualities: [50, 75],
     remotePatterns: [
       { protocol: "https", hostname: "images.unsplash.com" },
       { protocol: "https", hostname: "api.microlink.io" },
