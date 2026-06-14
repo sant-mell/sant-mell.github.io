@@ -1,10 +1,19 @@
 "use client"
 
-import { MessageCircle, UserPlus, Download } from "lucide-react"
+import { MessageCircle, Download } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import AnimatedTextCycle from "@/components/ui/animated-text-cycle"
+import { GooeyText } from "@/components/ui/gooey-text-morphing"
 import { LinkPreview } from "@/components/ui/link-preview"
+
+/** LinkedIn brand mark (lucide v1 dropped brand icons). */
+function LinkedinMark({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor" className={className}>
+      <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z" />
+    </svg>
+  )
+}
 
 export type ProfileStatus = "online" | "offline" | "away"
 
@@ -18,7 +27,7 @@ export interface ProfileCardProps {
   followers?: number
   /** Label rendered under the follower count (e.g. "public repositories"). */
   followersLabel?: string
-  /** UserPlus action, typically a LinkedIn connect URL. */
+  /** LinkedIn connect action, rendered as the LinkedIn logo button. */
   connectUrl: string
   /** MessageCircle action, typically a mailto: link. */
   messageUrl: string
@@ -51,11 +60,13 @@ export default function AnimatedProfileCard({
         />
       </div>
 
-      {/* Cycling tagline */}
-      <h1 className="relative z-10 whitespace-nowrap px-2 text-center font-light leading-tight text-zinc-600 dark:text-zinc-300 text-[clamp(1rem,4.8vw,3rem)]">
-        Santiago is a{" "}
-        <AnimatedTextCycle
-          words={[
+      {/* Morphing tagline */}
+      <h1 className="relative z-10 flex flex-col items-center gap-3 px-2 text-center">
+        <span className="font-light leading-tight text-zinc-600 dark:text-zinc-300 text-[clamp(1rem,4.8vw,2.25rem)]">
+          Santiago is a
+        </span>
+        <GooeyText
+          texts={[
             "CS Student",
             "Cybersecurity enthusiast",
             "CCNA candidate",
@@ -64,8 +75,10 @@ export default function AnimatedProfileCard({
             "Global citizen",
             "Problem solver",
           ]}
-          interval={2600}
-          className="gradient-text"
+          morphTime={1}
+          cooldownTime={1.4}
+          className="flex h-14 w-full items-center justify-center sm:h-20"
+          textClassName="text-[clamp(1.5rem,6vw,3rem)] font-bold text-zinc-900 dark:text-white whitespace-nowrap"
         />
       </h1>
 
@@ -163,7 +176,7 @@ function ProfileCard({
           url={connectUrl}
           className="flex flex-1 items-center justify-center rounded-full bg-white dark:bg-zinc-700 py-4 text-sm font-medium text-zinc-700 dark:text-zinc-300 shadow-[6px_6px_12px_rgba(0,0,0,0.1),-6px_-6px_12px_rgba(255,255,255,0.9)] dark:shadow-[6px_6px_12px_rgba(0,0,0,0.2),-6px_-6px_12px_rgba(255,255,255,0.1)] transition-all duration-300 hover:shadow-[2px_2px_4px_rgba(0,0,0,0.05),-2px_-2px_4px_rgba(255,255,255,0.8)] dark:hover:shadow-[2px_2px_4px_rgba(0,0,0,0.15),-2px_-2px_4px_rgba(255,255,255,0.05)] hover:scale-95 active:scale-90 group-hover:bg-zinc-100dark:group-hover:bg-zinc-800/30"
         >
-          <UserPlus className="mx-auto h-4 w-4 transition-transform duration-300 hover:scale-110" aria-hidden="true" />
+          <LinkedinMark className="mx-auto h-4 w-4 transition-transform duration-300 hover:scale-110" />
           <span className="sr-only">Connect on LinkedIn</span>
         </LinkPreview>
         <a
