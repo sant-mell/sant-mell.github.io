@@ -81,10 +81,29 @@ export default function RadialOrbitalTimeline({
     });
   };
 
+  const [prefersReducedMotion, setPrefersReducedMotion] =
+    useState<boolean>(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined" || !window.matchMedia) return;
+
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setPrefersReducedMotion(mediaQuery.matches);
+
+    const handleChange = (event: MediaQueryListEvent) => {
+      setPrefersReducedMotion(event.matches);
+    };
+
+    mediaQuery.addEventListener("change", handleChange);
+    return () => {
+      mediaQuery.removeEventListener("change", handleChange);
+    };
+  }, []);
+
   useEffect(() => {
     let rotationTimer: ReturnType<typeof setInterval>;
 
-    if (autoRotate) {
+    if (autoRotate && !prefersReducedMotion) {
       rotationTimer = setInterval(() => {
         setRotationAngle((prev) => {
           const newAngle = (prev + 0.3) % 360;
@@ -98,7 +117,7 @@ export default function RadialOrbitalTimeline({
         clearInterval(rotationTimer);
       }
     };
-  }, [autoRotate]);
+  }, [autoRotate, prefersReducedMotion]);
 
   const centerViewOnNode = (nodeId: number) => {
     if (!nodeRefs.current[nodeId]) return;
@@ -153,7 +172,7 @@ export default function RadialOrbitalTimeline({
 
   return (
     <div
-      className="w-full h-screen flex flex-col items-center justify-center bg-black overflow-hidden"
+      className="w-full h-screen flex flex-col items-center justify-center bg-transparent overflow-hidden"
       ref={containerRef}
       onClick={handleContainerClick}
     >
@@ -166,7 +185,7 @@ export default function RadialOrbitalTimeline({
             transform: `translate(${centerOffset.x}px, ${centerOffset.y}px)`,
           }}
         >
-          <div className="absolute w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 via-blue-500 to-teal-500 animate-pulse flex items-center justify-center z-10">
+          <div className="absolute w-16 h-16 rounded-full bg-gradient-to-br from-zinc-300 via-zinc-500 to-zinc-700 animate-pulse flex items-center justify-center z-10">
             <div className="absolute w-20 h-20 rounded-full border border-white/20 animate-ping opacity-70"></div>
             <div
               className="absolute w-24 h-24 rounded-full border border-white/10 animate-ping opacity-50"
@@ -182,7 +201,7 @@ export default function RadialOrbitalTimeline({
             const isExpanded = expandedItems[item.id];
             const isRelated = isRelatedToActive(item.id);
             const isPulsing = pulseEffect[item.id];
-            const Icon = item.icon;
+            const Icon = item.icon as React.ComponentType<{ size?: number }>;
 
             const nodeStyle = {
               transform: `translate(${position.x}px, ${position.y}px)`,
@@ -194,11 +213,22 @@ export default function RadialOrbitalTimeline({
               <div
                 key={item.id}
                 ref={(el) => { nodeRefs.current[item.id] = el; }}
-                className="absolute transition-all duration-700 cursor-pointer"
+                role="button"
+                tabIndex={0}
+                aria-expanded={Boolean(isExpanded)}
+                aria-label={`${item.title}, ${item.date}`}
+                className="absolute transition-all duration-700 cursor-pointer rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                 style={nodeStyle}
                 onClick={(e) => {
                   e.stopPropagation();
                   toggleItem(item.id);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    toggleItem(item.id);
+                  }
                 }}
               >
                 <div
@@ -236,7 +266,9 @@ export default function RadialOrbitalTimeline({
                   ${isExpanded ? "scale-150" : ""}
                 `}
                 >
-                  <Icon size={16} />
+                  <span aria-hidden="true">
+                    <Icon size={16} />
+                  </span>
                 </div>
 
                 <div
@@ -280,14 +312,14 @@ export default function RadialOrbitalTimeline({
                       <div className="mt-4 pt-3 border-t border-white/10">
                         <div className="flex justify-between items-center text-xs mb-1">
                           <span className="flex items-center text-white/70">
-                            <Zap size={10} className="mr-1" />
+                            <Zap size={10} className="mr-1" aria-hidden="true" />
                             Energy Level
                           </span>
                           <span className="font-mono text-white/70">{item.energy}%</span>
                         </div>
                         <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden">
                           <div
-                            className="h-full bg-gradient-to-r from-blue-500 to-purple-500"
+                            className="h-full bg-gradient-to-r from-zinc-400 to-zinc-600"
                             style={{ width: `${item.energy}%` }}
                           ></div>
                         </div>
@@ -296,7 +328,7 @@ export default function RadialOrbitalTimeline({
                       {item.relatedIds.length > 0 && (
                         <div className="mt-4 pt-3 border-t border-white/10">
                           <div className="flex items-center mb-2">
-                            <Link size={10} className="text-white/70 mr-1" />
+                            <Link size={10} className="text-white/70 mr-1" aria-hidden="true" />
                             <h4 className="text-xs uppercase tracking-wider font-medium text-white/70">
                               Connected Nodes
                             </h4>
@@ -321,6 +353,7 @@ export default function RadialOrbitalTimeline({
                                   <ArrowRight
                                     size={8}
                                     className="ml-1 text-white/60"
+                                    aria-hidden="true"
                                   />
                                 </Button>
                               );
