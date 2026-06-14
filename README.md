@@ -26,7 +26,7 @@ Live site: https://sant-mell.github.io  ·  CV: [`/cv.pdf`](public/cv.pdf)  ·  
 1. Hero, animated profile card with status, verified badge, tags, LinkedIn and email actions, and a CV download.
 2. Where I'm from, an interactive three.js globe marking Sao Paulo, Rotterdam, and Mexico City, plus flag cards and language proficiency.
 3. On GitHub, a live GitHub contribution chart with a hover link preview.
-4. Projects, a project grid plus an Ubuntu-style file tree of the repositories.
+4. Projects, a project grid with live "Play in browser" demos and links to each public repository.
 5. My path so far, an interactive radial orbital timeline over an animated grayscale shader background.
 6. Experience, teaching and mentoring roles across Mexico and the Netherlands.
 7. Leadership and Coursework.

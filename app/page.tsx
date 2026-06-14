@@ -23,17 +23,31 @@ import {
   Users,
   BadgeCheck,
   CircuitBoard,
+  Play,
 } from "lucide-react";
+import dynamic from "next/dynamic";
 import AnimatedProfileCard, {
   type ProfileCardProps,
 } from "@/components/ui/info-card";
-import RadialOrbitalTimeline from "@/components/ui/radial-orbital-timeline";
 import { LinkPreview } from "@/components/ui/link-preview";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import GlobeViz from "@/components/ui/globe";
-import ShaderBackground from "@/components/ui/shader-background";
 import { cn } from "@/lib/utils";
+
+/* Heavy WebGL/3D widgets are below the fold. Load them client-side only and
+ * code-split them out of the initial bundle so first paint stays fast. */
+const RadialOrbitalTimeline = dynamic(
+  () => import("@/components/ui/radial-orbital-timeline"),
+  { ssr: false, loading: () => <div className="min-h-[60vh]" /> },
+);
+const GlobeViz = dynamic(() => import("@/components/ui/globe"), {
+  ssr: false,
+  loading: () => <div className="h-full w-full" />,
+});
+const ShaderBackground = dynamic(
+  () => import("@/components/ui/shader-background"),
+  { ssr: false },
+);
 
 /* ----------------------------------------------------------------------------
  * Constants and data
@@ -48,12 +62,8 @@ const CV_URL = "/cv.pdf";
 const profile: ProfileCardProps = {
   name: "Santiago Aguilar Mello",
   role: "Multicultural CS (ITC) student @ Tec de Monterrey, Santa Fe",
-  status: "online",
   avatar: "/profile.jpg",
-  tags: [],
-  isVerified: true,
-  followers: 142,
-  followersLabel: "LinkedIn connections",
+  tags: ["Open to Work"],
   connectUrl: LINKEDIN_URL,
   messageUrl: MAILTO_URL,
 };
@@ -163,6 +173,8 @@ interface Project {
   description: string;
   stack: string[];
   repoUrl: string;
+  /** Optional live, in-browser demo a recruiter can open and try. */
+  liveUrl?: string;
 }
 
 const projects: Project[] = [
@@ -198,6 +210,8 @@ const projects: Project[] = [
       "A browser Breakout clone with a twist: the paddle tilts to aim the ball into corners. Three levels, each with its own music theme (disco, hip hop, rock), built on a small Canvas engine with vector math and a delta-time game loop.",
     stack: ["JavaScript", "HTML5 Canvas", "Game Loop", "Collision Detection"],
     repoUrl: "https://github.com/sant-mell/myTC2005B/tree/main/Videojuegos/Breakout",
+    liveUrl:
+      "https://sant-mell.github.io/myTC2005B/Videojuegos/Breakout/breakout.html",
   },
   {
     title: "DFA Lexer / Compiler",
@@ -550,7 +564,18 @@ export default function Home() {
                       </Badge>
                     ))}
                   </div>
-                  <div className="mt-5">
+                  <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2">
+                    {project.liveUrl && (
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 rounded-full bg-zinc-900 px-3 py-1.5 text-sm font-semibold text-white transition-transform hover:scale-105 dark:bg-white dark:text-zinc-900"
+                      >
+                        <Play className="h-3.5 w-3.5" aria-hidden="true" />
+                        Play in browser
+                      </a>
+                    )}
                     <LinkPreview
                       url={project.repoUrl}
                       className="inline-flex items-center gap-2 text-sm font-semibold text-zinc-700 underline underline-offset-4 dark:text-zinc-300"
@@ -872,17 +897,17 @@ export default function Home() {
         <div className="mx-auto mt-12 grid max-w-4xl gap-6 sm:grid-cols-3">
           {[
             {
-              flag: "🇧🇷",
+              icon: Globe,
               title: "Brazilian Roots",
               body: "Native Portuguese and Spanish speaker with a multicultural foundation and an early international mindset.",
             },
             {
-              flag: "🇳🇱",
+              icon: GraduationCap,
               title: "IB Diploma, Netherlands",
               body: "Completed the International Baccalaureate (33/45) at Rotterdam International Secondary School with an Excellence in English award.",
             },
             {
-              flag: "🇲🇽",
+              icon: Cpu,
               title: "CS, Mexico City",
               body: "Studying Computer Science and Technology at Tec de Monterrey, Campus Santa Fe, in the Santa Fe district of Mexico City.",
             },
@@ -894,8 +919,11 @@ export default function Home() {
                   "group h-full p-6 text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-zinc-500/20",
                 )}
               >
-                <div className="float-slow text-4xl" style={{ animationDelay: `${i * 0.6}s` }}>
-                  {item.flag}
+                <div
+                  className="float-slow mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-zinc-700/10 text-zinc-700 dark:bg-zinc-300/10 dark:text-zinc-300"
+                  style={{ animationDelay: `${i * 0.6}s` }}
+                >
+                  <item.icon className="h-6 w-6" />
                 </div>
                 <h3 className="mt-3 font-semibold text-zinc-900 transition-colors group-hover:text-zinc-700 dark:text-white dark:group-hover:text-zinc-300">
                   {item.title}
@@ -911,10 +939,10 @@ export default function Home() {
         <Reveal delay={150}>
           <div className="mx-auto mt-8 flex max-w-3xl flex-wrap justify-center gap-3">
             {[
-              "🇧🇷 Portuguese, Native",
-              "🇪🇸 Spanish, Native",
-              "🇬🇧 English, C2",
-              "🇳🇱 Dutch, A1",
+              "Portuguese, Native",
+              "Spanish, Native",
+              "English, C2",
+              "Dutch, A1",
             ].map((lang) => (
               <Badge
                 key={lang}
@@ -937,7 +965,7 @@ export default function Home() {
             </p>
             <p className="flex items-center justify-center gap-1.5 text-sm text-zinc-500 dark:text-zinc-400 sm:justify-start">
               <MapPin className="h-3.5 w-3.5" />
-              Zona Esmeralda, Greater Mexico City · Open to remote and global roles
+              Greater Mexico City · Open to internships, remote, and global roles
             </p>
           </div>
           <div className="flex items-center gap-5">

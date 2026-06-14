@@ -15,18 +15,11 @@ function LinkedinMark({ className }: { className?: string }) {
   )
 }
 
-export type ProfileStatus = "online" | "offline" | "away"
-
 export interface ProfileCardProps {
   name: string
   role: string
-  status: ProfileStatus
   avatar: string
   tags?: string[]
-  isVerified?: boolean
-  followers?: number
-  /** Label rendered under the follower count (e.g. "public repositories"). */
-  followersLabel?: string
   /** LinkedIn connect action, rendered as the LinkedIn logo button. */
   connectUrl: string
   /** MessageCircle action, typically a mailto: link. */
@@ -112,8 +105,6 @@ function ProfileCard({
   role,
   avatar,
   tags = [],
-  followers,
-  followersLabel = "followers",
   connectUrl,
   messageUrl,
 }: ProfileCardProps) {
@@ -144,12 +135,6 @@ function ProfileCard({
         <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400 transition-colors duration-300 group-hover:text-zinc-700 dark:group-hover:text-zinc-300">
           {role}
         </p>
-
-        {typeof followers === "number" && (
-          <p className="mt-2 text-xs text-zinc-400 dark:text-zinc-500 transition-all duration-300 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 group-hover:font-medium">
-            {followers.toLocaleString()} {followersLabel}
-          </p>
-        )}
       </div>
 
       {/* Tags with bounce animation */}
