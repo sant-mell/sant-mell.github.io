@@ -255,6 +255,7 @@ const experiences: Experience[] = [
   {
     role: "Computer Science Instructor",
     org: "Logaritmia MX",
+    orgUrl: "https://www.linkedin.com/company/logaritmia-mx/",
     period: "Jan 2025 - May 2025",
     location: "Telesecundaria, Mexico",
     detail:
@@ -292,7 +293,7 @@ interface LeadershipItem {
 }
 
 const leadership: LeadershipItem[] = [
-  { pre: "Vice President, ", link: "Krei Student Society", post: " (Campus Santa Fe)" },
+  { pre: "Vice President, ", link: "Krei Student Society", url: "https://www.instagram.com/kreicsf/", post: " (Campus Santa Fe)" },
   { link: "Advanced Competitive Programming Team", post: " (CSF)" },
   { link: "COPARMEX", url: "https://coparmex.org.mx", post: " Chapter member (CSF)" },
   { link: "Peer Mentor", url: "https://tec.mx", post: ", Tec de Monterrey" },
