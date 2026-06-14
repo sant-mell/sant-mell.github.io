@@ -88,7 +88,7 @@ const systemsTimeline: TimelineNode[] = [
     title: "Polyglot: PT / ES / EN / NL",
     date: "Ongoing",
     content:
-      "Native Portuguese and Spanish, English C2, Dutch A1. A real asset for distributed teams that span multiple time zones and languages.",
+      "Native Portuguese and Spanish, English C2, Dutch A1. A core soft skill and a real asset for distributed teams that span multiple time zones and languages.",
     category: "Skills",
     icon: Languages,
     relatedIds: [1, 3],
@@ -203,9 +203,9 @@ const projects: Project[] = [
     title: "DFA Lexer / Compiler",
     subtitle: "Python · Automata Theory",
     description:
-      "A DFA-driven lexer and a parallel syntax highlighter, benchmarked against a sequential baseline. The low-level parsing logic behind secure code and deep packet inspection.",
+      "A hand-built DFA lexer (explicit transition table, no regex) extended into a parallel syntax highlighter, benchmarked at about 6x speedup over a sequential baseline on 16 cores. The low-level parsing logic behind secure code and deep packet inspection.",
     stack: ["Python", "Multiprocessing", "Automata / DFA", "Benchmarking"],
-    repoUrl: GITHUB_URL,
+    repoUrl: "https://github.com/sant-mell/parallel-syntax-highlighter",
   },
   {
     title: "Next.js Portfolio",
@@ -508,48 +508,6 @@ export default function Home() {
         <AnimatedProfileCard profile={profile} cvUrl={CV_URL} />
       </section>
 
-      {/* SKILLS */}
-      <section className="relative overflow-hidden px-4 py-24 sm:py-28">
-        <Aurora />
-        <Reveal>
-          <SectionHeading eyebrow="Skills" title="Technical toolkit">
-            Languages, systems, and the networking foundation behind a Cisco
-            CCNA and cybersecurity track.
-          </SectionHeading>
-        </Reveal>
-
-        <div className="mx-auto mt-12 grid max-w-5xl gap-6 lg:grid-cols-3">
-          {skillClusters.map((cluster, i) => {
-            const Icon = cluster.icon;
-            return (
-              <Reveal key={cluster.title} delay={i * 120}>
-                <div className={cn(NEUMORPHIC, "group h-full p-7 transition-all duration-300 hover:-translate-y-2 hover:shadow-zinc-500/20")}>
-                  <div className="flex items-center gap-3">
-                    <span className="rounded-xl bg-zinc-700/10 p-2 text-zinc-700 transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110 dark:bg-zinc-300/10 dark:text-zinc-300">
-                      <Icon className="h-5 w-5" />
-                    </span>
-                    <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">
-                      {cluster.title}
-                    </h3>
-                  </div>
-                  <div className="mt-5 flex flex-wrap gap-2">
-                    {cluster.skills.map((skill) => (
-                      <Badge
-                        key={skill}
-                        variant="secondary"
-                        className="px-3 py-1 text-sm shadow-sm transition-transform hover:scale-110"
-                      >
-                        {skill}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-              </Reveal>
-            );
-          })}
-        </div>
-      </section>
-
       {/* PROJECTS */}
       <section className="relative overflow-hidden px-4 py-24 sm:py-28">
         <Aurora />
@@ -617,6 +575,48 @@ export default function Home() {
         </div>
       </section>
 
+      {/* SKILLS */}
+      <section className="relative overflow-hidden px-4 py-24 sm:py-28">
+        <Aurora />
+        <Reveal>
+          <SectionHeading eyebrow="Skills" title="Technical toolkit">
+            Languages, systems, and the networking foundation behind a Cisco
+            CCNA and cybersecurity track.
+          </SectionHeading>
+        </Reveal>
+
+        <div className="mx-auto mt-12 grid max-w-5xl gap-6 lg:grid-cols-3">
+          {skillClusters.map((cluster, i) => {
+            const Icon = cluster.icon;
+            return (
+              <Reveal key={cluster.title} delay={i * 120}>
+                <div className={cn(NEUMORPHIC, "group h-full p-7 transition-all duration-300 hover:-translate-y-2 hover:shadow-zinc-500/20")}>
+                  <div className="flex items-center gap-3">
+                    <span className="rounded-xl bg-zinc-700/10 p-2 text-zinc-700 transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110 dark:bg-zinc-300/10 dark:text-zinc-300">
+                      <Icon className="h-5 w-5" />
+                    </span>
+                    <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">
+                      {cluster.title}
+                    </h3>
+                  </div>
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {cluster.skills.map((skill) => (
+                      <Badge
+                        key={skill}
+                        variant="secondary"
+                        className="px-3 py-1 text-sm shadow-sm transition-transform hover:scale-110"
+                      >
+                        {skill}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+              </Reveal>
+            );
+          })}
+        </div>
+      </section>
+
       {/* GITHUB ACTIVITY */}
       <section className="relative overflow-hidden px-4 py-24 sm:py-28">
         <Aurora />
@@ -656,7 +656,7 @@ export default function Home() {
         <Reveal>
           <SectionHeading eyebrow="Experience" title="Where I have worked">
             Teaching, mentoring, and getting things done across cultures and
-            time zones.
+            time zones. The soft skills that round out the technical ones.
           </SectionHeading>
         </Reveal>
 
@@ -855,7 +855,8 @@ export default function Home() {
             That path runs across the globe. I grew up in a Brazilian-Portuguese
             household, did the IB Diploma in the Netherlands, and now study
             Computer Science in Mexico City. Working across cultures and time
-            zones is just how I have always lived.
+            zones is just how I have always lived, and it is where my soft
+            skills in communication and adaptability come from.
           </SectionHeading>
         </Reveal>
 
@@ -883,7 +884,7 @@ export default function Home() {
             {
               flag: "🇲🇽",
               title: "CS, Mexico City",
-              body: "Studying Computer Science and Technology at Tec de Monterrey, Campus Santa Fe, based in Huixquilucan.",
+              body: "Studying Computer Science and Technology at Tec de Monterrey, Campus Santa Fe, in the Santa Fe district of Mexico City.",
             },
           ].map((item, i) => (
             <Reveal key={item.title} delay={i * 120}>
@@ -936,7 +937,7 @@ export default function Home() {
             </p>
             <p className="flex items-center justify-center gap-1.5 text-sm text-zinc-500 dark:text-zinc-400 sm:justify-start">
               <MapPin className="h-3.5 w-3.5" />
-              Mexico City, Mexico · Open to remote and global roles
+              Zona Esmeralda, Greater Mexico City · Open to remote and global roles
             </p>
           </div>
           <div className="flex items-center gap-5">

@@ -61,8 +61,7 @@ export function GooeyText({
       setMorph(fraction);
     };
 
-    function animate() {
-      requestAnimationFrame(animate);
+    const tick = () => {
       const newTime = new Date();
       const shouldIncrementIndex = cooldown > 0;
       const dt = (newTime.getTime() - time.getTime()) / 1000;
@@ -82,13 +81,22 @@ export function GooeyText({
       } else {
         doCooldown();
       }
+    };
+
+    // Seed the visible text immediately so it does not flash empty on mount.
+    if (text1Ref.current && text2Ref.current) {
+      text1Ref.current.textContent = texts[textIndex % texts.length];
+      text2Ref.current.textContent = texts[(textIndex + 1) % texts.length];
     }
 
-    animate();
-
-    return () => {
-      // Cleanup function if needed
+    let frame = 0;
+    const loop = () => {
+      frame = requestAnimationFrame(loop);
+      tick();
     };
+    loop();
+
+    return () => cancelAnimationFrame(frame);
   }, [texts, morphTime, cooldownTime]);
 
   return (
@@ -116,7 +124,7 @@ export function GooeyText({
           ref={text1Ref}
           className={cn(
             "absolute inline-block select-none text-center text-6xl md:text-[60pt]",
-            "text-foreground",
+            "text-foreground [will-change:filter,opacity] [transform:translateZ(0)] [backface-visibility:hidden]",
             textClassName
           )}
         />
@@ -124,7 +132,7 @@ export function GooeyText({
           ref={text2Ref}
           className={cn(
             "absolute inline-block select-none text-center text-6xl md:text-[60pt]",
-            "text-foreground",
+            "text-foreground [will-change:filter,opacity] [transform:translateZ(0)] [backface-visibility:hidden]",
             textClassName
           )}
         />
