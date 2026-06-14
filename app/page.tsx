@@ -33,7 +33,6 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import GlobeViz from "@/components/ui/globe";
 import ShaderBackground from "@/components/ui/shader-background";
-import { FileTree, type FileNode } from "@/components/ui/file-tree";
 import { cn } from "@/lib/utils";
 
 /* ----------------------------------------------------------------------------
@@ -173,7 +172,7 @@ const projects: Project[] = [
     description:
       "A full IoT prototype with occupancy detection, automated barrier control, and cloud telemetry. Embedded firmware on ESP32 talking to cloud services over MQTT.",
     stack: ["C++ / Arduino", "ESP32", "MQTT", "Python", "ThingSpeak"],
-    repoUrl: GITHUB_URL,
+    repoUrl: "https://github.com/sant-mell/smart-parking-iot",
   },
   {
     title: "Aquaroute (START Hack)",
@@ -181,7 +180,8 @@ const projects: Project[] = [
     description:
       "A hackathon prototype that routes Mexican water trucks to the most water-stressed areas. Combines satellite climate data with a weighted, safety-aware variation of Dijkstra's algorithm, backed by a validated business model.",
     stack: ["Algorithm Design", "Dijkstra Variant", "Satellite Data", "SaaS"],
-    repoUrl: GITHUB_URL,
+    repoUrl:
+      "https://www.linkedin.com/posts/santiago-aguilar-b1702a270_starthackmexico-tecdemonterrey-lovable-ugcPost-7429695225133957120-GuHB/",
   },
   {
     title: "The Fool's Descent (TC2005B)",
@@ -190,6 +190,14 @@ const projects: Project[] = [
       "An 8-credit flagship team project: a roguelike card game with an HTML5 Canvas client, an Express API, and a MySQL layer with stored procedures and triggers. Built with OOP, real state management, and strict version control.",
     stack: ["JavaScript", "HTML5 Canvas", "Node.js / Express", "MySQL", "Git"],
     repoUrl: "https://github.com/sant-mell/videoGame-TC2005B.501",
+  },
+  {
+    title: "Breakout",
+    subtitle: "JavaScript · HTML5 Canvas",
+    description:
+      "A browser Breakout clone with a twist: the paddle tilts to aim the ball into corners. Three levels, each with its own music theme (disco, hip hop, rock), built on a small Canvas engine with vector math and a delta-time game loop.",
+    stack: ["JavaScript", "HTML5 Canvas", "Game Loop", "Collision Detection"],
+    repoUrl: "https://github.com/sant-mell/myTC2005B/tree/main/Videojuegos/Breakout",
   },
   {
     title: "DFA Lexer / Compiler",
@@ -205,7 +213,15 @@ const projects: Project[] = [
     description:
       "BSTs, AVL trees, heaps, queues, hash logs, BFS / DFS, and Dijkstra, each with a full time and space complexity analysis. Foundations done properly.",
     stack: ["C++", "Trees & Heaps", "Graphs", "Complexity Analysis"],
-    repoUrl: GITHUB_URL,
+    repoUrl: "https://github.com/sant-mell/data-structures-cpp",
+  },
+  {
+    title: "Cat Cafe Database",
+    subtitle: "MySQL · Database Design",
+    description:
+      "A normalized MySQL database for a cat cafe chain: ER modeling, foreign keys, a many-to-many junction table, seed data, and example queries, alongside a formal normalization exercise.",
+    stack: ["MySQL", "ER Modeling", "SQL", "Normalization"],
+    repoUrl: "https://github.com/sant-mell/catcafe-database",
   },
   {
     title: "Next.js Portfolio",
@@ -213,13 +229,15 @@ const projects: Project[] = [
     description:
       "This site. React 19, Tailwind 4, and a static export build, with a neumorphic UI, an interactive radial career orbit, and live link previews.",
     stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4"],
-    repoUrl: GITHUB_URL,
+    repoUrl: "https://github.com/sant-mell/sant-mell.github.io",
   },
 ];
 
 interface Experience {
   role: string;
   org: string;
+  /** Optional official URL for the org, shown as a hover link preview. */
+  orgUrl?: string;
   period: string;
   location: string;
   detail: string;
@@ -245,6 +263,7 @@ const experiences: Experience[] = [
   {
     role: "Volunteer & Peer Mentor",
     org: "Tec de Monterrey",
+    orgUrl: "https://tec.mx",
     period: "2024 - Present",
     location: "Campus Santa Fe",
     detail:
@@ -253,6 +272,7 @@ const experiences: Experience[] = [
   {
     role: "Media Logistics Assistant",
     org: "DPG Media Nederland",
+    orgUrl: "https://www.dpgmedia.nl",
     period: "Jun 2022 - Aug 2022",
     location: "South Holland, Netherlands",
     detail:
@@ -260,12 +280,28 @@ const experiences: Experience[] = [
   },
 ];
 
-const leadership: string[] = [
-  "Vice President, Krei Student Society (Campus Santa Fe)",
-  "Advanced Competitive Programming Team (CSF)",
-  "COPARMEX Chapter member (CSF)",
-  "Peer Mentor, Tec de Monterrey",
-  "Head of Charity, RISS Netherlands (Buy a Tulip Help a Girl, Red Cross relief)",
+interface LeadershipItem {
+  /** Text before the linkable keyword. */
+  pre?: string;
+  /** The keyword itself (linked with a hover preview when `url` is set). */
+  link: string;
+  /** Optional official URL for the keyword. */
+  url?: string;
+  /** Text after the linkable keyword. */
+  post?: string;
+}
+
+const leadership: LeadershipItem[] = [
+  { pre: "Vice President, ", link: "Krei Student Society", post: " (Campus Santa Fe)" },
+  { link: "Advanced Competitive Programming Team", post: " (CSF)" },
+  { link: "COPARMEX", url: "https://coparmex.org.mx", post: " Chapter member (CSF)" },
+  { link: "Peer Mentor", url: "https://tec.mx", post: ", Tec de Monterrey" },
+  {
+    pre: "Head of Charity, ",
+    link: "RISS Netherlands",
+    url: "https://riss.wolfert.nl",
+    post: " (Buy a Tulip Help a Girl, Red Cross relief)",
+  },
 ];
 
 const coursework: string[] = [
@@ -286,6 +322,8 @@ const coursework: string[] = [
 interface Certification {
   name: string;
   issuer: string;
+  /** Optional official URL for the issuer, shown as a hover link preview. */
+  issuerUrl?: string;
   date: string;
   url?: string;
 }
@@ -294,87 +332,21 @@ const certifications: Certification[] = [
   {
     name: "Universitas 21 Global Citizenship",
     issuer: "Common Purpose",
+    issuerUrl: "https://commonpurpose.org",
     date: "Apr 2026",
     url: "https://students.learn.commonpurpose.org/badges/badge.php?hash=c0442df8bdb7d00a1d43171b2e55713295fb1f87",
   },
   {
     name: "IB Diploma, 33/45",
     issuer: "Rotterdam International Secondary School",
+    issuerUrl: "https://riss.wolfert.nl",
     date: "2024",
   },
   {
     name: "Excellence in English Award",
     issuer: "RISS, Netherlands",
+    issuerUrl: "https://riss.wolfert.nl",
     date: "2024",
-  },
-];
-
-const projectFiles: FileNode[] = [
-  {
-    name: "iot-smart-parking",
-    type: "folder",
-    children: [
-      { name: "firmware.ino", type: "file", extension: "ino" },
-      { name: "mqtt_client.py", type: "file", extension: "py" },
-      { name: "README.md", type: "file", extension: "md" },
-    ],
-  },
-  {
-    name: "aquaroute",
-    type: "folder",
-    children: [
-      { name: "dijkstra_weighted.ts", type: "file", extension: "ts" },
-      { name: "climate_data.ts", type: "file", extension: "ts" },
-      { name: "app.tsx", type: "file", extension: "tsx" },
-    ],
-  },
-  {
-    name: "fools-descent",
-    type: "folder",
-    children: [
-      {
-        name: "backend",
-        type: "folder",
-        children: [{ name: "server.js", type: "file", extension: "js" }],
-      },
-      {
-        name: "client",
-        type: "folder",
-        children: [{ name: "duel.js", type: "file", extension: "js" }],
-      },
-      {
-        name: "database",
-        type: "folder",
-        children: [{ name: "schema.sql", type: "file", extension: "sql" }],
-      },
-    ],
-  },
-  {
-    name: "dfa-lexer",
-    type: "folder",
-    children: [
-      { name: "lexer_dfa.py", type: "file", extension: "py" },
-      { name: "paralelo.py", type: "file", extension: "py" },
-      { name: "benchmark.py", type: "file", extension: "py" },
-    ],
-  },
-  {
-    name: "data-structures-cpp",
-    type: "folder",
-    children: [
-      { name: "avl.cpp", type: "file", extension: "cpp" },
-      { name: "dijkstra.cpp", type: "file", extension: "cpp" },
-      { name: "heap.cpp", type: "file", extension: "cpp" },
-    ],
-  },
-  {
-    name: "portfolio",
-    type: "folder",
-    children: [
-      { name: "page.tsx", type: "file", extension: "tsx" },
-      { name: "globe.tsx", type: "file", extension: "tsx" },
-      { name: "globals.css", type: "file", extension: "css" },
-    ],
   },
 ];
 
@@ -400,19 +372,19 @@ interface SkillCluster {
 
 const skillClusters: SkillCluster[] = [
   {
-    title: "Systems & Dev",
+    title: "Languages",
     icon: Cpu,
     skills: ["C++", "Python", "TypeScript", "JavaScript", "SQL", "HTML / CSS", "Racket"],
   },
   {
-    title: "Tools & IoT",
-    icon: CircuitBoard,
-    skills: ["Git / GitHub", "Linux / Bash", "Arduino (ESP32)", "ESP-IDF", "MQTT", "ThingSpeak", "Next.js", "React"],
+    title: "Systems & Networking",
+    icon: Network,
+    skills: ["Linux / Bash", "Networking", "MQTT", "ESP-IDF", "Arduino (ESP32)", "Embedded C"],
   },
   {
-    title: "Languages & Comm",
-    icon: Languages,
-    skills: ["Portuguese (Native)", "Spanish (Native)", "English (C2)", "Dutch (A1)"],
+    title: "Tools & Web",
+    icon: CircuitBoard,
+    skills: ["Git / GitHub", "Next.js", "React", "Node.js", "ThingSpeak"],
   },
 ];
 
@@ -501,6 +473,10 @@ function Aurora() {
  * Section primitives
  * ------------------------------------------------------------------------- */
 
+// Inline style for keyword links that reveal a hover screenshot preview.
+const KEYWORD_LINK =
+  "underline decoration-dotted decoration-zinc-400 underline-offset-4 transition-colors hover:text-zinc-900 dark:hover:text-white";
+
 const NEUMORPHIC =
   "rounded-3xl bg-zinc-100 dark:bg-white/[0.05] dark:border dark:border-white/10 dark:backdrop-blur-xl shadow-[12px_12px_24px_rgba(0,0,0,0.12),-12px_-12px_24px_rgba(255,255,255,0.9)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.45)]";
 
@@ -546,15 +522,356 @@ export default function Home() {
         <AnimatedProfileCard profile={profile} cvUrl={CV_URL} />
       </section>
 
-      {/* GLOBAL COMMUNICATOR */}
+      {/* SKILLS */}
       <section className="relative overflow-hidden px-4 py-24 sm:py-28">
         <Aurora />
         <Reveal>
-          <SectionHeading eyebrow="Where I'm from" title="Three countries, three languages">
-            I grew up in a Brazilian-Portuguese household, did the IB Diploma in
-            the Netherlands, and now study Computer Science in Mexico City.
-            Working across cultures and time zones is just how I have always
-            lived.
+          <SectionHeading eyebrow="Skills" title="Technical toolkit">
+            Languages, systems, and the networking foundation behind a Cisco
+            CCNA and cybersecurity track.
+          </SectionHeading>
+        </Reveal>
+
+        <div className="mx-auto mt-12 grid max-w-5xl gap-6 lg:grid-cols-3">
+          {skillClusters.map((cluster, i) => {
+            const Icon = cluster.icon;
+            return (
+              <Reveal key={cluster.title} delay={i * 120}>
+                <div className={cn(NEUMORPHIC, "group h-full p-7 transition-all duration-300 hover:-translate-y-2 hover:shadow-zinc-500/20")}>
+                  <div className="flex items-center gap-3">
+                    <span className="rounded-xl bg-zinc-700/10 p-2 text-zinc-700 transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110 dark:bg-zinc-300/10 dark:text-zinc-300">
+                      <Icon className="h-5 w-5" />
+                    </span>
+                    <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">
+                      {cluster.title}
+                    </h3>
+                  </div>
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {cluster.skills.map((skill) => (
+                      <Badge
+                        key={skill}
+                        variant="secondary"
+                        className="px-3 py-1 text-sm shadow-sm transition-transform hover:scale-110"
+                      >
+                        {skill}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+              </Reveal>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* PROJECTS */}
+      <section className="relative overflow-hidden px-4 py-24 sm:py-28">
+        <Aurora />
+        <Reveal>
+          <SectionHeading eyebrow="Projects" title="A few things I have built">
+            From embedded IoT hardware up to full-stack systems and modern web
+            architecture.
+          </SectionHeading>
+        </Reveal>
+
+        <div className="mx-auto mt-12 grid max-w-5xl gap-6 sm:grid-cols-2">
+          {projects.map((project, i) => (
+            <Reveal key={project.title} delay={i * 100}>
+              <Card
+                className={cn(
+                  NEUMORPHIC,
+                  "shine group relative flex h-full flex-col overflow-hidden border-none p-2 transition-all duration-300 hover:-translate-y-2 hover:shadow-zinc-500/20",
+                )}
+              >
+                <CardHeader>
+                  <p className="text-xs font-mono uppercase tracking-widest text-zinc-700 dark:text-zinc-300">
+                    {project.subtitle}
+                  </p>
+                  <CardTitle className="mt-1 text-xl text-zinc-900 transition-colors group-hover:text-zinc-700 dark:text-white dark:group-hover:text-zinc-300">
+                    {project.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="flex flex-1 flex-col">
+                  <p className="flex-1 text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
+                    {project.description}
+                  </p>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {project.stack.map((tech) => (
+                      <Badge
+                        key={tech}
+                        variant="outline"
+                        className="text-xs transition-transform hover:scale-110"
+                      >
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
+                  <div className="mt-5">
+                    <LinkPreview
+                      url={project.repoUrl}
+                      className="inline-flex items-center gap-2 text-sm font-semibold text-zinc-700 underline underline-offset-4 dark:text-zinc-300"
+                    >
+                      {project.repoUrl.includes("linkedin.com") ? (
+                        <>
+                          <LinkedinMark className="h-4 w-4" />
+                          View on LinkedIn
+                        </>
+                      ) : (
+                        <>
+                          <GithubMark className="h-4 w-4" />
+                          View on GitHub
+                        </>
+                      )}
+                    </LinkPreview>
+                  </div>
+                </CardContent>
+              </Card>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* GITHUB ACTIVITY */}
+      <section className="relative overflow-hidden px-4 py-24 sm:py-28">
+        <Aurora />
+        <Reveal>
+          <SectionHeading eyebrow="On GitHub" title="What I have been building">
+            My public commit history. Hover the link to preview the profile.
+          </SectionHeading>
+        </Reveal>
+
+        <Reveal delay={120}>
+          <div className={cn(NEUMORPHIC, "shine group relative mx-auto mt-12 max-w-3xl overflow-hidden p-6 transition-transform duration-300 hover:scale-[1.02] sm:p-8")}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="https://ghchart.rshah.org/52525b/sant-mell"
+              alt="GitHub contributions for sant-mell"
+              className="w-full max-w-3xl mx-auto rounded-md shadow-sm dark:invert"
+            />
+          </div>
+        </Reveal>
+
+        <Reveal delay={200}>
+          <div className="mt-8 text-center">
+            <LinkPreview
+              url={GITHUB_URL}
+              className="inline-flex items-center gap-2 font-semibold text-zinc-700 underline underline-offset-4 dark:text-zinc-300"
+            >
+              <GithubMark className="h-4 w-4" />
+              github.com/sant-mell
+            </LinkPreview>
+          </div>
+        </Reveal>
+      </section>
+
+      {/* EXPERIENCE */}
+      <section className="relative overflow-hidden px-4 py-24 sm:py-28">
+        <Aurora />
+        <Reveal>
+          <SectionHeading eyebrow="Experience" title="Where I have worked">
+            Teaching, mentoring, and getting things done across cultures and
+            time zones.
+          </SectionHeading>
+        </Reveal>
+
+        <div className="mx-auto mt-12 max-w-3xl space-y-5">
+          {experiences.map((exp, i) => (
+            <Reveal key={exp.role + exp.org} delay={i * 100}>
+              <div className={cn(NEUMORPHIC, "group p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-zinc-500/20")}>
+                <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                  <h3 className="flex items-center gap-2 text-lg font-semibold text-zinc-900 dark:text-white">
+                    <Briefcase className="h-4 w-4 text-zinc-700 dark:text-zinc-300" />
+                    {exp.role}
+                  </h3>
+                  <span className="font-mono text-xs text-zinc-500 dark:text-zinc-400">
+                    {exp.period}
+                  </span>
+                </div>
+                <p className="mt-1 text-sm font-medium text-zinc-700 dark:text-zinc-300">
+                  {exp.orgUrl ? (
+                    <LinkPreview url={exp.orgUrl} className={KEYWORD_LINK}>
+                      {exp.org}
+                    </LinkPreview>
+                  ) : (
+                    exp.org
+                  )}
+                  <span className="text-zinc-400 dark:text-zinc-500"> · {exp.location}</span>
+                </p>
+                <p className="mt-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
+                  {exp.detail}
+                </p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* LEADERSHIP & COURSEWORK */}
+      <section className="relative overflow-hidden px-4 py-24 sm:py-28">
+        <Aurora />
+        <div className="mx-auto grid max-w-5xl gap-6 lg:grid-cols-2">
+          <Reveal>
+            <div className={cn(NEUMORPHIC, "h-full p-7")}>
+              <div className="flex items-center gap-3">
+                <span className="rounded-xl bg-zinc-700/10 p-2 text-zinc-700 dark:bg-zinc-300/10 dark:text-zinc-300">
+                  <Users className="h-5 w-5" />
+                </span>
+                <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">
+                  Leadership & Community
+                </h3>
+              </div>
+              <ul className="mt-5 space-y-3">
+                {leadership.map((item) => (
+                  <li key={item.link} className="flex gap-3 text-sm text-zinc-600 dark:text-zinc-300">
+                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-500" />
+                    <span>
+                      {item.pre}
+                      {item.url ? (
+                        <LinkPreview url={item.url} className={KEYWORD_LINK}>
+                          {item.link}
+                        </LinkPreview>
+                      ) : (
+                        item.link
+                      )}
+                      {item.post}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
+
+          <Reveal delay={120}>
+            <div className={cn(NEUMORPHIC, "h-full p-7")}>
+              <div className="flex items-center gap-3">
+                <span className="rounded-xl bg-zinc-700/10 p-2 text-zinc-700 dark:bg-zinc-300/10 dark:text-zinc-300">
+                  <BookOpen className="h-5 w-5" />
+                </span>
+                <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">
+                  Relevant Coursework
+                </h3>
+              </div>
+              <div className="mt-5 flex flex-wrap gap-2">
+                {coursework.map((course) => (
+                  <Badge
+                    key={course}
+                    variant="secondary"
+                    className="px-3 py-1 text-sm shadow-sm transition-transform hover:scale-110"
+                  >
+                    {course}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ACADEMIC METRICS */}
+      <section className="relative overflow-hidden px-4 py-24 sm:py-28">
+        <Aurora />
+        <Reveal>
+          <SectionHeading eyebrow="Academics" title="How I am doing at Tec" />
+        </Reveal>
+
+        <div className="mx-auto mt-12 grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {metrics.map((metric, i) => {
+            const Icon = metric.icon;
+            return (
+              <Reveal key={metric.label} delay={i * 100}>
+                <div
+                  className={cn(
+                    NEUMORPHIC,
+                    "group h-full p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-zinc-500/20",
+                  )}
+                >
+                  <Icon className="h-6 w-6 text-zinc-700 transition-transform duration-300 group-hover:scale-125 dark:text-zinc-300" />
+                  <p className="gradient-text mt-4 text-4xl font-bold tracking-tight">
+                    {metric.value}
+                  </p>
+                  <p className="mt-1 text-sm font-semibold text-zinc-700 dark:text-zinc-200">
+                    {metric.label}
+                  </p>
+                  <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
+                    {metric.detail}
+                  </p>
+                </div>
+              </Reveal>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* CERTIFICATIONS */}
+      <section className="relative overflow-hidden px-4 pb-24 sm:pb-28">
+        <Aurora />
+        <Reveal>
+          <SectionHeading eyebrow="Certifications" title="Certifications & awards" />
+        </Reveal>
+
+        <div className="mx-auto mt-12 grid max-w-4xl gap-6 sm:grid-cols-3">
+          {certifications.map((cert, i) => (
+            <Reveal key={cert.name} delay={i * 100}>
+              <div className={cn(NEUMORPHIC, "group h-full p-6 text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-zinc-500/20")}>
+                <BadgeCheck className="mx-auto h-8 w-8 text-zinc-700 transition-transform duration-300 group-hover:scale-125 dark:text-zinc-300" />
+                <h3 className="mt-4 text-sm font-semibold text-zinc-900 dark:text-white">
+                  {cert.name}
+                </h3>
+                <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
+                  {cert.issuerUrl ? (
+                    <LinkPreview url={cert.issuerUrl} className={KEYWORD_LINK}>
+                      {cert.issuer}
+                    </LinkPreview>
+                  ) : (
+                    cert.issuer
+                  )}
+                </p>
+                <p className="mt-1 font-mono text-xs text-zinc-700 dark:text-zinc-300">
+                  {cert.date}
+                </p>
+                {cert.url && (
+                  <a
+                    href={cert.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-3 inline-block rounded-full border border-zinc-300 px-3 py-1 text-xs font-medium text-zinc-700 transition-colors hover:bg-zinc-900 hover:text-white dark:border-zinc-600 dark:text-zinc-300 dark:hover:bg-white dark:hover:text-zinc-900"
+                  >
+                    View credential
+                  </a>
+                )}
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* SYSTEMS TIMELINE (the journey, segues into the globe below) */}
+      <section className="relative overflow-hidden">
+        <div className="absolute top-0 left-0 right-0 z-20 pt-8 text-center pointer-events-none">
+          <p className="text-xs font-mono uppercase tracking-[0.25em] text-white/50">
+            My path so far
+          </p>
+          <h2 className="gradient-text mt-2 text-2xl font-bold">
+            From the IB Diploma to the CCNA track
+          </h2>
+          <p className="mt-2 text-xs text-white/40">
+            Click a node to see more
+          </p>
+        </div>
+        <div className="relative z-10">
+          <RadialOrbitalTimeline timelineData={systemsTimeline} />
+        </div>
+      </section>
+
+      {/* GLOBAL COMMUNICATOR (globe; closes the story the timeline opened) */}
+      <section className="relative overflow-hidden px-4 py-24 sm:py-28">
+        <Aurora />
+        <Reveal>
+          <SectionHeading eyebrow="Where I'm from" title="Three countries, four languages">
+            That path runs across the globe. I grew up in a Brazilian-Portuguese
+            household, did the IB Diploma in the Netherlands, and now study
+            Computer Science in Mexico City. Working across cultures and time
+            zones is just how I have always lived.
           </SectionHeading>
         </Reveal>
 
@@ -624,322 +941,6 @@ export default function Home() {
             ))}
           </div>
         </Reveal>
-      </section>
-
-      {/* GITHUB ACTIVITY */}
-      <section className="relative overflow-hidden px-4 py-24 sm:py-28">
-        <Aurora />
-        <Reveal>
-          <SectionHeading eyebrow="On GitHub" title="What I have been building">
-            My public commit history. Hover the link to preview the profile.
-          </SectionHeading>
-        </Reveal>
-
-        <Reveal delay={120}>
-          <div className={cn(NEUMORPHIC, "shine group relative mx-auto mt-12 max-w-3xl overflow-hidden p-6 transition-transform duration-300 hover:scale-[1.02] sm:p-8")}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="https://ghchart.rshah.org/52525b/sant-mell"
-              alt="GitHub contributions for sant-mell"
-              className="w-full max-w-3xl mx-auto rounded-md shadow-sm dark:invert"
-            />
-          </div>
-        </Reveal>
-
-        <Reveal delay={200}>
-          <div className="mt-8 text-center">
-            <LinkPreview
-              url={GITHUB_URL}
-              className="inline-flex items-center gap-2 font-semibold text-zinc-700 underline underline-offset-4 dark:text-zinc-300"
-            >
-              <GithubMark className="h-4 w-4" />
-              github.com/sant-mell
-            </LinkPreview>
-          </div>
-        </Reveal>
-      </section>
-
-      {/* PROJECTS */}
-      <section className="relative overflow-hidden px-4 py-24 sm:py-28">
-        <Aurora />
-        <Reveal>
-          <SectionHeading eyebrow="Projects" title="A few things I have built">
-            From embedded IoT hardware up to full-stack systems and modern web
-            architecture.
-          </SectionHeading>
-        </Reveal>
-
-        <div className="mx-auto mt-12 grid max-w-5xl gap-6 sm:grid-cols-2">
-          {projects.map((project, i) => (
-            <Reveal key={project.title} delay={i * 100}>
-              <Card
-                className={cn(
-                  NEUMORPHIC,
-                  "shine group relative flex h-full flex-col overflow-hidden border-none p-2 transition-all duration-300 hover:-translate-y-2 hover:shadow-zinc-500/20",
-                )}
-              >
-                <CardHeader>
-                  <p className="text-xs font-mono uppercase tracking-widest text-zinc-700 dark:text-zinc-300">
-                    {project.subtitle}
-                  </p>
-                  <CardTitle className="mt-1 text-xl text-zinc-900 transition-colors group-hover:text-zinc-700 dark:text-white dark:group-hover:text-zinc-300">
-                    {project.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="flex flex-1 flex-col">
-                  <p className="flex-1 text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
-                    {project.description}
-                  </p>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {project.stack.map((tech) => (
-                      <Badge
-                        key={tech}
-                        variant="outline"
-                        className="text-xs transition-transform hover:scale-110"
-                      >
-                        {tech}
-                      </Badge>
-                    ))}
-                  </div>
-                  <div className="mt-5">
-                    <LinkPreview
-                      url={project.repoUrl}
-                      className="inline-flex items-center gap-2 text-sm font-semibold text-zinc-700 underline underline-offset-4 dark:text-zinc-300"
-                    >
-                      <GithubMark className="h-4 w-4" />
-                      View on GitHub
-                    </LinkPreview>
-                  </div>
-                </CardContent>
-              </Card>
-            </Reveal>
-          ))}
-        </div>
-
-        <Reveal delay={150}>
-          <div className="mx-auto mt-14 max-w-xl">
-            <p className="mb-4 text-center text-xs font-mono uppercase tracking-[0.25em] text-zinc-500 dark:text-zinc-400">
-              Explore the repositories
-            </p>
-            <FileTree data={projectFiles} />
-          </div>
-        </Reveal>
-      </section>
-
-      {/* SYSTEMS TIMELINE */}
-      <section className="relative overflow-hidden">
-        <div className="absolute top-0 left-0 right-0 z-20 pt-8 text-center pointer-events-none">
-          <p className="text-xs font-mono uppercase tracking-[0.25em] text-white/50">
-            My path so far
-          </p>
-          <h2 className="gradient-text mt-2 text-2xl font-bold">
-            From the IB Diploma to the CCNA track
-          </h2>
-          <p className="mt-2 text-xs text-white/40">
-            Click a node to see more
-          </p>
-        </div>
-        <div className="relative z-10">
-          <RadialOrbitalTimeline timelineData={systemsTimeline} />
-        </div>
-      </section>
-
-      {/* EXPERIENCE */}
-      <section className="relative overflow-hidden px-4 py-24 sm:py-28">
-        <Aurora />
-        <Reveal>
-          <SectionHeading eyebrow="Experience" title="Where I have worked">
-            Teaching, mentoring, and getting things done across cultures and
-            time zones.
-          </SectionHeading>
-        </Reveal>
-
-        <div className="mx-auto mt-12 max-w-3xl space-y-5">
-          {experiences.map((exp, i) => (
-            <Reveal key={exp.role + exp.org} delay={i * 100}>
-              <div className={cn(NEUMORPHIC, "group p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-zinc-500/20")}>
-                <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                  <h3 className="flex items-center gap-2 text-lg font-semibold text-zinc-900 dark:text-white">
-                    <Briefcase className="h-4 w-4 text-zinc-700 dark:text-zinc-300" />
-                    {exp.role}
-                  </h3>
-                  <span className="font-mono text-xs text-zinc-500 dark:text-zinc-400">
-                    {exp.period}
-                  </span>
-                </div>
-                <p className="mt-1 text-sm font-medium text-zinc-700 dark:text-zinc-300">
-                  {exp.org}
-                  <span className="text-zinc-400 dark:text-zinc-500"> · {exp.location}</span>
-                </p>
-                <p className="mt-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
-                  {exp.detail}
-                </p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      {/* LEADERSHIP & COURSEWORK */}
-      <section className="relative overflow-hidden px-4 py-24 sm:py-28">
-        <Aurora />
-        <div className="mx-auto grid max-w-5xl gap-6 lg:grid-cols-2">
-          <Reveal>
-            <div className={cn(NEUMORPHIC, "h-full p-7")}>
-              <div className="flex items-center gap-3">
-                <span className="rounded-xl bg-zinc-700/10 p-2 text-zinc-700 dark:bg-zinc-300/10 dark:text-zinc-300">
-                  <Users className="h-5 w-5" />
-                </span>
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">
-                  Leadership & Community
-                </h3>
-              </div>
-              <ul className="mt-5 space-y-3">
-                {leadership.map((item) => (
-                  <li key={item} className="flex gap-3 text-sm text-zinc-600 dark:text-zinc-300">
-                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-500" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </Reveal>
-
-          <Reveal delay={120}>
-            <div className={cn(NEUMORPHIC, "h-full p-7")}>
-              <div className="flex items-center gap-3">
-                <span className="rounded-xl bg-zinc-700/10 p-2 text-zinc-700 dark:bg-zinc-300/10 dark:text-zinc-300">
-                  <BookOpen className="h-5 w-5" />
-                </span>
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">
-                  Relevant Coursework
-                </h3>
-              </div>
-              <div className="mt-5 flex flex-wrap gap-2">
-                {coursework.map((course) => (
-                  <Badge
-                    key={course}
-                    variant="secondary"
-                    className="px-3 py-1 text-sm shadow-sm transition-transform hover:scale-110"
-                  >
-                    {course}
-                  </Badge>
-                ))}
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ACADEMIC METRICS */}
-      <section className="relative overflow-hidden px-4 py-24 sm:py-28">
-        <Aurora />
-        <Reveal>
-          <SectionHeading eyebrow="Academics" title="How I am doing at Tec" />
-        </Reveal>
-
-        <div className="mx-auto mt-12 grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {metrics.map((metric, i) => {
-            const Icon = metric.icon;
-            return (
-              <Reveal key={metric.label} delay={i * 100}>
-                <div
-                  className={cn(
-                    NEUMORPHIC,
-                    "group h-full p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-zinc-500/20",
-                  )}
-                >
-                  <Icon className="h-6 w-6 text-zinc-700 transition-transform duration-300 group-hover:scale-125 dark:text-zinc-300" />
-                  <p className="gradient-text mt-4 text-4xl font-bold tracking-tight">
-                    {metric.value}
-                  </p>
-                  <p className="mt-1 text-sm font-semibold text-zinc-700 dark:text-zinc-200">
-                    {metric.label}
-                  </p>
-                  <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
-                    {metric.detail}
-                  </p>
-                </div>
-              </Reveal>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* SKILLS */}
-      <section className="relative overflow-hidden px-4 py-24 sm:py-28">
-        <Aurora />
-        <Reveal>
-          <SectionHeading eyebrow="Skills" title="Tools & languages" />
-        </Reveal>
-
-        <div className="mx-auto mt-12 grid max-w-5xl gap-6 lg:grid-cols-3">
-          {skillClusters.map((cluster, i) => {
-            const Icon = cluster.icon;
-            return (
-              <Reveal key={cluster.title} delay={i * 120}>
-                <div className={cn(NEUMORPHIC, "group h-full p-7 transition-all duration-300 hover:-translate-y-2 hover:shadow-zinc-500/20")}>
-                  <div className="flex items-center gap-3">
-                    <span className="rounded-xl bg-zinc-700/10 p-2 text-zinc-700 transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110 dark:bg-zinc-300/10 dark:text-zinc-300">
-                      <Icon className="h-5 w-5" />
-                    </span>
-                    <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">
-                      {cluster.title}
-                    </h3>
-                  </div>
-                  <div className="mt-5 flex flex-wrap gap-2">
-                    {cluster.skills.map((skill) => (
-                      <Badge
-                        key={skill}
-                        variant="secondary"
-                        className="px-3 py-1 text-sm shadow-sm transition-transform hover:scale-110"
-                      >
-                        {skill}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-              </Reveal>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* CERTIFICATIONS */}
-      <section className="relative overflow-hidden px-4 pb-24 sm:pb-28">
-        <Aurora />
-        <Reveal>
-          <SectionHeading eyebrow="Certifications" title="Certifications & awards" />
-        </Reveal>
-
-        <div className="mx-auto mt-12 grid max-w-4xl gap-6 sm:grid-cols-3">
-          {certifications.map((cert, i) => (
-            <Reveal key={cert.name} delay={i * 100}>
-              <div className={cn(NEUMORPHIC, "group h-full p-6 text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-zinc-500/20")}>
-                <BadgeCheck className="mx-auto h-8 w-8 text-zinc-700 transition-transform duration-300 group-hover:scale-125 dark:text-zinc-300" />
-                <h3 className="mt-4 text-sm font-semibold text-zinc-900 dark:text-white">
-                  {cert.name}
-                </h3>
-                <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
-                  {cert.issuer}
-                </p>
-                <p className="mt-1 font-mono text-xs text-zinc-700 dark:text-zinc-300">
-                  {cert.date}
-                </p>
-                {cert.url && (
-                  <a
-                    href={cert.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-3 inline-block rounded-full border border-zinc-300 px-3 py-1 text-xs font-medium text-zinc-700 transition-colors hover:bg-zinc-900 hover:text-white dark:border-zinc-600 dark:text-zinc-300 dark:hover:bg-white dark:hover:text-zinc-900"
-                  >
-                    View credential
-                  </a>
-                )}
-              </div>
-            </Reveal>
-          ))}
-        </div>
       </section>
 
       {/* FOOTER */}

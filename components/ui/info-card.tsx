@@ -4,6 +4,7 @@ import { MessageCircle, UserPlus, Download } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import AnimatedTextCycle from "@/components/ui/animated-text-cycle"
+import { LinkPreview } from "@/components/ui/link-preview"
 
 export type ProfileStatus = "online" | "offline" | "away"
 
@@ -158,15 +159,13 @@ function ProfileCard({
 
       {/* Action Buttons */}
       <div className="mt-6 flex gap-2 relative z-10">
-        <a
-          href={connectUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Connect on LinkedIn"
-          className="flex-1 rounded-full bg-white dark:bg-zinc-700 py-4 text-sm font-medium text-zinc-700 dark:text-zinc-300 shadow-[6px_6px_12px_rgba(0,0,0,0.1),-6px_-6px_12px_rgba(255,255,255,0.9)] dark:shadow-[6px_6px_12px_rgba(0,0,0,0.2),-6px_-6px_12px_rgba(255,255,255,0.1)] transition-all duration-300 hover:shadow-[2px_2px_4px_rgba(0,0,0,0.05),-2px_-2px_4px_rgba(255,255,255,0.8)] dark:hover:shadow-[2px_2px_4px_rgba(0,0,0,0.15),-2px_-2px_4px_rgba(255,255,255,0.05)] hover:scale-95 active:scale-90 group-hover:bg-zinc-100dark:group-hover:bg-zinc-800/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-600 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-zinc-800"
+        <LinkPreview
+          url={connectUrl}
+          className="flex flex-1 items-center justify-center rounded-full bg-white dark:bg-zinc-700 py-4 text-sm font-medium text-zinc-700 dark:text-zinc-300 shadow-[6px_6px_12px_rgba(0,0,0,0.1),-6px_-6px_12px_rgba(255,255,255,0.9)] dark:shadow-[6px_6px_12px_rgba(0,0,0,0.2),-6px_-6px_12px_rgba(255,255,255,0.1)] transition-all duration-300 hover:shadow-[2px_2px_4px_rgba(0,0,0,0.05),-2px_-2px_4px_rgba(255,255,255,0.8)] dark:hover:shadow-[2px_2px_4px_rgba(0,0,0,0.15),-2px_-2px_4px_rgba(255,255,255,0.05)] hover:scale-95 active:scale-90 group-hover:bg-zinc-100dark:group-hover:bg-zinc-800/30"
         >
           <UserPlus className="mx-auto h-4 w-4 transition-transform duration-300 hover:scale-110" aria-hidden="true" />
-        </a>
+          <span className="sr-only">Connect on LinkedIn</span>
+        </LinkPreview>
         <a
           href={messageUrl}
           aria-label="Send an email"
