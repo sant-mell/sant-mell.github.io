@@ -199,7 +199,7 @@ const projects: Project[] = [
     title: "The Fool's Descent (TC2005B)",
     subtitle: "JavaScript · Node · MySQL",
     description:
-      "An 8-credit flagship team project: a roguelike card game with an HTML5 Canvas client, an Express API, and a MySQL layer with stored procedures and triggers. Built with OOP, real state management, and strict version control.",
+      "An 8-credit flagship team project: a roguelike card game built from scratch, including its own game engine (no framework). An HTML5 Canvas client, an Express API, and a MySQL layer with stored procedures and triggers, with OOP, real state management, and strict version control.",
     stack: ["JavaScript", "HTML5 Canvas", "Node.js / Express", "MySQL", "Git"],
     repoUrl: "https://github.com/sant-mell/videoGame-TC2005B.501",
   },
@@ -207,7 +207,7 @@ const projects: Project[] = [
     title: "Breakout",
     subtitle: "JavaScript · HTML5 Canvas",
     description:
-      "A browser Breakout clone with a twist: the paddle tilts to aim the ball into corners. Three levels, each with its own music theme (disco, hip hop, rock), built on a small Canvas engine with vector math and a delta-time game loop.",
+      "A browser Breakout clone with a twist: the paddle tilts to aim the ball into corners. Three levels, each with its own music theme (disco, hip hop, rock). Built from scratch on a custom Canvas engine (no game framework), with vector math and a delta-time game loop.",
     stack: ["JavaScript", "HTML5 Canvas", "Game Loop", "Collision Detection"],
     repoUrl: "https://github.com/sant-mell/myTC2005B/tree/main/Videojuegos/Breakout",
     liveUrl:
@@ -225,7 +225,7 @@ const projects: Project[] = [
     title: "Next.js Portfolio",
     subtitle: "Next.js 16 · React 19",
     description:
-      "This site. React 19, Tailwind 4, and a static export build, with a neumorphic UI, an interactive radial career orbit, and live link previews.",
+      "This site. React 19, Tailwind 4, and a static export build, with a glassy dark UI over an animated WebGL shader background, an interactive three.js globe, a radial career orbit, and live link previews.",
     stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4"],
     repoUrl: "https://github.com/sant-mell/sant-mell.github.io",
   },
@@ -879,9 +879,11 @@ export default function Home() {
           <SectionHeading eyebrow="Where I'm from" title="Three countries, four languages">
             That path runs across the globe. I grew up in a Brazilian-Portuguese
             household, did the IB Diploma in the Netherlands, and now study
-            Computer Science in Mexico City. Working across cultures and time
-            zones is just how I have always lived, and it is where my soft
-            skills in communication and adaptability come from.
+            Computer Science in Mexico City. I hold Mexican, Brazilian, and
+            Portuguese (EU) citizenship, so I can work across the EU, Mexico, and
+            Brazil without sponsorship. Working across cultures and time zones is
+            just how I have always lived, and it is where my soft skills in
+            communication and adaptability come from.
           </SectionHeading>
         </Reveal>
 
@@ -966,6 +968,11 @@ export default function Home() {
             <p className="flex items-center justify-center gap-1.5 text-sm text-zinc-500 dark:text-zinc-400 sm:justify-start">
               <MapPin className="h-3.5 w-3.5" />
               Greater Mexico City · Open to internships, remote, and global roles
+            </p>
+            <p className="mt-1 flex items-center justify-center gap-1.5 text-sm text-zinc-500 dark:text-zinc-400 sm:justify-start">
+              <BadgeCheck className="h-3.5 w-3.5" />
+              Mexican, Brazilian, and Portuguese (EU) citizen · eligible to work in
+              the EU, Mexico, and Brazil with no sponsorship
             </p>
           </div>
           <div className="flex items-center gap-5">
