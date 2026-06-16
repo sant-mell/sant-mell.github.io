@@ -103,6 +103,9 @@ body {
 .reveal.is-visible {
   opacity: 1;
   transform: none;
+  /* Release the compositor layer once revealed; keeping will-change on every
+     section permanently pins dozens of GPU layers and causes flicker. */
+  will-change: auto;
 }
 
 /* Animated grayscale headline text */

@@ -29,11 +29,13 @@ export function GooeyText({
 
     const setMorph = (fraction: number) => {
       if (text1Ref.current && text2Ref.current) {
-        text2Ref.current.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
+        // Lower base blur and a tighter clamp keep the morph readable and cut
+        // the per-frame shimmer that the old 8px/100px range produced.
+        text2Ref.current.style.filter = `blur(${Math.min(6 / fraction - 6, 18)}px)`;
         text2Ref.current.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
 
         fraction = 1 - fraction;
-        text1Ref.current.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
+        text1Ref.current.style.filter = `blur(${Math.min(6 / fraction - 6, 18)}px)`;
         text1Ref.current.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
       }
     };
@@ -110,14 +112,14 @@ export function GooeyText({
               values="1 0 0 0 0
                       0 1 0 0 0
                       0 0 1 0 0
-                      0 0 0 255 -140"
+                      0 0 0 40 -22"
             />
           </filter>
         </defs>
       </svg>
 
       <div
-        className="flex items-center justify-center"
+        className="flex items-center justify-center [isolation:isolate]"
         style={{ filter: "url(#threshold)" }}
       >
         <span
