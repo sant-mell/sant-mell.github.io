@@ -1,6 +1,6 @@
 # Santiago Aguilar Mello, Portfolio (`sant-mell.github.io`)
 
-Personal portfolio site built with Next.js 16 (App Router), React 19, TypeScript, and Tailwind CSS v4. It is a central hub for my resume, academic background at Tec de Monterrey, and hands-on projects, aimed at cybersecurity, network engineering, and Cisco CCNA roles.
+Personal portfolio site built with Next.js 16 (App Router), React 19, TypeScript, and Tailwind CSS v4. It is a central hub for my resume, academic background at Tec de Monterrey, and hands-on projects in embedded/IoT, full-stack, and parallel computing. Currently pursuing the Cisco CCNA and cybersecurity.
 
 Live site: https://sant-mell.github.io  ·  CV: [`/cv.pdf`](public/cv.pdf)  ·  Email: sant.mell016@gmail.com
 
@@ -8,7 +8,7 @@ Live site: https://sant-mell.github.io  ·  CV: [`/cv.pdf`](public/cv.pdf)  ·  
 
 - Native Portuguese and Spanish, English C2, Dutch A1. Sao Paulo roots, IB Diploma in Rotterdam, Computer Science in Mexico City.
 - 4th semester Computer Science and Technology (ITC) student at Tec de Monterrey, Campus Santa Fe, based in Huixquilucan.
-- Open to work, including remote and global roles. Targeting cybersecurity, network engineering, and the Cisco CCNA track.
+- Open to work, including remote and global roles. Strengths in embedded/IoT, full-stack, and parallel computing; pursuing the Cisco CCNA and cybersecurity.
 
 ## Tech Stack
 
