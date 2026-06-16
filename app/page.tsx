@@ -114,6 +114,7 @@ const PROJECT_META: Omit<Project, "description">[] = [
     title: "DT Construct ICS",
     subtitle: "Freelance · Client Website",
     stack: ["HTML", "CSS", "JavaScript", "Leaflet", "Netlify"],
+    repoUrl: "https://github.com/sant-mell/dt-website",
     liveUrl: "https://dtc-ingenieria.com",
     liveKind: "site",
   },
