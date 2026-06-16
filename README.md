@@ -19,7 +19,7 @@ Live site: https://sant-mell.github.io  ·  CV: [`/cv.pdf`](public/cv.pdf)  ·  
 | Styling | Tailwind CSS v4, grayscale neumorphic theme |
 | Animation | Framer Motion, scroll reveals, animated gradients |
 | 3D / Shaders | three.js and @react-three/fiber (interactive globe), @paper-design/shaders-react (animated background) |
-| Deployment | GitHub Pages and Netlify (static export) |
+| Deployment | GitHub Pages (static export) |
 
 ## Sections
 
@@ -64,8 +64,7 @@ npm run build    # static export to ./out
 
 The site builds to a static export (`output: "export"` in next.config.ts, `images.unoptimized: true`).
 
-- GitHub Pages: `.github/workflows/deploy.yml` builds and publishes `./out` on every push to `main`. Set Settings, Pages, Source to GitHub Actions. `public/.nojekyll` keeps the `_next/` directory intact.
-- Netlify: `netlify.toml` sets the build command to `npm run build` and the publish directory to `out`.
+- GitHub Pages: `.github/workflows/deploy.yml` builds and publishes `./out` on every push to `main`. Set Settings, Pages, Source to GitHub Actions. `public/.nojekyll` keeps the `_next/` directory intact. The site is served only from GitHub Pages at https://sant-mell.github.io.
 
 ## Contact
 

@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  Fragment,
   useEffect,
   useRef,
   useState,
@@ -24,6 +25,7 @@ import {
   BadgeCheck,
   CircuitBoard,
   Play,
+  ExternalLink,
 } from "lucide-react";
 import dynamic from "next/dynamic";
 import AnimatedProfileCard, {
@@ -88,9 +90,16 @@ interface Project {
   subtitle: string;
   description: string;
   stack: string[];
-  repoUrl: string;
-  /** Optional live, in-browser demo a recruiter can open and try. */
+  /** Public repo. Omitted for client work whose source is private. */
+  repoUrl?: string;
+  /** Optional live URL a recruiter can open. */
   liveUrl?: string;
+  /** How to label the live link: an in-browser demo ("demo") or a shipped site ("site"). */
+  liveKind?: "demo" | "site";
+  /** Render the measured sequential-vs-parallel benchmark bars (DFA lexer). */
+  benchmark?: boolean;
+  /** Ordered stages of a data-flow pipeline, drawn as a compact diagram. */
+  pipeline?: string[];
 }
 
 const PROJECT_META: Omit<Project, "description">[] = [
@@ -99,6 +108,14 @@ const PROJECT_META: Omit<Project, "description">[] = [
     subtitle: "ESP32 · MQTT · Python",
     stack: ["C++ / Arduino", "ESP32", "MQTT", "Python", "ThingSpeak"],
     repoUrl: "https://github.com/sant-mell/smart-parking-iot",
+    pipeline: ["Sensors", "ESP32", "MQTT", "ThingSpeak", "Client"],
+  },
+  {
+    title: "DT Construct ICS",
+    subtitle: "Freelance · Client Website",
+    stack: ["HTML", "CSS", "JavaScript", "Leaflet", "Netlify"],
+    liveUrl: "https://dtc-ingenieria.com",
+    liveKind: "site",
   },
   {
     title: "Aquaroute (START Hack)",
@@ -126,6 +143,7 @@ const PROJECT_META: Omit<Project, "description">[] = [
     subtitle: "Python · Automata Theory",
     stack: ["Python", "Multiprocessing", "Automata / DFA", "Benchmarking"],
     repoUrl: "https://github.com/sant-mell/parallel-syntax-highlighter",
+    benchmark: true,
   },
   {
     title: "Next.js Portfolio",
@@ -276,6 +294,74 @@ function LinkedinMark({ className }: { className?: string }) {
     <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor" className={className}>
       <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z" />
     </svg>
+  );
+}
+
+/* ----------------------------------------------------------------------------
+ * Benchmark bars (measured DFA lexer speedup)
+ * ------------------------------------------------------------------------- */
+
+function BenchmarkBars({
+  sequentialLabel,
+  parallelLabel,
+  fasterLabel,
+}: {
+  sequentialLabel: string;
+  parallelLabel: string;
+  fasterLabel: string;
+}) {
+  // Measured on a 16-core machine over a 60-file (~8 MB) Python corpus.
+  const seqSeconds = 7.1;
+  const parSeconds = 1.14;
+  const parWidth = (parSeconds / seqSeconds) * 100; // ~16%
+  return (
+    <div className="mt-4 rounded-lg border border-black/10 bg-black/[0.03] p-3 dark:border-white/10 dark:bg-white/[0.04]">
+      <div className="space-y-2">
+        {[
+          { label: sequentialLabel, value: "7.10s", width: 100, fill: "bg-zinc-400 dark:bg-zinc-500" },
+          { label: parallelLabel, value: "1.14s", width: parWidth, fill: "bg-zinc-900 dark:bg-white" },
+        ].map((bar) => (
+          <div key={bar.label}>
+            <div className="mb-1 flex justify-between font-mono text-xs text-zinc-600 dark:text-zinc-400">
+              <span>{bar.label}</span>
+              <span>{bar.value}</span>
+            </div>
+            <div className="h-2 w-full overflow-hidden rounded-full bg-zinc-200 dark:bg-zinc-700">
+              <div className={cn("h-full rounded-full", bar.fill)} style={{ width: `${bar.width}%` }} />
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="mt-3 flex items-baseline justify-between gap-2">
+        <span className="text-sm font-bold text-zinc-900 dark:text-white">6.23&times; {fasterLabel}</span>
+        <span className="font-mono text-[10px] uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+          16 cores &middot; 60 files &middot; 8 MB
+        </span>
+      </div>
+    </div>
+  );
+}
+
+/* ----------------------------------------------------------------------------
+ * Pipeline diagram (compact data-flow architecture)
+ * ------------------------------------------------------------------------- */
+
+function PipelineDiagram({ stages }: { stages: string[] }) {
+  return (
+    <div className="mt-4 flex flex-wrap items-center gap-1.5 rounded-lg border border-black/10 bg-black/[0.03] p-3 dark:border-white/10 dark:bg-white/[0.04]">
+      {stages.map((stage, i) => (
+        <Fragment key={stage}>
+          <span className="rounded-md bg-white/70 px-2 py-1 font-mono text-[11px] font-semibold text-zinc-700 shadow-sm dark:bg-white/10 dark:text-zinc-200">
+            {stage}
+          </span>
+          {i < stages.length - 1 && (
+            <span aria-hidden="true" className="text-zinc-400 dark:text-zinc-500">
+              &rarr;
+            </span>
+          )}
+        </Fragment>
+      ))}
+    </div>
   );
 }
 
@@ -546,6 +632,14 @@ export default function Home() {
                       </Badge>
                     ))}
                   </div>
+                  {project.benchmark && (
+                    <BenchmarkBars
+                      sequentialLabel={t.ui.benchSequential}
+                      parallelLabel={t.ui.benchParallel}
+                      fasterLabel={t.ui.benchFaster}
+                    />
+                  )}
+                  {project.pipeline && <PipelineDiagram stages={project.pipeline} />}
                   <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2">
                     {project.liveUrl && (
                       <a
@@ -554,26 +648,37 @@ export default function Home() {
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 rounded-full bg-zinc-900 px-3 py-1.5 text-sm font-semibold text-white transition-transform hover:scale-105 dark:bg-white dark:text-zinc-900"
                       >
-                        <Play className="h-3.5 w-3.5" aria-hidden="true" />
-                        {t.ui.playInBrowser}
+                        {project.liveKind === "site" ? (
+                          <>
+                            <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+                            {t.ui.visitSite}
+                          </>
+                        ) : (
+                          <>
+                            <Play className="h-3.5 w-3.5" aria-hidden="true" />
+                            {t.ui.playInBrowser}
+                          </>
+                        )}
                       </a>
                     )}
-                    <LinkPreview
-                      url={project.repoUrl}
-                      className="inline-flex items-center gap-2 text-sm font-semibold text-zinc-700 underline underline-offset-4 dark:text-zinc-300"
-                    >
-                      {project.repoUrl.includes("linkedin.com") ? (
-                        <>
-                          <LinkedinMark className="h-4 w-4" />
-                          {t.ui.viewOnLinkedin}
-                        </>
-                      ) : (
-                        <>
-                          <GithubMark className="h-4 w-4" />
-                          {t.ui.viewOnGithub}
-                        </>
-                      )}
-                    </LinkPreview>
+                    {project.repoUrl && (
+                      <LinkPreview
+                        url={project.repoUrl}
+                        className="inline-flex items-center gap-2 text-sm font-semibold text-zinc-700 underline underline-offset-4 dark:text-zinc-300"
+                      >
+                        {project.repoUrl.includes("linkedin.com") ? (
+                          <>
+                            <LinkedinMark className="h-4 w-4" />
+                            {t.ui.viewOnLinkedin}
+                          </>
+                        ) : (
+                          <>
+                            <GithubMark className="h-4 w-4" />
+                            {t.ui.viewOnGithub}
+                          </>
+                        )}
+                      </LinkPreview>
+                    )}
                   </div>
                 </CardContent>
               </Card>

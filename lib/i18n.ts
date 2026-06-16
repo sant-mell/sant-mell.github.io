@@ -31,6 +31,10 @@ export interface Dict {
     viewOnGithub: string;
     viewOnLinkedin: string;
     playInBrowser: string;
+    visitSite: string;
+    benchSequential: string;
+    benchParallel: string;
+    benchFaster: string;
     viewCredential: string;
   };
   sections: {
@@ -80,6 +84,10 @@ export const translations: Record<Locale, Dict> = {
       viewOnGithub: "View on GitHub",
       viewOnLinkedin: "View on LinkedIn",
       playInBrowser: "Play in browser",
+      visitSite: "Visit site",
+      benchSequential: "Sequential",
+      benchParallel: "Parallel",
+      benchFaster: "faster",
       viewCredential: "View credential",
     },
     sections: {
@@ -135,6 +143,7 @@ export const translations: Record<Locale, Dict> = {
     },
     projectDescriptions: [
       "A full IoT prototype with occupancy detection, automated barrier control, and cloud telemetry. Embedded firmware on ESP32 talking to cloud services over MQTT.",
+      "A freelance website I designed and shipped for DT Construct ICS, a Mexican construction company. Hand-coded in vanilla HTML, CSS, and JavaScript: a six-page services catalog (retail, industrial, infrastructure, special installations, and maintenance), interactive Leaflet maps, and a portfolio of completed work for clients such as Almacenes Garcia, Avante Textil, Hotel Resort Secrets, and TOUS. Live on a custom domain.",
       "A hackathon prototype that routes Mexican water trucks to the most water-stressed areas. Combines satellite climate data with a weighted, safety-aware variation of Dijkstra's algorithm, backed by a validated business model.",
       "An 8-credit flagship team project: a roguelike card game built from scratch, including its own game engine (no framework). An HTML5 Canvas client, an Express API, and a MySQL layer with stored procedures and triggers, with OOP, real state management, and strict version control.",
       "A browser Breakout clone with a twist: the paddle tilts to aim the ball into corners. Three levels, each with its own music theme (disco, hip hop, rock). Built from scratch on a custom Canvas engine (no game framework), with vector math and a delta-time game loop.",
@@ -281,6 +290,10 @@ export const translations: Record<Locale, Dict> = {
       viewOnGithub: "Ver en GitHub",
       viewOnLinkedin: "Ver en LinkedIn",
       playInBrowser: "Jugar en el navegador",
+      visitSite: "Ver sitio",
+      benchSequential: "Secuencial",
+      benchParallel: "Paralelo",
+      benchFaster: "más rápido",
       viewCredential: "Ver credencial",
     },
     sections: {
@@ -337,6 +350,7 @@ export const translations: Record<Locale, Dict> = {
     },
     projectDescriptions: [
       "Un prototipo IoT completo con detección de ocupación, control automático de barrera y telemetría en la nube. Firmware embebido en ESP32 que habla con servicios en la nube por MQTT.",
+      "Un sitio web freelance que diseñé y entregué para DT Construct ICS, una empresa mexicana de construcción. Programado a mano en HTML, CSS y JavaScript: un catálogo de servicios de seis páginas (retail, industrial, infraestructura, instalaciones especiales y mantenimiento), mapas interactivos con Leaflet y un portafolio de obras realizadas para clientes como Almacenes Garcia, Avante Textil, Hotel Resort Secrets y TOUS. En línea con dominio propio.",
       "Un prototipo de hackathon que enruta camiones de agua mexicanos hacia las zonas con mayor estrés hídrico. Combina datos climáticos satelitales con una variación ponderada y consciente de la seguridad del algoritmo de Dijkstra, respaldado por un modelo de negocio validado.",
       "Un proyecto estrella de equipo de 8 créditos: un juego de cartas roguelike hecho desde cero, incluido su propio motor de juego (sin framework). Un cliente en HTML5 Canvas, una API en Express y una capa MySQL con procedimientos almacenados y triggers, con POO, gestión de estado real y control de versiones estricto.",
       "Un clon de Breakout en el navegador con un giro: la paleta se inclina para dirigir la bola a las esquinas. Tres niveles, cada uno con su propio tema musical (disco, hip hop, rock). Hecho desde cero sobre un motor Canvas propio (sin framework de juego), con matemática vectorial y un bucle de juego con delta-time.",
@@ -486,6 +500,10 @@ export const translations: Record<Locale, Dict> = {
       viewOnGithub: "Ver no GitHub",
       viewOnLinkedin: "Ver no LinkedIn",
       playInBrowser: "Jogar no navegador",
+      visitSite: "Ver site",
+      benchSequential: "Sequencial",
+      benchParallel: "Paralelo",
+      benchFaster: "mais rápido",
       viewCredential: "Ver credencial",
     },
     sections: {
@@ -542,6 +560,7 @@ export const translations: Record<Locale, Dict> = {
     },
     projectDescriptions: [
       "Um protótipo IoT completo com detecção de ocupação, controle automático de cancela e telemetria na nuvem. Firmware embarcado no ESP32 conversando com serviços de nuvem por MQTT.",
+      "Um site freelance que desenhei e entreguei para a DT Construct ICS, uma empresa mexicana de construção. Programado à mão em HTML, CSS e JavaScript: um catálogo de serviços de seis páginas (varejo, industrial, infraestrutura, instalações especiais e manutenção), mapas interativos com Leaflet e um portfólio de obras realizadas para clientes como Almacenes Garcia, Avante Textil, Hotel Resort Secrets e TOUS. No ar com domínio próprio.",
       "Um protótipo de hackathon que roteia caminhões-pipa mexicanos para as áreas com maior estresse hídrico. Combina dados climáticos de satélite com uma variação ponderada e atenta à segurança do algoritmo de Dijkstra, apoiada por um modelo de negócio validado.",
       "Um projeto de equipe principal de 8 créditos: um jogo de cartas roguelike feito do zero, incluindo seu próprio motor de jogo (sem framework). Um cliente em HTML5 Canvas, uma API em Express e uma camada MySQL com procedimentos armazenados e triggers, com POO, gerenciamento de estado real e controle de versão rigoroso.",
       "Um clone de Breakout no navegador com um diferencial: a raquete se inclina para mirar a bola nos cantos. Três níveis, cada um com seu próprio tema musical (disco, hip hop, rock). Feito do zero sobre um motor Canvas próprio (sem framework de jogo), com matemática vetorial e um game loop com delta-time.",
@@ -691,6 +710,10 @@ export const translations: Record<Locale, Dict> = {
       viewOnGithub: "Bekijk op GitHub",
       viewOnLinkedin: "Bekijk op LinkedIn",
       playInBrowser: "Speel in browser",
+      visitSite: "Bekijk site",
+      benchSequential: "Sequentieel",
+      benchParallel: "Parallel",
+      benchFaster: "sneller",
       viewCredential: "Bekijk credential",
     },
     sections: {
@@ -747,6 +770,7 @@ export const translations: Record<Locale, Dict> = {
     },
     projectDescriptions: [
       "Een volledig IoT-prototype met bezettingsdetectie, automatische slagboombesturing en cloudtelemetrie. Embedded firmware op de ESP32 die via MQTT met clouddiensten communiceert.",
+      "Een freelance website die ik ontwierp en opleverde voor DT Construct ICS, een Mexicaans bouwbedrijf. Met de hand gecodeerd in HTML, CSS en JavaScript: een servicecatalogus van zes pagina's (retail, industrieel, infrastructuur, speciale installaties en onderhoud), interactieve Leaflet-kaarten en een portfolio van opgeleverd werk voor klanten als Almacenes Garcia, Avante Textil, Hotel Resort Secrets en TOUS. Live op een eigen domein.",
       "Een hackathon-prototype dat Mexicaanse watertrucks naar de gebieden met de grootste waterschaarste stuurt. Combineert satellietklimaatdata met een gewogen, veiligheidsbewuste variant van Dijkstra's algoritme, onderbouwd door een gevalideerd bedrijfsmodel.",
       "Een toonaangevend teamproject van 8 studiepunten: een roguelike kaartspel volledig zelf gebouwd, inclusief de eigen game-engine (geen framework). Een HTML5 Canvas-client, een Express-API en een MySQL-laag met stored procedures en triggers, met OOP, echt state-beheer en strikt versiebeheer.",
       "Een browser-Breakout-kloon met een twist: de paddle kantelt om de bal naar de hoeken te mikken. Drie levels, elk met een eigen muziekthema (disco, hiphop, rock). Volledig zelf gebouwd op een eigen Canvas-engine (geen game-framework), met vectorwiskunde en een delta-time game loop.",
