@@ -67,11 +67,11 @@ The site builds to a static export (`output: "export"` in `next.config.ts`, `ima
 
 ```mermaid
 flowchart LR
-    A[git push to main] --> B[GitHub Actions<br/>deploy.yml]
-    B --> C[npm ci + next build<br/>static export to ./out]
-    C --> D[upload-pages-artifact]
-    D --> E[deploy-pages]
-    E --> F[GitHub Pages<br/>sant-mell.github.io]
+    A["git push to main"] --> B["GitHub Actions: deploy.yml"]
+    B --> C["npm ci + next build, static export to ./out"]
+    C --> D["upload-pages-artifact"]
+    D --> E["deploy-pages"]
+    E --> F["GitHub Pages: sant-mell.github.io"]
 ```
 
 `public/.nojekyll` keeps the `_next/` directory intact. In repo settings, Pages source is set to GitHub Actions.
