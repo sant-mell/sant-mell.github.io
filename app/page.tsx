@@ -100,6 +100,8 @@ interface Project {
   benchmark?: boolean;
   /** Ordered stages of a data-flow pipeline, drawn as a compact diagram. */
   pipeline?: string[];
+  /** Bold impact figures (value + a statLabels key) shown instead of tech chips. */
+  stats?: { value: string; key: string }[];
 }
 
 const PROJECT_META: Omit<Project, "description">[] = [
@@ -117,6 +119,10 @@ const PROJECT_META: Omit<Project, "description">[] = [
     repoUrl: "https://github.com/sant-mell/dt-website",
     liveUrl: "https://dtc-ingenieria.com",
     liveKind: "site",
+    stats: [
+      { value: "Live", key: "clientSite" },
+      { value: "6", key: "servicePages" },
+    ],
   },
   {
     title: "Aquaroute (START Hack)",
@@ -124,12 +130,21 @@ const PROJECT_META: Omit<Project, "description">[] = [
     stack: ["Algorithm Design", "Dijkstra Variant", "Satellite Data", "SaaS"],
     repoUrl:
       "https://www.linkedin.com/posts/santiago-aguilar-b1702a270_starthackmexico-tecdemonterrey-lovable-ugcPost-7429695225133957120-GuHB/",
+    stats: [
+      { value: "36h", key: "buildTime" },
+      { value: "1st", key: "hackathon" },
+    ],
   },
   {
     title: "The Fool's Descent (TC2005B)",
     subtitle: "JavaScript · Node · MySQL",
     stack: ["JavaScript", "HTML5 Canvas", "Node.js / Express", "MySQL", "Git"],
     repoUrl: "https://github.com/sant-mell/videoGame-TC2005B.501",
+    stats: [
+      { value: "28", key: "endpoints" },
+      { value: "745", key: "schemaLoc" },
+      { value: "20", key: "procedures" },
+    ],
   },
   {
     title: "Breakout",
@@ -138,6 +153,11 @@ const PROJECT_META: Omit<Project, "description">[] = [
     repoUrl: "https://github.com/sant-mell/myTC2005B/tree/main/Videojuegos/Breakout",
     liveUrl:
       "https://sant-mell.github.io/myTC2005B/Videojuegos/Breakout/breakout.html",
+    stats: [
+      { value: "0", key: "frameworks" },
+      { value: "3", key: "levels" },
+      { value: "427", key: "engineLoc" },
+    ],
   },
   {
     title: "DFA Lexer / Compiler",
@@ -151,6 +171,10 @@ const PROJECT_META: Omit<Project, "description">[] = [
     subtitle: "Next.js 16 · React 19",
     stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4"],
     repoUrl: "https://github.com/sant-mell/sant-mell.github.io",
+    stats: [
+      { value: "4", key: "languages" },
+      { value: "0", key: "trackers" },
+    ],
   },
 ];
 
@@ -361,6 +385,27 @@ function PipelineDiagram({ stages }: { stages: string[] }) {
             </span>
           )}
         </Fragment>
+      ))}
+    </div>
+  );
+}
+
+/* ----------------------------------------------------------------------------
+ * Impact stats (bold figures that replace the tech-chip row)
+ * ------------------------------------------------------------------------- */
+
+function ImpactStats({ stats }: { stats: { value: string; label: string }[] }) {
+  return (
+    <div className="mt-5 flex flex-wrap gap-x-7 gap-y-3">
+      {stats.map((stat) => (
+        <div key={stat.label}>
+          <div className="text-2xl font-extrabold leading-none tracking-tight text-zinc-900 dark:text-white">
+            {stat.value}
+          </div>
+          <div className="mt-1.5 max-w-[12ch] font-mono text-[10px] uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+            {stat.label}
+          </div>
+        </div>
       ))}
     </div>
   );
@@ -622,17 +667,6 @@ export default function Home() {
                   <p className="flex-1 text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
                     {project.description}
                   </p>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {project.stack.map((tech) => (
-                      <Badge
-                        key={tech}
-                        variant="outline"
-                        className="text-xs transition-transform hover:scale-110"
-                      >
-                        {tech}
-                      </Badge>
-                    ))}
-                  </div>
                   {project.benchmark && (
                     <BenchmarkBars
                       sequentialLabel={t.ui.benchSequential}
@@ -641,6 +675,14 @@ export default function Home() {
                     />
                   )}
                   {project.pipeline && <PipelineDiagram stages={project.pipeline} />}
+                  {project.stats && (
+                    <ImpactStats
+                      stats={project.stats.map((s) => ({
+                        value: s.value,
+                        label: t.statLabels[s.key],
+                      }))}
+                    />
+                  )}
                   <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2">
                     {project.liveUrl && (
                       <LinkPreview

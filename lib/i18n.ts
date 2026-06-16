@@ -37,6 +37,7 @@ export interface Dict {
     benchFaster: string;
     viewCredential: string;
   };
+  statLabels: Record<string, string>;
   sections: {
     projects: SectionCopy;
     skills: SectionCopy;
@@ -89,6 +90,20 @@ export const translations: Record<Locale, Dict> = {
       benchParallel: "Parallel",
       benchFaster: "faster",
       viewCredential: "View credential",
+    },
+    statLabels: {
+      endpoints: "REST endpoints",
+      schemaLoc: "schema LOC",
+      procedures: "stored procedures",
+      frameworks: "frameworks",
+      levels: "themed levels",
+      engineLoc: "engine LOC",
+      servicePages: "service pages",
+      clientSite: "client site",
+      buildTime: "to build",
+      hackathon: "hackathon",
+      languages: "languages",
+      trackers: "trackers",
     },
     sections: {
       projects: {
@@ -295,6 +310,20 @@ export const translations: Record<Locale, Dict> = {
       benchParallel: "Paralelo",
       benchFaster: "más rápido",
       viewCredential: "Ver credencial",
+    },
+    statLabels: {
+      endpoints: "endpoints REST",
+      schemaLoc: "líneas de esquema",
+      procedures: "procedimientos",
+      frameworks: "frameworks",
+      levels: "niveles temáticos",
+      engineLoc: "líneas de motor",
+      servicePages: "páginas de servicios",
+      clientSite: "sitio del cliente",
+      buildTime: "de desarrollo",
+      hackathon: "hackathon",
+      languages: "idiomas",
+      trackers: "rastreadores",
     },
     sections: {
       projects: {
@@ -506,6 +535,20 @@ export const translations: Record<Locale, Dict> = {
       benchFaster: "mais rápido",
       viewCredential: "Ver credencial",
     },
+    statLabels: {
+      endpoints: "endpoints REST",
+      schemaLoc: "linhas de schema",
+      procedures: "procedimentos",
+      frameworks: "frameworks",
+      levels: "níveis temáticos",
+      engineLoc: "linhas de motor",
+      servicePages: "páginas de serviços",
+      clientSite: "site do cliente",
+      buildTime: "de construção",
+      hackathon: "hackathon",
+      languages: "idiomas",
+      trackers: "rastreadores",
+    },
     sections: {
       projects: {
         eyebrow: "Projetos",
@@ -715,6 +758,20 @@ export const translations: Record<Locale, Dict> = {
       benchParallel: "Parallel",
       benchFaster: "sneller",
       viewCredential: "Bekijk credential",
+    },
+    statLabels: {
+      endpoints: "REST-endpoints",
+      schemaLoc: "schema-regels",
+      procedures: "stored procedures",
+      frameworks: "frameworks",
+      levels: "thematische levels",
+      engineLoc: "engine-regels",
+      servicePages: "servicepagina's",
+      clientSite: "clientsite",
+      buildTime: "bouwtijd",
+      hackathon: "hackathon",
+      languages: "talen",
+      trackers: "trackers",
     },
     sections: {
       projects: {
