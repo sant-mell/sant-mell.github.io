@@ -643,10 +643,8 @@ export default function Home() {
                   {project.pipeline && <PipelineDiagram stages={project.pipeline} />}
                   <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2">
                     {project.liveUrl && (
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                      <LinkPreview
+                        url={project.liveUrl}
                         className="inline-flex items-center gap-2 rounded-full bg-zinc-900 px-3 py-1.5 text-sm font-semibold text-white transition-transform hover:scale-105 dark:bg-white dark:text-zinc-900"
                       >
                         {project.liveKind === "site" ? (
@@ -660,7 +658,7 @@ export default function Home() {
                             {t.ui.playInBrowser}
                           </>
                         )}
-                      </a>
+                      </LinkPreview>
                     )}
                     {project.repoUrl && (
                       <LinkPreview
