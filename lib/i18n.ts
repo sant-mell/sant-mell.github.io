@@ -69,9 +69,9 @@ export const translations: Record<Locale, Dict> = {
       prefix: "Santiago is a",
       roles: [
         "CS Student",
-        "Cybersecurity enthusiast",
+        "Full-stack developer",
         "CCNA candidate",
-        "Network engineer",
+        "Systems & IoT developer",
         "Polyglot",
         "Global citizen",
         "Problem solver",
@@ -101,7 +101,7 @@ export const translations: Record<Locale, Dict> = {
         eyebrow: "Skills",
         title: "Technical toolkit",
         intro:
-          "Languages, systems, and the networking foundation behind a Cisco CCNA and cybersecurity track.",
+          "Languages, systems, and the engineering foundation behind my embedded, full-stack, and parallel-computing work.",
       },
       github: {
         eyebrow: "On GitHub",
@@ -275,9 +275,9 @@ export const translations: Record<Locale, Dict> = {
       prefix: "Santiago es un",
       roles: [
         "Estudiante de CC",
-        "Entusiasta de ciberseguridad",
+        "Desarrollador full-stack",
         "Candidato al CCNA",
-        "Ingeniero de redes",
+        "Desarrollador de sistemas e IoT",
         "Políglota",
         "Ciudadano global",
         "Solucionador de problemas",
@@ -307,7 +307,7 @@ export const translations: Record<Locale, Dict> = {
         eyebrow: "Habilidades",
         title: "Kit técnico",
         intro:
-          "Lenguajes, sistemas y la base de redes detrás de una trayectoria hacia el Cisco CCNA y la ciberseguridad.",
+          "Lenguajes, sistemas y la base de ingeniería detrás de mi trabajo en sistemas embebidos, full-stack y cómputo paralelo.",
       },
       github: {
         eyebrow: "En GitHub",
@@ -485,9 +485,9 @@ export const translations: Record<Locale, Dict> = {
       prefix: "Santiago é um",
       roles: [
         "Estudante de CC",
-        "Entusiasta de cibersegurança",
+        "Desenvolvedor full-stack",
         "Candidato ao CCNA",
-        "Engenheiro de redes",
+        "Desenvolvedor de sistemas e IoT",
         "Poliglota",
         "Cidadão global",
         "Solucionador de problemas",
@@ -517,7 +517,7 @@ export const translations: Record<Locale, Dict> = {
         eyebrow: "Habilidades",
         title: "Kit técnico",
         intro:
-          "Linguagens, sistemas e a base de redes por trás de uma trajetória rumo ao Cisco CCNA e à cibersegurança.",
+          "Linguagens, sistemas e a base de engenharia por trás do meu trabalho em sistemas embarcados, full-stack e computação paralela.",
       },
       github: {
         eyebrow: "No GitHub",
@@ -695,9 +695,9 @@ export const translations: Record<Locale, Dict> = {
       prefix: "Santiago is een",
       roles: [
         "Informaticastudent",
-        "Cybersecurity-liefhebber",
+        "Full-stack developer",
         "CCNA-kandidaat",
-        "Netwerkengineer",
+        "Systeem- en IoT-ontwikkelaar",
         "Polyglot",
         "Wereldburger",
         "Probleemoplosser",
@@ -727,7 +727,7 @@ export const translations: Record<Locale, Dict> = {
         eyebrow: "Vaardigheden",
         title: "Technische toolkit",
         intro:
-          "Talen, systemen en de netwerkbasis achter een Cisco CCNA- en cybersecuritytraject.",
+          "Talen, systemen en de technische basis achter mijn werk in embedded, full-stack en parallel computing.",
       },
       github: {
         eyebrow: "Op GitHub",
