@@ -179,7 +179,7 @@ export const translations: Record<Locale, Dict> = {
       {
         title: "Tec de Monterrey, ITC",
         content:
-          "B.S. in Computer Science and Technology at Campus Santa Fe, Mexico City. GPA 96.33. Coursework spanning data structures, networks, databases, embedded systems, and cybersecurity.",
+          "B.S. in Computer Science and Technology at Campus Santa Fe, Mexico City. GPA 92.8/100. Coursework spanning data structures, databases, embedded systems and IoT, device interconnection, and software engineering.",
         category: "Education",
       },
       {
@@ -222,8 +222,7 @@ export const translations: Record<Locale, Dict> = {
     coursework: [
       "Data Structures",
       "OOP (C++)",
-      "Computer Networks",
-      "Computer Cybersecurity",
+      "Device Interconnection (IoT)",
       "Embedded Systems & IoT",
       "Databases",
       "Software Engineering",
@@ -382,7 +381,7 @@ export const translations: Record<Locale, Dict> = {
       {
         title: "Tec de Monterrey, ITC",
         content:
-          "Licenciatura en Ingeniería en Tecnologías Computacionales en el Campus Santa Fe, Ciudad de México. Promedio 96.33. Cursos de estructuras de datos, redes, bases de datos, sistemas embebidos y ciberseguridad.",
+          "Licenciatura en Ingeniería en Tecnologías Computacionales en el Campus Santa Fe, Ciudad de México. Promedio 92.8/100. Cursos de estructuras de datos, bases de datos, sistemas embebidos e IoT, interconexión de dispositivos e ingeniería de software.",
         category: "Educación",
       },
       {
@@ -428,8 +427,7 @@ export const translations: Record<Locale, Dict> = {
     coursework: [
       "Estructuras de datos",
       "POO (C++)",
-      "Redes de computadoras",
-      "Ciberseguridad",
+      "Interconexión de dispositivos (IoT)",
       "Sistemas embebidos e IoT",
       "Bases de datos",
       "Ingeniería de software",
@@ -588,7 +586,7 @@ export const translations: Record<Locale, Dict> = {
       {
         title: "Tec de Monterrey, ITC",
         content:
-          "Bacharelado em Ciência e Tecnologia da Computação no Campus Santa Fe, Cidade do México. Média 96.33. Disciplinas de estruturas de dados, redes, bancos de dados, sistemas embarcados e cibersegurança.",
+          "Bacharelado em Ciência e Tecnologia da Computação no Campus Santa Fe, Cidade do México. Média 92.8/100. Disciplinas de estruturas de dados, bancos de dados, sistemas embarcados e IoT, interconexão de dispositivos e engenharia de software.",
         category: "Educação",
       },
       {
@@ -634,8 +632,7 @@ export const translations: Record<Locale, Dict> = {
     coursework: [
       "Estruturas de dados",
       "POO (C++)",
-      "Redes de computadores",
-      "Cibersegurança",
+      "Interconexão de dispositivos (IoT)",
       "Sistemas embarcados e IoT",
       "Bancos de dados",
       "Engenharia de software",
@@ -794,7 +791,7 @@ export const translations: Record<Locale, Dict> = {
       {
         title: "Tec de Monterrey, ITC",
         content:
-          "Bachelor in Computer Science and Technology aan Campus Santa Fe, Mexico-Stad. GPA 96,33. Vakken in datastructuren, netwerken, databases, embedded systems en cybersecurity.",
+          "Bachelor in Computer Science and Technology aan Campus Santa Fe, Mexico-Stad. GPA 92,8/100. Vakken in datastructuren, databases, embedded systems en IoT, apparaatinterconnectie en software engineering.",
         category: "Onderwijs",
       },
       {
@@ -840,8 +837,7 @@ export const translations: Record<Locale, Dict> = {
     coursework: [
       "Datastructuren",
       "OOP (C++)",
-      "Computernetwerken",
-      "Cybersecurity",
+      "Apparaatinterconnectie (IoT)",
       "Embedded systems en IoT",
       "Databases",
       "Software engineering",
