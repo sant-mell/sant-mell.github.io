@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Demos · Santiago Mellado</title>
+    <style>
+      :root { color-scheme: dark; }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        background: #0d0f0e;
+        color: #ece9e2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6vh 5vw;
+      }
+      .wrap { width: 100%; max-width: 920px; }
+      .eyebrow {
+        text-transform: uppercase; letter-spacing: 0.28em; font-size: 0.72rem;
+        color: #8a8f88; margin: 0 0 0.75rem;
+      }
+      h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 0 0 0.4rem; font-weight: 700; }
+      .sub { color: #9aa097; margin: 0 0 2.5rem; max-width: 48ch; line-height: 1.5; }
+      .grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+      a.card {
+        display: flex; flex-direction: column; gap: 0.5rem;
+        padding: 1.5rem; border: 1px solid #26302b; border-radius: 14px;
+        background: #121614; text-decoration: none; color: inherit;
+        transition: border-color .25s, transform .25s, background .25s;
+      }
+      a.card:hover { border-color: #5b8f74; transform: translateY(-3px); background: #161b18; }
+      .card .name { font-size: 1.25rem; font-weight: 650; }
+      .card .desc { color: #9aa097; font-size: 0.9rem; line-height: 1.45; }
+      .card .go { margin-top: 0.4rem; color: #7fb79a; font-size: 0.85rem; font-weight: 600; }
+      footer { margin-top: 3rem; color: #5f655d; font-size: 0.78rem; }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <p class="eyebrow">Página privada · no listada</p>
+      <h1>Demos de clientes</h1>
+      <p class="sub">Previsualizaciones en vivo de los sitios en desarrollo. Esta página no está enlazada desde el sitio principal.</p>
+
+      <div class="grid">
+        <a class="card" href="tu-lugar/">
+          <span class="name">TU-LUGAR</span>
+          <span class="desc">Rincón Gastronómico · restaurante en Zona Esmeralda, Atizapán.</span>
+          <span class="go">Ver demo →</span>
+        </a>
+        <a class="card" href="atrium/">
+          <span class="name">Atrium Esmeralda</span>
+          <span class="desc">Café y restaurante · sitio bilingüe con galería y menú.</span>
+          <span class="go">Ver demo →</span>
+        </a>
+        <a class="card" href="dtc/">
+          <span class="name">DTC</span>
+          <span class="desc">Construcción e infraestructura · sitio corporativo de proyectos.</span>
+          <span class="go">Ver demo →</span>
+        </a>
+      </div>
+
+      <footer>© Santiago Mellado · santmell.io</footer>
+    </main>
+  </body>
+</html>

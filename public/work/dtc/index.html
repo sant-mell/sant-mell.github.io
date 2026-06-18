@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><meta name="robots" content="noindex, nofollow" />
+  <meta charset="UTF-8" />
+  <title>DT Construct ICS – Construyendo tus ideas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --dt-dark: #111827;
+      --dt-gray: #f3f4f6;
+      --dt-red: #e11d48;
+      --dt-border: #e5e7eb;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: var(--dt-gray);
+      color: #111827;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* HEADER / HERO */
+
+    header {
+      position: relative;
+      color: #f9fafb;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: left;
+      padding: 2.5rem 1.5rem 3rem;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url("images/hero-wallpaper.jpg") center/cover no-repeat;
+      filter: brightness(0.4);
+      z-index: -2;
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(0,0,0,0.85), rgba(0,0,0,0.4), rgba(0,0,0,0.4));
+      z-index: -1;
+    }
+
+    .hero-inner {
+      width: 100%;
+      max-width: 1100px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.9fr);
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .hero-brand {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-logo {
+      width: 64px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: invert(1) brightness(1.1);
+    }
+
+    .hero-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+      opacity: 0.9;
+      margin-top: 0.1rem;
+      font-style: italic;
+    }
+
+    .hero-text {
+      margin-top: 1.2rem;
+      max-width: 34rem;
+      font-size: 0.98rem;
+      opacity: 0.95;
+    }
+
+    .hero-contact {
+      margin-top: 1.7rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      font-size: 0.95rem;
+    }
+
+    .hero-contact span {
+      opacity: 0.9;
+    }
+
+    .hero-card {
+      background: rgba(17, 24, 39, 0.85);
+      border-radius: 1rem;
+      padding: 1.5rem 1.75rem;
+      border: 1px solid rgba(249, 250, 251, 0.1);
+      font-size: 0.95rem;
+    }
+
+    .hero-card h2 {
+      font-size: 1.15rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-card p + p {
+      margin-top: 0.45rem;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: #ffffffcc;
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--dt-border);
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.6rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    .nav-brand {
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .nav-logo {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .nav-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+    }
+
+    .nav-links a {
+      padding: 0.25rem 0.4rem;
+      border-radius: 999px;
+      color: #4b5563;
+    }
+
+    .nav-links a:hover {
+      background: var(--dt-gray);
+      color: var(--dt-dark);
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 2rem auto 3.5rem;
+      padding: 0 1.25rem;
+    }
+
+    section {
+      margin-bottom: 2rem;
+    }
+
+    .section-card {
+      background: #ffffff;
+      border-radius: 1rem;
+      border: 1px solid var(--dt-border);
+      box-shadow: 0 12px 25px rgba(15, 23, 42, 0.05);
+      padding: 1.75rem 1.9rem;
+    }
+
+    .section-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #9ca3af;
+      margin-bottom: 0.3rem;
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      margin-bottom: 0.9rem;
+      color: var(--dt-dark);
+    }
+
+    p {
+      font-size: 0.98rem;
+    }
+
+    p + p {
+      margin-top: 0.4rem;
+    }
+
+    ul {
+      margin-left: 1.2rem;
+      margin-top: 0.4rem;
+      font-size: 0.95rem;
+    }
+
+    li + li {
+      margin-top: 0.25rem;
+    }
+
+    /* QUIENES SOMOS */
+
+    .values-vision {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.3rem;
+    }
+
+    .pill-card {
+      border-radius: 0.9rem;
+      border: 1px solid #fee2e2;
+      background: #fef2f2;
+      padding: 1.1rem 1.2rem;
+    }
+
+    .pill-card h3 {
+      font-size: 1.02rem;
+      margin-bottom: 0.45rem;
+      color: var(--dt-dark);
+    }
+
+    .pill-card ul {
+      margin-left: 1.05rem;
+      margin-top: 0.2rem;
+    }
+
+    /* SERVICIOS */
+
+    .services-list {
+      margin-top: 0.9rem;
+    }
+
+    .services-list li span {
+      font-weight: 600;
+    }
+
+    /* ESPECIALIDADES */
+
+    .specialties-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.2rem;
+    }
+
+    .specialty-card {
+      background: #ffffff;
+      border-radius: 0.9rem;
+      border: 1px solid var(--dt-border);
+      padding: 1.35rem 1.3rem 1.3rem;
+      transition: all 0.3s ease;
+    }
+
+    .specialty-card:hover {
+      border-color: #fee2e2;
+      box-shadow: 0 16px 32px rgba(225, 29, 72, 0.08);
+    }
+
+    .specialty-link {
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .specialty-link a {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .specialty-link:hover a {
+      padding: 1.5rem;
+    }
+
+    .specialty-link h3 {
+      font-size: 1.15rem;
+      margin-bottom: 0.6rem;
+      color: var(--dt-dark);
+      font-weight: 600;
+    }
+
+    .specialty-link p {
+      font-size: 0.9rem;
+      color: #4b5563;
+      line-height: 1.6;
+      flex-grow: 1;
+      margin-bottom: 0.8rem;
+    }
+
+    .specialty-preview {
+      width: 100%;
+      height: 180px;
+      border-radius: 0.6rem;
+      overflow: hidden;
+      margin-bottom: 0.8rem;
+      border: 1px solid #e5e7eb;
+    }
+
+    .specialty-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .specialty-link:hover .specialty-preview img {
+      transform: scale(1.08);
+    }
+
+    .specialty-cta {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--dt-red);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.3s ease;
+    }
+
+    .specialty-link:hover .specialty-cta {
+      transform: translateX(4px);
+      color: #c2102b;
+    }
+
+    .specialty-card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 0.5rem;
+      color: var(--dt-dark);
+    }
+
+    /* FOOTER */
+
+    footer {
+      border-top: 1px solid var(--dt-border);
+      padding: 1.3rem 1.25rem 2rem;
+      font-size: 0.85rem;
+      color: #6b7280;
+      text-align: center;
+    }
+
+    @media (max-width: 840px) {
+      .hero-inner {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero-card {
+        margin-top: 1.1rem;
+      }
+      header {
+        padding-top: 2rem;
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .specialty-card {
+      animation: fadeInUp 0.6s ease-out backwards;
+    }
+
+    .specialties-grid > :nth-child(1) { animation-delay: 0.1s; }
+    .specialties-grid > :nth-child(2) { animation-delay: 0.2s; }
+    .specialties-grid > :nth-child(3) { animation-delay: 0.3s; }
+    .specialties-grid > :nth-child(4) { animation-delay: 0.4s; }
+    .specialties-grid > :nth-child(5) { animation-delay: 0.5s; }
+
+    @media (max-width: 640px) {
+      .values-vision {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .specialty-images {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- HERO -->
+  <header id="inicio">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-brand">
+          <div class="hero-logo">
+            <img src="images/logo-dt.png" alt="DT Construct ICS Logo" />
+          </div>
+          <div>
+            <div class="hero-title">DT Construct ICS</div>
+            <div class="hero-subtitle">"Construyendo tus ideas"</div>
+          </div>
+        </div>
+        <p class="hero-text">
+          Empresa mexicana dedicada al sector de la construcción, con enfoque en comprender
+          a fondo las necesidades de cada cliente para ofrecer soluciones integrales,
+          eficientes y personalizadas, acompañando al usuario en cada etapa del proyecto.
+        </p>
+        <div class="hero-contact">
+          <span>Teléfono: <strong>55-41-84-55-62</strong></span>
+          <span>Correo: <strong>dtc.direccion@gmail.com</strong></span>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <h2>Soluciones integrales en construcción</h2>
+        <p>
+          Desde el diseño y planeación hasta la ejecución y el mantenimiento, administramos
+          recursos, especialidades y tiempos para entregar proyectos de calidad que cumplen
+          con los estándares establecidos.
+        </p>
+        <p>
+          Nuestro trabajo integra ingeniería, ejecución y supervisión en sectores retail,
+          industrial, infraestructura, instalaciones especiales y mantenimiento.
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-brand">
+        <div class="nav-logo">
+          <img src="images/logo-dt.png" alt="DT Construct ICS" />
+        </div>
+        DT CONSTRUCT ICS
+      </div>
+      <div class="nav-links">
+        <a href="#quienes-somos">Quiénes somos</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#operacion">Cómo operamos</a>
+        <a href="#especialidades">Especialidades</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- QUIENES SOMOS -->
+    <section id="quienes-somos">
+      <div class="section-card">
+        <div class="section-label">Quiénes somos</div>
+        <h2 class="section-title">Empresa comprometida con tus proyectos</h2>
+        <p>
+          Empresa dedicada al sector de la construcción, enfocada en comprender a fondo las
+          necesidades de nuestros clientes para ofrecer soluciones integrales, eficientes y
+          personalizadas, acompañando al usuario en cada etapa del proyecto para garantizar
+          un producto de calidad.
+        </p>
+
+        <div class="values-vision">
+          <div class="pill-card">
+            <h3>Valores</h3>
+            <ul>
+              <li>Cultura de integridad</li>
+              <li>Claridad en los procesos</li>
+              <li>Compromiso con el cliente</li>
+              <li>Pasión por crear</li>
+            </ul>
+          </div>
+          <div class="pill-card">
+            <h3>Visión</h3>
+            <p>
+              Ser la primera opción en construcción para clientes que buscan excelencia,
+              eficiencia y acompañamiento total en toda la República Mexicana.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section id="servicios">
+      <div class="section-card">
+        <div class="section-label">Servicios</div>
+        <h2 class="section-title">Nuestros servicios</h2>
+        <p>
+          Contamos con la capacidad técnica y administrativa para ofrecer una amplia gama
+          de servicios; nuestro trabajo integra ingeniería, ejecución y supervisión para
+          brindar soluciones completas en cada una de las áreas que conforman nuestra
+          oferta:
+        </p>
+
+        <ul class="services-list">
+          <li><span>Retail:</span> Construcción, remodelaciones y mantenimiento para marcas comerciales.</li>
+          <li><span>Industrial:</span> Obra pesada, cimentaciones, pisos, estructuras e ingenierías.</li>
+          <li><span>Instalaciones especiales:</span> Eléctrica BT/MT, climatización, incendio, electromecánicas.</li>
+          <li><span>Administración de proyectos:</span> Control, supervisión, coordinación y representación.</li>
+          <li><span>Gestorías:</span> Trámites y licencias (CFE, Ayuntamientos).</li>
+          <li><span>Mantenimiento:</span> Servicios de carpintería, cancelería, instalaciones e infraestructura.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- COMO OPERAMOS -->
+    <section id="operacion">
+      <div class="section-card">
+        <div class="section-label">Proceso</div>
+        <h2 class="section-title">¿Cómo operamos?</h2>
+        <p>
+          En DT Construct colaboramos de manera cercana con cada cliente para asegurar
+          claridad, eficiencia y resultados de alto nivel. Iniciamos con reuniones para
+          definir alcances, necesidades y criterios técnicos; posteriormente desarrollamos
+          proyectos e ingenierías, en caso de ser requerido, para garantizar una ejecución
+          precisa.
+        </p>
+        <p>
+          Creamos programas de obra y análisis de flujos coordinados, administramos recursos
+          y especialidades, y ejecutamos cada etapa con supervisión continua. Durante el
+          proceso entregamos números generadores, estimaciones y reportes de avance con
+          total transparencia, asegurando que la obra se concluya conforme a los estándares
+          establecidos y dentro de los tiempos acordados.
+        </p>
+      </div>
+    </section>
+
+    <!-- ESPECIALIDADES -->
+    <section id="especialidades">
+      <div class="section-card">
+        <div class="section-label">Especialidades</div>
+        <h2 class="section-title">Áreas de especialidad</h2>
+
+        <div class="specialties-grid">
+          <!-- RETAIL -->
+          <article class="specialty-card specialty-link">
+            <a href="retail.html">
+              <h3>Retail</h3>
+              <p>
+                Desarrollamos y transformamos espacios comerciales con precisión y rapidez,
+                adaptándonos a los estándares de cada marca. Ejecutamos construcción,
+                remodelaciones y mantenimiento operativo, asegurando aperturas eficientes y
+                una imagen óptima en todo momento.
+              </p>
+              <div class="specialty-preview">
+                <img src="images/retail-malayerba-toluca.jpg" alt="Malayerba, Toluca" />
+              </div>
+              <div class="specialty-cta">Ver proyectos →</div>
+            </a>
+          </article>
+
+          <!-- INDUSTRIAL -->
+          <article class="specialty-card specialty-link">
+            <a href="industrial.html">
+              <h3>Industrial</h3>
+              <p>
+                Realizamos obra pesada y desarrollos industriales con soluciones estructurales
+                de alto desempeño. Ejecutamos cimentaciones, pisos de ingeniería, estructuras
+                y proyectos integrales que cumplen con los requerimientos técnicos y
+                operativos de cada planta o centro logístico.
+              </p>
+              <div class="specialty-preview">
+                <img src="images/industrial-avante-textil-toluca-1.jpg" alt="Avante Textil, Toluca" />
+              </div>
+              <div class="specialty-cta">Ver proyectos →</div>
+            </a>
+          </article>
+
+          <!-- INSTALACIONES ESPECIALES -->
+          <article class="specialty-card specialty-link">
+            <a href="instalaciones-especiales.html">
+              <h3>Instalaciones especiales</h3>
+              <p>
+                Diseñamos y construimos instalaciones eléctricas en baja y media tensión,
+                sistemas de climatización, redes contra incendio y soluciones
+                electromecánicas. Aseguramos funcionalidad, seguridad y cumplimiento
+                normativo en entornos comerciales, industriales y especiales.
+              </p>
+              <div class="specialty-preview">
+                <img src="images/instalaciones-especiales-1.jpg" alt="Instalaciones especiales en obra" />
+              </div>
+              <div class="specialty-cta">Ver proyectos →</div>
+            </a>
+          </article>
+
+          <!-- INFRAESTRUCTURA -->
+          <article class="specialty-card specialty-link">
+            <a href="infraestructura.html">
+              <h3>Infraestructura</h3>
+              <p>
+                Ejecutamos desarrollos completos desde la ingeniería hasta la construcción
+                final. Nuestro enfoque integral permite entregar obras eficientes y duraderas,
+                incorporando soluciones técnicas que mejoran la operación y el rendimiento de
+                cada proyecto.
+              </p>
+              <div class="specialty-preview">
+                <img src="images/infraestructura-hotel-secrets-1.jpg" alt="Hotel Resort Secrets, Maroma" />
+              </div>
+              <div class="specialty-cta">Ver proyectos →</div>
+            </a>
+          </article>
+
+          <!-- MANTENIMIENTO -->
+          <article class="specialty-card specialty-link">
+            <a href="mantenimiento.html">
+              <h3>Mantenimiento</h3>
+              <p>
+                Brindamos mantenimientos preventivos y correctivos en electricidad,
+                climatización, carpintería, plomería y acabados. Atendemos tiendas, oficinas
+                y espacios operativos con tiempos de respuesta rápidos y soluciones confiables
+                que mantienen la operación continua.
+              </p>
+              <div class="specialty-preview">
+                <img src="images/mantenimiento-tous-queretaro.jpg" alt="Mantenimiento en TOUS, Querétaro" />
+              </div>
+              <div class="specialty-cta">Ver proyectos →</div>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto">
+      <div class="section-card">
+        <div class="section-label">Contacto</div>
+        <h2 class="section-title">Ponte en contacto con DT Construct ICS</h2>
+        <p>
+          ¿Tienes un proyecto en mente o necesitas apoyo para la construcción, remodelación
+          o mantenimiento de tus espacios comerciales, industriales o de servicios?
+        </p>
+        <p>
+          Escríbenos o llámanos y con gusto te acompañaremos en cada etapa del proceso.
+        </p>
+        <ul>
+          <li>Teléfono: <strong>55-41-84-55-62</strong></li>
+          <li>Correo electrónico: <strong>dtc.direccion@gmail.com</strong></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    DT Construct ICS – “Construyendo tus ideas”. Todos los derechos reservados.
+  </footer>
+</body>
+</html>
