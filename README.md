@@ -6,7 +6,7 @@ Live site: https://sant-mell.github.io  ·  CV: [`/cv.pdf`](public/cv.pdf)  ·  
 
 ## About
 
-- Native Portuguese and Spanish, English C2, Dutch A1. Sao Paulo roots, IB Diploma in Rotterdam, Computer Science in Mexico City.
+- Native Portuguese and Spanish, English C1, Dutch A1. Sao Paulo roots, IB Diploma in Rotterdam, Computer Science in Mexico City.
 - Computer Science and Technology (ITC) student at Tec de Monterrey, Campus Santa Fe.
 - Open to work, including remote and global roles. Demonstrated strengths in embedded/IoT, full-stack, and parallel computing. Targeting the Cisco CCNA and cybersecurity as next steps.
 
