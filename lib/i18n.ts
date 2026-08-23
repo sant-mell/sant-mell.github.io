@@ -198,7 +198,7 @@ export const translations: Record<Locale, Dict> = {
       {
         title: "Tec de Monterrey, ITC",
         content:
-          "B.S. in Computer Science and Technology at Campus Santa Fe, Mexico City. GPA 92.8/100. Coursework spanning data structures, databases, embedded systems and IoT, device interconnection, and software engineering.",
+          "B.S. in Computer Science and Technology at Campus Santa Fe, Mexico City. GPA 93.5/100. Coursework spanning data structures, databases, embedded systems and IoT, device interconnection, and software engineering.",
         category: "Education",
       },
       {
@@ -415,7 +415,7 @@ export const translations: Record<Locale, Dict> = {
       {
         title: "Tec de Monterrey, ITC",
         content:
-          "Licenciatura en Ingeniería en Tecnologías Computacionales en el Campus Santa Fe, Ciudad de México. Promedio 92,8/100. Cursos de estructuras de datos, bases de datos, sistemas embebidos e IoT, interconexión de dispositivos e ingeniería de software.",
+          "Licenciatura en Ingeniería en Tecnologías Computacionales en el Campus Santa Fe, Ciudad de México. Promedio 93,5/100. Cursos de estructuras de datos, bases de datos, sistemas embebidos e IoT, interconexión de dispositivos e ingeniería de software.",
         category: "Educación",
       },
       {
@@ -635,7 +635,7 @@ export const translations: Record<Locale, Dict> = {
       {
         title: "Tec de Monterrey, ITC",
         content:
-          "Bacharelado em Ciência e Tecnologia da Computação no Campus Santa Fe, Cidade do México. Média 92,8/100. Disciplinas de estruturas de dados, bancos de dados, sistemas embarcados e IoT, interconexão de dispositivos e engenharia de software.",
+          "Bacharelado em Ciência e Tecnologia da Computação no Campus Santa Fe, Cidade do México. Média 93,5/100. Disciplinas de estruturas de dados, bancos de dados, sistemas embarcados e IoT, interconexão de dispositivos e engenharia de software.",
         category: "Educação",
       },
       {
@@ -855,7 +855,7 @@ export const translations: Record<Locale, Dict> = {
       {
         title: "Tec de Monterrey, ITC",
         content:
-          "Bachelor in Computer Science and Technology aan Campus Santa Fe, Mexico-Stad. GPA 92,8/100. Vakken in datastructuren, databases, embedded systems en IoT, apparaatinterconnectie en software engineering.",
+          "Bachelor in Computer Science and Technology aan Campus Santa Fe, Mexico-Stad. GPA 93,5/100. Vakken in datastructuren, databases, embedded systems en IoT, apparaatinterconnectie en software engineering.",
         category: "Onderwijs",
       },
       {
