@@ -45,7 +45,7 @@ export default function AnimatedProfileCard({
   roles = [
     "CS Student",
     "Full-stack developer",
-    "Studying for the CCNA",
+    "CCNA student",
     "Systems & IoT developer",
     "Polyglot",
   ],
