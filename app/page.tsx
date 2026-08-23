@@ -146,10 +146,7 @@ const PROJECT_META: ProjectMeta[] = [
     stack: ["Algorithm Design", "Dijkstra Variant", "Satellite Data", "SaaS"],
     repoUrl:
       "https://www.linkedin.com/posts/santiago-aguilar-b1702a270_starthackmexico-tecdemonterrey-lovable-ugcPost-7429695225133957120-GuHB/",
-    stats: [
-      { value: "36h", key: "buildTime" },
-      { value: "1st", key: "hackathon" },
-    ],
+    stats: [{ value: "36h", key: "buildTime" }],
   },
   {
     descriptionIndex: 3,
