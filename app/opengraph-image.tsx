@@ -95,7 +95,8 @@ export default async function Image(): Promise<ImageResponse> {
               maxWidth: "960px",
             }}
           >
-            Cybersecurity, Network Engineering and Cisco CCNA track
+            Embedded/IoT, full-stack and parallel systems · studying for the
+            Cisco CCNA
           </div>
         </div>
 

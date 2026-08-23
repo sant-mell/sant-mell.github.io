@@ -71,11 +71,9 @@ export const translations: Record<Locale, Dict> = {
       roles: [
         "CS Student",
         "Full-stack developer",
-        "CCNA candidate",
+        "Studying for the CCNA",
         "Systems & IoT developer",
         "Polyglot",
-        "Global citizen",
-        "Problem solver",
       ],
       openToWork: "Open to Work",
       cv: "Download CV (PDF)",
@@ -97,39 +95,37 @@ export const translations: Record<Locale, Dict> = {
       procedures: "stored procedures",
       frameworks: "frameworks",
       levels: "themed levels",
-      engineLoc: "engine LOC",
       servicePages: "service pages",
       clientSite: "client site",
       buildTime: "to build",
       hackathon: "hackathon",
       languages: "languages",
-      trackers: "trackers",
     },
     sections: {
       projects: {
         eyebrow: "Projects",
-        title: "A few things I have built",
+        title: "A few things I've built",
         intro:
-          "From embedded IoT hardware up to full-stack systems and modern web architecture.",
+          "IoT firmware on ESP32, full-stack web apps, browser games, and parallel processing in Python.",
       },
       skills: {
         eyebrow: "Skills",
         title: "Technical toolkit",
         intro:
-          "Languages, systems, and the engineering foundation behind my embedded, full-stack, and parallel-computing work.",
+          "The languages, systems, and tools I work with.",
       },
       github: {
         eyebrow: "On GitHub",
-        title: "What I have been building",
+        title: "What I've been building",
         intro: "My public commit history. Hover the link to preview the profile.",
       },
       experience: {
         eyebrow: "Experience",
-        title: "Where I have worked",
+        title: "Where I've worked",
         intro:
-          "Teaching, mentoring, and getting things done across cultures and time zones. The soft skills that round out the technical ones.",
+          "Teaching English in the Netherlands, Python in a Mexican middle school, and mentoring first-year students at Tec.",
       },
-      academics: { eyebrow: "Academics", title: "How I am doing at Tec" },
+      academics: { eyebrow: "Academics", title: "How I'm doing at Tec" },
       certifications: {
         eyebrow: "Certifications",
         title: "Certifications & awards",
@@ -138,7 +134,7 @@ export const translations: Record<Locale, Dict> = {
         eyebrow: "Where I'm from",
         title: "Three countries, four languages",
         intro:
-          "That path runs across the globe. I grew up in a Brazilian-Portuguese household, did the IB Diploma in the Netherlands, and now study Computer Science in Mexico City. I hold Mexican, Brazilian, and Portuguese (EU) citizenship, so I can work across the EU, Mexico, and Brazil without sponsorship. Working across cultures and time zones is just how I have always lived, and it is where my soft skills in communication and adaptability come from.",
+          "I grew up in a Brazilian-Portuguese household, did the IB Diploma in the Netherlands, and now study Computer Science in Mexico City. I hold Mexican, Brazilian, and Portuguese (EU) citizenship, so I can work across the EU, Mexico, and Brazil without sponsorship.",
       },
     },
     leadershipTitle: "Leadership & Community",
@@ -148,7 +144,7 @@ export const translations: Record<Locale, Dict> = {
       title: "From the IB Diploma to the CCNA track",
       hint: "Click a node to see more",
     },
-    globeCaption: "Sao Paulo · Rotterdam · Mexico City",
+    globeCaption: "São Paulo · Rotterdam · Mexico City",
     footer: {
       location:
         "Greater Mexico City · Open to internships, remote, and global roles",
@@ -158,18 +154,18 @@ export const translations: Record<Locale, Dict> = {
     },
     projectDescriptions: [
       "A full IoT prototype with occupancy detection, automated barrier control, and cloud telemetry. Embedded firmware on ESP32 talking to cloud services over MQTT.",
-      "A freelance website I designed and shipped for DT Construct ICS, a Mexican construction company. Hand-coded in vanilla HTML, CSS, and JavaScript: a six-page services catalog (retail, industrial, infrastructure, special installations, and maintenance), interactive Leaflet maps, and a portfolio of completed work for clients such as Almacenes Garcia, Avante Textil, Hotel Resort Secrets, and TOUS. Live on a custom domain.",
-      "A hackathon prototype that routes Mexican water trucks to the most water-stressed areas. Combines satellite climate data with a weighted, safety-aware variation of Dijkstra's algorithm, backed by a validated business model.",
-      "An 8-credit flagship team project: a roguelike deckbuilder built from scratch, engine included (no framework). An HTML5 Canvas client over an Express REST API of 28 endpoints, backed by a 745-line MySQL schema: 12 tables, 20 stored procedures, 13 analytics views (leaderboards, enemy and difficulty win rates, card popularity), and 7 triggers that keep player stats and run history in sync. Mid-duel state is checkpointed as JSON so a run resumes exactly where it left off, with cascade deletes and 35 indexes.",
+      "A freelance website I designed and shipped for DT Construct ICS, a Mexican construction company. Hand-coded in vanilla HTML, CSS, and JavaScript: a six-page services catalog (retail, industrial, infrastructure, special installations, and maintenance), interactive Leaflet maps, and a project gallery of the company's completed work. Live on a custom domain.",
+      "A hackathon prototype that routes Mexican water trucks to the most water-stressed areas. Combines satellite climate data with a weighted, safety-aware variation of Dijkstra's algorithm.",
+      "A semester-long team project for TC2005B: a roguelike deckbuilder built from scratch, engine included (no framework). An HTML5 Canvas client over an Express REST API of 28 endpoints, backed by a 745-line MySQL schema: 12 tables, 20 stored procedures, 13 analytics views (leaderboards, enemy and difficulty win rates, card popularity), and 7 triggers that keep player stats and run history in sync. Mid-duel state is checkpointed as JSON so a run resumes exactly where it left off, with cascade deletes and 35 indexes.",
       "A browser Breakout built from scratch on a custom HTML5 Canvas engine (no framework): an OOP hierarchy of Ball, Paddle, and Brick over a shared GameObject base and a small Vector library, driven by a delta-time loop for frame-rate-independent physics. The twist: tilting the paddle 30 degrees rotates it through the canvas transform and redirects the ball's bounce vector to aim into corners. Three themed levels (disco, hip hop, rock), each with its own sprites and music.",
-      "A hand-built DFA lexer (explicit transition table, no regex) extended into a parallel syntax highlighter, benchmarked at about 6x speedup over a sequential baseline on 16 cores. The low-level parsing logic behind secure code and deep packet inspection.",
+      "A hand-built DFA lexer (explicit transition table, no regex) extended into a parallel syntax highlighter, benchmarked at about 6x speedup over a sequential baseline: 60 Python files, 8 MB, on 16 cores.",
       "This site. React 19, Tailwind 4, and a static export build, with a glassy dark UI over an animated WebGL shader background, an interactive three.js globe, a radial career orbit, and live link previews.",
     ],
     experiences: [
       {
         role: "English Language Teacher",
         detail:
-          "Immersive, play-based English instruction for around 165 children (ages 4 to 12) in a multicultural summer-camp setting, using four languages to support classroom management and cross-cultural understanding.",
+          "Immersive, play-based English instruction for 165 children (ages 4 to 12) in a multicultural summer-camp setting, using English, Spanish, and Portuguese to support classroom management and cross-cultural understanding.",
       },
       {
         role: "Computer Science Instructor",
@@ -179,7 +175,7 @@ export const translations: Record<Locale, Dict> = {
       {
         role: "Volunteer & Peer Mentor",
         detail:
-          "Graduate of the Peer Mentorship Program. Guides new students through the academic and social adaptation to university life.",
+          "Graduate of the Peer Mentorship Program. Guided new students through their first year, academically and socially.",
       },
       {
         role: "Media Logistics Assistant",
@@ -191,13 +187,13 @@ export const translations: Record<Locale, Dict> = {
       {
         title: "IBDP, Rotterdam (NL)",
         content:
-          "International Baccalaureate Diploma at Rotterdam International Secondary School, scoring 33/45 with an Excellence in English award. Cross-cultural readiness for global, distributed teams.",
+          "International Baccalaureate Diploma at Rotterdam International Secondary School, scoring 33/45 with an Excellence in English award.",
         category: "Education",
       },
       {
         title: "Polyglot: PT / ES / EN / NL",
         content:
-          "Native Portuguese and Spanish, English C1, Dutch A1. A core soft skill and a real asset for distributed teams that span multiple time zones and languages.",
+          "Native Portuguese and Spanish, English C1, Dutch A1.",
         category: "Skills",
       },
       {
@@ -215,7 +211,7 @@ export const translations: Record<Locale, Dict> = {
       {
         title: "IoT & Systems Engineering",
         content:
-          "An ESP32 IoT smart-parking prototype, a DFA-based lexer with parallel processing, and data structures in C++. Hands-on work at the hardware and machine layer.",
+          "An ESP32 smart-parking prototype with MQTT telemetry, a DFA-based lexer parallelized with Python multiprocessing, and data structures in C++.",
         category: "Projects",
       },
       {
@@ -261,12 +257,12 @@ export const translations: Record<Locale, Dict> = {
       { pre: "", post: " (CSF)" },
       { pre: "", post: " Chapter member (CSF)" },
       { pre: "", post: ", Tec de Monterrey" },
-      { pre: "Head of Charity, ", post: " (Buy a Tulip Help a Girl, Red Cross relief)" },
+      { pre: "Head of Charity, ", post: " (Buy a Tulip, Help a Girl · Red Cross relief)" },
     ],
     whereFrom: [
       {
         title: "Brazilian Roots",
-        body: "Native Portuguese and Spanish speaker with a multicultural foundation and an early international mindset.",
+        body: "Native Portuguese and Spanish speaker, raised in a Brazilian-Portuguese household.",
       },
       {
         title: "IB Diploma, Netherlands",
@@ -289,17 +285,15 @@ export const translations: Record<Locale, Dict> = {
     hero: {
       prefix: "Santiago es un",
       roles: [
-        "Estudiante de CC",
+        "Estudiante de ITC",
         "Desarrollador full-stack",
-        "Candidato al CCNA",
+        "Estudiando para el CCNA",
         "Desarrollador de sistemas e IoT",
         "Políglota",
-        "Ciudadano global",
-        "Solucionador de problemas",
       ],
       openToWork: "Disponible para trabajar",
       cv: "Descargar CV (PDF)",
-      cardRole: "Estudiante multicultural de CC (ITC) en el Tec de Monterrey, Santa Fe",
+      cardRole: "Estudiante multicultural de Tecnologías Computacionales (ITC) en el Tec de Monterrey, Santa Fe",
     },
     ui: {
       viewOnGithub: "Ver en GitHub",
@@ -317,26 +311,24 @@ export const translations: Record<Locale, Dict> = {
       procedures: "procedimientos",
       frameworks: "frameworks",
       levels: "niveles temáticos",
-      engineLoc: "líneas de motor",
       servicePages: "páginas de servicios",
       clientSite: "sitio del cliente",
       buildTime: "de desarrollo",
       hackathon: "hackathon",
       languages: "idiomas",
-      trackers: "rastreadores",
     },
     sections: {
       projects: {
         eyebrow: "Proyectos",
         title: "Algunas cosas que he construido",
         intro:
-          "Desde hardware IoT embebido hasta sistemas full-stack y arquitectura web moderna.",
+          "Firmware IoT en ESP32, aplicaciones web full-stack, juegos en el navegador y cómputo paralelo en Python.",
       },
       skills: {
         eyebrow: "Habilidades",
         title: "Kit técnico",
         intro:
-          "Lenguajes, sistemas y la base de ingeniería detrás de mi trabajo en sistemas embebidos, full-stack y cómputo paralelo.",
+          "Los lenguajes, sistemas y herramientas con los que trabajo.",
       },
       github: {
         eyebrow: "En GitHub",
@@ -348,7 +340,7 @@ export const translations: Record<Locale, Dict> = {
         eyebrow: "Experiencia",
         title: "Dónde he trabajado",
         intro:
-          "Enseñar, mentorear y sacar las cosas adelante entre culturas y zonas horarias. Las habilidades blandas que complementan a las técnicas.",
+          "Clases de inglés en los Países Bajos, Python en una telesecundaria mexicana y mentoría a estudiantes de primer año en el Tec.",
       },
       academics: { eyebrow: "Académico", title: "Cómo me va en el Tec" },
       certifications: {
@@ -359,7 +351,7 @@ export const translations: Record<Locale, Dict> = {
         eyebrow: "De dónde vengo",
         title: "Tres países, cuatro idiomas",
         intro:
-          "Ese camino recorre el mundo. Crecí en un hogar brasileño y portugués, hice el Diploma del IB en los Países Bajos y ahora estudio Ciencias de la Computación en la Ciudad de México. Tengo nacionalidad mexicana, brasileña y portuguesa (UE), así que puedo trabajar en la UE, México y Brasil sin patrocinio. Moverme entre culturas y zonas horarias es como siempre he vivido, y de ahí vienen mis habilidades de comunicación y adaptación.",
+          "Crecí en un hogar brasileño y portugués, hice el Diploma del IB en los Países Bajos y ahora estudio Ingeniería en Tecnologías Computacionales en la Ciudad de México. Tengo nacionalidad mexicana, brasileña y portuguesa (UE), así que puedo trabajar en la UE, México y Brasil sin patrocinio.",
       },
     },
     leadershipTitle: "Liderazgo y comunidad",
@@ -379,18 +371,18 @@ export const translations: Record<Locale, Dict> = {
     },
     projectDescriptions: [
       "Un prototipo IoT completo con detección de ocupación, control automático de barrera y telemetría en la nube. Firmware embebido en ESP32 que habla con servicios en la nube por MQTT.",
-      "Un sitio web freelance que diseñé y entregué para DT Construct ICS, una empresa mexicana de construcción. Programado a mano en HTML, CSS y JavaScript: un catálogo de servicios de seis páginas (retail, industrial, infraestructura, instalaciones especiales y mantenimiento), mapas interactivos con Leaflet y un portafolio de obras realizadas para clientes como Almacenes Garcia, Avante Textil, Hotel Resort Secrets y TOUS. En línea con dominio propio.",
-      "Un prototipo de hackathon que enruta camiones de agua mexicanos hacia las zonas con mayor estrés hídrico. Combina datos climáticos satelitales con una variación ponderada y consciente de la seguridad del algoritmo de Dijkstra, respaldado por un modelo de negocio validado.",
-      "Un proyecto estrella de equipo de 8 créditos: un deckbuilder roguelike hecho desde cero, motor incluido (sin framework). Un cliente en HTML5 Canvas sobre una API REST en Express de 28 endpoints, respaldada por un esquema MySQL de 745 líneas: 12 tablas, 20 procedimientos almacenados, 13 vistas analíticas (tablas de líderes, tasas de victoria por enemigo y dificultad, popularidad de cartas) y 7 triggers que mantienen sincronizadas las estadísticas del jugador y el historial de partidas. El estado a mitad de duelo se guarda como JSON para reanudar la partida justo donde quedó, con borrados en cascada y 35 índices.",
+      "Un sitio web freelance que diseñé y entregué para DT Construct ICS, una empresa mexicana de construcción. Programado a mano en HTML, CSS y JavaScript: un catálogo de servicios de seis páginas (retail, industrial, infraestructura, instalaciones especiales y mantenimiento), mapas interactivos con Leaflet y una galería con las obras terminadas de la empresa. En línea con dominio propio.",
+      "Un prototipo de hackathon que enruta camiones de agua mexicanos hacia las zonas con mayor estrés hídrico. Combina datos climáticos satelitales con una variación ponderada y consciente de la seguridad del algoritmo de Dijkstra.",
+      "Un proyecto de equipo de un semestre para TC2005B: un deckbuilder roguelike hecho desde cero, motor incluido (sin framework). Un cliente en HTML5 Canvas sobre una API REST en Express de 28 endpoints, respaldada por un esquema MySQL de 745 líneas: 12 tablas, 20 procedimientos almacenados, 13 vistas analíticas (tablas de líderes, tasas de victoria por enemigo y dificultad, popularidad de cartas) y 7 triggers que mantienen sincronizadas las estadísticas del jugador y el historial de partidas. El estado a mitad de duelo se guarda como JSON para reanudar la partida justo donde quedó, con borrados en cascada y 35 índices.",
       "Un Breakout en el navegador hecho desde cero sobre un motor HTML5 Canvas propio (sin framework): una jerarquía POO de Ball, Paddle y Brick sobre una base GameObject común y una pequeña librería Vector, movida por un bucle con delta-time para una física independiente de los FPS. El giro: inclinar la paleta 30 grados la rota con la transformación del canvas y redirige el vector de rebote de la bola hacia las esquinas. Tres niveles temáticos (disco, hip hop, rock), cada uno con sus propios sprites y música.",
-      "Un lexer DFA hecho a mano (tabla de transiciones explícita, sin regex) extendido a un resaltador de sintaxis paralelo, con un speedup medido de unas 6x frente a una versión secuencial en 16 núcleos. La lógica de parsing de bajo nivel detrás del código seguro y la inspección profunda de paquetes.",
+      "Un lexer DFA hecho a mano (tabla de transiciones explícita, sin regex) extendido a un resaltador de sintaxis paralelo, con un speedup medido de unas 6x frente a una versión secuencial: 60 archivos de Python, 8 MB, en 16 núcleos.",
       "Este sitio. React 19, Tailwind 4 y una compilación de exportación estática, con una interfaz oscura tipo cristal sobre un fondo shader WebGL animado, un globo interactivo en three.js, una órbita radial de trayectoria y vistas previas de enlaces en vivo.",
     ],
     experiences: [
       {
         role: "Profesor de inglés",
         detail:
-          "Enseñanza de inglés inmersiva y basada en el juego para unos 165 niños (de 4 a 12 años) en un campamento de verano multicultural, usando cuatro idiomas para apoyar la gestión del aula y el entendimiento intercultural.",
+          "Enseñanza de inglés inmersiva y basada en el juego para 165 niños (de 4 a 12 años) en un campamento de verano multicultural, usando inglés, español y portugués para apoyar la gestión del aula y el entendimiento intercultural.",
       },
       {
         role: "Instructor de Ciencias de la Computación",
@@ -400,7 +392,7 @@ export const translations: Record<Locale, Dict> = {
       {
         role: "Voluntario y mentor par",
         detail:
-          "Egresado del Programa de Mentoría entre Pares. Acompaña a nuevos estudiantes en la adaptación académica y social a la vida universitaria.",
+          "Egresado del Programa de Mentoría entre Pares. Acompañé a nuevos estudiantes en su primer año, en lo académico y en lo social.",
       },
       {
         role: "Asistente de logística de medios",
@@ -412,19 +404,19 @@ export const translations: Record<Locale, Dict> = {
       {
         title: "IBDP, Róterdam (NL)",
         content:
-          "Diploma del Bachillerato Internacional en la Rotterdam International Secondary School, con 33/45 y un premio a la Excelencia en Inglés. Preparación intercultural para equipos globales y distribuidos.",
+          "Diploma del Bachillerato Internacional en la Rotterdam International Secondary School, con 33/45 y un premio a la Excelencia en Inglés.",
         category: "Educación",
       },
       {
         title: "Políglota: PT / ES / EN / NL",
         content:
-          "Portugués y español nativos, inglés C1, neerlandés A1. Una habilidad blanda clave y una ventaja real para equipos distribuidos en varias zonas horarias e idiomas.",
+          "Portugués y español nativos, inglés C1, neerlandés A1.",
         category: "Habilidades",
       },
       {
         title: "Tec de Monterrey, ITC",
         content:
-          "Licenciatura en Ingeniería en Tecnologías Computacionales en el Campus Santa Fe, Ciudad de México. Promedio 92.8/100. Cursos de estructuras de datos, bases de datos, sistemas embebidos e IoT, interconexión de dispositivos e ingeniería de software.",
+          "Licenciatura en Ingeniería en Tecnologías Computacionales en el Campus Santa Fe, Ciudad de México. Promedio 92,8/100. Cursos de estructuras de datos, bases de datos, sistemas embebidos e IoT, interconexión de dispositivos e ingeniería de software.",
         category: "Educación",
       },
       {
@@ -436,7 +428,7 @@ export const translations: Record<Locale, Dict> = {
       {
         title: "IoT e ingeniería de sistemas",
         content:
-          "Un prototipo IoT de estacionamiento inteligente con ESP32, un lexer basado en DFA con procesamiento paralelo y estructuras de datos en C++. Trabajo práctico en la capa de hardware y máquina.",
+          "Un prototipo de estacionamiento inteligente con ESP32 y telemetría por MQTT, un lexer basado en DFA paralelizado con multiprocessing de Python y estructuras de datos en C++.",
         category: "Proyectos",
       },
       {
@@ -485,12 +477,12 @@ export const translations: Record<Locale, Dict> = {
       { pre: "", post: " (CSF)" },
       { pre: "", post: " Miembro del capítulo (CSF)" },
       { pre: "", post: ", Tec de Monterrey" },
-      { pre: "Responsable de beneficencia, ", post: " (Buy a Tulip Help a Girl, Red Cross relief)" },
+      { pre: "Responsable de beneficencia, ", post: " (Buy a Tulip, Help a Girl · apoyo a la Cruz Roja)" },
     ],
     whereFrom: [
       {
         title: "Raíces brasileñas",
-        body: "Hablante nativo de portugués y español, con una base multicultural y una mentalidad internacional desde temprano.",
+        body: "Hablante nativo de portugués y español, criado en un hogar brasileño y portugués.",
       },
       {
         title: "Diploma del IB, Países Bajos",
@@ -513,13 +505,11 @@ export const translations: Record<Locale, Dict> = {
     hero: {
       prefix: "Santiago é um",
       roles: [
-        "Estudante de CC",
+        "Estudante de ITC",
         "Desenvolvedor full-stack",
-        "Candidato ao CCNA",
+        "Estudando para o CCNA",
         "Desenvolvedor de sistemas e IoT",
         "Poliglota",
-        "Cidadão global",
-        "Solucionador de problemas",
       ],
       openToWork: "Disponível para trabalhar",
       cv: "Baixar CV (PDF)",
@@ -541,26 +531,24 @@ export const translations: Record<Locale, Dict> = {
       procedures: "procedimentos",
       frameworks: "frameworks",
       levels: "níveis temáticos",
-      engineLoc: "linhas de motor",
       servicePages: "páginas de serviços",
       clientSite: "site do cliente",
       buildTime: "de construção",
       hackathon: "hackathon",
       languages: "idiomas",
-      trackers: "rastreadores",
     },
     sections: {
       projects: {
         eyebrow: "Projetos",
         title: "Algumas coisas que construí",
         intro:
-          "De hardware IoT embarcado até sistemas full-stack e arquitetura web moderna.",
+          "Firmware IoT no ESP32, aplicações web full-stack, jogos no navegador e computação paralela em Python.",
       },
       skills: {
         eyebrow: "Habilidades",
         title: "Kit técnico",
         intro:
-          "Linguagens, sistemas e a base de engenharia por trás do meu trabalho em sistemas embarcados, full-stack e computação paralela.",
+          "As linguagens, os sistemas e as ferramentas com que trabalho.",
       },
       github: {
         eyebrow: "No GitHub",
@@ -572,7 +560,7 @@ export const translations: Record<Locale, Dict> = {
         eyebrow: "Experiência",
         title: "Onde trabalhei",
         intro:
-          "Ensinar, mentorar e fazer acontecer entre culturas e fusos horários. As habilidades interpessoais que complementam as técnicas.",
+          "Aulas de inglês nos Países Baixos, Python no ensino fundamental no México e mentoria a estudantes de primeiro ano no Tec.",
       },
       academics: { eyebrow: "Acadêmico", title: "Como vou no Tec" },
       certifications: {
@@ -583,7 +571,7 @@ export const translations: Record<Locale, Dict> = {
         eyebrow: "De onde venho",
         title: "Três países, quatro idiomas",
         intro:
-          "Esse caminho atravessa o mundo. Cresci em uma casa brasileira e portuguesa, fiz o Diploma do IB nos Países Baixos e agora estudo Ciência da Computação na Cidade do México. Tenho nacionalidade mexicana, brasileira e portuguesa (UE), então posso trabalhar na UE, no México e no Brasil sem patrocínio. Transitar entre culturas e fusos horários é como sempre vivi, e é daí que vêm minhas habilidades de comunicação e adaptação.",
+          "Cresci em uma casa brasileira e portuguesa, fiz o Diploma do IB nos Países Baixos e agora estudo Ciência da Computação na Cidade do México. Tenho nacionalidade mexicana, brasileira e portuguesa (UE), então posso trabalhar na UE, no México e no Brasil sem patrocínio.",
       },
     },
     leadershipTitle: "Liderança e comunidade",
@@ -603,18 +591,18 @@ export const translations: Record<Locale, Dict> = {
     },
     projectDescriptions: [
       "Um protótipo IoT completo com detecção de ocupação, controle automático de cancela e telemetria na nuvem. Firmware embarcado no ESP32 conversando com serviços de nuvem por MQTT.",
-      "Um site freelance que desenhei e entreguei para a DT Construct ICS, uma empresa mexicana de construção. Programado à mão em HTML, CSS e JavaScript: um catálogo de serviços de seis páginas (varejo, industrial, infraestrutura, instalações especiais e manutenção), mapas interativos com Leaflet e um portfólio de obras realizadas para clientes como Almacenes Garcia, Avante Textil, Hotel Resort Secrets e TOUS. No ar com domínio próprio.",
-      "Um protótipo de hackathon que roteia caminhões-pipa mexicanos para as áreas com maior estresse hídrico. Combina dados climáticos de satélite com uma variação ponderada e atenta à segurança do algoritmo de Dijkstra, apoiada por um modelo de negócio validado.",
-      "Um projeto de equipe principal de 8 créditos: um deckbuilder roguelike feito do zero, motor incluído (sem framework). Um cliente em HTML5 Canvas sobre uma API REST em Express de 28 endpoints, apoiada por um esquema MySQL de 745 linhas: 12 tabelas, 20 procedimentos armazenados, 13 views analíticas (rankings, taxas de vitória por inimigo e dificuldade, popularidade de cartas) e 7 triggers que mantêm sincronizadas as estatísticas do jogador e o histórico de partidas. O estado no meio do duelo é salvo como JSON para retomar a partida exatamente de onde parou, com deleções em cascata e 35 índices.",
+      "Um site freelance que desenhei e entreguei para a DT Construct ICS, uma empresa mexicana de construção. Programado à mão em HTML, CSS e JavaScript: um catálogo de serviços de seis páginas (varejo, industrial, infraestrutura, instalações especiais e manutenção), mapas interativos com Leaflet e uma galeria com as obras concluídas da empresa. No ar com domínio próprio.",
+      "Um protótipo de hackathon que roteia caminhões-pipa mexicanos para as áreas com maior estresse hídrico. Combina dados climáticos de satélite com uma variação ponderada e atenta à segurança do algoritmo de Dijkstra.",
+      "Um projeto de equipe de um semestre para a matéria TC2005B: um deckbuilder roguelike feito do zero, motor incluído (sem framework). Um cliente em HTML5 Canvas sobre uma API REST em Express de 28 endpoints, apoiada por um esquema MySQL de 745 linhas: 12 tabelas, 20 procedimentos armazenados, 13 views analíticas (rankings, taxas de vitória por inimigo e dificuldade, popularidade de cartas) e 7 triggers que mantêm sincronizadas as estatísticas do jogador e o histórico de partidas. O estado no meio do duelo é salvo como JSON para retomar a partida exatamente de onde parou, com deleções em cascata e 35 índices.",
       "Um Breakout no navegador feito do zero sobre um motor HTML5 Canvas próprio (sem framework): uma hierarquia POO de Ball, Paddle e Brick sobre uma base GameObject comum e uma pequena biblioteca Vector, movida por um loop com delta-time para uma física independente dos FPS. O diferencial: inclinar a raquete 30 graus a rotaciona pela transformação do canvas e redireciona o vetor de rebote da bola para os cantos. Três níveis temáticos (disco, hip hop, rock), cada um com seus próprios sprites e música.",
-      "Um lexer DFA feito à mão (tabela de transições explícita, sem regex) estendido para um realçador de sintaxe paralelo, com speedup medido de cerca de 6x sobre uma versão sequencial em 16 núcleos. A lógica de parsing de baixo nível por trás do código seguro e da inspeção profunda de pacotes.",
+      "Um lexer DFA feito à mão (tabela de transições explícita, sem regex) estendido para um realçador de sintaxe paralelo, com speedup medido de cerca de 6x sobre uma versão sequencial: 60 arquivos de Python, 8 MB, em 16 núcleos.",
       "Este site. React 19, Tailwind 4 e um build de exportação estática, com uma interface escura estilo vidro sobre um fundo shader WebGL animado, um globo interativo em three.js, uma órbita radial de trajetória e pré-visualizações de links ao vivo.",
     ],
     experiences: [
       {
         role: "Professor de inglês",
         detail:
-          "Ensino de inglês imersivo e baseado em brincadeiras para cerca de 165 crianças (de 4 a 12 anos) em um acampamento de verão multicultural, usando quatro idiomas para apoiar a gestão da turma e o entendimento intercultural.",
+          "Ensino de inglês imersivo e baseado em brincadeiras para 165 crianças (de 4 a 12 anos) em um acampamento de verão multicultural, usando inglês, espanhol e português para apoiar a gestão da turma e o entendimento intercultural.",
       },
       {
         role: "Instrutor de Ciência da Computação",
@@ -624,7 +612,7 @@ export const translations: Record<Locale, Dict> = {
       {
         role: "Voluntário e mentor par",
         detail:
-          "Formado pelo Programa de Mentoria entre Pares. Acompanha novos estudantes na adaptação acadêmica e social à vida universitária.",
+          "Formado pelo Programa de Mentoria entre Pares. Acompanhei novos estudantes no primeiro ano, no acadêmico e no social.",
       },
       {
         role: "Assistente de logística de mídia",
@@ -636,19 +624,19 @@ export const translations: Record<Locale, Dict> = {
       {
         title: "IBDP, Roterdã (NL)",
         content:
-          "Diploma do Bacharelado Internacional na Rotterdam International Secondary School, com 33/45 e um prêmio de Excelência em Inglês. Preparo intercultural para equipes globais e distribuídas.",
+          "Diploma do Bacharelado Internacional na Rotterdam International Secondary School, com 33/45 e um prêmio de Excelência em Inglês.",
         category: "Educação",
       },
       {
         title: "Poliglota: PT / ES / EN / NL",
         content:
-          "Português e espanhol nativos, inglês C1, neerlandês A1. Uma habilidade interpessoal essencial e uma vantagem real para equipes distribuídas em vários fusos e idiomas.",
+          "Português e espanhol nativos, inglês C1, neerlandês A1.",
         category: "Habilidades",
       },
       {
         title: "Tec de Monterrey, ITC",
         content:
-          "Bacharelado em Ciência e Tecnologia da Computação no Campus Santa Fe, Cidade do México. Média 92.8/100. Disciplinas de estruturas de dados, bancos de dados, sistemas embarcados e IoT, interconexão de dispositivos e engenharia de software.",
+          "Bacharelado em Ciência e Tecnologia da Computação no Campus Santa Fe, Cidade do México. Média 92,8/100. Disciplinas de estruturas de dados, bancos de dados, sistemas embarcados e IoT, interconexão de dispositivos e engenharia de software.",
         category: "Educação",
       },
       {
@@ -660,7 +648,7 @@ export const translations: Record<Locale, Dict> = {
       {
         title: "IoT e engenharia de sistemas",
         content:
-          "Um protótipo IoT de estacionamento inteligente com ESP32, um lexer baseado em DFA com processamento paralelo e estruturas de dados em C++. Trabalho prático na camada de hardware e máquina.",
+          "Um protótipo de estacionamento inteligente com ESP32 e telemetria por MQTT, um lexer baseado em DFA paralelizado com multiprocessing de Python e estruturas de dados em C++.",
         category: "Projetos",
       },
       {
@@ -709,12 +697,12 @@ export const translations: Record<Locale, Dict> = {
       { pre: "", post: " (CSF)" },
       { pre: "", post: " Membro do capítulo (CSF)" },
       { pre: "", post: ", Tec de Monterrey" },
-      { pre: "Responsável por caridade, ", post: " (Buy a Tulip Help a Girl, Red Cross relief)" },
+      { pre: "Responsável por caridade, ", post: " (Buy a Tulip, Help a Girl · apoio à Cruz Vermelha)" },
     ],
     whereFrom: [
       {
         title: "Raízes brasileiras",
-        body: "Falante nativo de português e espanhol, com uma base multicultural e uma mentalidade internacional desde cedo.",
+        body: "Falante nativo de português e espanhol, criado em uma casa brasileira e portuguesa.",
       },
       {
         title: "Diploma do IB, Países Baixos",
@@ -739,11 +727,9 @@ export const translations: Record<Locale, Dict> = {
       roles: [
         "Informaticastudent",
         "Full-stack developer",
-        "CCNA-kandidaat",
+        "Bezig met de CCNA",
         "Systeem- en IoT-ontwikkelaar",
         "Polyglot",
-        "Wereldburger",
-        "Probleemoplosser",
       ],
       openToWork: "Open voor werk",
       cv: "CV downloaden (PDF)",
@@ -765,26 +751,24 @@ export const translations: Record<Locale, Dict> = {
       procedures: "stored procedures",
       frameworks: "frameworks",
       levels: "thematische levels",
-      engineLoc: "engine-regels",
       servicePages: "servicepagina's",
       clientSite: "clientsite",
       buildTime: "bouwtijd",
       hackathon: "hackathon",
       languages: "talen",
-      trackers: "trackers",
     },
     sections: {
       projects: {
         eyebrow: "Projecten",
         title: "Een paar dingen die ik heb gebouwd",
         intro:
-          "Van embedded IoT-hardware tot full-stack systemen en moderne webarchitectuur.",
+          "IoT-firmware op de ESP32, full-stack webapps, browsergames en parallelle verwerking in Python.",
       },
       skills: {
         eyebrow: "Vaardigheden",
         title: "Technische toolkit",
         intro:
-          "Talen, systemen en de technische basis achter mijn werk in embedded, full-stack en parallel computing.",
+          "De talen, systemen en tools waarmee ik werk.",
       },
       github: {
         eyebrow: "Op GitHub",
@@ -796,7 +780,7 @@ export const translations: Record<Locale, Dict> = {
         eyebrow: "Ervaring",
         title: "Waar ik heb gewerkt",
         intro:
-          "Lesgeven, begeleiden en dingen gedaan krijgen over culturen en tijdzones heen. De soft skills die de technische aanvullen.",
+          "Engelse les in Nederland, Python op een Mexicaanse middelbare school en begeleiding van eerstejaars studenten aan Tec.",
       },
       academics: { eyebrow: "Studie", title: "Hoe het gaat aan Tec" },
       certifications: {
@@ -807,7 +791,7 @@ export const translations: Record<Locale, Dict> = {
         eyebrow: "Waar ik vandaan kom",
         title: "Drie landen, vier talen",
         intro:
-          "Dat pad loopt over de hele wereld. Ik groeide op in een Braziliaans-Portugees gezin, behaalde het IB-diploma in Nederland en studeer nu informatica in Mexico-Stad. Ik heb de Mexicaanse, Braziliaanse en Portugese (EU) nationaliteit, dus ik kan zonder sponsoring in de EU, Mexico en Brazilië werken. Werken over culturen en tijdzones heen is hoe ik altijd heb geleefd, en daar komen mijn communicatie- en aanpassingsvaardigheden vandaan.",
+          "Ik groeide op in een Braziliaans-Portugees gezin, behaalde het IB-diploma in Nederland en studeer nu informatica in Mexico-Stad. Ik heb de Mexicaanse, Braziliaanse en Portugese (EU) nationaliteit, dus ik kan zonder sponsoring in de EU, Mexico en Brazilië werken.",
       },
     },
     leadershipTitle: "Leiderschap en gemeenschap",
@@ -827,18 +811,18 @@ export const translations: Record<Locale, Dict> = {
     },
     projectDescriptions: [
       "Een volledig IoT-prototype met bezettingsdetectie, automatische slagboombesturing en cloudtelemetrie. Embedded firmware op de ESP32 die via MQTT met clouddiensten communiceert.",
-      "Een freelance website die ik ontwierp en opleverde voor DT Construct ICS, een Mexicaans bouwbedrijf. Met de hand gecodeerd in HTML, CSS en JavaScript: een servicecatalogus van zes pagina's (retail, industrieel, infrastructuur, speciale installaties en onderhoud), interactieve Leaflet-kaarten en een portfolio van opgeleverd werk voor klanten als Almacenes Garcia, Avante Textil, Hotel Resort Secrets en TOUS. Live op een eigen domein.",
-      "Een hackathon-prototype dat Mexicaanse watertrucks naar de gebieden met de grootste waterschaarste stuurt. Combineert satellietklimaatdata met een gewogen, veiligheidsbewuste variant van Dijkstra's algoritme, onderbouwd door een gevalideerd bedrijfsmodel.",
-      "Een toonaangevend teamproject van 8 studiepunten: een roguelike deckbuilder volledig zelf gebouwd, engine inbegrepen (geen framework). Een HTML5 Canvas-client op een Express REST-API van 28 endpoints, met een MySQL-schema van 745 regels: 12 tabellen, 20 stored procedures, 13 analytische views (ranglijsten, winstpercentages per vijand en moeilijkheidsgraad, kaartpopulariteit) en 7 triggers die spelerstatistieken en speelgeschiedenis synchroon houden. De staat midden in een duel wordt als JSON opgeslagen zodat een run precies hervat waar hij stopte, met cascade-deletes en 35 indexen.",
+      "Een freelance website die ik ontwierp en opleverde voor DT Construct ICS, een Mexicaans bouwbedrijf. Met de hand gecodeerd in HTML, CSS en JavaScript: een servicecatalogus van zes pagina's (retail, industrieel, infrastructuur, speciale installaties en onderhoud), interactieve Leaflet-kaarten en een projectgalerij met het opgeleverde werk van het bedrijf. Live op een eigen domein.",
+      "Een hackathon-prototype dat Mexicaanse watertrucks naar de gebieden met de grootste waterschaarste stuurt. Combineert satellietklimaatdata met een gewogen, veiligheidsbewuste variant van Dijkstra's algoritme.",
+      "Een teamproject van een semester voor het vak TC2005B: een roguelike deckbuilder volledig zelf gebouwd, engine inbegrepen (geen framework). Een HTML5 Canvas-client op een Express REST-API van 28 endpoints, met een MySQL-schema van 745 regels: 12 tabellen, 20 stored procedures, 13 analytische views (ranglijsten, winstpercentages per vijand en moeilijkheidsgraad, kaartpopulariteit) en 7 triggers die spelerstatistieken en speelgeschiedenis synchroon houden. De staat midden in een duel wordt als JSON opgeslagen zodat een run precies hervat waar hij stopte, met cascade-deletes en 35 indexen.",
       "Een browser-Breakout volledig zelf gebouwd op een eigen HTML5 Canvas-engine (geen framework): een OOP-hiërarchie van Ball, Paddle en Brick op een gedeelde GameObject-basis en een kleine Vector-library, aangedreven door een delta-time loop voor framerate-onafhankelijke fysica. De twist: de paddle 30 graden kantelen draait hem via de canvas-transform en stuurt de stuitervector van de bal naar de hoeken. Drie thematische levels (disco, hiphop, rock), elk met eigen sprites en muziek.",
-      "Een handgebouwde DFA-lexer (expliciete overgangstabel, geen regex) uitgebreid tot een parallelle syntax-highlighter, gemeten op ongeveer 6x sneller dan een sequentiële basis op 16 cores. De low-level parsinglogica achter veilige code en deep packet inspection.",
+      "Een handgebouwde DFA-lexer (expliciete overgangstabel, geen regex) uitgebreid tot een parallelle syntax-highlighter, gemeten op ongeveer 6x sneller dan een sequentiële basis: 60 Python-bestanden, 8 MB, op 16 cores.",
       "Deze site. React 19, Tailwind 4 en een statische export-build, met een glasachtige donkere UI over een geanimeerde WebGL-shaderachtergrond, een interactieve three.js-globe, een radiale loopbaanbaan en live linkvoorbeelden.",
     ],
     experiences: [
       {
         role: "Docent Engels",
         detail:
-          "Meeslepend, spelgebaseerd Engels onderwijs voor ongeveer 165 kinderen (4 tot 12 jaar) in een multiculturele zomerkampsetting, met vier talen ter ondersteuning van klassenmanagement en intercultureel begrip.",
+          "Meeslepend, spelgebaseerd Engels onderwijs voor 165 kinderen (4 tot 12 jaar) in een multiculturele zomerkampsetting, met Engels, Spaans en Portugees ter ondersteuning van klassenmanagement en intercultureel begrip.",
       },
       {
         role: "Informatica-instructeur",
@@ -848,7 +832,7 @@ export const translations: Record<Locale, Dict> = {
       {
         role: "Vrijwilliger en peer-mentor",
         detail:
-          "Afgestudeerd aan het Peer Mentorship-programma. Begeleidt nieuwe studenten bij de academische en sociale aanpassing aan het studentenleven.",
+          "Afgestudeerd aan het Peer Mentorship-programma. Begeleidde nieuwe studenten door hun eerste jaar, zowel academisch als sociaal.",
       },
       {
         role: "Assistent media-logistiek",
@@ -860,13 +844,13 @@ export const translations: Record<Locale, Dict> = {
       {
         title: "IBDP, Rotterdam (NL)",
         content:
-          "International Baccalaureate-diploma aan de Rotterdam International Secondary School, met 33/45 en een Excellence in English-prijs. Interculturele paraatheid voor wereldwijde, gedistribueerde teams.",
+          "International Baccalaureate-diploma aan de Rotterdam International Secondary School, met 33/45 en een Excellence in English-prijs.",
         category: "Onderwijs",
       },
       {
         title: "Polyglot: PT / ES / EN / NL",
         content:
-          "Portugees en Spaans als moedertaal, Engels C1, Nederlands A1. Een belangrijke soft skill en een echt voordeel voor gedistribueerde teams over meerdere tijdzones en talen.",
+          "Portugees en Spaans als moedertaal, Engels C1, Nederlands A1.",
         category: "Vaardigheden",
       },
       {
@@ -884,7 +868,7 @@ export const translations: Record<Locale, Dict> = {
       {
         title: "IoT en systeemengineering",
         content:
-          "Een ESP32 IoT smart-parking-prototype, een DFA-gebaseerde lexer met parallelle verwerking en datastructuren in C++. Praktisch werk op de hardware- en machinelaag.",
+          "Een ESP32 smart-parking-prototype met MQTT-telemetrie, een DFA-gebaseerde lexer geparallelliseerd met Python-multiprocessing en datastructuren in C++.",
         category: "Projecten",
       },
       {
@@ -933,12 +917,12 @@ export const translations: Record<Locale, Dict> = {
       { pre: "", post: " (CSF)" },
       { pre: "", post: " Afdelingslid (CSF)" },
       { pre: "", post: ", Tec de Monterrey" },
-      { pre: "Hoofd liefdadigheid, ", post: " (Buy a Tulip Help a Girl, Red Cross relief)" },
+      { pre: "Hoofd liefdadigheid, ", post: " (Buy a Tulip, Help a Girl · steun aan het Rode Kruis)" },
     ],
     whereFrom: [
       {
         title: "Braziliaanse wortels",
-        body: "Portugees en Spaans als moedertaal, met een multiculturele basis en al vroeg een internationale instelling.",
+        body: "Portugees en Spaans als moedertaal, opgegroeid in een Braziliaans-Portugees gezin.",
       },
       {
         title: "IB-diploma, Nederland",

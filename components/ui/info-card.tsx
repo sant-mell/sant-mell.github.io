@@ -44,12 +44,10 @@ export default function AnimatedProfileCard({
   taglinePrefix = "Santiago is a",
   roles = [
     "CS Student",
-    "Cybersecurity enthusiast",
-    "CCNA candidate",
-    "Network engineer",
+    "Full-stack developer",
+    "Studying for the CCNA",
+    "Systems & IoT developer",
     "Polyglot",
-    "Global citizen",
-    "Problem solver",
   ],
   cvLabel = "Download CV (PDF)",
 }: AnimatedProfileCardProps) {
