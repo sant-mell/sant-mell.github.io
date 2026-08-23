@@ -252,10 +252,11 @@ export const translations: Record<Locale, Dict> = {
       "Differential Equations",
     ],
     leadership: [
-      { pre: "Vice President, ", post: " (Campus Santa Fe)" },
+      { pre: "Vice President, ", post: ", the Computer Science student society (Campus Santa Fe) · 5th semester" },
+      { pre: "Former Vice President, ", post: " (Campus Santa Fe) · 4th semester" },
       { pre: "", post: " (CSF)" },
       { pre: "", post: " Chapter member (CSF)" },
-      { pre: "", post: ", Tec de Monterrey" },
+      { pre: "", post: ", Tec de Monterrey · since 2nd semester" },
       { pre: "Head of Charity, ", post: " (Buy a Tulip, Help a Girl · Red Cross relief)" },
     ],
     whereFrom: [
@@ -471,10 +472,11 @@ export const translations: Record<Locale, Dict> = {
       "Ecuaciones diferenciales",
     ],
     leadership: [
-      { pre: "Vicepresidente, ", post: " (Campus Santa Fe)" },
+      { pre: "Vicepresidente, ", post: ", la sociedad de alumnos de ITC (Campus Santa Fe) · 5º semestre" },
+      { pre: "Exvicepresidente, ", post: " (Campus Santa Fe) · 4º semestre" },
       { pre: "", post: " (CSF)" },
       { pre: "", post: " Miembro del capítulo (CSF)" },
-      { pre: "", post: ", Tec de Monterrey" },
+      { pre: "", post: ", Tec de Monterrey · desde el 2º semestre" },
       { pre: "Responsable de beneficencia, ", post: " (Buy a Tulip, Help a Girl · apoyo a la Cruz Roja)" },
     ],
     whereFrom: [
@@ -690,10 +692,11 @@ export const translations: Record<Locale, Dict> = {
       "Equações diferenciais",
     ],
     leadership: [
-      { pre: "Vice-presidente, ", post: " (Campus Santa Fe)" },
+      { pre: "Vice-presidente, ", post: ", a sociedade de alunos de ITC (Campus Santa Fe) · 5º semestre" },
+      { pre: "Ex-vice-presidente, ", post: " (Campus Santa Fe) · 4º semestre" },
       { pre: "", post: " (CSF)" },
       { pre: "", post: " Membro do capítulo (CSF)" },
-      { pre: "", post: ", Tec de Monterrey" },
+      { pre: "", post: ", Tec de Monterrey · desde o 2º semestre" },
       { pre: "Responsável por caridade, ", post: " (Buy a Tulip, Help a Girl · apoio à Cruz Vermelha)" },
     ],
     whereFrom: [
@@ -909,10 +912,11 @@ export const translations: Record<Locale, Dict> = {
       "Differentiaalvergelijkingen",
     ],
     leadership: [
-      { pre: "Vicevoorzitter, ", post: " (Campus Santa Fe)" },
+      { pre: "Vicevoorzitter, ", post: ", de ITC-studentenvereniging (Campus Santa Fe) · 5e semester" },
+      { pre: "Voormalig vicevoorzitter, ", post: " (Campus Santa Fe) · 4e semester" },
       { pre: "", post: " (CSF)" },
       { pre: "", post: " Afdelingslid (CSF)" },
-      { pre: "", post: ", Tec de Monterrey" },
+      { pre: "", post: ", Tec de Monterrey · sinds het 2e semester" },
       { pre: "Hoofd liefdadigheid, ", post: " (Buy a Tulip, Help a Girl · steun aan het Rode Kruis)" },
     ],
     whereFrom: [
