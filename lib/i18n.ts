@@ -197,7 +197,7 @@ export const translations: Record<Locale, Dict> = {
       {
         title: "Polyglot: PT / ES / EN / NL",
         content:
-          "Native Portuguese and Spanish, English C2, Dutch A1. A core soft skill and a real asset for distributed teams that span multiple time zones and languages.",
+          "Native Portuguese and Spanish, English C1, Dutch A1. A core soft skill and a real asset for distributed teams that span multiple time zones and languages.",
         category: "Skills",
       },
       {
@@ -240,7 +240,7 @@ export const translations: Record<Locale, Dict> = {
       { label: "University GPA", detail: "out of 100, Tec de Monterrey" },
       { label: "IB Diploma", detail: "Excellence in English" },
       { label: "Expected Graduation", detail: "B.S. Computer Science (ITC)" },
-      { label: "Languages", detail: "two native, English C2" },
+      { label: "Languages", detail: "two native, English C1" },
     ],
     skillTitles: ["Languages", "Systems & Networking", "Tools & Web"],
     coursework: [
@@ -280,7 +280,7 @@ export const translations: Record<Locale, Dict> = {
     languageBadges: [
       "Portuguese, Native",
       "Spanish, Native",
-      "English, C2",
+      "English, C1",
       "Dutch, A1",
     ],
   },
@@ -418,7 +418,7 @@ export const translations: Record<Locale, Dict> = {
       {
         title: "Políglota: PT / ES / EN / NL",
         content:
-          "Portugués y español nativos, inglés C2, neerlandés A1. Una habilidad blanda clave y una ventaja real para equipos distribuidos en varias zonas horarias e idiomas.",
+          "Portugués y español nativos, inglés C1, neerlandés A1. Una habilidad blanda clave y una ventaja real para equipos distribuidos en varias zonas horarias e idiomas.",
         category: "Habilidades",
       },
       {
@@ -464,7 +464,7 @@ export const translations: Record<Locale, Dict> = {
         label: "Graduación prevista",
         detail: "Lic. en Tecnologías Computacionales (ITC)",
       },
-      { label: "Idiomas", detail: "dos nativos, inglés C2" },
+      { label: "Idiomas", detail: "dos nativos, inglés C1" },
     ],
     skillTitles: ["Lenguajes", "Sistemas y redes", "Herramientas y web"],
     coursework: [
@@ -504,7 +504,7 @@ export const translations: Record<Locale, Dict> = {
     languageBadges: [
       "Portugués, nativo",
       "Español, nativo",
-      "Inglés, C2",
+      "Inglés, C1",
       "Neerlandés, A1",
     ],
   },
@@ -642,7 +642,7 @@ export const translations: Record<Locale, Dict> = {
       {
         title: "Poliglota: PT / ES / EN / NL",
         content:
-          "Português e espanhol nativos, inglês C2, neerlandês A1. Uma habilidade interpessoal essencial e uma vantagem real para equipes distribuídas em vários fusos e idiomas.",
+          "Português e espanhol nativos, inglês C1, neerlandês A1. Uma habilidade interpessoal essencial e uma vantagem real para equipes distribuídas em vários fusos e idiomas.",
         category: "Habilidades",
       },
       {
@@ -688,7 +688,7 @@ export const translations: Record<Locale, Dict> = {
         label: "Formatura prevista",
         detail: "Bacharelado em Ciência da Computação (ITC)",
       },
-      { label: "Idiomas", detail: "dois nativos, inglês C2" },
+      { label: "Idiomas", detail: "dois nativos, inglês C1" },
     ],
     skillTitles: ["Linguagens", "Sistemas e redes", "Ferramentas e web"],
     coursework: [
@@ -728,7 +728,7 @@ export const translations: Record<Locale, Dict> = {
     languageBadges: [
       "Português, nativo",
       "Espanhol, nativo",
-      "Inglês, C2",
+      "Inglês, C1",
       "Neerlandês, A1",
     ],
   },
@@ -866,7 +866,7 @@ export const translations: Record<Locale, Dict> = {
       {
         title: "Polyglot: PT / ES / EN / NL",
         content:
-          "Portugees en Spaans als moedertaal, Engels C2, Nederlands A1. Een belangrijke soft skill en een echt voordeel voor gedistribueerde teams over meerdere tijdzones en talen.",
+          "Portugees en Spaans als moedertaal, Engels C1, Nederlands A1. Een belangrijke soft skill en een echt voordeel voor gedistribueerde teams over meerdere tijdzones en talen.",
         category: "Vaardigheden",
       },
       {
@@ -912,7 +912,7 @@ export const translations: Record<Locale, Dict> = {
         label: "Verwachte afstuderen",
         detail: "Bachelor Informatica (ITC)",
       },
-      { label: "Talen", detail: "twee moedertalen, Engels C2" },
+      { label: "Talen", detail: "twee moedertalen, Engels C1" },
     ],
     skillTitles: ["Programmeertalen", "Systemen en netwerken", "Tools en web"],
     coursework: [
@@ -952,7 +952,7 @@ export const translations: Record<Locale, Dict> = {
     languageBadges: [
       "Portugees, moedertaal",
       "Spaans, moedertaal",
-      "Engels, C2",
+      "Engels, C1",
       "Nederlands, A1",
     ],
   },

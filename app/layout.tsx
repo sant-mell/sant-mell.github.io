@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     template: "%s | Santiago Aguilar Mello",
   },
   description:
-    "Multicultural Computer Science (ITC) student at Tec de Monterrey, Campus Santa Fe, building embedded/IoT systems, full-stack apps, and parallel software. Native Portuguese and Spanish, English C2. Currently pursuing the Cisco CCNA and cybersecurity. Open to work, including remote and global roles.",
+    "Multicultural Computer Science (ITC) student at Tec de Monterrey, Campus Santa Fe, building embedded/IoT systems, full-stack apps, and parallel software. Native Portuguese and Spanish, English C1. Currently pursuing the Cisco CCNA and cybersecurity. Open to work, including remote and global roles.",
   keywords: [
     "Santiago Aguilar Mello",
     "software engineer",
