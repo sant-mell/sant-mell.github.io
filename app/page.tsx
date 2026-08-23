@@ -576,7 +576,7 @@ export default function Home() {
     name: "Santiago Aguilar Mello",
     role: t.hero.cardRole,
     avatar: "/profile.jpg",
-    tags: [t.hero.openToWork],
+    tags: [t.hero.openToWork, ...t.hero.workRights],
     connectUrl: LINKEDIN_URL,
     messageUrl: MAILTO_URL,
   };
