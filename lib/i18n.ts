@@ -198,7 +198,7 @@ export const translations: Record<Locale, Dict> = {
       {
         title: "Tec de Monterrey, ITC",
         content:
-          "B.S. in Computer Science and Technology at Campus Santa Fe, Mexico City. GPA 93.5/100. Coursework spanning data structures, databases, embedded systems and IoT, device interconnection, and software engineering.",
+          "B.S. in Computer Science and Technology at Campus Santa Fe, Mexico City. GPA 94/100. Coursework spanning data structures, databases, embedded systems and IoT, device interconnection, and software engineering.",
         category: "Education",
       },
       {
@@ -252,7 +252,7 @@ export const translations: Record<Locale, Dict> = {
       "Differential Equations",
     ],
     leadership: [
-      { pre: "Vice President, ", post: ", the Computer Science student society (Campus Santa Fe) · 5th semester" },
+      { pre: "Vice President, ", post: ", the Computer Science student society (Campus Santa Fe) · 5th semester. Bringing in sponsors, organising a hackathon, building the student community, and running company visits so new students can see where the degree leads." },
       { pre: "Former Vice President, ", post: " (Campus Santa Fe) · 4th semester" },
       { pre: "", post: " (CSF)" },
       { pre: "", post: " Chapter member (CSF)" },
@@ -415,7 +415,7 @@ export const translations: Record<Locale, Dict> = {
       {
         title: "Tec de Monterrey, ITC",
         content:
-          "Licenciatura en Ingeniería en Tecnologías Computacionales en el Campus Santa Fe, Ciudad de México. Promedio 93,5/100. Cursos de estructuras de datos, bases de datos, sistemas embebidos e IoT, interconexión de dispositivos e ingeniería de software.",
+          "Licenciatura en Ingeniería en Tecnologías Computacionales en el Campus Santa Fe, Ciudad de México. Promedio 94/100. Cursos de estructuras de datos, bases de datos, sistemas embebidos e IoT, interconexión de dispositivos e ingeniería de software.",
         category: "Educación",
       },
       {
@@ -472,7 +472,7 @@ export const translations: Record<Locale, Dict> = {
       "Ecuaciones diferenciales",
     ],
     leadership: [
-      { pre: "Vicepresidente, ", post: ", la sociedad de alumnos de ITC (Campus Santa Fe) · 5º semestre" },
+      { pre: "Vicepresidente, ", post: ", la sociedad de alumnos de ITC (Campus Santa Fe) · 5º semestre. Consiguiendo patrocinadores, organizando un hackathon, construyendo comunidad estudiantil y coordinando visitas a empresas para que los estudiantes de nuevo ingreso conozcan a dónde lleva la carrera." },
       { pre: "Exvicepresidente, ", post: " (Campus Santa Fe) · 4º semestre" },
       { pre: "", post: " (CSF)" },
       { pre: "", post: " Miembro del capítulo (CSF)" },
@@ -635,7 +635,7 @@ export const translations: Record<Locale, Dict> = {
       {
         title: "Tec de Monterrey, ITC",
         content:
-          "Bacharelado em Ciência e Tecnologia da Computação no Campus Santa Fe, Cidade do México. Média 93,5/100. Disciplinas de estruturas de dados, bancos de dados, sistemas embarcados e IoT, interconexão de dispositivos e engenharia de software.",
+          "Bacharelado em Ciência e Tecnologia da Computação no Campus Santa Fe, Cidade do México. Média 94/100. Disciplinas de estruturas de dados, bancos de dados, sistemas embarcados e IoT, interconexão de dispositivos e engenharia de software.",
         category: "Educação",
       },
       {
@@ -692,7 +692,7 @@ export const translations: Record<Locale, Dict> = {
       "Equações diferenciais",
     ],
     leadership: [
-      { pre: "Vice-presidente, ", post: ", a sociedade de alunos de ITC (Campus Santa Fe) · 5º semestre" },
+      { pre: "Vice-presidente, ", post: ", a sociedade de alunos de ITC (Campus Santa Fe) · 5º semestre. Conseguindo patrocinadores, organizando um hackathon, construindo comunidade estudantil e coordenando visitas a empresas para que os calouros conheçam aonde o curso leva." },
       { pre: "Ex-vice-presidente, ", post: " (Campus Santa Fe) · 4º semestre" },
       { pre: "", post: " (CSF)" },
       { pre: "", post: " Membro do capítulo (CSF)" },
@@ -855,7 +855,7 @@ export const translations: Record<Locale, Dict> = {
       {
         title: "Tec de Monterrey, ITC",
         content:
-          "Bachelor in Computer Science and Technology aan Campus Santa Fe, Mexico-Stad. GPA 93,5/100. Vakken in datastructuren, databases, embedded systems en IoT, apparaatinterconnectie en software engineering.",
+          "Bachelor in Computer Science and Technology aan Campus Santa Fe, Mexico-Stad. GPA 94/100. Vakken in datastructuren, databases, embedded systems en IoT, apparaatinterconnectie en software engineering.",
         category: "Onderwijs",
       },
       {
@@ -912,7 +912,7 @@ export const translations: Record<Locale, Dict> = {
       "Differentiaalvergelijkingen",
     ],
     leadership: [
-      { pre: "Vicevoorzitter, ", post: ", de ITC-studentenvereniging (Campus Santa Fe) · 5e semester" },
+      { pre: "Vicevoorzitter, ", post: ", de ITC-studentenvereniging (Campus Santa Fe) · 5e semester. Sponsors werven, een hackathon organiseren, de studentengemeenschap opbouwen en bedrijfsbezoeken regelen zodat eerstejaars zien waar de opleiding toe leidt." },
       { pre: "Voormalig vicevoorzitter, ", post: " (Campus Santa Fe) · 4e semester" },
       { pre: "", post: " (CSF)" },
       { pre: "", post: " Afdelingslid (CSF)" },
