@@ -71,7 +71,7 @@ export const translations: Record<Locale, Dict> = {
       roles: [
         "CS Student",
         "Full-stack developer",
-        "Studying for the CCNA",
+        "CCNA student",
         "Systems & IoT developer",
         "Polyglot",
       ],
@@ -286,7 +286,7 @@ export const translations: Record<Locale, Dict> = {
       roles: [
         "Estudiante de ITC",
         "Desarrollador full-stack",
-        "Estudiando para el CCNA",
+        "Estudiante de CCNA",
         "Desarrollador de sistemas e IoT",
         "Políglota",
       ],
@@ -505,7 +505,7 @@ export const translations: Record<Locale, Dict> = {
       roles: [
         "Estudante de ITC",
         "Desenvolvedor full-stack",
-        "Estudando para o CCNA",
+        "Estudante de CCNA",
         "Desenvolvedor de sistemas e IoT",
         "Poliglota",
       ],
@@ -724,7 +724,7 @@ export const translations: Record<Locale, Dict> = {
       roles: [
         "Informaticastudent",
         "Full-stack developer",
-        "Bezig met de CCNA",
+        "CCNA-student",
         "Systeem- en IoT-ontwikkelaar",
         "Polyglot",
       ],
