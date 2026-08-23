@@ -228,6 +228,7 @@ interface LeadershipItem {
 }
 
 const LEADERSHIP_META: { link: string; url?: string }[] = [
+  { link: "SATI" },
   { link: "Krei Student Society", url: "https://www.instagram.com/kreicsf/" },
   { link: "Advanced Competitive Programming Team" },
   { link: "COPARMEX", url: "https://coparmex.org.mx" },
