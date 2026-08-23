@@ -99,6 +99,9 @@ export const metadata: Metadata = {
     apple: "/profile.jpg",
   },
   manifest: "/manifest.webmanifest",
+  verification: {
+    google: "oDSfhix3xeIBwit0wMf_zaaswArPcGazL1GkEENuHH8",
+  },
 };
 
 const personJsonLd = {
