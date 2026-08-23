@@ -139,7 +139,7 @@ const personJsonLd = {
   },
   sameAs: [
     "https://github.com/sant-mell",
-    "https://www.linkedin.com/in/santiago-aguilar-b1702a270/",
+    "https://www.linkedin.com/in/santiago-aguilar-mello/",
   ],
 };
 

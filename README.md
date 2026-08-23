@@ -43,7 +43,7 @@ Live site: https://sant-mell.github.io  ·  CV: [`/cv.pdf`](public/cv.pdf)  ·  
 | Parallel DFA Syntax Highlighter | Python, automata theory, multiprocessing | [`parallel-syntax-highlighter`](https://github.com/sant-mell/parallel-syntax-highlighter) |
 | The Fool's Descent (TC2005B) | JavaScript, HTML5 Canvas, Node/Express, MySQL | [`videoGame-TC2005B.501`](https://github.com/sant-mell/videoGame-TC2005B.501) |
 | Breakout (TC2005B) | JavaScript, HTML5 Canvas, custom engine | [`myTC2005B`](https://github.com/sant-mell/myTC2005B) · [play in browser](https://sant-mell.github.io/myTC2005B/Videojuegos/Breakout/breakout.html) |
-| Aquaroute (START Hack) | SaaS, weighted Dijkstra, satellite data | [LinkedIn writeup](https://www.linkedin.com/in/santiago-aguilar-b1702a270/) |
+| Aquaroute (START Hack) | SaaS, weighted Dijkstra, satellite data | [LinkedIn writeup](https://www.linkedin.com/posts/santiago-aguilar-b1702a270_starthackmexico-tecdemonterrey-lovable-ugcPost-7429695225133957120-GuHB/) |
 | Next.js Portfolio | Next.js 16, React 19, Tailwind 4 | This site. |
 
 ## Experience
@@ -80,4 +80,4 @@ flowchart LR
 
 - Email: sant.mell016@gmail.com
 - GitHub: [github.com/sant-mell](https://github.com/sant-mell)
-- LinkedIn: [santiago-aguilar](https://www.linkedin.com/in/santiago-aguilar-b1702a270/)
+- LinkedIn: [santiago-aguilar](https://www.linkedin.com/in/santiago-aguilar-mello/)

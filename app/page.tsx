@@ -57,7 +57,7 @@ const ShaderBackground = dynamic(
  * proper nouns). All human-readable prose comes from `@/lib/i18n` by locale.
  * ------------------------------------------------------------------------- */
 
-const LINKEDIN_URL = "https://www.linkedin.com/in/santiago-aguilar-b1702a270/";
+const LINKEDIN_URL = "https://www.linkedin.com/in/santiago-aguilar-mello/";
 const GITHUB_URL = "https://github.com/sant-mell";
 const EMAIL = "sant.mell016@gmail.com";
 const MAILTO_URL = `mailto:${EMAIL}`;
@@ -104,8 +104,22 @@ interface Project {
   stats?: { value: string; key: string }[];
 }
 
-const PROJECT_META: Omit<Project, "description">[] = [
+/** Card display order is independent of `t.projectDescriptions`, which stays in
+ * its original order across all four locales. `descriptionIndex` pins each card
+ * to its prose, so this list can be reordered without touching `@/lib/i18n`. */
+type ProjectMeta = Omit<Project, "description"> & { descriptionIndex: number };
+
+const PROJECT_META: ProjectMeta[] = [
   {
+    descriptionIndex: 5,
+    title: "DFA Lexer / Compiler",
+    subtitle: "Python · Automata Theory",
+    stack: ["Python", "Multiprocessing", "Automata / DFA", "Benchmarking"],
+    repoUrl: "https://github.com/sant-mell/parallel-syntax-highlighter",
+    benchmark: true,
+  },
+  {
+    descriptionIndex: 0,
     title: "IoT Smart Parking System",
     subtitle: "ESP32 · MQTT · Python",
     stack: ["C++ / Arduino", "ESP32", "MQTT", "Python", "ThingSpeak"],
@@ -113,6 +127,7 @@ const PROJECT_META: Omit<Project, "description">[] = [
     pipeline: ["Sensors", "ESP32", "MQTT", "ThingSpeak", "Client"],
   },
   {
+    descriptionIndex: 1,
     title: "DT Construct ICS",
     subtitle: "Freelance · Client Website",
     stack: ["HTML", "CSS", "JavaScript", "Leaflet", "Netlify"],
@@ -125,6 +140,7 @@ const PROJECT_META: Omit<Project, "description">[] = [
     ],
   },
   {
+    descriptionIndex: 2,
     title: "Aquaroute (START Hack)",
     subtitle: "SaaS · Algorithm Design",
     stack: ["Algorithm Design", "Dijkstra Variant", "Satellite Data", "SaaS"],
@@ -136,6 +152,7 @@ const PROJECT_META: Omit<Project, "description">[] = [
     ],
   },
   {
+    descriptionIndex: 3,
     title: "The Fool's Descent (TC2005B)",
     subtitle: "JavaScript · Node · MySQL",
     stack: ["JavaScript", "HTML5 Canvas", "Node.js / Express", "MySQL", "Git"],
@@ -147,6 +164,7 @@ const PROJECT_META: Omit<Project, "description">[] = [
     ],
   },
   {
+    descriptionIndex: 4,
     title: "Breakout",
     subtitle: "JavaScript · HTML5 Canvas",
     stack: ["JavaScript", "HTML5 Canvas", "Game Loop", "Collision Detection"],
@@ -156,25 +174,15 @@ const PROJECT_META: Omit<Project, "description">[] = [
     stats: [
       { value: "0", key: "frameworks" },
       { value: "3", key: "levels" },
-      { value: "427", key: "engineLoc" },
     ],
   },
   {
-    title: "DFA Lexer / Compiler",
-    subtitle: "Python · Automata Theory",
-    stack: ["Python", "Multiprocessing", "Automata / DFA", "Benchmarking"],
-    repoUrl: "https://github.com/sant-mell/parallel-syntax-highlighter",
-    benchmark: true,
-  },
-  {
+    descriptionIndex: 6,
     title: "Next.js Portfolio",
     subtitle: "Next.js 16 · React 19",
     stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4"],
     repoUrl: "https://github.com/sant-mell/sant-mell.github.io",
-    stats: [
-      { value: "4", key: "languages" },
-      { value: "0", key: "trackers" },
-    ],
+    stats: [{ value: "4", key: "languages" }],
   },
 ];
 
@@ -255,7 +263,7 @@ const CERT_META: Omit<Certification, "name">[] = [
     date: "2024",
   },
   {
-    issuer: "RISS, Netherlands",
+    issuer: "Rotterdam International Secondary School",
     issuerUrl: "https://riss.wolfert.nl",
     date: "2024",
   },
@@ -272,7 +280,9 @@ const METRIC_META: Omit<Metric, "label" | "detail">[] = [
   { value: "92.8", icon: Award },
   { value: "33/45", icon: GraduationCap },
   { value: "2028", icon: TrendingUp },
-  { value: "4", icon: Languages },
+  /* Counts the three languages the detail line claims (two native + English C1).
+   * Dutch is disclosed separately, at its real A1 level, in `languageBadges`. */
+  { value: "3", icon: Languages },
 ];
 
 interface SkillCluster {
@@ -284,15 +294,15 @@ interface SkillCluster {
 const SKILL_META: Omit<SkillCluster, "title">[] = [
   {
     icon: Cpu,
-    skills: ["C++", "Python", "TypeScript", "JavaScript", "SQL", "HTML / CSS", "Racket"],
+    skills: ["C++", "Python", "TypeScript", "JavaScript", "SQL", "HTML / CSS"],
   },
   {
     icon: Network,
-    skills: ["Linux / Bash", "Networking", "MQTT", "ESP-IDF", "Arduino (ESP32)", "Embedded C"],
+    skills: ["Linux / Bash", "MQTT", "ESP32 (Arduino / C++)"],
   },
   {
     icon: CircuitBoard,
-    skills: ["Git / GitHub", "Next.js", "React", "Node.js", "ThingSpeak"],
+    skills: ["Git / GitHub", "Next.js", "React", "Node.js"],
   },
 ];
 
@@ -573,9 +583,9 @@ export default function Home() {
     messageUrl: MAILTO_URL,
   };
 
-  const projects: Project[] = PROJECT_META.map((p, i) => ({
+  const projects: Project[] = PROJECT_META.map(({ descriptionIndex, ...p }) => ({
     ...p,
-    description: t.projectDescriptions[i],
+    description: t.projectDescriptions[descriptionIndex],
   }));
   const experiences: Experience[] = EXPERIENCE_META.map((e, i) => ({
     ...e,
