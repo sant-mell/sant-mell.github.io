@@ -167,7 +167,7 @@ export const translations: Record<Locale, Dict> = {
           "Immersive, play-based English instruction for 165 children (ages 4 to 12) in a multicultural summer-camp setting, using English, Spanish, and Portuguese to support classroom management and cross-cultural understanding.",
       },
       {
-        role: "Computer Science Instructor",
+        role: "Python Instructor",
         detail:
           "Designed and taught a Python curriculum for middle-school students: variables, loops, conditionals, functions, and problem solving with Replit and Turtle, plus assessments and feedback.",
       },
@@ -383,7 +383,7 @@ export const translations: Record<Locale, Dict> = {
           "Enseñanza de inglés inmersiva y basada en el juego para 165 niños (de 4 a 12 años) en un campamento de verano multicultural, usando inglés, español y portugués para apoyar la gestión del aula y el entendimiento intercultural.",
       },
       {
-        role: "Instructor de Ciencias de la Computación",
+        role: "Instructor de Python",
         detail:
           "Diseñé e impartí un currículo de Python para estudiantes de secundaria: variables, bucles, condicionales, funciones y resolución de problemas con Replit y Turtle, además de evaluaciones y retroalimentación.",
       },
@@ -602,7 +602,7 @@ export const translations: Record<Locale, Dict> = {
           "Ensino de inglês imersivo e baseado em brincadeiras para 165 crianças (de 4 a 12 anos) em um acampamento de verão multicultural, usando inglês, espanhol e português para apoiar a gestão da turma e o entendimento intercultural.",
       },
       {
-        role: "Instrutor de Ciência da Computação",
+        role: "Instrutor de Python",
         detail:
           "Projetei e lecionei um currículo de Python para alunos do ensino fundamental: variáveis, laços, condicionais, funções e resolução de problemas com Replit e Turtle, além de avaliações e feedback.",
       },
@@ -821,7 +821,7 @@ export const translations: Record<Locale, Dict> = {
           "Meeslepend, spelgebaseerd Engels onderwijs voor 165 kinderen (4 tot 12 jaar) in een multiculturele zomerkampsetting, met Engels, Spaans en Portugees ter ondersteuning van klassenmanagement en intercultureel begrip.",
       },
       {
-        role: "Informatica-instructeur",
+        role: "Python-instructeur",
         detail:
           "Een Python-curriculum ontworpen en gegeven voor middelbare scholieren: variabelen, loops, condities, functies en probleemoplossing met Replit en Turtle, plus toetsing en feedback.",
       },

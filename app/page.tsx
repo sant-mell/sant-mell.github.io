@@ -203,7 +203,7 @@ const EXPERIENCE_META: Omit<Experience, "role" | "detail">[] = [
   {
     org: "Logaritmia MX",
     orgUrl: "https://www.linkedin.com/company/logaritmia-mx/",
-    period: "Jan 2025 - May 2025",
+    period: "Feb 2025 - Jul 2025",
     location: "Telesecundaria, Mexico",
   },
   {
