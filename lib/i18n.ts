@@ -24,6 +24,8 @@ export interface Dict {
     prefix: string;
     roles: string[];
     openToWork: string;
+    /** Work-authorisation chips shown beside "Open to Work" on the hero card. */
+    workRights: string[];
     cv: string;
     cardRole: string;
   };
@@ -76,6 +78,7 @@ export const translations: Record<Locale, Dict> = {
         "Polyglot",
       ],
       openToWork: "Open to Work",
+      workRights: ["EU work rights, no sponsorship", "MX, BR & MERCOSUR"],
       cv: "Download CV (PDF)",
       cardRole: "Multicultural CS (ITC) student @ Tec de Monterrey, Santa Fe",
     },
@@ -148,7 +151,7 @@ export const translations: Record<Locale, Dict> = {
       location:
         "Greater Mexico City · Open to internships, remote, and global roles",
       citizenship:
-        "Mexican, Brazilian, and Portuguese (EU) citizen · eligible to work in the EU, Mexico, and Brazil with no sponsorship",
+        "Mexican, Brazilian, and Portuguese (EU) citizen · I can work across the EU, EEA, and Switzerland with no sponsorship, and in Mexico and Brazil as a national, with MERCOSUR residence rights across South America",
       builtWith: "Built with Next.js 16, React 19 and Tailwind CSS 4.",
     },
     projectDescriptions: [
@@ -292,6 +295,7 @@ export const translations: Record<Locale, Dict> = {
         "Políglota",
       ],
       openToWork: "Disponible para trabajar",
+      workRights: ["Derecho a trabajar en la UE, sin patrocinio", "MX, BR y MERCOSUR"],
       cv: "Descargar CV (PDF)",
       cardRole: "Estudiante multicultural de Tecnologías Computacionales (ITC) en el Tec de Monterrey, Santa Fe",
     },
@@ -365,7 +369,7 @@ export const translations: Record<Locale, Dict> = {
       location:
         "Zona Metropolitana de la Ciudad de México · Disponible para prácticas, remoto y roles globales",
       citizenship:
-        "Ciudadano mexicano, brasileño y portugués (UE) · habilitado para trabajar en la UE, México y Brasil sin patrocinio",
+        "Ciudadano mexicano, brasileño y portugués (UE) · puedo trabajar en la UE, el EEE y Suiza sin patrocinio, y en México y Brasil como nacional, con derecho de residencia MERCOSUR en Sudamérica",
       builtWith: "Hecho con Next.js 16, React 19 y Tailwind CSS 4.",
     },
     projectDescriptions: [
@@ -512,6 +516,7 @@ export const translations: Record<Locale, Dict> = {
         "Poliglota",
       ],
       openToWork: "Disponível para trabalhar",
+      workRights: ["Direito de trabalho na UE, sem patrocínio", "MX, BR e MERCOSUL"],
       cv: "Baixar CV (PDF)",
       cardRole: "Estudante multicultural de CC (ITC) no Tec de Monterrey, Santa Fe",
     },
@@ -585,7 +590,7 @@ export const translations: Record<Locale, Dict> = {
       location:
         "Grande Cidade do México · Disponível para estágios, remoto e vagas globais",
       citizenship:
-        "Cidadão mexicano, brasileiro e português (UE) · apto a trabalhar na UE, no México e no Brasil sem patrocínio",
+        "Cidadão mexicano, brasileiro e português (UE) · posso trabalhar na UE, no EEE e na Suíça sem patrocínio, e no México e no Brasil como nacional, com direito de residência MERCOSUL na América do Sul",
       builtWith: "Feito com Next.js 16, React 19 e Tailwind CSS 4.",
     },
     projectDescriptions: [
@@ -732,6 +737,7 @@ export const translations: Record<Locale, Dict> = {
         "Polyglot",
       ],
       openToWork: "Open voor werk",
+      workRights: ["EU-werkrechten, geen sponsoring", "MX, BR en MERCOSUR"],
       cv: "CV downloaden (PDF)",
       cardRole: "Multiculturele informaticastudent (ITC) aan Tec de Monterrey, Santa Fe",
     },
@@ -805,7 +811,7 @@ export const translations: Record<Locale, Dict> = {
       location:
         "Grootstedelijk Mexico-Stad · Open voor stages, remote en wereldwijde functies",
       citizenship:
-        "Mexicaans, Braziliaans en Portugees (EU) staatsburger · gerechtigd om te werken in de EU, Mexico en Brazilië zonder sponsoring",
+        "Mexicaans, Braziliaans en Portugees (EU) staatsburger · ik kan zonder sponsoring werken in de EU, de EER en Zwitserland, en in Mexico en Brazilië als staatsburger, met MERCOSUR-verblijfsrecht in Zuid-Amerika",
       builtWith: "Gemaakt met Next.js 16, React 19 en Tailwind CSS 4.",
     },
     projectDescriptions: [
