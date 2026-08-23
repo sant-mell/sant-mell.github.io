@@ -98,7 +98,6 @@ export const translations: Record<Locale, Dict> = {
       servicePages: "service pages",
       clientSite: "client site",
       buildTime: "to build",
-      hackathon: "hackathon",
       languages: "languages",
     },
     sections: {
@@ -314,7 +313,6 @@ export const translations: Record<Locale, Dict> = {
       servicePages: "páginas de servicios",
       clientSite: "sitio del cliente",
       buildTime: "de desarrollo",
-      hackathon: "hackathon",
       languages: "idiomas",
     },
     sections: {
@@ -534,7 +532,6 @@ export const translations: Record<Locale, Dict> = {
       servicePages: "páginas de serviços",
       clientSite: "site do cliente",
       buildTime: "de construção",
-      hackathon: "hackathon",
       languages: "idiomas",
     },
     sections: {
@@ -754,7 +751,6 @@ export const translations: Record<Locale, Dict> = {
       servicePages: "servicepagina's",
       clientSite: "clientsite",
       buildTime: "bouwtijd",
-      hackathon: "hackathon",
       languages: "talen",
     },
     sections: {
