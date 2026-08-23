@@ -195,9 +195,9 @@ interface Experience {
 
 const EXPERIENCE_META: Omit<Experience, "role" | "detail">[] = [
   {
-    org: "Pro English BV (Self-employed)",
+    org: "Pro English BV (Engels voor Bengels Summer Camp)",
     orgUrl: "https://engelsvoorbengels.nl/",
-    period: "Jul 2025 - Present",
+    period: "Jul 2025 - Aug 2025",
     location: "Rotterdam, Netherlands",
   },
   {
