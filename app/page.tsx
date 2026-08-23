@@ -275,7 +275,7 @@ interface Metric {
 }
 
 const METRIC_META: Omit<Metric, "label" | "detail">[] = [
-  { value: "92.8", icon: Award },
+  { value: "93.5", icon: Award },
   { value: "33/45", icon: GraduationCap },
   { value: "2028", icon: TrendingUp },
   /* Counts the three languages the detail line claims (two native + English C1).
