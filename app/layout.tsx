@@ -118,6 +118,22 @@ const personJsonLd = {
     "@type": "CollegeOrUniversity",
     name: "Tec de Monterrey, Campus Santa Fe",
   },
+  alumniOf: {
+    "@type": "EducationalOrganization",
+    name: "Rotterdam International Secondary School",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Rotterdam",
+      addressCountry: "NL",
+    },
+  },
+  // Work authorisation without sponsorship is the single most actionable fact
+  // for a recruiter, so it belongs in the structured data, not just the prose.
+  nationality: [
+    { "@type": "Country", name: "Mexico" },
+    { "@type": "Country", name: "Brazil" },
+    { "@type": "Country", name: "Portugal" },
+  ],
   address: {
     "@type": "PostalAddress",
     addressLocality: "Zona Esmeralda",
