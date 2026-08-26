@@ -162,6 +162,7 @@ export const translations: Record<Locale, Dict> = {
       "A browser Breakout built from scratch on a custom HTML5 Canvas engine (no framework): an OOP hierarchy of Ball, Paddle, and Brick over a shared GameObject base and a small Vector library, driven by a delta-time loop for frame-rate-independent physics. The twist: tilting the paddle 30 degrees rotates it through the canvas transform and redirects the ball's bounce vector to aim into corners. Three themed levels (disco, hip hop, rock), each with its own sprites and music.",
       "A hand-built DFA lexer (explicit transition table, no regex) extended into a parallel syntax highlighter, benchmarked at about 6x speedup over a sequential baseline: 60 Python files, 8 MB, on 16 cores.",
       "This site. React 19, Tailwind 4, and a static export build, with a glassy dark UI over an animated WebGL shader background, an interactive three.js globe, a radial career orbit, and live link previews.",
+      "In progress: working through the react-admin tutorial with Material UI, TypeScript, and a JSONPlaceholder-backed data provider, plus a custom auth provider. Practice ahead of a TC2007B course project for a government partner still to be confirmed, likely Mexico's Secretaria de Economia or Secretaria de Salud.",
     ],
     experiences: [
       {
@@ -380,6 +381,7 @@ export const translations: Record<Locale, Dict> = {
       "Un Breakout en el navegador hecho desde cero sobre un motor HTML5 Canvas propio (sin framework): una jerarquía POO de Ball, Paddle y Brick sobre una base GameObject común y una pequeña librería Vector, movida por un bucle con delta-time para una física independiente de los FPS. El giro: inclinar la paleta 30 grados la rota con la transformación del canvas y redirige el vector de rebote de la bola hacia las esquinas. Tres niveles temáticos (disco, hip hop, rock), cada uno con sus propios sprites y música.",
       "Un lexer DFA hecho a mano (tabla de transiciones explícita, sin regex) extendido a un resaltador de sintaxis paralelo, con un speedup medido de unas 6x frente a una versión secuencial: 60 archivos de Python, 8 MB, en 16 núcleos.",
       "Este sitio. React 19, Tailwind 4 y una compilación de exportación estática, con una interfaz oscura tipo cristal sobre un fondo shader WebGL animado, un globo interactivo en three.js, una órbita radial de trayectoria y vistas previas de enlaces en vivo.",
+      "En progreso: recorriendo el tutorial de react-admin con Material UI, TypeScript y un data provider sobre JSONPlaceholder, más un auth provider propio. Práctica previa a un proyecto de la materia TC2007B para un socio formador gubernamental aún por confirmar, probablemente la Secretaría de Economía o la Secretaría de Salud.",
     ],
     experiences: [
       {
@@ -601,6 +603,7 @@ export const translations: Record<Locale, Dict> = {
       "Um Breakout no navegador feito do zero sobre um motor HTML5 Canvas próprio (sem framework): uma hierarquia POO de Ball, Paddle e Brick sobre uma base GameObject comum e uma pequena biblioteca Vector, movida por um loop com delta-time para uma física independente dos FPS. O diferencial: inclinar a raquete 30 graus a rotaciona pela transformação do canvas e redireciona o vetor de rebote da bola para os cantos. Três níveis temáticos (disco, hip hop, rock), cada um com seus próprios sprites e música.",
       "Um lexer DFA feito à mão (tabela de transições explícita, sem regex) estendido para um realçador de sintaxe paralelo, com speedup medido de cerca de 6x sobre uma versão sequencial: 60 arquivos de Python, 8 MB, em 16 núcleos.",
       "Este site. React 19, Tailwind 4 e um build de exportação estática, com uma interface escura estilo vidro sobre um fundo shader WebGL animado, um globo interativo em three.js, uma órbita radial de trajetória e pré-visualizações de links ao vivo.",
+      "Em andamento: seguindo o tutorial do react-admin com Material UI, TypeScript e um data provider sobre o JSONPlaceholder, além de um auth provider próprio. Prática antes de um projeto da disciplina TC2007B para um parceiro governamental ainda não confirmado, provavelmente a Secretaría de Economía ou a Secretaría de Salud (México).",
     ],
     experiences: [
       {
@@ -822,6 +825,7 @@ export const translations: Record<Locale, Dict> = {
       "Een browser-Breakout volledig zelf gebouwd op een eigen HTML5 Canvas-engine (geen framework): een OOP-hiërarchie van Ball, Paddle en Brick op een gedeelde GameObject-basis en een kleine Vector-library, aangedreven door een delta-time loop voor framerate-onafhankelijke fysica. De twist: de paddle 30 graden kantelen draait hem via de canvas-transform en stuurt de stuitervector van de bal naar de hoeken. Drie thematische levels (disco, hiphop, rock), elk met eigen sprites en muziek.",
       "Een handgebouwde DFA-lexer (expliciete overgangstabel, geen regex) uitgebreid tot een parallelle syntax-highlighter, gemeten op ongeveer 6x sneller dan een sequentiële basis: 60 Python-bestanden, 8 MB, op 16 cores.",
       "Deze site. React 19, Tailwind 4 en een statische export-build, met een glasachtige donkere UI over een geanimeerde WebGL-shaderachtergrond, een interactieve three.js-globe, een radiale loopbaanbaan en live linkvoorbeelden.",
+      "In uitvoering: de react-admin tutorial doorlopen met Material UI, TypeScript en een data provider op basis van JSONPlaceholder, plus een eigen auth provider. Oefening voor een TC2007B-vakproject voor een overheidspartner die nog niet vaststaat, waarschijnlijk de Mexicaanse Secretaría de Economía of Secretaría de Salud.",
     ],
     experiences: [
       {

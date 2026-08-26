@@ -181,6 +181,13 @@ const PROJECT_META: ProjectMeta[] = [
     repoUrl: "https://github.com/sant-mell/sant-mell.github.io",
     stats: [{ value: "4", key: "languages" }],
   },
+  {
+    descriptionIndex: 7,
+    title: "React-Admin Studies (TC2007B)",
+    subtitle: "React-Admin · Work in Progress",
+    stack: ["React 19", "TypeScript", "react-admin", "Material UI", "Vite"],
+    repoUrl: "https://github.com/sant-mell/react-admin-studies",
+  },
 ];
 
 interface Experience {
