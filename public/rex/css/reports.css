@@ -7,6 +7,8 @@
 .r-summary, .r-routines, .r-alerts { grid-column: 1 / -1; }
 
 /* ------------------------------------------------------- summary */
+.r-summary-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
+.r-summary-head h2 { margin: 0; }
 .r-stats { display: flex; gap: 14px; flex-wrap: wrap; }
 .r-stat {
   flex: 1 1 140px; background: var(--card); border: 1px solid var(--line); border-radius: 13px;
