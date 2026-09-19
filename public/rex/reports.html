@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rex · Reportes para cuidadores</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&family=Pixelify+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/parent.css">
+  <link rel="stylesheet" href="css/reports.css">
+</head>
+<body>
+  <header class="p-top">
+    <div class="p-brand">
+      <span class="p-dino">🦖</span>
+      <div>
+        <h1>Rex <span>· Reportes</span></h1>
+        <p>Lo que Rex vio hoy — un vistazo rápido para el adulto a cargo.</p>
+      </div>
+    </div>
+    <a class="p-back" href="index.html">← Volver a Rex</a>
+  </header>
+
+  <main class="p-main r-main">
+    <!-- ================= TODAY SUMMARY ================= -->
+    <section class="p-card r-summary">
+      <h2>🌟 Resumen de hoy</h2>
+      <div class="r-stats">
+        <div class="r-stat">
+          <span class="r-stat-num" id="statDone">–</span>
+          <span class="r-stat-label">rutinas completadas</span>
+        </div>
+        <div class="r-stat">
+          <span class="r-stat-num" id="statStars">–</span>
+          <span class="r-stat-label">estrellas en total</span>
+        </div>
+        <div class="r-stat">
+          <span class="r-stat-num" id="statStage">–</span>
+          <span class="r-stat-label">etapa de Rex</span>
+        </div>
+      </div>
+      <p class="note" id="clockNote"></p>
+    </section>
+
+    <!-- ================= TODAY'S ROUTINES ================= -->
+    <section class="p-card r-routines">
+      <h2>📋 Rutinas de hoy <span class="count" id="routineCount"></span></h2>
+      <ul class="r-list" id="routineList"></ul>
+    </section>
+
+    <!-- ================= NOTABLE ALERTS ================= -->
+    <section class="p-card r-alerts">
+      <h2>🔔 Avisos importantes</h2>
+      <ul class="r-list" id="alertList"></ul>
+      <p class="note">Aquí aparecen las cosas que Rex cree que debes saber: una rutina pospuesta varias veces, o cuando tu hija o hijo pidió ayuda.</p>
+    </section>
+  </main>
+
+  <script src="js/local-engine.js"></script>
+  <script src="js/reports.js"></script>
+</body>
+</html>

@@ -153,7 +153,10 @@
       this.status = {}; this.routines.forEach((r) => (this.status[r.id] = "pending"));
       this.snooze_until = {}; this.snooze_count = {}; this.headsup_shown = {};
     }
-    if (["home", "night", "snoozed"].includes(this.screen)) { this._maybeAlert(v); this._maybeNight(v); }
+    // "headsup" is included so an unacknowledged heads-up still escalates
+    // into the real (animated) alert on its own, instead of freezing on
+    // that one static pose forever when nobody presses a button.
+    if (["home", "night", "snoozed", "headsup"].includes(this.screen)) { this._maybeAlert(v); this._maybeNight(v); }
     return this;
   };
   Engine.prototype._maybeAlert = function (v) {
@@ -168,7 +171,12 @@
     }
   };
   Engine.prototype._maybeNight = function (v) {
-    if (this.screen === "home") { const vday = v % 86400; if (vday >= hhmm("21:00") || vday < hhmm("06:30")) this.screen = "night"; }
+    const vday = v % 86400;
+    const isNight = vday >= hhmm("21:00") || vday < hhmm("06:30");
+    if (this.screen === "home" && isNight) this.screen = "night";
+    // Wake up on its own once the night window ends — see engine.py's
+    // _maybe_night for why (nothing else guarantees a way out of "night").
+    else if (this.screen === "night" && !isNight) this.screen = "home";
   };
   Engine.prototype._open = function (screen, rid) { this.screen = screen; this.active = rid; this.step_index = 0; this.step_timer_end = null; this.message = null; };
   Engine.prototype._routine = function (rid) { rid = rid || this.active; return this.routines.find((r) => r.id === rid); };
