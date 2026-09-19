@@ -19,7 +19,7 @@ const api = async (path, body) => {
 };
 
 let anyMissing = false;
-const SVER = "4";   // bump to force browsers to refetch updated sprite PNGs
+const SVER = "5";   // bump to force browsers to refetch updated sprite PNGs
 
 /* ===================================================================
    SENSORY CUES (GDD §3.3, §5.3): sound (WebAudio, no asset files) +
@@ -179,6 +179,24 @@ const FRAME_SETS = {
   "rex_kid_wave.png":      { frames: ["rex_kid_wave.png", "rex_kid_wave2.png"], ms: 400 },
   "rex_kid_idle_hc.png":   { frames: ["rex_kid_idle_hc.png", "rex_kid_idle_hc2.png",
                                       "rex_kid_idle_hc3.png", "rex_kid_idle_hc4.png"], ms: 620 },
+  "rex_kid_eat.png":      { frames: ["rex_kid_eat.png", "rex_kid_eat2.png",
+                                     "rex_kid_eat3.png", "rex_kid_eat4.png"], ms: 420 },
+  "rex_kid_bath.png":     { frames: ["rex_kid_bath.png", "rex_kid_bath2.png",
+                                     "rex_kid_bath3.png", "rex_kid_bath4.png"], ms: 420 },
+  "rex_kid_bedtime.png":  { frames: ["rex_kid_bedtime.png", "rex_kid_bedtime2.png",
+                                     "rex_kid_bedtime3.png", "rex_kid_bedtime4.png"], ms: 480 },
+  "rex_kid_medicine.png": { frames: ["rex_kid_medicine.png", "rex_kid_medicine2.png"], ms: 700 },
+  "rex_kid_washhands.png": { frames: ["rex_kid_washhands.png", "rex_kid_washhands2.png",
+                                       "rex_kid_washhands3.png", "rex_kid_washhands4.png"], ms: 380 },
+  "rex_kid_drink.png":     { frames: ["rex_kid_drink.png", "rex_kid_drink2.png"], ms: 650 },
+  "rex_kid_pajamas.png":   { frames: ["rex_kid_pajamas.png", "rex_kid_pajamas2.png"], ms: 650 },
+  "rex_kid_sleepy.png":    { frames: ["rex_kid_sleepy.png", "rex_kid_sleepy2.png",
+                                      "rex_kid_sleepy3.png", "rex_kid_sleepy4.png"], ms: 450 },
+  "rex_kid_sleeping.png":  { frames: ["rex_kid_sleeping.png", "rex_kid_sleeping2.png"], ms: 900 },
+  "rex_kid_alert_tummy.png":  { frames: ["rex_kid_alert_tummy.png", "rex_kid_alert_tummy2.png"], ms: 650 },
+  "rex_kid_alert_sleepy.png": { frames: ["rex_kid_alert_sleepy.png", "rex_kid_alert_sleepy2.png"], ms: 650 },
+  "rex_kid_wakeup.png": { frames: ["rex_kid_wakeup.png", "rex_kid_wakeup2.png",
+                                    "rex_kid_wakeup3.png", "rex_kid_wakeup4.png"], ms: 450 },
 };
 
 let animBase = null, animSet = null, animIdx = 0, animNext = 0, fidgetUntil = 0;
@@ -231,11 +249,22 @@ function render(s) {
     prevScreen = s.screen;
   }
 
+  // cave background: only the resting home/night screens get the cave scene
+  // behind Rex — every other screen keeps the flat mood-color gradient so
+  // that accessibility-critical color coding is never fighting a picture
+  const caveBg = $("#caveBg");
+  if (caveBg) paintSprite(caveBg, ["home", "night"].includes(s.screen) ? `bg_cave_${s.screen}.png` : null);
+
   // status row
   $("#clock").textContent = s.clock.time;
   $("#miniStars").textContent = s.stars;
   const sc = $("#starCount"); if (sc) sc.textContent = s.stars;
   $("#signal").classList.toggle("off", !s.ai.online);
+
+  // listening overlay: only while Rex is actually listening for the child's
+  // voice (help_listening), same badge pattern as the need bubble
+  const listenBadge = $("#listenBadge");
+  if (listenBadge) listenBadge.hidden = s.screen !== "help_listening";
 
   // Rex + need bubble
   setRexSprite(s.sprite);

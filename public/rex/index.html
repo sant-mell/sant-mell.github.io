@@ -39,11 +39,15 @@
               <!-- screen recessed in a chunky bezel -->
               <div class="bezel">
                 <div class="screen" id="screen">
+                  <!-- cave background (GDD §9.1): only behind the resting
+                       home/night screens, so the mood-color gradient still
+                       carries the accessibility signal everywhere else -->
+                  <div class="cave-bg sprite-slot" id="caveBg" data-sprite="bg_cave_home.png" hidden aria-hidden="true"></div>
                   <div class="glass"></div>
                   <div class="fx" id="fx" aria-hidden="true"></div>
                   <div class="status-row">
                     <span class="signal" id="signal" title="Rex-Net (simulated SIM)">
-                      <i></i><i></i><i></i><i></i>
+                      <span class="sprite-slot signal-icon" data-sprite="ui_signal_rexnet_full.png"></span>
                     </span>
                     <span class="clock" id="clock">07:57</span>
                     <span class="mini-stars"><span class="star">⭐</span><b id="miniStars">0</b><b id="starCount" class="sr-only">0</b></span>
@@ -57,6 +61,9 @@
                       </div>
                       <div class="accessory-badge" id="accessoryBadge" hidden>
                         <span class="sprite-slot accessory-icon" data-sprite="rex_kid_hat_party.png"></span>
+                      </div>
+                      <div class="listen-badge" id="listenBadge" hidden>
+                        <span class="sprite-slot listen-icon" data-sprite="ui_listening_ear.png"></span>
                       </div>
                     </div>
                   </div>
