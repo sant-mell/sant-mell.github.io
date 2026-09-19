@@ -138,8 +138,10 @@ function paintSprite(el, file, isFallback) {
 const FRAME_SETS = {
   "rex_kid_brush.png":   { frames: ["rex_kid_brush.png", "rex_kid_brush2.png",
                                     "rex_kid_brush3.png", "rex_kid_brush4.png"], ms: 360 },
-  "rex_kid_celebrate.png": { frames: ["rex_kid_celebrate.png", "rex_kid_cheer.png"], ms: 420 },
-  "rex_kid_proud.png":     { frames: ["rex_kid_proud.png", "rex_kid_cheer.png"], ms: 420 },
+  // No frame set for the celebrate/proud poses on purpose: they're the only
+  // art holding the reward star, and the cheer pose has none, so alternating
+  // them yanked the star away at the exact moment the child earned it. The
+  // celebration is carried by the confetti burst and the CSS bounce instead.
   "rex_kid_listen.png":    { frames: ["rex_kid_listen.png", "rex_kid_listen2.png"], ms: 480 },
   "rex_kid_wave.png":      { frames: ["rex_kid_wave.png", "rex_kid_wave2.png"], ms: 400 },
   "rex_kid_idle_hc.png":   { frames: ["rex_kid_idle_hc.png", "rex_kid_idle_hc2.png",
@@ -515,10 +517,11 @@ function wire() {
    (wave / hop / walk / run) or a quick CSS fidget (look around, blink).
    Alternating the two kinds is what keeps him from looking like a loop. */
 const POSE_FIDGETS = [
-  { sprite: "rex_kid_wave.png", ms: 1100 },
-  { sprite: "rex_kid_hop.png",  ms: 700 },
-  { sprite: "rex_kid_walk.png", ms: 900 },
-  { sprite: "rex_kid_run.png",  ms: 800 },
+  { sprite: "rex_kid_wave.png",  ms: 1100 },
+  { sprite: "rex_kid_hop.png",   ms: 700 },
+  { sprite: "rex_kid_walk.png",  ms: 900 },
+  { sprite: "rex_kid_run.png",   ms: 800 },
+  { sprite: "rex_kid_cheer.png", ms: 900 },   // no star in this pose, so idle-only
 ];
 const CSS_FIDGETS = ["fidget-look", "fidget-blink", "fidget-hop"];
 const FIDGET_MS = { "fidget-look": 600, "fidget-blink": 500, "fidget-hop": 500 };
