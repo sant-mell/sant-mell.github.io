@@ -11,8 +11,11 @@ Rex poses (green):
 - `rex_kid_idle.png` — home / steps / waiting
 - `rex_kid_talking.png` — alerts, heads-up, AI helper (expressive bust)
 - `rex_kid_celebrate.png` — routine complete (arms up + star)
-- `rex_kid_proud.png` — big celebration (confetti + thumbs up)
-- `rex_kid_hat_party.png` — party-hat accessory
+- `rex_kid_proud.png` — bigger celebration when a routine win also crosses a
+  life-stage star milestone (shown instead of `rex_kid_celebrate.png` right
+  before the level-up screen)
+- `rex_kid_hat_party.png` — accessory-unlocked badge shown at Rex's feet on
+  the level-up screen (GDD §7: cosmetics unlock at star milestones)
 - `rex_evolve.png` — life-stage evolution (spin ball)
 
 High-contrast:

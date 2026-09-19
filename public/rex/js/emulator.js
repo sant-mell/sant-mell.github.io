@@ -19,7 +19,7 @@ const api = async (path, body) => {
 };
 
 let anyMissing = false;
-const SVER = "3";   // bump to force browsers to refetch updated sprite PNGs
+const SVER = "4";   // bump to force browsers to refetch updated sprite PNGs
 
 /* ===================================================================
    SENSORY CUES (GDD §3.3, §5.3): sound (WebAudio, no asset files) +
@@ -156,6 +156,13 @@ function render(s) {
   const showBubble = s.need && ["alert", "headsup", "task", "timer"].includes(s.screen);
   needBubble.hidden = !showBubble;
   if (showBubble) paintSprite(needBubble.querySelector(".need-icon"), s.need.icon);
+
+  // accessory reward preview (GDD §7): flashes at Rex's feet on level-up
+  const accBadge = $("#accessoryBadge");
+  if (accBadge) {
+    accBadge.hidden = !s.accessory;
+    if (s.accessory) paintSprite(accBadge.querySelector(".accessory-icon"), s.accessory);
+  }
 
   // message / step text
   const say = $("#say");
@@ -308,7 +315,25 @@ function mockSTT() {   // no mic / permission denied: simulate a spoken phrase
 function onHeard(text) {
   const say = $("#say");
   if (say) say.textContent = "🗣️ " + text;     // show the transcript briefly
-  setTimeout(() => api("/api/help_voice", { text }).then(render), 900);
+  setTimeout(() => api("/api/help_voice", { text }).then((s) => { render(s); speakReply(s); }), 900);
+}
+
+/* Speak Rex's reply out loud (Web Speech API) and hold the talking pose
+   for as long as the utterance actually takes, so mouth/voice line up. */
+function speakReply(s) {
+  const line = s.message; if (!line) return;
+  const text = line[s.profile.language] || line.en;
+  if (!text || !("speechSynthesis" in window)) return;
+  try {
+    window.speechSynthesis.cancel();   // don't stack replies
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = s.profile.language === "es" ? "es-MX" : "en-US";
+    u.rate = 0.95; u.pitch = 1.15;   // a touch higher/slower: friendly, easy to follow
+    const device = $("#device");
+    device.classList.add("rex-talking");
+    u.onend = u.onerror = () => device.classList.remove("rex-talking");
+    window.speechSynthesis.speak(u);
+  } catch (e) {}
 }
 
 function wire() {
@@ -354,6 +379,25 @@ function wire() {
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeDrawer(); });
 }
 
+/* ------------------------------------------ idle liveliness ---- */
+/* Randomly alternates small fidgets (look around / blink / hop) on top of
+   whatever mood animation is already playing, every 3-7s, so Rex reads as
+   alive even when nothing is happening. Skipped while asleep or mid-speech. */
+const FIDGETS = ["fidget-look", "fidget-blink", "fidget-hop"];
+const FIDGET_MS = { "fidget-look": 600, "fidget-blink": 500, "fidget-hop": 500 };
+function scheduleFidget() {
+  const delay = 3000 + Math.random() * 4000;
+  setTimeout(() => {
+    const device = $("#device"), rex = $("#rexSprite");
+    if (device && rex && device.dataset.mood !== "sleeping" && !device.classList.contains("rex-talking")) {
+      const cls = FIDGETS[Math.floor(Math.random() * FIDGETS.length)];
+      rex.classList.add(cls);
+      setTimeout(() => rex.classList.remove(cls), FIDGET_MS[cls]);
+    }
+    scheduleFidget();
+  }, delay);
+}
+
 /* ------------------------------------------------- main loop ---- */
 async function poll() {
   try { render(await api("/api/state")); } catch (_) { /* server restarting */ }
@@ -361,3 +405,4 @@ async function poll() {
 wire();
 poll();
 setInterval(poll, 500);
+scheduleFidget();

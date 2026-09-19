@@ -219,7 +219,9 @@
   Engine.prototype.voiceHelp = function (text) {
     this._heard = text || ""; const t = (text || "").toLowerCase(); let reply;
     if (!this.online) reply = { en: "No signal, but let's look together!", es: "Sin señal, ¡pero miremos juntos!" };
+    else if (/(mam[aá]|pap[aá]s?|adulto|cuidador)/.test(t)) { this.callGrownup(); return; }
     else if (/(triste|mal|lloro|miedo|dolor|enoj)/.test(t)) { this._notify("Rex detectó tristeza (el niño pidió ayuda por voz)", "high"); reply = { en: "I'm here. Breathe with me. Call a grown-up?", es: "Aquí estoy. Respira conmigo. ¿Llamo a un adulto?" }; }
+    else if (/d[ií]a/.test(t)) reply = this._daySummary();
     else if (/(dient|cepill)/.test(t)) reply = { en: "Small circles, up and down. Ready?", es: "Círculos pequeños, arriba y abajo. ¿Listo?" };
     else if (/(pelo|cabello|bañ|duch|lavar)/.test(t)) reply = { en: "Wet, soap, rinse. Shall I show you?", es: "Moja, jabón y enjuaga. ¿Te muestro?" };
     else if (t.includes("no quiero")) reply = { en: "That's okay. Fast song or slow song?", es: "Está bien. ¿Canción rápida o lenta?" };
@@ -235,6 +237,16 @@
   Engine.prototype._nextName = function (lang) { lang = lang || "en"; const v = this.vnow() % 86400; let best = null, bt = null;
     this._enabled().forEach((r) => { if (this.status[r.id] === "done") return; let t = hhmm(r.schedule.time); t = t >= v ? t : t + 86400; if (bt == null || t < bt) { bt = t; best = r; } });
     return best ? best.name[lang] : "-"; };
+  Engine.prototype._daySummary = function () {
+    const routines = this._enabled();
+    const done = routines.filter((r) => this.status[r.id] === "done");
+    const total = routines.length;
+    if (!done.length) return { en: "We haven't done any routines yet today. Start one?", es: "Aún no hemos hecho rutinas hoy. ¿Empezamos una?" };
+    const namesEs = done.slice(0, 3).map((r) => r.name.es).join(", ");
+    const namesEn = done.slice(0, 3).map((r) => r.name.en).join(", ");
+    if (done.length === total) return { en: `Great day! You finished all ${total}: ${namesEn}. ${this.stars} stars!`, es: `¡Gran día! Hiciste las ${total} rutinas: ${namesEs}. ¡${this.stars} estrellas!` };
+    return { en: `Today you did ${done.length} of ${total}: ${namesEn}. Nice job!`, es: `Hoy hiciste ${done.length} de ${total}: ${namesEs}. ¡Bien hecho!` };
+  };
 
   // ----- parent CRUD -----
   Engine.prototype._buildRoutine = function (p, rid) {
@@ -279,11 +291,20 @@
   Engine.prototype.selectSprite = function () {
     if (this.profile.high_contrast) return "rex_kid_idle_hc.png";
     if (["alert", "task", "timer"].includes(this.screen) && this.custom_sprites[this.active]) return this.custom_sprites[this.active];
+    // Two celebration intensities (GDD §5.6): a plain win uses the everyday
+    // pose; a win that also crosses a life-stage milestone gets the bigger
+    // stomp-dance "proud" sprite right before the level-up screen.
+    if (this.screen === "celebrate") return this._levelup ? "rex_kid_proud.png" : "rex_kid_celebrate.png";
     const m = { home:"rex_kid_idle.png", night:"rex_kid_idle.png", snoozed:"rex_kid_idle.png",
       headsup:"rex_kid_talking.png", alert:"rex_kid_talking.png", task:"rex_kid_idle.png", timer:"rex_kid_idle.png",
-      celebrate:"rex_kid_celebrate.png", levelup:"rex_evolve.png", help_listening:"rex_kid_talking.png",
+      levelup:"rex_evolve.png", help_listening:"rex_kid_talking.png",
       help_thinking:"rex_kid_talking.png", help_reply:"rex_kid_talking.png" };
     return m[this.screen] || "rex_kid_idle.png";
+  };
+  // Cosmetic reward preview for the level-up screen (GDD §7: accessories
+  // unlock at star milestones — the same thresholds as the life stages).
+  Engine.prototype.unlockedAccessory = function () {
+    return (this.screen === "levelup" && this._levelup) ? "rex_kid_hat_party.png" : null;
   };
   Engine.prototype._buttons = function () {
     const prof = this.profile, allowed = prof.buttons;
@@ -335,7 +356,7 @@
       screen: this.screen, mood: MOOD[this.screen] || "happy", sprite: this.selectSprite(),
       need: need ? Object.assign({ key: needKey }, need) : null, needMeters: meters,
       message: this.message, stepText, step: stepInfo, timer, buttons: this._buttons(), lastPress: this.last_press,
-      stars: this.stars, stage: stageFor(this.stars), levelup: this._levelup,
+      stars: this.stars, stage: stageFor(this.stars), levelup: this._levelup, accessory: this.unlockedAccessory(),
       clock: { time: toHHMM(v), speed: this.speed }, profile: Object.assign({ key: this.profile_key }, this.profile),
       ai: { enabled: this.ai_enabled, online: this.online }, activeRoutine: r ? r.name : null,
       parentAlerts: this.parent_alerts, timeline,

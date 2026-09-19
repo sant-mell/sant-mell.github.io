@@ -50,10 +50,15 @@
                   </div>
 
                   <div class="rex-stage">
-                    <div class="need-bubble" id="needBubble" hidden>
-                      <span class="sprite-slot need-icon" data-sprite="icon_need_tummy.png"></span>
+                    <div class="rex-anchor">
+                      <div class="sprite-slot rex" id="rexSprite" data-sprite="rex_kid_idle.png"></div>
+                      <div class="need-bubble" id="needBubble" hidden>
+                        <span class="sprite-slot need-icon" data-sprite="icon_need_tummy.png"></span>
+                      </div>
+                      <div class="accessory-badge" id="accessoryBadge" hidden>
+                        <span class="sprite-slot accessory-icon" data-sprite="rex_kid_hat_party.png"></span>
+                      </div>
                     </div>
-                    <div class="sprite-slot rex" id="rexSprite" data-sprite="rex_kid_home_idle.png"></div>
                   </div>
 
                   <div class="say" id="say"></div>
@@ -101,7 +106,7 @@
         </div>
       </div>
 
-      <p class="hint"><kbd>←</kbd> Ayuda · <kbd>Espacio</kbd> Sí · <kbd>→</kbd> Después · <b>arrastra el fondo para girar</b></p>
+      <p class="hint"><kbd>←</kbd> Ayuda · <kbd>Espacio</kbd> Sí · <kbd>→</kbd> Después</p>
       <a class="model3d-link" href="modelo3d/rex-routine-buddy.html" target="_blank" rel="noopener">🧊 Ver modelo 3D (Prototipo B)</a>
     </div>
 
@@ -165,58 +170,8 @@
     <code>documentation/rex_sprite_prompts.txt</code>).
   </div>
 
-  <script src="js/local-engine.js"></script>
   <script src="js/emulator.js"></script>
-  <!-- Swipe/drag the BACKGROUND to rotate the 3D device (with inertia).
-       Buttons, screen and drawer are untouched so the toy stays playable. -->
-  <script>
-    (function () {
-      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      var device = document.getElementById('device');
-      if (!device) return;
-      var rotY = -6, rotX = 4, restX = 4, velY = 0, dragging = false, lastX = 0, lastY = 0, raf = null;
-      function render() {
-        device.style.setProperty('--ry', rotY.toFixed(2) + 'deg');
-        device.style.setProperty('--rx', rotX.toFixed(2) + 'deg');
-      }
-      render();
-      if (reduce) return;                       // keep a static 3/4 angle, no motion
-      device.style.transition = 'none';         // we animate rotation manually via rAF
-
-      function blocked(t) { return t && t.closest && t.closest('#device, #drawer, #backdrop, .gear'); }
-      var interacted = false;
-      function down(e) {
-        if (blocked(e.target)) return;          // rotate only when swiping the background
-        dragging = true; interacted = true; velY = 0; lastX = e.clientX; lastY = e.clientY;
-        document.body.style.cursor = 'grabbing';
-      }
-      function move(e) {
-        if (!dragging) return;
-        var dx = e.clientX - lastX, dy = e.clientY - lastY;
-        lastX = e.clientX; lastY = e.clientY;
-        rotY += dx * 0.5; velY = dx * 0.5;
-        rotX = Math.max(-30, Math.min(30, rotX - dy * 0.3));
-        if (!raf) raf = requestAnimationFrame(function () { render(); raf = null; });
-        if (e.cancelable) e.preventDefault();
-      }
-      function up() {
-        if (!dragging) return;
-        dragging = false; document.body.style.cursor = '';
-        (function inertia() {                   // free spin-down on Y, tidy the vertical tilt
-          rotY += velY; velY *= 0.94;
-          rotX += (restX - rotX) * 0.05;
-          render();
-          if (Math.abs(velY) > 0.06 || Math.abs(rotX - restX) > 0.3) requestAnimationFrame(inertia);
-        })();
-      }
-      window.addEventListener('pointerdown', down, { passive: true });
-      window.addEventListener('pointermove', move, { passive: false });
-      window.addEventListener('pointerup', up, { passive: true });
-      window.addEventListener('pointercancel', up, { passive: true });
-      // NOTE: no continuous idle sway — a constantly-transforming device makes
-      // the buttons a moving hit-target. The device rests statically; the grab
-      // cursor on the background is the affordance to spin it.
-    })();
-  </script>
+  <!-- Prototipo A = flat emulator (no 3D rotation). A still device means the
+       buttons are never a moving hit-target, so clicks are always reliable. -->
 </body>
 </html>
