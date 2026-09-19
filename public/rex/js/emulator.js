@@ -98,8 +98,11 @@ function levelupBanner(text) {
 
 let prevScreen = null;   // for one-shot cue transitions
 
-/* Resolve a sprite slot: try the PNG, else show a dashed labeled box. */
-function paintSprite(el, file) {
+/* Resolve a sprite slot: try the PNG, fall back to Rex's idle pose, and only
+   show the dashed labeled box if even that is missing. A routine step whose
+   art hasn't been drawn yet should still show a dinosaur, not a broken box. */
+const SPRITE_FALLBACK = "rex_kid_idle.png";
+function paintSprite(el, file, isFallback) {
   if (!file) { el.hidden = true; return; }
   el.hidden = false;
   if (el.dataset.loaded === file) return;         // already correct
@@ -113,6 +116,10 @@ function paintSprite(el, file) {
     el.dataset.loaded = file;
   };
   img.onerror = () => {
+    if (!isFallback && el.classList.contains("rex") && file !== SPRITE_FALLBACK) {
+      paintSprite(el, SPRITE_FALLBACK, true);     // missing pose: still a dino
+      return;
+    }
     el.classList.add("placeholder");
     el.style.backgroundImage = "none";
     el.textContent = file;
@@ -122,6 +129,51 @@ function paintSprite(el, file) {
   };
   img.src = url;
 }
+
+/* =====================================================================
+   FRAME ANIMATION (GDD §5: Rex is never a still picture)
+   The art sheets ship several drawn frames per action, so any pose with a
+   frame set below is played as a loop instead of a single static PNG.
+   ===================================================================== */
+const FRAME_SETS = {
+  "rex_kid_brush.png":   { frames: ["rex_kid_brush.png", "rex_kid_brush2.png",
+                                    "rex_kid_brush3.png", "rex_kid_brush4.png"], ms: 360 },
+  "rex_kid_celebrate.png": { frames: ["rex_kid_celebrate.png", "rex_kid_cheer.png"], ms: 420 },
+  "rex_kid_proud.png":     { frames: ["rex_kid_proud.png", "rex_kid_cheer.png"], ms: 420 },
+  "rex_kid_listen.png":    { frames: ["rex_kid_listen.png", "rex_kid_listen2.png"], ms: 480 },
+  "rex_kid_wave.png":      { frames: ["rex_kid_wave.png", "rex_kid_wave2.png"], ms: 400 },
+  "rex_kid_idle_hc.png":   { frames: ["rex_kid_idle_hc.png", "rex_kid_idle_hc2.png",
+                                      "rex_kid_idle_hc3.png", "rex_kid_idle_hc4.png"], ms: 620 },
+};
+
+let animBase = null, animSet = null, animIdx = 0, animNext = 0, fidgetUntil = 0;
+
+/* Everything that draws Rex goes through here so the animator stays in
+   charge of the slot; render() must never paint him directly. */
+function setRexSprite(base) {
+  if (performance.now() < fidgetUntil) return;    // a fidget is playing
+  if (base === animBase) return;
+  animBase = base;
+  animSet = FRAME_SETS[base] || null;
+  animIdx = 0;
+  animNext = performance.now() + (animSet ? animSet.ms : 0);
+  paintSprite($("#rexSprite"), animSet ? animSet.frames[0] : base);
+}
+
+function animTick() {
+  const now = performance.now();
+  if (now < fidgetUntil) return;
+  if (fidgetUntil && now >= fidgetUntil) {         // fidget just ended
+    fidgetUntil = 0;
+    paintSprite($("#rexSprite"), animSet ? animSet.frames[animIdx] : animBase);
+    return;
+  }
+  if (!animSet || now < animNext) return;
+  animIdx = (animIdx + 1) % animSet.frames.length;
+  animNext = now + animSet.ms;
+  paintSprite($("#rexSprite"), animSet.frames[animIdx]);
+}
+setInterval(animTick, 90);
 
 /* -------------------------------------------------- rendering --- */
 function render(s) {
@@ -151,7 +203,7 @@ function render(s) {
   $("#signal").classList.toggle("off", !s.ai.online);
 
   // Rex + need bubble
-  paintSprite($("#rexSprite"), s.sprite);
+  setRexSprite(s.sprite);
   const needBubble = $("#needBubble");
   const showBubble = s.need && ["alert", "headsup", "task", "timer"].includes(s.screen);
   needBubble.hidden = !showBubble;
@@ -168,6 +220,11 @@ function render(s) {
   const say = $("#say");
   const line = s.message || s.stepText;
   say.textContent = line ? (line[s.profile.language] || line.en) : "";
+
+  // read it out loud: the child this is built for may not read yet, so every
+  // new prompt/step is spoken once (deduped by lastSpoken inside speakReply).
+  if (line && voiceOn && SPOKEN_SCREENS.includes(s.screen))
+    speakReply({ message: line, profile: s.profile, screen: s.screen });
 
   // progress dots + timer
   const progress = $("#progress");
@@ -280,9 +337,21 @@ function syncControls(s) {
 }
 
 /* ---------------------------------------------------- wiring ---- */
+/* Browsers only allow speech after a real user gesture; the first button
+   press warms the synth up with an empty utterance so the first real line
+   isn't swallowed. */
+let speechUnlocked = false;
+function unlockSpeech() {
+  if (speechUnlocked || !synth) return;
+  speechUnlocked = true;
+  try { const u = new SpeechSynthesisUtterance(" "); u.volume = 0; synth.speak(u); } catch (e) {}
+  loadVoices();
+}
+
 /* press a button; if it opens the listening screen, start voice capture */
 function doPress(button) {
   audio();   // unlock WebAudio on a user gesture
+  unlockSpeech();
   return api("/api/press", { button }).then((s) => {
     render(s);
     if (button === "help" && s.screen === "help_listening") startSTT();
@@ -318,22 +387,74 @@ function onHeard(text) {
   setTimeout(() => api("/api/help_voice", { text }).then((s) => { render(s); speakReply(s); }), 900);
 }
 
-/* Speak Rex's reply out loud (Web Speech API) and hold the talking pose
-   for as long as the utterance actually takes, so mouth/voice line up. */
-function speakReply(s) {
-  const line = s.message; if (!line) return;
-  const text = line[s.profile.language] || line.en;
-  if (!text || !("speechSynthesis" in window)) return;
+/* ------------------------------------------------ text-to-speech ---
+   Rex reads his line out loud. Children who can't read yet are the whole
+   point of the device, so this is a feature, not a nicety. Chrome needs
+   three workarounds: voices load async, an utterance that isn't referenced
+   somewhere gets garbage-collected mid-sentence, and a long utterance gets
+   silently paused unless it's nudged. */
+const synth = window.speechSynthesis || null;
+const SPOKEN_SCREENS = ["headsup", "alert", "task", "timer", "celebrate", "levelup",
+                        "help_reply", "help_listening", "snoozed", "night"];
+let voiceOn = localStorage.getItem("rexVoice") !== "off";
+let voices = [];
+let liveUtterance = null;        // GC guard: Chrome drops unreferenced utterances
+let speakWatchdog = null;
+let lastSpoken = "";
+
+function loadVoices() { try { voices = synth ? synth.getVoices() || [] : []; } catch (e) { voices = []; } }
+if (synth) {
+  loadVoices();
+  synth.addEventListener ? synth.addEventListener("voiceschanged", loadVoices)
+                         : (synth.onvoiceschanged = loadVoices);
+}
+
+function pickVoice(lang) {
+  if (!voices.length) loadVoices();
+  const want = lang === "es" ? "es" : "en";
+  return voices.find((v) => v.lang && v.lang.toLowerCase().startsWith(want + "-"))
+      || voices.find((v) => v.lang && v.lang.toLowerCase().startsWith(want))
+      || null;
+}
+
+function stopTalking() {
+  clearTimeout(speakWatchdog); speakWatchdog = null;
+  const device = $("#device"); if (device) device.classList.remove("rex-talking");
+}
+
+function speak(text, lang, talkPose) {
+  if (!synth || !text) return;
   try {
-    window.speechSynthesis.cancel();   // don't stack replies
+    if (synth.speaking || synth.pending) synth.cancel();
     const u = new SpeechSynthesisUtterance(text);
-    u.lang = s.profile.language === "es" ? "es-MX" : "en-US";
-    u.rate = 0.95; u.pitch = 1.15;   // a touch higher/slower: friendly, easy to follow
+    liveUtterance = u;
+    const v = pickVoice(lang);
+    if (v) u.voice = v;
+    u.lang = lang === "es" ? "es-MX" : "en-US";
+    u.rate = 0.95; u.pitch = 1.15;   // slightly higher and slower: friendly, easy to follow
     const device = $("#device");
-    device.classList.add("rex-talking");
-    u.onend = u.onerror = () => device.classList.remove("rex-talking");
-    window.speechSynthesis.speak(u);
-  } catch (e) {}
+    // Only force the talking pose when Rex is actually holding a conversation;
+    // during a routine step his own step art must stay on screen.
+    if (device && talkPose) device.classList.add("rex-talking");
+    u.onend = u.onerror = stopTalking;
+    // Never let a failed/ignored utterance freeze Rex in the talking pose:
+    // fall back on a rough reading-time estimate.
+    clearTimeout(speakWatchdog);
+    speakWatchdog = setTimeout(stopTalking, 1200 + text.length * 90);
+    // Chrome pauses long utterances unless nudged right after speak().
+    synth.speak(u);
+    setTimeout(() => { try { if (synth.paused) synth.resume(); } catch (e) {} }, 120);
+  } catch (e) { stopTalking(); }
+}
+
+/* Speak whatever Rex is currently saying, once per new line. */
+function speakReply(s) {
+  const line = s && s.message; if (!line) return;
+  const lang = (s.profile && s.profile.language) || "es";
+  const text = line[lang] || line.en;
+  if (!text || text === lastSpoken) return;
+  lastSpoken = text;
+  speak(text, lang, String(s.screen || "").indexOf("help_") === 0);
 }
 
 function wire() {
@@ -356,6 +477,16 @@ function wire() {
   $("#jumpBtn").addEventListener("click", () => api("/api/clock", { jump: true }).then(render));
   $("#aiToggle").addEventListener("change", (e) => api("/api/ai", { enabled: e.target.checked }).then(render));
   $("#onlineToggle").addEventListener("change", (e) => api("/api/ai", { online: e.target.checked }).then(render));
+  const vt = $("#voiceToggle");
+  if (vt) {
+    vt.checked = voiceOn;
+    vt.addEventListener("change", (e) => {
+      voiceOn = e.target.checked;
+      localStorage.setItem("rexVoice", voiceOn ? "on" : "off");
+      if (!voiceOn) { try { synth && synth.cancel(); } catch (err) {} stopTalking(); }
+      else unlockSpeech();
+    });
+  }
   $("#resetBtn").addEventListener("click", () => api("/api/reset", {}).then(render));
 
   // link to the full parent dashboard (add / manage tasks) — injected so it
@@ -380,17 +511,33 @@ function wire() {
 }
 
 /* ------------------------------------------ idle liveliness ---- */
-/* Randomly alternates small fidgets (look around / blink / hop) on top of
-   whatever mood animation is already playing, every 3-7s, so Rex reads as
-   alive even when nothing is happening. Skipped while asleep or mid-speech. */
-const FIDGETS = ["fidget-look", "fidget-blink", "fidget-hop"];
+/* Every 3-7s an idle Rex does something: a drawn pose from the sheets
+   (wave / hop / walk / run) or a quick CSS fidget (look around, blink).
+   Alternating the two kinds is what keeps him from looking like a loop. */
+const POSE_FIDGETS = [
+  { sprite: "rex_kid_wave.png", ms: 1100 },
+  { sprite: "rex_kid_hop.png",  ms: 700 },
+  { sprite: "rex_kid_walk.png", ms: 900 },
+  { sprite: "rex_kid_run.png",  ms: 800 },
+];
+const CSS_FIDGETS = ["fidget-look", "fidget-blink", "fidget-hop"];
 const FIDGET_MS = { "fidget-look": 600, "fidget-blink": 500, "fidget-hop": 500 };
+
 function scheduleFidget() {
   const delay = 3000 + Math.random() * 4000;
   setTimeout(() => {
     const device = $("#device"), rex = $("#rexSprite");
-    if (device && rex && device.dataset.mood !== "sleeping" && !device.classList.contains("rex-talking")) {
-      const cls = FIDGETS[Math.floor(Math.random() * FIDGETS.length)];
+    const calm = device && rex && device.dataset.mood !== "sleeping"
+                 && !device.classList.contains("rex-talking");
+    // only wander off-pose when Rex has nothing to do; mid-routine he keeps
+    // showing the step's own art
+    const idle = calm && (device.dataset.mood === "happy" || device.dataset.mood === "waiting");
+    if (idle && Math.random() < 0.6) {
+      const f = POSE_FIDGETS[Math.floor(Math.random() * POSE_FIDGETS.length)];
+      fidgetUntil = performance.now() + f.ms;
+      paintSprite(rex, f.sprite);
+    } else if (calm) {
+      const cls = CSS_FIDGETS[Math.floor(Math.random() * CSS_FIDGETS.length)];
       rex.classList.add(cls);
       setTimeout(() => rex.classList.remove(cls), FIDGET_MS[cls]);
     }

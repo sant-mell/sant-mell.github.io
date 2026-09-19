@@ -51,7 +51,7 @@
         step("s1","pajamas","rex_kid_pajamas.png","Put on pajamas","Ponte pijama"),
         step("s2","brush","rex_kid_brush.png","Brush teeth","Lava dientes"),
         step("s3","bathroom","rex_kid_idle.png","Bathroom","Al baño"),
-        step("s4","lights","rex_kid_lightsoff.png","Lights off","Apaga la luz")] },
+        step("s4","lights","rex_kid_sleep.png","Lights off","Apaga la luz")] },
     { id: "medicine", name: { en: "Medicine", es: "Medicina" }, need: "health",
       schedule: { time: "13:00" }, heads_up_min: 0, confirmation: "parent",
       snooze: { interval_s: 300, max: 5, notify_parent: true }, reward_stars: 1, enabled: false, steps: [
@@ -295,10 +295,16 @@
     // pose; a win that also crosses a life-stage milestone gets the bigger
     // stomp-dance "proud" sprite right before the level-up screen.
     if (this.screen === "celebrate") return this._levelup ? "rex_kid_proud.png" : "rex_kid_celebrate.png";
-    const m = { home:"rex_kid_idle.png", night:"rex_kid_idle.png", snoozed:"rex_kid_idle.png",
+    // Mid-routine Rex does the step himself, using that step's own art.
+    if (this.screen === "task" || this.screen === "timer") {
+      const r = this._routine();
+      if (r && this.step_index < r.steps.length && r.steps[this.step_index].sprite)
+        return r.steps[this.step_index].sprite;
+    }
+    const m = { home:"rex_kid_idle.png", night:"rex_kid_sleep.png", snoozed:"rex_kid_idle.png",
       headsup:"rex_kid_talking.png", alert:"rex_kid_talking.png", task:"rex_kid_idle.png", timer:"rex_kid_idle.png",
-      levelup:"rex_evolve.png", help_listening:"rex_kid_talking.png",
-      help_thinking:"rex_kid_talking.png", help_reply:"rex_kid_talking.png" };
+      levelup:"rex_evolve.png", help_listening:"rex_kid_listen.png",
+      help_thinking:"rex_kid_listen.png", help_reply:"rex_kid_talking.png" };
     return m[this.screen] || "rex_kid_idle.png";
   };
   // Cosmetic reward preview for the level-up screen (GDD §7: accessories
