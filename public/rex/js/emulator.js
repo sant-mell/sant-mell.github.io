@@ -280,15 +280,20 @@ function render(s) {
     if (s.accessory) paintSprite(accBadge.querySelector(".accessory-icon"), s.accessory);
   }
 
-  // message / step text
+  // message / step text — but not while onHeard() is holding the "what Rex
+  // heard" transcript on screen: the poll loop runs every 500ms regardless,
+  // and would otherwise stomp that text with the server's current message
+  // well before there was time to read it.
   const say = $("#say");
-  const line = s.message || s.stepText;
-  say.textContent = line ? (line[s.profile.language] || line.en) : "";
+  if (performance.now() >= transcriptUntil) {
+    const line = s.message || s.stepText;
+    say.textContent = line ? (line[s.profile.language] || line.en) : "";
 
-  // read it out loud: the child this is built for may not read yet, so every
-  // new prompt/step is spoken once (deduped by lastSpoken inside speakReply).
-  if (line && voiceOn && SPOKEN_SCREENS.includes(s.screen))
-    speakReply({ message: line, profile: s.profile, screen: s.screen });
+    // read it out loud: the child this is built for may not read yet, so
+    // every new prompt/step is spoken once (deduped by lastSpoken below).
+    if (line && voiceOn && SPOKEN_SCREENS.includes(s.screen))
+      speakReply({ message: line, profile: s.profile, screen: s.screen });
+  }
 
   // progress dots + timer
   const progress = $("#progress");
@@ -425,6 +430,7 @@ function doPress(button) {
 
 /* ---- Speech-to-text via the native Web Speech API (mock fallback) ---- */
 let recognizing = false;
+let transcriptUntil = 0;   // performance.now() deadline; see render()'s say-text guard
 function startSTT() {
   if (recognizing) return;
   const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -447,8 +453,15 @@ function mockSTT() {   // no mic / permission denied: simulate a spoken phrase
 }
 function onHeard(text) {
   const say = $("#say");
-  if (say) say.textContent = "🗣️ " + text;     // show the transcript briefly
-  setTimeout(() => api("/api/help_voice", { text }).then((s) => { render(s); speakReply(s); }), 900);
+  // Give the caregiver/child time to actually read the question before it's
+  // replaced by Rex's reply — scales with length so a longer phrase isn't
+  // cut off, with a floor long enough for the shortest ones ("no quiero").
+  // transcriptUntil also tells render()'s poll-driven update (every 500ms)
+  // to leave this text alone until the deadline passes.
+  const readMs = Math.max(2200, text.length * 110);
+  transcriptUntil = performance.now() + readMs;
+  if (say) say.textContent = "🗣️ " + text;     // show what Rex heard
+  setTimeout(() => api("/api/help_voice", { text }).then((s) => { render(s); speakReply(s); }), readMs);
 }
 
 /* ------------------------------------------------ text-to-speech ---
