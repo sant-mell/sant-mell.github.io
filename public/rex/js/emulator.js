@@ -53,18 +53,51 @@ const splash = (w = 0) => noise(0.34, 0.18, w);
 const chime = (f, w = 0) => { tone(f, 0.18, "sine", 0.15, w); tone(f * 1.5, 0.15, "sine", 0.09, w + 0.02); };
 
 // per-need cue: sound + which shake pattern (GDD §5.3 knock/stomp rhythms)
+/* Each need has its own stomp rhythm (GDD §5.3). `buzz` plays that same
+   rhythm on the phone's real vibration motor as [on, off, on, ...] ms, so a
+   child holding the device feels the reminder even without looking or
+   hearing it — on the real hardware this is the vibration motor. */
 const CUE = {
-  tummy:   { sound: () => { stomp(0); stomp(0.2); }, shake: "shake2" },
-  sparkle: { sound: () => { chime(720, 0); chime(820, 0.12); chime(940, 0.24); }, shake: "shake3" },
-  fresh:   { sound: () => { splash(0); }, shake: "shakeLong" },
-  sleepy:  { sound: () => { tone(300, 0.5, "sine", 0.13, 0); }, shake: "shakeLong" },
-  health:  { sound: () => { tone(520, 0.28, "sine", 0.13, 0); tone(520, 0.28, "sine", 0.13, 0.32); }, shake: "shake2" },
-  custom:  { sound: () => { stomp(0); stomp(0.2); }, shake: "shake2" },
+  tummy:   { sound: () => { stomp(0); stomp(0.2); }, shake: "shake2",
+             buzz: [130, 90, 130] },                                  // stomp-stomp
+  sparkle: { sound: () => { chime(720, 0); chime(820, 0.12); chime(940, 0.24); }, shake: "shake3",
+             buzz: [90, 70, 90, 70, 90] },                            // stomp-stomp-stomp
+  fresh:   { sound: () => { splash(0); }, shake: "shakeLong",
+             buzz: [420] },                                           // splaaash
+  sleepy:  { sound: () => { tone(300, 0.5, "sine", 0.13, 0); }, shake: "shakeLong",
+             buzz: [110, 300, 110] },                                 // stomp... stomp...
+  health:  { sound: () => { tone(520, 0.28, "sine", 0.13, 0); tone(520, 0.28, "sine", 0.13, 0.32); }, shake: "shake2",
+             buzz: [220, 120, 220] },                                 // stomp-stomp (long)
+  custom:  { sound: () => { stomp(0); stomp(0.2); }, shake: "shake2",
+             buzz: [130, 90, 130] },
 };
 const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* Real haptics. Browsers ignore this until the page has been interacted with,
+   and iOS Safari has no Vibration API at all, so it must never be the only
+   channel — sound and the on-screen shake always play too. */
+let buzzOn = localStorage.getItem("rexBuzz") !== "off";
+let userTapped = false;
+["pointerdown", "keydown", "touchstart"].forEach((ev) =>
+  addEventListener(ev, () => { userTapped = true; }, { once: true, passive: true }));
+
+function buzz(pattern) {
+  if (!buzzOn || !pattern) return;
+  if (!("vibrate" in navigator)) return;
+  // Browsers reject (and log) vibration before the page has been tapped.
+  if (!userTapped) return;
+  // Low-stim profile is a request for gentler input, so halve the durations.
+  const p = document.body.dataset.profile === "low_stim"
+    ? pattern.map((ms, i) => (i % 2 === 0 ? Math.round(ms * 0.5) : ms))
+    : pattern;
+  try { navigator.vibrate(p); } catch (e) {}
+}
+
 function fireCue(needKey) {
   const c = CUE[needKey] || CUE.custom;
   try { c.sound(); } catch (e) {}
+  buzz(c.buzz);                       // haptics are not screen motion, so this
+                                      // runs even under prefers-reduced-motion
   if (reduceMotion) return;
   const wrap = document.querySelector(".toy-wrap"); if (!wrap) return;
   wrap.classList.remove("shake2", "shake3", "shakeLong"); void wrap.offsetWidth;
@@ -153,8 +186,8 @@ let animBase = null, animSet = null, animIdx = 0, animNext = 0, fidgetUntil = 0;
 /* Everything that draws Rex goes through here so the animator stays in
    charge of the slot; render() must never paint him directly. */
 function setRexSprite(base) {
-  if (performance.now() < fidgetUntil) return;    // a fidget is playing
-  if (base === animBase) return;
+  if (base === animBase) return;          // unchanged — any running fidget continues
+  fidgetUntil = 0;                        // a real state change outranks a fidget
   animBase = base;
   animSet = FRAME_SETS[base] || null;
   animIdx = 0;
@@ -164,9 +197,9 @@ function setRexSprite(base) {
 
 function animTick() {
   const now = performance.now();
-  if (now < fidgetUntil) return;
-  if (fidgetUntil && now >= fidgetUntil) {         // fidget just ended
-    fidgetUntil = 0;
+  if (fidgetUntil) {
+    if (now < fidgetUntil) return;
+    fidgetUntil = 0;                              // fidget over: back to the pose
     paintSprite($("#rexSprite"), animSet ? animSet.frames[animIdx] : animBase);
     return;
   }
@@ -190,9 +223,9 @@ function render(s) {
   if (s.screen !== prevScreen) {
     const need = s.need ? s.need.key : null;
     if ((s.screen === "alert" || s.screen === "headsup") && need) fireCue(need);
-    else if (s.screen === "celebrate") { celebrateSound(); burstConfetti(24); }
+    else if (s.screen === "celebrate") { celebrateSound(); burstConfetti(24); buzz([90, 60, 90]); }
     else if (s.screen === "levelup") {
-      levelupSound(); burstConfetti(60);
+      levelupSound(); burstConfetti(60); buzz([80, 60, 80, 60, 80, 60, 260]);
       levelupBanner("¡SUBISTE DE NIVEL!");
     }
     prevScreen = s.screen;
@@ -479,6 +512,17 @@ function wire() {
   $("#jumpBtn").addEventListener("click", () => api("/api/clock", { jump: true }).then(render));
   $("#aiToggle").addEventListener("change", (e) => api("/api/ai", { enabled: e.target.checked }).then(render));
   $("#onlineToggle").addEventListener("change", (e) => api("/api/ai", { online: e.target.checked }).then(render));
+  const bt = $("#buzzToggle");
+  if (bt) {
+    bt.checked = buzzOn;
+    bt.addEventListener("change", (e) => {
+      buzzOn = e.target.checked;
+      localStorage.setItem("rexBuzz", buzzOn ? "on" : "off");
+      if (buzzOn) buzz([60]);          // confirm it works on this phone
+      else if ("vibrate" in navigator) { try { navigator.vibrate(0); } catch (err) {} }
+    });
+  }
+
   const vt = $("#voiceToggle");
   if (vt) {
     vt.checked = voiceOn;
@@ -530,16 +574,21 @@ function scheduleFidget() {
   const delay = 3000 + Math.random() * 4000;
   setTimeout(() => {
     const device = $("#device"), rex = $("#rexSprite");
-    const calm = device && rex && device.dataset.mood !== "sleeping"
-                 && !device.classList.contains("rex-talking");
-    // only wander off-pose when Rex has nothing to do; mid-routine he keeps
-    // showing the step's own art
-    const idle = calm && (device.dataset.mood === "happy" || device.dataset.mood === "waiting");
-    if (idle && Math.random() < 0.6) {
+    const profile = document.body.dataset.profile;
+    // Low-stim exists to reduce movement, and reduced-motion is the same ask
+    // from the OS — neither should get random extra animation.
+    const mayFidget = device && rex && !reduceMotion && profile !== "low_stim"
+                      && device.dataset.mood !== "sleeping"
+                      && !device.classList.contains("rex-talking");
+    // The drawn fidget poses only exist in the normal green art, so swapping
+    // one in during high-contrast would drop the child out of their profile.
+    const mayChangePose = mayFidget && profile !== "high_contrast"
+                          && (device.dataset.mood === "happy" || device.dataset.mood === "waiting");
+    if (mayChangePose && Math.random() < 0.6) {
       const f = POSE_FIDGETS[Math.floor(Math.random() * POSE_FIDGETS.length)];
       fidgetUntil = performance.now() + f.ms;
       paintSprite(rex, f.sprite);
-    } else if (calm) {
+    } else if (mayFidget) {
       const cls = CSS_FIDGETS[Math.floor(Math.random() * CSS_FIDGETS.length)];
       rex.classList.add(cls);
       setTimeout(() => rex.classList.remove(cls), FIDGET_MS[cls]);

@@ -51,22 +51,22 @@
     { id: "breakfast", name: { en: "Breakfast", es: "Desayuno" }, need: "tummy",
       schedule: { time: "08:00" }, heads_up_min: 5, confirmation: "child",
       snooze: { interval_s: 300, max: 3, notify_parent: false }, reward_stars: 1, steps: [
-        step("s1","washhands","rex_kid_washhands.png","Wash your hands","Lava tus manos"),
+        step("s1","washhands","rex_kid_idle.png","Wash your hands","Lava tus manos"),
         step("s2","table","rex_kid_idle.png","Sit at the table","Siéntate a la mesa"),
-        step("s3","eat","rex_kid_eat.png","Eat","A comer"),
-        step("s4","water","rex_kid_drink.png","Drink water","Toma agua")] },
+        step("s3","eat","rex_kid_idle.png","Eat","A comer"),
+        step("s4","water","rex_kid_idle.png","Drink water","Toma agua")] },
     { id: "shower_pm", name: { en: "Shower", es: "Baño" }, need: "fresh",
       schedule: { time: "19:00" }, heads_up_min: 5, confirmation: "child",
       snooze: { interval_s: 300, max: 3, notify_parent: true }, reward_stars: 1, steps: [
         step("s1","clothesoff","rex_kid_idle.png","Take clothes off","Quítate la ropa"),
-        step("s2","wateron","rex_kid_bath.png","Water on","Abre el agua"),
-        step("s3","soap","rex_kid_bath.png","Soap","Jabón"),
-        step("s4","rinse","rex_kid_bath.png","Rinse","Enjuaga"),
-        step("s5","towel","rex_kid_towel.png","Towel","Sécate")] },
+        step("s2","wateron","rex_kid_idle.png","Water on","Abre el agua"),
+        step("s3","soap","rex_kid_idle.png","Soap","Jabón"),
+        step("s4","rinse","rex_kid_idle.png","Rinse","Enjuaga"),
+        step("s5","towel","rex_kid_idle.png","Towel","Sécate")] },
     { id: "bedtime", name: { en: "Bedtime", es: "Dormir" }, need: "sleepy",
       schedule: { time: "20:30" }, heads_up_min: 10, confirmation: "child",
       snooze: { interval_s: 300, max: 3, notify_parent: false }, reward_stars: 1, steps: [
-        step("s1","pajamas","rex_kid_pajamas.png","Put on pajamas","Ponte pijama"),
+        step("s1","pajamas","rex_kid_idle.png","Put on pajamas","Ponte pijama"),
         step("s2","brush","rex_kid_brush.png","Brush teeth","Lava dientes"),
         step("s3","bathroom","rex_kid_idle.png","Bathroom","Al baño"),
         step("s4","lights","rex_kid_sleep.png","Lights off","Apaga la luz")] },
@@ -74,7 +74,7 @@
       schedule: { time: "13:00" }, heads_up_min: 0, confirmation: "parent",
       snooze: { interval_s: 300, max: 5, notify_parent: true }, reward_stars: 1, enabled: false, steps: [
         step("s1","grownup","rex_kid_idle.png","Go to your grown-up","Ve con tu adulto"),
-        step("s2","medicine","rex_kid_medicine.png","Take it together","Tómala juntos")] },
+        step("s2","medicine","rex_kid_idle.png","Take it together","Tómala juntos")] },
   ];
 
   const PROFILES = {
