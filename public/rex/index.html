@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rex — Mi Compañero de Rutinas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&family=Pixelify+Sans:wght@400;500;600;700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-profile="default">
+  <div class="room">
+    <!-- playful pixel-art world behind the toy (decorative only) -->
+    <div class="room-scene" aria-hidden="true">
+      <div class="sky-sun"></div>
+      <div class="clouds"><span></span><span></span><span></span></div>
+      <div class="hills"></div>
+      <div class="ground"></div>
+      <div class="ferns"><i></i><i></i><i></i><i></i></div>
+    </div>
+
+    <!-- ======================= THE TOY (single device) ======================= -->
+    <div class="toy-wrap">
+      <div class="stage">
+        <div class="toy" id="device" data-mood="happy" data-need="none">
+          <div class="toy-inner">
+            <span class="lanyard"></span>
+
+            <div class="shell">
+              <div class="shell-back"></div>
+              <div class="shell-gloss"></div>
+              <span class="led" id="led" aria-hidden="true"></span>
+              <span class="screw screw-tl"></span>
+              <span class="screw screw-tr"></span>
+              <span class="screw screw-bl"></span>
+              <span class="screw screw-br"></span>
+
+              <!-- screen recessed in a chunky bezel -->
+              <div class="bezel">
+                <div class="screen" id="screen">
+                  <div class="glass"></div>
+                  <div class="fx" id="fx" aria-hidden="true"></div>
+                  <div class="status-row">
+                    <span class="signal" id="signal" title="Rex-Net (simulated SIM)">
+                      <i></i><i></i><i></i><i></i>
+                    </span>
+                    <span class="clock" id="clock">07:57</span>
+                    <span class="mini-stars"><span class="star">⭐</span><b id="miniStars">0</b><b id="starCount" class="sr-only">0</b></span>
+                  </div>
+
+                  <div class="rex-stage">
+                    <div class="need-bubble" id="needBubble" hidden>
+                      <span class="sprite-slot need-icon" data-sprite="icon_need_tummy.png"></span>
+                    </div>
+                    <div class="sprite-slot rex" id="rexSprite" data-sprite="rex_kid_home_idle.png"></div>
+                  </div>
+
+                  <div class="say" id="say"></div>
+
+                  <div class="progress" id="progress" hidden>
+                    <div class="dots" id="dots"></div>
+                    <div class="timer-ring" id="timerRing" hidden>
+                      <svg viewBox="0 0 44 44">
+                        <circle class="track" cx="22" cy="22" r="19"></circle>
+                        <circle class="fill" id="timerFill" cx="22" cy="22" r="19"></circle>
+                      </svg>
+                      <span id="timerText">0:00</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- molded brand plate -->
+              <div class="brand-plate">
+                <span class="brand-dino">🦖</span>
+                <span class="brand-name">Rex</span>
+                <span class="brand-sub">compañero de rutinas</span>
+              </div>
+
+              <!-- three physical buttons raised on the shell -->
+              <div class="buttons">
+                <button class="btn help" data-btn="help">
+                  <span class="well"><span class="cap">?</span></span>
+                  <span class="lbl" id="lblHelp">Help</span>
+                </button>
+                <button class="btn yes" data-btn="yes">
+                  <span class="well"><span class="cap">★</span></span>
+                  <span class="lbl" id="lblYes">Yes</span>
+                </button>
+                <button class="btn later" data-btn="later">
+                  <span class="well"><span class="cap">⏸</span></span>
+                  <span class="lbl" id="lblLater">Later</span>
+                </button>
+              </div>
+
+              <div class="speaker-grille"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            </div>
+          </div>
+          <div class="contact-shadow" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <p class="hint"><kbd>←</kbd> Ayuda · <kbd>Espacio</kbd> Sí · <kbd>→</kbd> Después · <b>arrastra el fondo para girar</b></p>
+      <a class="model3d-link" href="modelo3d/rex-routine-buddy.html" target="_blank" rel="noopener">🧊 Ver modelo 3D (Prototipo B)</a>
+    </div>
+
+    <!-- hidden "parent menu" trigger (GDD: parent controls aren't on the device face) -->
+    <button class="gear" id="gearBtn" title="Panel de cuidadores" aria-label="Panel de cuidadores">⚙</button>
+
+    <!-- ======================= PARENT DRAWER ======================= -->
+    <div class="drawer-backdrop" id="backdrop" hidden></div>
+    <aside class="drawer" id="drawer" hidden aria-label="Parent panel">
+      <div class="drawer-head">
+        <h2>Panel de cuidadores</h2>
+        <button class="close" id="closeDrawer" aria-label="Cerrar">✕</button>
+      </div>
+
+      <div class="card">
+        <h3>Rutinas de hoy</h3>
+        <ul class="timeline" id="timeline"></ul>
+      </div>
+
+      <div class="card">
+        <h3>Perfil de accesibilidad</h3>
+        <div class="segmented" id="profiles">
+          <button data-profile-key="default" class="on">Normal</button>
+          <button data-profile-key="high_contrast">Alto contraste</button>
+          <button data-profile-key="low_stim">Bajo estímulo</button>
+          <button data-profile-key="one_button">Un botón</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Reloj de demostración</h3>
+        <div class="row">
+          <div class="segmented" id="speeds">
+            <button data-speed="1">×1</button>
+            <button data-speed="60" class="on">×60</button>
+            <button data-speed="600">×600</button>
+            <button data-speed="0">Pausa</button>
+          </div>
+          <button class="ghost" id="jumpBtn">⏭ Ir a la siguiente</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Asistente de IA y conexión</h3>
+        <label class="toggle"><input type="checkbox" id="aiToggle" checked> Asistente de IA activado</label>
+        <label class="toggle"><input type="checkbox" id="onlineToggle" checked> Señal Rex-Net (SIM simulada)</label>
+        <p class="note">Apaga la señal para mostrar el modo sin conexión.</p>
+      </div>
+
+      <div class="card alerts">
+        <h3>Avisos</h3>
+        <ul id="alerts" class="alert-list"><li class="empty">Sin avisos por ahora.</li></ul>
+      </div>
+
+      <button class="ghost danger" id="resetBtn">Reiniciar demostración</button>
+    </aside>
+  </div>
+
+  <div class="missing-banner" id="missingBanner" hidden>
+    Mostrando sprites de ejemplo. Copia los PNG en <code>web/sprites/</code> (nombres en
+    <code>documentation/rex_sprite_prompts.txt</code>).
+  </div>
+
+  <script src="js/local-engine.js"></script>
+  <script src="js/emulator.js"></script>
+  <!-- Swipe/drag the BACKGROUND to rotate the 3D device (with inertia).
+       Buttons, screen and drawer are untouched so the toy stays playable. -->
+  <script>
+    (function () {
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var device = document.getElementById('device');
+      if (!device) return;
+      var rotY = -6, rotX = 4, restX = 4, velY = 0, dragging = false, lastX = 0, lastY = 0, raf = null;
+      function render() {
+        device.style.setProperty('--ry', rotY.toFixed(2) + 'deg');
+        device.style.setProperty('--rx', rotX.toFixed(2) + 'deg');
+      }
+      render();
+      if (reduce) return;                       // keep a static 3/4 angle, no motion
+      device.style.transition = 'none';         // we animate rotation manually via rAF
+
+      function blocked(t) { return t && t.closest && t.closest('#device, #drawer, #backdrop, .gear'); }
+      var interacted = false;
+      function down(e) {
+        if (blocked(e.target)) return;          // rotate only when swiping the background
+        dragging = true; interacted = true; velY = 0; lastX = e.clientX; lastY = e.clientY;
+        document.body.style.cursor = 'grabbing';
+      }
+      function move(e) {
+        if (!dragging) return;
+        var dx = e.clientX - lastX, dy = e.clientY - lastY;
+        lastX = e.clientX; lastY = e.clientY;
+        rotY += dx * 0.5; velY = dx * 0.5;
+        rotX = Math.max(-30, Math.min(30, rotX - dy * 0.3));
+        if (!raf) raf = requestAnimationFrame(function () { render(); raf = null; });
+        if (e.cancelable) e.preventDefault();
+      }
+      function up() {
+        if (!dragging) return;
+        dragging = false; document.body.style.cursor = '';
+        (function inertia() {                   // free spin-down on Y, tidy the vertical tilt
+          rotY += velY; velY *= 0.94;
+          rotX += (restX - rotX) * 0.05;
+          render();
+          if (Math.abs(velY) > 0.06 || Math.abs(rotX - restX) > 0.3) requestAnimationFrame(inertia);
+        })();
+      }
+      window.addEventListener('pointerdown', down, { passive: true });
+      window.addEventListener('pointermove', move, { passive: false });
+      window.addEventListener('pointerup', up, { passive: true });
+      window.addEventListener('pointercancel', up, { passive: true });
+      // NOTE: no continuous idle sway — a constantly-transforming device makes
+      // the buttons a moving hit-target. The device rests statically; the grab
+      // cursor on the background is the affordance to spin it.
+    })();
+  </script>
+</body>
+</html>
