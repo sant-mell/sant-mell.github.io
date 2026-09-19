@@ -139,7 +139,7 @@ async function init() {
   const data = await api("/api/routines");
   NEEDS = data.needs;
   $("#loadExampleBtn").addEventListener("click", loadExample);
-  poll();
+  await loadExample();   // show a populated report right away, not all zeros
   setInterval(poll, 2000);
 }
 init();
