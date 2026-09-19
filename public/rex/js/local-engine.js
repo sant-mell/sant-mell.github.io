@@ -10,13 +10,31 @@
 
   // ---------------------------------------------------------------- data
   const NEEDS = {
-    tummy:   { label: { en: "Tummy",   es: "Pancita" }, color: "#FF8A00", icon: "icon_need_tummy.png" },
-    sparkle: { label: { en: "Sparkle", es: "Brillo" },  color: "#22C3DD", icon: "icon_need_sparkle.png" },
-    fresh:   { label: { en: "Fresh",   es: "Limpio" },  color: "#3B82F6", icon: "icon_need_fresh.png" },
-    sleepy:  { label: { en: "Sleepy",  es: "Sueño" },   color: "#8B5CF6", icon: "icon_need_sleepy.png" },
-    health:  { label: { en: "Health",  es: "Salud" },   color: "#22C55E", icon: "icon_need_health.png" },
-    custom:  { label: { en: "Custom",  es: "Otro" },    color: "#F59E0B", icon: "icon_star.png" },
+    tummy:   { label: { en: "Tummy",   es: "Pancita" }, color: "#FF8A00", icon: "icon_need_tummy.png",   led: "orange", stomp: "stomp-stomp" },
+    sparkle: { label: { en: "Sparkle", es: "Brillo" },  color: "#22C3DD", icon: "icon_need_sparkle.png", led: "cyan",   stomp: "stomp-stomp-stomp" },
+    fresh:   { label: { en: "Fresh",   es: "Limpio" },  color: "#3B82F6", icon: "icon_need_fresh.png",   led: "blue",   stomp: "splaaash" },
+    sleepy:  { label: { en: "Sleepy",  es: "Sueño" },   color: "#8B5CF6", icon: "icon_need_sleepy.png",  led: "purple", stomp: "stomp... stomp..." },
+    health:  { label: { en: "Health",  es: "Salud" },   color: "#22C55E", icon: "icon_need_health.png",  led: "green",  stomp: "stomp-stomp (long)" },
+    custom:  { label: { en: "Custom",  es: "Otro" },    color: "#F59E0B", icon: "icon_star.png",         led: "gold",   stomp: "stomp-stomp" },
   };
+
+  // Canned AI-helper lines (GDD §11.3 offline fallback), keyed routine -> step.
+  // Mirrors data.HELP_LINES on the Python side; both must stay in step.
+  const HELP_LINES = {
+    brush_teeth_am: {
+      s3: { en: "Brush in tiny circles. Want to brush with a song?", es: "Cepilla en círculos. ¿Cepillamos con una canción?" },
+      "*": { en: "Let's look at the picture together. Ready?", es: "Miremos el dibujo juntos. ¿Listo?" },
+    },
+    shower_pm: {
+      s3: { en: "Soap your arms, then your tummy. Shall I show you?", es: "Jabona brazos y pancita. ¿Te muestro?" },
+      "*": { en: "One step at a time. Want the next little step?", es: "Un paso a la vez. ¿Vamos al siguiente?" },
+    },
+    "*": { "*": { en: "You're doing great! Want to do it with me?", es: "¡Lo haces genial! ¿Lo hacemos juntos?" } },
+  };
+  function helpLine(routineId, stepId) {
+    const r = HELP_LINES[routineId] || HELP_LINES["*"];
+    return r[stepId] || r["*"] || HELP_LINES["*"]["*"];
+  }
   const STEP_PICTOGRAMS = ["🦷","🍎","🚿","🌙","🧼","👕","🎒","🥤","🚽","🛏️","🧴","👟","📚","🧸","💊","🪥","🍽️","🧦","☀️","⭐"];
 
   const step = (id, picto, sprite, en, es, timer_s) =>
@@ -62,8 +80,8 @@
   const PROFILES = {
     default:       { label: { en: "Default", es: "Normal" }, buttons: ["help","yes","later"], any_button_ok: false, low_stim: false, high_contrast: false, language: "es" },
     high_contrast: { label: { en: "High contrast", es: "Alto contraste" }, buttons: ["help","yes","later"], any_button_ok: false, low_stim: false, high_contrast: true, language: "es" },
-    low_stim:      { label: { en: "Low-stim", es: "Bajo estímulo" }, buttons: ["help","yes","later"], any_button_ok: false, low_stim: true, high_contrast: false, language: "es" },
-    one_button:    { label: { en: "One button", es: "Un botón" }, buttons: ["yes"], any_button_ok: true, low_stim: false, high_contrast: false, language: "es" },
+    low_stim:      { label: { en: "Low-stim (autism)", es: "Bajo estímulo" }, buttons: ["help","yes","later"], any_button_ok: false, low_stim: true, high_contrast: false, language: "es" },
+    one_button:    { label: { en: "One button / motor", es: "Un botón" }, buttons: ["yes"], any_button_ok: true, low_stim: false, high_contrast: false, language: "es" },
   };
 
   const STAGES = [
@@ -212,8 +230,14 @@
     this.screen = "help_listening"; this.message = { en: "I'm listening!", es: "¡Te escucho!" };
   };
   Engine.prototype._makeHelpReply = function () {
-    if (!this.online) this.message = { en: "No signal, but let's look together!", es: "Sin señal, ¡pero miremos juntos!" };
-    else this.message = { en: "You're doing great! Want to do it with me?", es: "¡Lo haces genial! ¿Lo hacemos juntos?" };
+    const rid = this.active || "*";
+    let stepId = "*";
+    const r = this._routine();
+    if (r && this.step_index < r.steps.length) stepId = r.steps[this.step_index].id;
+    if (!this.online)
+      this.message = { en: "No signal, but let's look at the picture together!",
+                       es: "Sin señal, ¡pero miremos el dibujo juntos!" };
+    else this.message = helpLine(rid, stepId);
     this.screen = "help_reply";
   };
   Engine.prototype.voiceHelp = function (text) {
