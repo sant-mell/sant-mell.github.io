@@ -234,7 +234,9 @@
     this.snooze_count[rid] = (this.snooze_count[rid] || 0) + 1;
     this.snooze_until[rid] = this.vnow() + pol.interval_s; this.status[rid] = "snoozed";
     this.screen = "snoozed"; this.message = { en: "Okay! I'll ask again in a little bit.", es: "¡Está bien! Te pregunto en un ratito." };
-    if (pol.notify_parent && this.snooze_count[rid] >= pol.max) this._notify(r.name.es + " se pospuso " + this.snooze_count[rid] + " veces", "med");
+    // === max, not >=: fires once at the threshold. See engine.py's
+    // _snooze for why >= is wrong (re-notifies on every later snooze too).
+    if (pol.notify_parent && this.snooze_count[rid] === pol.max) this._notify(r.name.es + " se pospuso " + this.snooze_count[rid] + " veces", "med");
     this.active = null;
   };
   Engine.prototype._startHelp = function () {
