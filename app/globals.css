@@ -92,22 +92,6 @@ body {
   to { transform: rotate(360deg); }
 }
 
-/* Scroll reveal */
-.reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
-}
-.reveal.is-visible {
-  opacity: 1;
-  transform: none;
-  /* Release the compositor layer once revealed; keeping will-change on every
-     section permanently pins dozens of GPU layers and causes flicker. */
-  will-change: auto;
-}
-
 /* Animated grayscale headline text */
 .gradient-text {
   background-image: linear-gradient(100deg, #18181b, #71717a, #18181b);
@@ -167,7 +151,6 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .rex-sprite, .rex-sprite .rex-frame-a { animation: none; }
-  .reveal { opacity: 1; transform: none; transition: none; }
   .float-slow, .aurora-blob, .spin-slow, .gradient-text { animation: none; }
   .shine:hover::after { animation: none; }
   * { scroll-behavior: auto; }
