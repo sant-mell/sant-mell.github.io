@@ -100,8 +100,9 @@ interface Project {
   benchmark?: boolean;
   /** Ordered stages of a data-flow pipeline, drawn as a compact diagram. */
   pipeline?: string[];
-  /** Bold impact figures (value + a statLabels key) shown instead of tech chips. */
-  stats?: { value: string; key: string }[];
+  /** Bold impact figures (value + a statLabels key) shown instead of tech chips.
+   * A word rather than a number goes in `valueKey` so it gets translated too. */
+  stats?: { value?: string; valueKey?: string; key: string }[];
   /** Two animation frames of a character sprite, drawn in the card's top corner. */
   sprite?: [string, string];
 }
@@ -129,11 +130,16 @@ const PROJECT_META: ProjectMeta[] = [
   {
     descriptionIndex: 8,
     title: "Rex (Ideathon Teletón 2026)",
-    subtitle: "Overall Winner · Python · JavaScript",
+    subtitle: "Ideathon · Python · JavaScript",
     stack: ["Python", "JavaScript", "HTML / CSS", "Pixel Art"],
     liveUrl: "https://sant-mell.github.io/rex/index.html",
     liveKind: "demo",
     repoUrl: "https://lnkd.in/p/eDfzKPff",
+    stats: [
+      { valueKey: "winner", key: "ideathonOverall" },
+      { value: "11", key: "teamsCompeted" },
+      { value: "2", key: "daysToBuild" },
+    ],
     sprite: ["/rex/sprites/rex_kid_wave.png", "/rex/sprites/rex_kid_wave2.png"],
   },
   {
@@ -725,7 +731,7 @@ export default function Home() {
                   {project.stats && (
                     <ImpactStats
                       stats={project.stats.map((s) => ({
-                        value: s.value,
+                        value: s.valueKey ? t.statLabels[s.valueKey] : (s.value ?? ""),
                         label: t.statLabels[s.key],
                       }))}
                     />

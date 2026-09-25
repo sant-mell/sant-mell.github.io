@@ -101,6 +101,10 @@ export const translations: Record<Locale, Dict> = {
       servicePages: "service pages",
       clientSite: "client site",
       buildTime: "to build",
+      winner: "Winner",
+      ideathonOverall: "overall",
+      teamsCompeted: "teams competed",
+      daysToBuild: "days to build",
       languages: "languages",
     },
     sections: {
@@ -321,6 +325,10 @@ export const translations: Record<Locale, Dict> = {
       servicePages: "páginas de servicios",
       clientSite: "sitio del cliente",
       buildTime: "de desarrollo",
+      winner: "Ganador",
+      ideathonOverall: "general",
+      teamsCompeted: "equipos participantes",
+      daysToBuild: "días de desarrollo",
       languages: "idiomas",
     },
     sections: {
@@ -545,6 +553,10 @@ export const translations: Record<Locale, Dict> = {
       servicePages: "páginas de serviços",
       clientSite: "site do cliente",
       buildTime: "de construção",
+      winner: "Vencedor",
+      ideathonOverall: "geral",
+      teamsCompeted: "equipes participantes",
+      daysToBuild: "dias de construção",
       languages: "idiomas",
     },
     sections: {
@@ -769,6 +781,10 @@ export const translations: Record<Locale, Dict> = {
       servicePages: "servicepagina's",
       clientSite: "clientsite",
       buildTime: "bouwtijd",
+      winner: "Winnaar",
+      ideathonOverall: "algemeen",
+      teamsCompeted: "deelnemende teams",
+      daysToBuild: "dagen bouwtijd",
       languages: "talen",
     },
     sections: {
