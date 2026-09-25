@@ -134,13 +134,13 @@ const PROJECT_META: ProjectMeta[] = [
     stack: ["Python", "JavaScript", "HTML / CSS", "Pixel Art"],
     liveUrl: "https://sant-mell.github.io/rex/index.html",
     liveKind: "demo",
-    repoUrl: "https://lnkd.in/p/eDfzKPff",
+    repoUrl: "https://github.com/sant-mell/rex",
     stats: [
       { valueKey: "winner", key: "ideathonOverall" },
       { value: "11", key: "teamsCompeted" },
       { value: "2", key: "daysToBuild" },
     ],
-    sprite: ["/rex/sprites/rex_kid_wave.png", "/rex/sprites/rex_kid_wave2.png"],
+    sprite: ["/images/rex/rex_kid_wave.png", "/images/rex/rex_kid_wave2.png"],
   },
   {
     descriptionIndex: 5,
