@@ -102,6 +102,22 @@ interface Project {
   pipeline?: string[];
   /** Bold impact figures (value + a statLabels key) shown instead of tech chips. */
   stats?: { value: string; key: string }[];
+  /** Two animation frames of a character sprite, drawn in the card's top corner. */
+  sprite?: [string, string];
+}
+
+/** Rex from the Ideathon demo, waving in the corner of its card. Plain <img>
+ * because the site is a static export with unoptimized images; the second
+ * frame sits underneath and the first blinks on and off over it. */
+function RexSprite({ frames }: { frames: [string, string] }) {
+  return (
+    <div className="rex-sprite pointer-events-none absolute right-3 top-2 h-20 w-20" aria-hidden="true">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={frames[1]} alt="" width={80} height={80} className="absolute inset-0 h-full w-full" />
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={frames[0]} alt="" width={80} height={80} className="rex-frame-a absolute inset-0 h-full w-full" />
+    </div>
+  );
 }
 
 /** Card display order is independent of `t.projectDescriptions`, which stays in
@@ -110,6 +126,16 @@ interface Project {
 type ProjectMeta = Omit<Project, "description"> & { descriptionIndex: number };
 
 const PROJECT_META: ProjectMeta[] = [
+  {
+    descriptionIndex: 8,
+    title: "Rex (Ideathon Teletón 2026)",
+    subtitle: "Overall Winner · Python · JavaScript",
+    stack: ["Python", "JavaScript", "HTML / CSS", "Pixel Art"],
+    liveUrl: "https://sant-mell.github.io/rex/index.html",
+    liveKind: "demo",
+    repoUrl: "https://lnkd.in/p/eDfzKPff",
+    sprite: ["/rex/sprites/rex_kid_wave.png", "/rex/sprites/rex_kid_wave2.png"],
+  },
   {
     descriptionIndex: 5,
     title: "DFA Lexer / Compiler",
@@ -256,6 +282,11 @@ interface Certification {
 }
 
 const CERT_META: Omit<Certification, "name">[] = [
+  {
+    issuer: "Ideathon Teletón, Mexico City",
+    date: "Sep 2026",
+    url: "https://lnkd.in/p/eDfzKPff",
+  },
   {
     issuer: "Common Purpose",
     issuerUrl: "https://commonpurpose.org",
@@ -670,7 +701,8 @@ export default function Home() {
                   "shine group relative flex h-full flex-col overflow-hidden border-none p-2 transition-all duration-300 hover:-translate-y-2 hover:shadow-zinc-500/20",
                 )}
               >
-                <CardHeader>
+                {project.sprite && <RexSprite frames={project.sprite} />}
+                <CardHeader className={project.sprite ? "pr-24" : undefined}>
                   <p className="text-xs font-mono uppercase tracking-widest text-zinc-700 dark:text-zinc-300">
                     {project.subtitle}
                   </p>
@@ -722,7 +754,7 @@ export default function Home() {
                         url={project.repoUrl}
                         className="inline-flex items-center gap-2 text-sm font-semibold text-zinc-700 underline underline-offset-4 dark:text-zinc-300"
                       >
-                        {project.repoUrl.includes("linkedin.com") ? (
+                        {/linkedin\.com|lnkd\.in/.test(project.repoUrl) ? (
                           <>
                             <LinkedinMark className="h-4 w-4" />
                             {t.ui.viewOnLinkedin}
@@ -976,7 +1008,7 @@ export default function Home() {
           />
         </Reveal>
 
-        <div className="mx-auto mt-12 grid max-w-4xl gap-6 sm:grid-cols-3">
+        <div className="mx-auto mt-12 grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {certifications.map((cert, i) => (
             <Reveal key={cert.name} delay={i * 100}>
               <div className={cn(NEUMORPHIC, "group h-full p-6 text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-zinc-500/20")}>

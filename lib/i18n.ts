@@ -163,6 +163,7 @@ export const translations: Record<Locale, Dict> = {
       "A hand-built DFA lexer (explicit transition table, no regex) extended into a parallel syntax highlighter, benchmarked at about 6x speedup over a sequential baseline: 60 Python files, 8 MB, on 16 cores.",
       "This site. React 19, Tailwind 4, and a static export build, with a glassy dark UI over an animated WebGL shader background, an interactive three.js globe, a radial career orbit, and live link previews.",
       "In progress: working through the react-admin tutorial with Material UI, TypeScript, and a JSONPlaceholder-backed data provider, plus a custom auth provider. Practice ahead of a TC2007B course project for a government partner still to be confirmed, likely Mexico's Secretaria de Economia or Secretaria de Salud.",
+      "A gamified routine buddy for children with cognitive disabilities and their caregivers, built by a five-person team in two days at the Ideathon Teletón 2026 in Mexico City, where it won overall. Rex is a pixel-art dinosaur that reminds a child to eat, brush their teeth, shower, take their medicine, and go to sleep, with three big buttons and a parent panel that flags skipped routines. I built the working prototype in Python and vanilla JavaScript, and the demo runs offline in the browser.",
     ],
     experiences: [
       {
@@ -231,6 +232,7 @@ export const translations: Record<Locale, Dict> = {
       },
     ],
     certNames: [
+      "Overall Winner, Ideathon Teletón 2026",
       "Universitas 21 Global Citizenship",
       "IB Diploma, 33/45",
       "Excellence in English Award",
@@ -382,6 +384,7 @@ export const translations: Record<Locale, Dict> = {
       "Un lexer DFA hecho a mano (tabla de transiciones explícita, sin regex) extendido a un resaltador de sintaxis paralelo, con un speedup medido de unas 6x frente a una versión secuencial: 60 archivos de Python, 8 MB, en 16 núcleos.",
       "Este sitio. React 19, Tailwind 4 y una compilación de exportación estática, con una interfaz oscura tipo cristal sobre un fondo shader WebGL animado, un globo interactivo en three.js, una órbita radial de trayectoria y vistas previas de enlaces en vivo.",
       "En progreso: recorriendo el tutorial de react-admin con Material UI, TypeScript y un data provider sobre JSONPlaceholder, más un auth provider propio. Práctica previa a un proyecto de la materia TC2007B para un socio formador gubernamental aún por confirmar, probablemente la Secretaría de Economía o la Secretaría de Salud.",
+      "Un compañero de rutinas gamificado para niñas y niños con discapacidad cognitiva y sus cuidadores, hecho por un equipo de cinco personas en dos días en el Ideathon Teletón 2026 en la Ciudad de México, donde ganó el primer lugar general. Rex es un dinosaurio en pixel art que le recuerda al niño comer, lavarse los dientes, bañarse, tomar su medicina y dormir, con tres botones grandes y un panel para padres que avisa de las rutinas saltadas. Construí el prototipo funcional en Python y JavaScript puro, y la demo funciona sin conexión en el navegador.",
     ],
     experiences: [
       {
@@ -450,6 +453,7 @@ export const translations: Record<Locale, Dict> = {
       },
     ],
     certNames: [
+      "Primer lugar general, Ideathon Teletón 2026",
       "Universitas 21 Global Citizenship",
       "Diploma del IB, 33/45",
       "Excellence in English Award",
@@ -604,6 +608,7 @@ export const translations: Record<Locale, Dict> = {
       "Um lexer DFA feito à mão (tabela de transições explícita, sem regex) estendido para um realçador de sintaxe paralelo, com speedup medido de cerca de 6x sobre uma versão sequencial: 60 arquivos de Python, 8 MB, em 16 núcleos.",
       "Este site. React 19, Tailwind 4 e um build de exportação estática, com uma interface escura estilo vidro sobre um fundo shader WebGL animado, um globo interativo em three.js, uma órbita radial de trajetória e pré-visualizações de links ao vivo.",
       "Em andamento: seguindo o tutorial do react-admin com Material UI, TypeScript e um data provider sobre o JSONPlaceholder, além de um auth provider próprio. Prática antes de um projeto da disciplina TC2007B para um parceiro governamental ainda não confirmado, provavelmente a Secretaría de Economía ou a Secretaría de Salud (México).",
+      "Um companheiro de rotinas gamificado para crianças com deficiência cognitiva e seus cuidadores, feito por uma equipe de cinco pessoas em dois dias no Ideathon Teletón 2026, na Cidade do México, onde ficou em primeiro lugar geral. Rex é um dinossauro em pixel art que lembra a criança de comer, escovar os dentes, tomar banho, tomar o remédio e dormir, com três botões grandes e um painel para os pais que avisa sobre rotinas puladas. Construí o protótipo funcional em Python e JavaScript puro, e a demo funciona offline no navegador.",
     ],
     experiences: [
       {
@@ -672,6 +677,7 @@ export const translations: Record<Locale, Dict> = {
       },
     ],
     certNames: [
+      "Vencedor geral, Ideathon Teletón 2026",
       "Universitas 21 Global Citizenship",
       "Diploma do IB, 33/45",
       "Excellence in English Award",
@@ -826,6 +832,7 @@ export const translations: Record<Locale, Dict> = {
       "Een handgebouwde DFA-lexer (expliciete overgangstabel, geen regex) uitgebreid tot een parallelle syntax-highlighter, gemeten op ongeveer 6x sneller dan een sequentiële basis: 60 Python-bestanden, 8 MB, op 16 cores.",
       "Deze site. React 19, Tailwind 4 en een statische export-build, met een glasachtige donkere UI over een geanimeerde WebGL-shaderachtergrond, een interactieve three.js-globe, een radiale loopbaanbaan en live linkvoorbeelden.",
       "In uitvoering: de react-admin tutorial doorlopen met Material UI, TypeScript en een data provider op basis van JSONPlaceholder, plus een eigen auth provider. Oefening voor een TC2007B-vakproject voor een overheidspartner die nog niet vaststaat, waarschijnlijk de Mexicaanse Secretaría de Economía of Secretaría de Salud.",
+      "Een gamified routinemaatje voor kinderen met een cognitieve beperking en hun verzorgers, gebouwd door een team van vijf in twee dagen tijdens de Ideathon Teletón 2026 in Mexico-Stad, waar het de hoofdprijs won. Rex is een pixel-art dinosaurus die een kind eraan herinnert te eten, tanden te poetsen, te douchen, medicijnen te nemen en te gaan slapen, met drie grote knoppen en een ouderpaneel dat overgeslagen routines meldt. Ik bouwde het werkende prototype in Python en vanilla JavaScript, en de demo werkt offline in de browser.",
     ],
     experiences: [
       {
@@ -894,6 +901,7 @@ export const translations: Record<Locale, Dict> = {
       },
     ],
     certNames: [
+      "Hoofdprijs, Ideathon Teletón 2026",
       "Universitas 21 Global Citizenship",
       "IB-diploma, 33/45",
       "Excellence in English Award",
