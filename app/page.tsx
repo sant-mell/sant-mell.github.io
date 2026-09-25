@@ -151,6 +151,17 @@ const PROJECT_META: ProjectMeta[] = [
     benchmark: true,
   },
   {
+    descriptionIndex: 9,
+    title: "Where Should 200,000 MXN Go?",
+    subtitle: "Power BI · Python · Work in Progress",
+    stack: ["Power BI", "DAX", "Python", "Excel", "Data Modeling"],
+    repoUrl: "https://github.com/sant-mell/sofipo-savings-powerbi",
+    stats: [
+      { value: "14", key: "optionsCompared" },
+      { value: "6", key: "splitStrategies" },
+    ],
+  },
+  {
     descriptionIndex: 0,
     title: "IoT Smart Parking System",
     subtitle: "ESP32 · MQTT · Python",
@@ -344,7 +355,7 @@ const SKILL_META: Omit<SkillCluster, "title">[] = [
   },
   {
     icon: CircuitBoard,
-    skills: ["Git / GitHub", "Next.js", "React", "Node.js"],
+    skills: ["Git / GitHub", "Next.js", "React", "Node.js", "Power BI", "Excel"],
   },
 ];
 

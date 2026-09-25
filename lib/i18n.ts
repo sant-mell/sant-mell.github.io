@@ -106,13 +106,15 @@ export const translations: Record<Locale, Dict> = {
       teamsCompeted: "teams competed",
       daysToBuild: "days to build",
       languages: "languages",
+      optionsCompared: "options compared",
+      splitStrategies: "split strategies",
     },
     sections: {
       projects: {
         eyebrow: "Projects",
         title: "A few things I've built",
         intro:
-          "IoT firmware on ESP32, full-stack web apps, browser games, and parallel processing in Python.",
+          "IoT firmware on ESP32, full-stack web apps, browser games, and parallel processing in Python, and financial data modeling in Power BI.",
       },
       skills: {
         eyebrow: "Skills",
@@ -168,6 +170,7 @@ export const translations: Record<Locale, Dict> = {
       "This site. React 19, Tailwind 4, and a static export build, with a glassy dark UI over an animated WebGL shader background, an interactive three.js globe, a radial career orbit, and live link previews.",
       "In progress: working through the react-admin tutorial with Material UI, TypeScript, and a JSONPlaceholder-backed data provider, plus a custom auth provider. Practice ahead of a TC2007B course project for a government partner still to be confirmed, likely Mexico's Secretaria de Economia or Secretaria de Salud.",
       "A gamified routine buddy for children with cognitive disabilities and their caregivers, built by a five-person team in two days at the Ideathon Teletón 2026 in Mexico City, where it won overall. It's now being reviewed by experts, with support from the Wadhwani Foundation, to turn it into a real product. I built the working prototype: a dependency-free Python server (standard-library ThreadingHTTPServer) exposes a reminder state machine through a JSON API, with one lock-guarded engine instance shared by two clients. The parent panel writes to it (add, edit, enable or trigger routines, upload custom animations as base64 images), and the device screen polls /api/state every 500 ms, so a parent's change reaches Rex in under a second. Postponing a routine past the limit sends a single alert back to the parent. The static demo runs a JavaScript port of the same engine behind the same API, persisting to localStorage.",
+      "In progress: a Power BI project on where 200,000 MXN of savings should go. A Python build script holds every sourced figure (dated rate observations with source URLs, Banxico's rate decisions, 2026 ISR and UMA parameters) and generates the CSVs and Excel workbook behind the semantic model. It compares 14 options across banks, SOFIPOs, fintechs, CETES, and the S&P 500 through GBM, net of ISR withholding and within IPAB and Prosofipo protection limits. At 200,000 MXN for a year, a split that fills capped promotional tiers first nets about 12.4%, against 6.3% to 8.7% for any single product. The data and model are done; the report pages are still being built.",
     ],
     experiences: [
       {
@@ -330,13 +333,15 @@ export const translations: Record<Locale, Dict> = {
       teamsCompeted: "equipos participantes",
       daysToBuild: "días de desarrollo",
       languages: "idiomas",
+      optionsCompared: "opciones comparadas",
+      splitStrategies: "estrategias de reparto",
     },
     sections: {
       projects: {
         eyebrow: "Proyectos",
         title: "Algunas cosas que he construido",
         intro:
-          "Firmware IoT en ESP32, aplicaciones web full-stack, juegos en el navegador y cómputo paralelo en Python.",
+          "Firmware IoT en ESP32, aplicaciones web full-stack, juegos en el navegador, cómputo paralelo en Python y modelado de datos financieros en Power BI.",
       },
       skills: {
         eyebrow: "Habilidades",
@@ -393,6 +398,7 @@ export const translations: Record<Locale, Dict> = {
       "Este sitio. React 19, Tailwind 4 y una compilación de exportación estática, con una interfaz oscura tipo cristal sobre un fondo shader WebGL animado, un globo interactivo en three.js, una órbita radial de trayectoria y vistas previas de enlaces en vivo.",
       "En progreso: recorriendo el tutorial de react-admin con Material UI, TypeScript y un data provider sobre JSONPlaceholder, más un auth provider propio. Práctica previa a un proyecto de la materia TC2007B para un socio formador gubernamental aún por confirmar, probablemente la Secretaría de Economía o la Secretaría de Salud.",
       "Un compañero de rutinas gamificado para niñas y niños con discapacidad cognitiva y sus cuidadores, hecho por un equipo de cinco personas en dos días en el Ideathon Teletón 2026 en la Ciudad de México, donde ganó el primer lugar general. Hoy lo están revisando expertos, con apoyo de la Wadhwani Foundation, para convertirlo en un producto real. Construí el prototipo funcional: un servidor en Python sin dependencias (ThreadingHTTPServer de la biblioteca estándar) expone una máquina de estados de recordatorios mediante una API JSON, con una sola instancia del motor, protegida con un lock, compartida por dos clientes. El panel para padres escribe en ella (agregar, editar, activar o disparar rutinas, subir animaciones propias como imágenes base64) y la pantalla del dispositivo consulta /api/state cada 500 ms, así que un cambio del padre llega a Rex en menos de un segundo. Posponer una rutina más allá del límite envía una sola alerta al padre. La demo estática corre un port en JavaScript del mismo motor detrás de la misma API, guardando el estado en localStorage.",
+      "En progreso: un proyecto de Power BI sobre dónde conviene poner 200,000 MXN de ahorro. Un script de Python concentra cada dato con su fuente (observaciones de tasas fechadas con su URL, las decisiones de Banxico y los parámetros de ISR y UMA 2026) y genera los CSV y el libro de Excel detrás del modelo semántico. Compara 14 opciones entre bancos, SOFIPOs, fintechs, CETES y el S&P 500 vía GBM, netas de la retención de ISR y dentro de los límites de protección del IPAB y Prosofipo. Con 200,000 MXN a un año, repartir el dinero llenando primero los tramos promocionales con tope rinde cerca de 12.4% neto, contra 6.3% a 8.7% de cualquier producto por sí solo. Los datos y el modelo están listos; las páginas del reporte siguen en construcción.",
     ],
     experiences: [
       {
@@ -558,13 +564,15 @@ export const translations: Record<Locale, Dict> = {
       teamsCompeted: "equipes participantes",
       daysToBuild: "dias de construção",
       languages: "idiomas",
+      optionsCompared: "opções comparadas",
+      splitStrategies: "estratégias de divisão",
     },
     sections: {
       projects: {
         eyebrow: "Projetos",
         title: "Algumas coisas que construí",
         intro:
-          "Firmware IoT no ESP32, aplicações web full-stack, jogos no navegador e computação paralela em Python.",
+          "Firmware IoT no ESP32, aplicações web full-stack, jogos no navegador, computação paralela em Python e modelagem de dados financeiros em Power BI.",
       },
       skills: {
         eyebrow: "Habilidades",
@@ -621,6 +629,7 @@ export const translations: Record<Locale, Dict> = {
       "Este site. React 19, Tailwind 4 e um build de exportação estática, com uma interface escura estilo vidro sobre um fundo shader WebGL animado, um globo interativo em three.js, uma órbita radial de trajetória e pré-visualizações de links ao vivo.",
       "Em andamento: seguindo o tutorial do react-admin com Material UI, TypeScript e um data provider sobre o JSONPlaceholder, além de um auth provider próprio. Prática antes de um projeto da disciplina TC2007B para um parceiro governamental ainda não confirmado, provavelmente a Secretaría de Economía ou a Secretaría de Salud (México).",
       "Um companheiro de rotinas gamificado para crianças com deficiência cognitiva e seus cuidadores, feito por uma equipe de cinco pessoas em dois dias no Ideathon Teletón 2026, na Cidade do México, onde ficou em primeiro lugar geral. Agora está sendo revisado por especialistas, com apoio da Wadhwani Foundation, para virar um produto real. Construí o protótipo funcional: um servidor Python sem dependências (ThreadingHTTPServer da biblioteca padrão) expõe uma máquina de estados de lembretes por uma API JSON, com uma única instância do motor, protegida por lock, compartilhada por dois clientes. O painel dos pais escreve nela (adicionar, editar, ativar ou disparar rotinas, enviar animações próprias como imagens base64) e a tela do dispositivo consulta /api/state a cada 500 ms, então uma mudança dos pais chega ao Rex em menos de um segundo. Adiar uma rotina além do limite envia um único alerta aos pais. A demo estática roda um port em JavaScript do mesmo motor atrás da mesma API, salvando o estado no localStorage.",
+      "Em andamento: um projeto de Power BI sobre onde colocar 200.000 MXN de poupança. Um script em Python reúne cada número com sua fonte (observações de taxas datadas com URL, as decisões do Banxico e os parâmetros de ISR e UMA de 2026) e gera os CSVs e a planilha de Excel por trás do modelo semântico. Compara 14 opções entre bancos, SOFIPOs, fintechs, CETES e o S&P 500 via GBM, líquidas da retenção de ISR e dentro dos limites de proteção do IPAB e do Prosofipo. Com 200.000 MXN por um ano, dividir o dinheiro preenchendo primeiro as faixas promocionais com teto rende cerca de 12,4% líquido, contra 6,3% a 8,7% de qualquer produto sozinho. Os dados e o modelo estão prontos; as páginas do relatório ainda estão em construção.",
     ],
     experiences: [
       {
@@ -786,13 +795,15 @@ export const translations: Record<Locale, Dict> = {
       teamsCompeted: "deelnemende teams",
       daysToBuild: "dagen bouwtijd",
       languages: "talen",
+      optionsCompared: "opties vergeleken",
+      splitStrategies: "verdeelstrategieën",
     },
     sections: {
       projects: {
         eyebrow: "Projecten",
         title: "Een paar dingen die ik heb gebouwd",
         intro:
-          "IoT-firmware op de ESP32, full-stack webapps, browsergames en parallelle verwerking in Python.",
+          "IoT-firmware op de ESP32, full-stack webapps, browsergames, parallelle verwerking in Python en financiële datamodellering in Power BI.",
       },
       skills: {
         eyebrow: "Vaardigheden",
@@ -849,6 +860,7 @@ export const translations: Record<Locale, Dict> = {
       "Deze site. React 19, Tailwind 4 en een statische export-build, met een glasachtige donkere UI over een geanimeerde WebGL-shaderachtergrond, een interactieve three.js-globe, een radiale loopbaanbaan en live linkvoorbeelden.",
       "In uitvoering: de react-admin tutorial doorlopen met Material UI, TypeScript en een data provider op basis van JSONPlaceholder, plus een eigen auth provider. Oefening voor een TC2007B-vakproject voor een overheidspartner die nog niet vaststaat, waarschijnlijk de Mexicaanse Secretaría de Economía of Secretaría de Salud.",
       "Een gamified routinemaatje voor kinderen met een cognitieve beperking en hun verzorgers, gebouwd door een team van vijf in twee dagen tijdens de Ideathon Teletón 2026 in Mexico-Stad, waar het de hoofdprijs won. Het wordt nu door experts beoordeeld, met steun van de Wadhwani Foundation, om er een echt product van te maken. Ik bouwde het werkende prototype: een Python-server zonder dependencies (ThreadingHTTPServer uit de standaardbibliotheek) ontsluit een state machine voor herinneringen via een JSON-API, met één met een lock beveiligde engine-instantie die door twee clients wordt gedeeld. Het ouderpaneel schrijft ernaar (routines toevoegen, bewerken, aanzetten of starten, eigen animaties uploaden als base64-afbeeldingen) en het apparaatscherm pollt /api/state elke 500 ms, dus een wijziging van een ouder bereikt Rex binnen een seconde. Een routine te vaak uitstellen stuurt één melding naar de ouder. De statische demo draait een JavaScript-port van dezelfde engine achter dezelfde API, met opslag in localStorage.",
+      "In uitvoering: een Power BI-project over waar 200.000 MXN spaargeld het best naartoe kan. Een Python-buildscript bevat elk cijfer met bron (gedateerde renteobservaties met URL, de rentebesluiten van Banxico en de ISR- en UMA-parameters voor 2026) en genereert de CSV's en het Excel-werkboek achter het semantische model. Het vergelijkt 14 opties bij banken, SOFIPO's, fintechs, CETES en de S&P 500 via GBM, na ISR-inhouding en binnen de beschermingslimieten van IPAB en Prosofipo. Met 200.000 MXN voor een jaar levert een verdeling die eerst de gemaximeerde promotietarieven vult zo'n 12,4% netto op, tegenover 6,3% tot 8,7% voor elk los product. De data en het model zijn klaar; de rapportpagina's worden nog gebouwd.",
     ],
     experiences: [
       {

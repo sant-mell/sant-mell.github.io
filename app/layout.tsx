@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     template: "%s | Santiago Aguilar Mello",
   },
   description:
-    "Multicultural Computer Science (ITC) student at Tec de Monterrey, Campus Santa Fe, building embedded/IoT systems, full-stack apps, and parallel software. Native Portuguese and Spanish, English C1. Currently pursuing the Cisco CCNA and cybersecurity. Open to work, including remote and global roles.",
+    "Multicultural Computer Science (ITC) student at Tec de Monterrey, Campus Santa Fe, building embedded/IoT systems, full-stack apps, parallel software, and financial data models in SQL and Power BI. Native Portuguese and Spanish, English C1. Currently pursuing the Cisco CCNA and cybersecurity. Open to work, including remote and global roles.",
   keywords: [
     "Santiago Aguilar Mello",
     "software engineer",
@@ -34,6 +34,10 @@ export const metadata: Metadata = {
     "parallel computing",
     "C++",
     "Python",
+    "SQL",
+    "Power BI",
+    "data analysis",
+    "fintech",
     "Cisco CCNA",
     "cybersecurity",
     "ITC",
@@ -59,7 +63,7 @@ export const metadata: Metadata = {
     title:
       "Santiago Aguilar Mello | CS Student: Embedded, Full-Stack & Systems",
     description:
-      "Computer Science (ITC) student at Tec de Monterrey, Campus Santa Fe, building embedded/IoT, full-stack, and parallel software. Multilingual, pursuing the Cisco CCNA. Open to remote and global work.",
+      "Computer Science (ITC) student at Tec de Monterrey, Campus Santa Fe, building embedded/IoT, full-stack, parallel, and data software. Multilingual, pursuing the Cisco CCNA. Open to remote and global work.",
     locale: "en_US",
     images: [
       {
@@ -146,6 +150,7 @@ const personJsonLd = {
     "Internet of Things",
     "Full-Stack Development",
     "Parallel Computing",
+    "Data Modeling",
     "Software Engineering",
     "Computer Science",
   ],
