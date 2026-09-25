@@ -41,5 +41,4 @@ yarn-error.log*
 next-env.d.ts
 
 # Local tooling notes (not published)
-CLAUDE.md
 AGENTS.md
