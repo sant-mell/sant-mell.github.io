@@ -139,6 +139,7 @@ const PROJECT_META: ProjectMeta[] = [
     stats: [
       { value: "14", key: "optionsCompared" },
       { value: "6", key: "splitStrategies" },
+      { value: "402", key: "videosReviewed" },
     ],
   },
   {
