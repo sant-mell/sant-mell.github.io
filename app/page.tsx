@@ -15,7 +15,6 @@ import {
   MapPin,
   Cpu,
   Network,
-  Shield,
   Mail,
   Award,
   TrendingUp,
@@ -26,6 +25,7 @@ import {
   CircuitBoard,
   Play,
   ExternalLink,
+  BarChart3,
 } from "lucide-react";
 import dynamic from "next/dynamic";
 import AnimatedProfileCard, {
@@ -39,10 +39,6 @@ import { translations, LOCALES, type Locale } from "@/lib/i18n";
 
 /* Heavy WebGL/3D widgets are below the fold. Load them client-side only and
  * code-split them out of the initial bundle so first paint stays fast. */
-const RadialOrbitalTimeline = dynamic(
-  () => import("@/components/ui/radial-orbital-timeline"),
-  { ssr: false, loading: () => <div className="min-h-[60vh]" /> },
-);
 const GlobeViz = dynamic(() => import("@/components/ui/globe"), {
   ssr: false,
   loading: () => <div className="h-full w-full" />,
@@ -62,28 +58,9 @@ const GITHUB_URL = "https://github.com/sant-mell";
 const EMAIL = "sant.mell016@gmail.com";
 const MAILTO_URL = `mailto:${EMAIL}`;
 const CV_URL = "/cv.pdf";
-
-interface TimelineNode {
-  id: number;
-  title: string;
-  date: string;
-  content: string;
-  category: string;
-  icon: ComponentType<{ size?: number | string }>;
-  relatedIds: number[];
-  status: "completed" | "in-progress" | "pending";
-  energy: number;
-}
-
-const TIMELINE_META: Omit<TimelineNode, "title" | "content" | "category">[] = [
-  { id: 1, date: "2022-2024", icon: Globe, relatedIds: [2, 3], status: "completed", energy: 100 },
-  { id: 2, date: "Ongoing", icon: Languages, relatedIds: [1, 3], status: "completed", energy: 95 },
-  { id: 3, date: "2024-Present", icon: GraduationCap, relatedIds: [1, 2, 4], status: "in-progress", energy: 90 },
-  { id: 4, date: "2024-Present", icon: BookOpen, relatedIds: [3, 5], status: "in-progress", energy: 85 },
-  { id: 5, date: "2025", icon: Cpu, relatedIds: [4, 6], status: "completed", energy: 90 },
-  { id: 6, date: "2026", icon: Network, relatedIds: [5, 7], status: "completed", energy: 80 },
-  { id: 7, date: "2026+", icon: Shield, relatedIds: [6], status: "pending", energy: 20 },
-];
+const POWERBI_REPORT_URL =
+  "https://app.powerbi.com/view?r=eyJrIjoiMDMyNTQ3YWUtODU2OS00MWIzLTg2ZGQtMmY4OTE3OTVlOWJlIiwidCI6ImM2NWEzZWE2LTBmN2MtNDAwYi04OTM0LTVhNmRjMTcwNTY0NSIsImMiOjR9";
+const POWERBI_REPO_URL = "https://github.com/sant-mell/sofipo-savings-powerbi";
 
 interface Project {
   title: string;
@@ -94,8 +71,9 @@ interface Project {
   repoUrl?: string;
   /** Optional live URL a recruiter can open. */
   liveUrl?: string;
-  /** How to label the live link: an in-browser demo ("demo") or a shipped site ("site"). */
-  liveKind?: "demo" | "site";
+  /** How to label the live link: an in-browser demo ("demo"), a shipped site ("site"),
+   * or a public Power BI report ("report"). */
+  liveKind?: "demo" | "site" | "report";
   /** Render the measured sequential-vs-parallel benchmark bars (DFA lexer). */
   benchmark?: boolean;
   /** Ordered stages of a data-flow pipeline, drawn as a compact diagram. */
@@ -155,7 +133,9 @@ const PROJECT_META: ProjectMeta[] = [
     title: "Where Should 200,000 MXN Go?",
     subtitle: "Power BI · Python · Work in Progress",
     stack: ["Power BI", "DAX", "Python", "Excel", "Data Modeling"],
-    repoUrl: "https://github.com/sant-mell/sofipo-savings-powerbi",
+    repoUrl: POWERBI_REPO_URL,
+    liveUrl: POWERBI_REPORT_URL,
+    liveKind: "report",
     stats: [
       { value: "14", key: "optionsCompared" },
       { value: "6", key: "splitStrategies" },
@@ -305,6 +285,12 @@ const CERT_META: Omit<Certification, "name">[] = [
     url: "https://lnkd.in/p/eDfzKPff",
   },
   {
+    issuer: "Cisco Networking Academy",
+    issuerUrl: "https://www.netacad.com",
+    date: "Jul 2026",
+    url: "https://www.credly.com/badges/b75a0404-e081-4b7e-b99e-9c88548af2ac",
+  },
+  {
     issuer: "Common Purpose",
     issuerUrl: "https://commonpurpose.org",
     date: "Apr 2026",
@@ -338,10 +324,14 @@ const METRIC_META: Omit<Metric, "label" | "detail">[] = [
   { value: "3", icon: Languages },
 ];
 
+/** A skill chip, optionally linked to the work that backs it: `href` opens the
+ * artifact itself, `repoHref` adds a small GitHub link to its source. */
+type Skill = string | { label: string; href: string; repoHref?: string };
+
 interface SkillCluster {
   title: string;
   icon: ComponentType<{ className?: string }>;
-  skills: string[];
+  skills: Skill[];
 }
 
 const SKILL_META: Omit<SkillCluster, "title">[] = [
@@ -355,7 +345,14 @@ const SKILL_META: Omit<SkillCluster, "title">[] = [
   },
   {
     icon: CircuitBoard,
-    skills: ["Git / GitHub", "Next.js", "React", "Node.js", "Power BI", "Excel"],
+    skills: [
+      "Git / GitHub",
+      "Next.js",
+      "React",
+      "Node.js",
+      { label: "Power BI", href: POWERBI_REPORT_URL, repoHref: POWERBI_REPO_URL },
+      "Excel",
+    ],
   },
 ];
 
@@ -615,12 +612,6 @@ export default function Home() {
     role: t.experiences[i].role,
     detail: t.experiences[i].detail,
   }));
-  const systemsTimeline: TimelineNode[] = TIMELINE_META.map((n, i) => ({
-    ...n,
-    title: t.timelineNodes[i].title,
-    content: t.timelineNodes[i].content,
-    category: t.timelineNodes[i].category,
-  }));
   const certifications: Certification[] = CERT_META.map((c, i) => ({
     ...c,
     name: t.certNames[i],
@@ -718,7 +709,18 @@ export default function Home() {
                     />
                   )}
                   <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2">
-                    {project.liveUrl && (
+                    {project.liveUrl && project.liveKind === "report" && (
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 rounded-full bg-zinc-900 px-3 py-1.5 text-sm font-semibold text-white transition-transform hover:scale-105 dark:bg-white dark:text-zinc-900"
+                      >
+                        <BarChart3 className="h-3.5 w-3.5" aria-hidden="true" />
+                        {t.ui.viewReport}
+                      </a>
+                    )}
+                    {project.liveUrl && project.liveKind !== "report" && (
                       <LinkPreview
                         url={project.liveUrl}
                         className="inline-flex items-center gap-2 rounded-full bg-zinc-900 px-3 py-1.5 text-sm font-semibold text-white transition-transform hover:scale-105 dark:bg-white dark:text-zinc-900"
@@ -789,15 +791,38 @@ export default function Home() {
                     </h3>
                   </div>
                   <div className="mt-5 flex flex-wrap gap-2">
-                    {cluster.skills.map((skill) => (
-                      <Badge
-                        key={skill}
-                        variant="secondary"
-                        className="px-3 py-1 text-sm shadow-sm transition-transform hover:scale-110"
-                      >
-                        {skill}
-                      </Badge>
-                    ))}
+                    {cluster.skills.map((skill) => {
+                      const label = typeof skill === "string" ? skill : skill.label;
+                      const badge = (
+                        <Badge
+                          key={label}
+                          variant="secondary"
+                          className="px-3 py-1 text-sm shadow-sm transition-transform hover:scale-110"
+                        >
+                          {label}
+                          {typeof skill !== "string" && <ExternalLink className="ml-1 h-3 w-3" aria-hidden="true" />}
+                        </Badge>
+                      );
+                      if (typeof skill === "string") return badge;
+                      return (
+                        <span key={label} className="inline-flex items-center gap-1">
+                          <a href={skill.href} target="_blank" rel="noopener noreferrer">
+                            {badge}
+                          </a>
+                          {skill.repoHref && (
+                            <a
+                              href={skill.repoHref}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label={`${label} project on GitHub`}
+                              className="rounded-full p-1 text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+                            >
+                              <GithubMark className="h-4 w-4" />
+                            </a>
+                          )}
+                        </span>
+                      );
+                    })}
                   </div>
                 </div>
               </Reveal>
@@ -1029,23 +1054,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SYSTEMS TIMELINE (the journey, segues into the globe below) */}
-      <section className="relative overflow-hidden">
-        <div className="absolute top-0 left-0 right-0 z-20 pt-8 text-center pointer-events-none">
-          <p className="text-xs font-mono uppercase tracking-[0.25em] text-white/50">
-            {t.timeline.eyebrow}
-          </p>
-          <h2 className="gradient-text mt-2 text-2xl font-bold">
-            {t.timeline.title}
-          </h2>
-          <p className="mt-2 text-xs text-white/40">{t.timeline.hint}</p>
-        </div>
-        <div className="relative z-10">
-          <RadialOrbitalTimeline timelineData={systemsTimeline} />
-        </div>
-      </section>
-
-      {/* GLOBAL COMMUNICATOR (globe; closes the story the timeline opened) */}
+      {/* GLOBAL COMMUNICATOR (globe) */}
       <section className="relative overflow-hidden px-4 py-24 sm:py-28">
         <Aurora />
         <Reveal>

@@ -34,6 +34,7 @@ export interface Dict {
     viewOnLinkedin: string;
     playInBrowser: string;
     visitSite: string;
+    viewReport: string;
     benchSequential: string;
     benchParallel: string;
     benchFaster: string;
@@ -51,12 +52,10 @@ export interface Dict {
   };
   leadershipTitle: string;
   courseworkTitle: string;
-  timeline: { eyebrow: string; title: string; hint: string };
   globeCaption: string;
   footer: { location: string; citizenship: string; builtWith: string };
   projectDescriptions: string[];
   experiences: { role: string; detail: string }[];
-  timelineNodes: { title: string; content: string; category: string }[];
   certNames: string[];
   metrics: { label: string; detail: string }[];
   skillTitles: string[];
@@ -87,6 +86,7 @@ export const translations: Record<Locale, Dict> = {
       viewOnLinkedin: "View on LinkedIn",
       playInBrowser: "Play in browser",
       visitSite: "Visit site",
+      viewReport: "View report",
       benchSequential: "Sequential",
       benchParallel: "Parallel",
       benchFaster: "faster",
@@ -147,11 +147,6 @@ export const translations: Record<Locale, Dict> = {
     },
     leadershipTitle: "Leadership & Community",
     courseworkTitle: "Relevant Coursework",
-    timeline: {
-      eyebrow: "My path so far",
-      title: "From the IB Diploma to the CCNA track",
-      hint: "Click a node to see more",
-    },
     globeCaption: "São Paulo · Rotterdam · Mexico City",
     footer: {
       location:
@@ -167,7 +162,7 @@ export const translations: Record<Locale, Dict> = {
       "A semester-long team project for TC2005B: a roguelike deckbuilder built from scratch, engine included (no framework). An HTML5 Canvas client over an Express REST API of 28 endpoints, backed by a 745-line MySQL schema: 12 tables, 20 stored procedures, 13 analytics views (leaderboards, enemy and difficulty win rates, card popularity), and 7 triggers that keep player stats and run history in sync. Mid-duel state is checkpointed as JSON so a run resumes exactly where it left off, with cascade deletes and 35 indexes.",
       "A browser Breakout built from scratch on a custom HTML5 Canvas engine (no framework): an OOP hierarchy of Ball, Paddle, and Brick over a shared GameObject base and a small Vector library, driven by a delta-time loop for frame-rate-independent physics. The twist: tilting the paddle 30 degrees rotates it through the canvas transform and redirects the ball's bounce vector to aim into corners. Three themed levels (disco, hip hop, rock), each with its own sprites and music.",
       "A hand-built DFA lexer (explicit transition table, no regex) extended into a parallel syntax highlighter, benchmarked at about 6x speedup over a sequential baseline: 60 Python files, 8 MB, on 16 cores.",
-      "This site. React 19, Tailwind 4, and a static export build, with a glassy dark UI over an animated WebGL shader background, an interactive three.js globe, a radial career orbit, and live link previews.",
+      "This site. React 19, Tailwind 4, and a static export build, with a glassy dark UI over an animated WebGL shader background, an interactive three.js globe, and live link previews.",
       "In progress: working through the react-admin tutorial with Material UI, TypeScript, and a JSONPlaceholder-backed data provider, plus a custom auth provider. Practice ahead of a TC2007B course project for a government partner still to be confirmed, likely Mexico's Secretaria de Economia or Secretaria de Salud.",
       "A gamified routine buddy for children with cognitive disabilities and their caregivers, built by a five-person team in two days at the Ideathon Teletón 2026 in Mexico City, where it won overall. It's now being reviewed by experts, with support from the Wadhwani Foundation, to turn it into a real product. I built the working prototype: a dependency-free Python server (standard-library ThreadingHTTPServer) exposes a reminder state machine through a JSON API, with one lock-guarded engine instance shared by two clients. The parent panel writes to it (add, edit, enable or trigger routines, upload custom animations as base64 images), and the device screen polls /api/state every 500 ms, so a parent's change reaches Rex in under a second. Postponing a routine past the limit sends a single alert back to the parent. The static demo runs a JavaScript port of the same engine behind the same API, persisting to localStorage.",
       "In progress: a Power BI project on where 200,000 MXN of savings should go. A Python build script holds every sourced figure (dated rate observations with source URLs, Banxico's rate decisions, 2026 ISR and UMA parameters) and generates the CSVs and Excel workbook behind the semantic model. It compares 14 options across banks, SOFIPOs, fintechs, CETES, and the S&P 500 through GBM, net of ISR withholding and within IPAB and Prosofipo protection limits. At 200,000 MXN for a year, a split that fills capped promotional tiers first nets about 12.4%, against 6.3% to 8.7% for any single product. The data and model are done; the report pages are still being built.",
@@ -194,52 +189,9 @@ export const translations: Record<Locale, Dict> = {
           "Optimized last-mile print distribution routes for NRC, De Telegraaf, AD, and others under strict daily time constraints.",
       },
     ],
-    timelineNodes: [
-      {
-        title: "IBDP, Rotterdam (NL)",
-        content:
-          "International Baccalaureate Diploma at Rotterdam International Secondary School, scoring 33/45 with an Excellence in English award.",
-        category: "Education",
-      },
-      {
-        title: "Polyglot: PT / ES / EN / NL",
-        content:
-          "Native Portuguese and Spanish, English C1, Dutch A1.",
-        category: "Skills",
-      },
-      {
-        title: "Tec de Monterrey, ITC",
-        content:
-          "B.S. in Computer Science and Technology at Campus Santa Fe, Mexico City. GPA 94/100. Coursework spanning data structures, databases, embedded systems and IoT, device interconnection, and software engineering.",
-        category: "Education",
-      },
-      {
-        title: "Teaching & Peer Mentorship",
-        content:
-          "Python instructor for middle-school students, English teacher in the Netherlands, and a graduate Peer Mentor at Tec, guiding new students through their first year.",
-        category: "Experience",
-      },
-      {
-        title: "IoT & Systems Engineering",
-        content:
-          "An ESP32 smart-parking prototype with MQTT telemetry, a DFA-based lexer parallelized with Python multiprocessing, and data structures in C++.",
-        category: "Projects",
-      },
-      {
-        title: "START Hack: Aquaroute",
-        content:
-          "First hackathon. Built Aquaroute in 36 hours: a SaaS that routes water trucks to the most water-stressed areas using satellite climate data and a weighted variation of Dijkstra's algorithm.",
-        category: "Projects",
-      },
-      {
-        title: "Target: CCNA & Cybersecurity",
-        content:
-          "Working toward the Cisco CCNA certification and a cybersecurity or network engineering internship, with a focus on remote, global infrastructure roles.",
-        category: "Career",
-      },
-    ],
     certNames: [
       "Overall Winner, Ideathon Teletón 2026",
+      "Networking Academy Learn-A-Thon 2025",
       "Universitas 21 Global Citizenship",
       "IB Diploma, 33/45",
       "Excellence in English Award",
@@ -314,6 +266,7 @@ export const translations: Record<Locale, Dict> = {
       viewOnLinkedin: "Ver en LinkedIn",
       playInBrowser: "Jugar en el navegador",
       visitSite: "Ver sitio",
+      viewReport: "Ver reporte",
       benchSequential: "Secuencial",
       benchParallel: "Paralelo",
       benchFaster: "más rápido",
@@ -375,11 +328,6 @@ export const translations: Record<Locale, Dict> = {
     },
     leadershipTitle: "Liderazgo y comunidad",
     courseworkTitle: "Cursos relevantes",
-    timeline: {
-      eyebrow: "Mi camino hasta ahora",
-      title: "Del Diploma del IB a la ruta CCNA",
-      hint: "Haz clic en un nodo para ver más",
-    },
     globeCaption: "São Paulo · Róterdam · Ciudad de México",
     footer: {
       location:
@@ -395,7 +343,7 @@ export const translations: Record<Locale, Dict> = {
       "Un proyecto de equipo de un semestre para TC2005B: un deckbuilder roguelike hecho desde cero, motor incluido (sin framework). Un cliente en HTML5 Canvas sobre una API REST en Express de 28 endpoints, respaldada por un esquema MySQL de 745 líneas: 12 tablas, 20 procedimientos almacenados, 13 vistas analíticas (tablas de líderes, tasas de victoria por enemigo y dificultad, popularidad de cartas) y 7 triggers que mantienen sincronizadas las estadísticas del jugador y el historial de partidas. El estado a mitad de duelo se guarda como JSON para reanudar la partida justo donde quedó, con borrados en cascada y 35 índices.",
       "Un Breakout en el navegador hecho desde cero sobre un motor HTML5 Canvas propio (sin framework): una jerarquía POO de Ball, Paddle y Brick sobre una base GameObject común y una pequeña librería Vector, movida por un bucle con delta-time para una física independiente de los FPS. El giro: inclinar la paleta 30 grados la rota con la transformación del canvas y redirige el vector de rebote de la bola hacia las esquinas. Tres niveles temáticos (disco, hip hop, rock), cada uno con sus propios sprites y música.",
       "Un lexer DFA hecho a mano (tabla de transiciones explícita, sin regex) extendido a un resaltador de sintaxis paralelo, con un speedup medido de unas 6x frente a una versión secuencial: 60 archivos de Python, 8 MB, en 16 núcleos.",
-      "Este sitio. React 19, Tailwind 4 y una compilación de exportación estática, con una interfaz oscura tipo cristal sobre un fondo shader WebGL animado, un globo interactivo en three.js, una órbita radial de trayectoria y vistas previas de enlaces en vivo.",
+      "Este sitio. React 19, Tailwind 4 y una compilación de exportación estática, con una interfaz oscura tipo cristal sobre un fondo shader WebGL animado, un globo interactivo en three.js y vistas previas de enlaces en vivo.",
       "En progreso: recorriendo el tutorial de react-admin con Material UI, TypeScript y un data provider sobre JSONPlaceholder, más un auth provider propio. Práctica previa a un proyecto de la materia TC2007B para un socio formador gubernamental aún por confirmar, probablemente la Secretaría de Economía o la Secretaría de Salud.",
       "Un compañero de rutinas gamificado para niñas y niños con discapacidad cognitiva y sus cuidadores, hecho por un equipo de cinco personas en dos días en el Ideathon Teletón 2026 en la Ciudad de México, donde ganó el primer lugar general. Hoy lo están revisando expertos, con apoyo de la Wadhwani Foundation, para convertirlo en un producto real. Construí el prototipo funcional: un servidor en Python sin dependencias (ThreadingHTTPServer de la biblioteca estándar) expone una máquina de estados de recordatorios mediante una API JSON, con una sola instancia del motor, protegida con un lock, compartida por dos clientes. El panel para padres escribe en ella (agregar, editar, activar o disparar rutinas, subir animaciones propias como imágenes base64) y la pantalla del dispositivo consulta /api/state cada 500 ms, así que un cambio del padre llega a Rex en menos de un segundo. Posponer una rutina más allá del límite envía una sola alerta al padre. La demo estática corre un port en JavaScript del mismo motor detrás de la misma API, guardando el estado en localStorage.",
       "En progreso: un proyecto de Power BI sobre dónde conviene poner 200,000 MXN de ahorro. Un script de Python concentra cada dato con su fuente (observaciones de tasas fechadas con su URL, las decisiones de Banxico y los parámetros de ISR y UMA 2026) y genera los CSV y el libro de Excel detrás del modelo semántico. Compara 14 opciones entre bancos, SOFIPOs, fintechs, CETES y el S&P 500 vía GBM, netas de la retención de ISR y dentro de los límites de protección del IPAB y Prosofipo. Con 200,000 MXN a un año, repartir el dinero llenando primero los tramos promocionales con tope rinde cerca de 12.4% neto, contra 6.3% a 8.7% de cualquier producto por sí solo. Los datos y el modelo están listos; las páginas del reporte siguen en construcción.",
@@ -422,52 +370,9 @@ export const translations: Record<Locale, Dict> = {
           "Optimicé rutas de distribución de prensa de última milla para NRC, De Telegraaf, AD y otros, bajo estrictas restricciones de tiempo diarias.",
       },
     ],
-    timelineNodes: [
-      {
-        title: "IBDP, Róterdam (NL)",
-        content:
-          "Diploma del Bachillerato Internacional en la Rotterdam International Secondary School, con 33/45 y un premio a la Excelencia en Inglés.",
-        category: "Educación",
-      },
-      {
-        title: "Políglota: PT / ES / EN / NL",
-        content:
-          "Portugués y español nativos, inglés C1, neerlandés A1.",
-        category: "Habilidades",
-      },
-      {
-        title: "Tec de Monterrey, ITC",
-        content:
-          "Licenciatura en Ingeniería en Tecnologías Computacionales en el Campus Santa Fe, Ciudad de México. Promedio 94/100. Cursos de estructuras de datos, bases de datos, sistemas embebidos e IoT, interconexión de dispositivos e ingeniería de software.",
-        category: "Educación",
-      },
-      {
-        title: "Docencia y mentoría entre pares",
-        content:
-          "Instructor de Python para estudiantes de secundaria, profesor de inglés en los Países Bajos y mentor par egresado en el Tec, acompañando a nuevos estudiantes en su primer año.",
-        category: "Experiencia",
-      },
-      {
-        title: "IoT e ingeniería de sistemas",
-        content:
-          "Un prototipo de estacionamiento inteligente con ESP32 y telemetría por MQTT, un lexer basado en DFA paralelizado con multiprocessing de Python y estructuras de datos en C++.",
-        category: "Proyectos",
-      },
-      {
-        title: "START Hack: Aquaroute",
-        content:
-          "Primer hackathon. Construí Aquaroute en 36 horas: un SaaS que enruta camiones de agua hacia las zonas con mayor estrés hídrico usando datos climáticos satelitales y una variación ponderada del algoritmo de Dijkstra.",
-        category: "Proyectos",
-      },
-      {
-        title: "Objetivo: CCNA y ciberseguridad",
-        content:
-          "En camino hacia la certificación Cisco CCNA y unas prácticas en ciberseguridad o ingeniería de redes, con foco en roles de infraestructura remotos y globales.",
-        category: "Carrera",
-      },
-    ],
     certNames: [
       "Primer lugar general, Ideathon Teletón 2026",
+      "Networking Academy Learn-A-Thon 2025",
       "Universitas 21 Global Citizenship",
       "Diploma del IB, 33/45",
       "Excellence in English Award",
@@ -545,6 +450,7 @@ export const translations: Record<Locale, Dict> = {
       viewOnLinkedin: "Ver no LinkedIn",
       playInBrowser: "Jogar no navegador",
       visitSite: "Ver site",
+      viewReport: "Ver relatório",
       benchSequential: "Sequencial",
       benchParallel: "Paralelo",
       benchFaster: "mais rápido",
@@ -606,11 +512,6 @@ export const translations: Record<Locale, Dict> = {
     },
     leadershipTitle: "Liderança e comunidade",
     courseworkTitle: "Disciplinas relevantes",
-    timeline: {
-      eyebrow: "Meu caminho até agora",
-      title: "Do Diploma do IB ao caminho do CCNA",
-      hint: "Clique em um nó para ver mais",
-    },
     globeCaption: "São Paulo · Roterdã · Cidade do México",
     footer: {
       location:
@@ -626,7 +527,7 @@ export const translations: Record<Locale, Dict> = {
       "Um projeto de equipe de um semestre para a matéria TC2005B: um deckbuilder roguelike feito do zero, motor incluído (sem framework). Um cliente em HTML5 Canvas sobre uma API REST em Express de 28 endpoints, apoiada por um esquema MySQL de 745 linhas: 12 tabelas, 20 procedimentos armazenados, 13 views analíticas (rankings, taxas de vitória por inimigo e dificuldade, popularidade de cartas) e 7 triggers que mantêm sincronizadas as estatísticas do jogador e o histórico de partidas. O estado no meio do duelo é salvo como JSON para retomar a partida exatamente de onde parou, com deleções em cascata e 35 índices.",
       "Um Breakout no navegador feito do zero sobre um motor HTML5 Canvas próprio (sem framework): uma hierarquia POO de Ball, Paddle e Brick sobre uma base GameObject comum e uma pequena biblioteca Vector, movida por um loop com delta-time para uma física independente dos FPS. O diferencial: inclinar a raquete 30 graus a rotaciona pela transformação do canvas e redireciona o vetor de rebote da bola para os cantos. Três níveis temáticos (disco, hip hop, rock), cada um com seus próprios sprites e música.",
       "Um lexer DFA feito à mão (tabela de transições explícita, sem regex) estendido para um realçador de sintaxe paralelo, com speedup medido de cerca de 6x sobre uma versão sequencial: 60 arquivos de Python, 8 MB, em 16 núcleos.",
-      "Este site. React 19, Tailwind 4 e um build de exportação estática, com uma interface escura estilo vidro sobre um fundo shader WebGL animado, um globo interativo em three.js, uma órbita radial de trajetória e pré-visualizações de links ao vivo.",
+      "Este site. React 19, Tailwind 4 e um build de exportação estática, com uma interface escura estilo vidro sobre um fundo shader WebGL animado, um globo interativo em three.js e pré-visualizações de links ao vivo.",
       "Em andamento: seguindo o tutorial do react-admin com Material UI, TypeScript e um data provider sobre o JSONPlaceholder, além de um auth provider próprio. Prática antes de um projeto da disciplina TC2007B para um parceiro governamental ainda não confirmado, provavelmente a Secretaría de Economía ou a Secretaría de Salud (México).",
       "Um companheiro de rotinas gamificado para crianças com deficiência cognitiva e seus cuidadores, feito por uma equipe de cinco pessoas em dois dias no Ideathon Teletón 2026, na Cidade do México, onde ficou em primeiro lugar geral. Agora está sendo revisado por especialistas, com apoio da Wadhwani Foundation, para virar um produto real. Construí o protótipo funcional: um servidor Python sem dependências (ThreadingHTTPServer da biblioteca padrão) expõe uma máquina de estados de lembretes por uma API JSON, com uma única instância do motor, protegida por lock, compartilhada por dois clientes. O painel dos pais escreve nela (adicionar, editar, ativar ou disparar rotinas, enviar animações próprias como imagens base64) e a tela do dispositivo consulta /api/state a cada 500 ms, então uma mudança dos pais chega ao Rex em menos de um segundo. Adiar uma rotina além do limite envia um único alerta aos pais. A demo estática roda um port em JavaScript do mesmo motor atrás da mesma API, salvando o estado no localStorage.",
       "Em andamento: um projeto de Power BI sobre onde colocar 200.000 MXN de poupança. Um script em Python reúne cada número com sua fonte (observações de taxas datadas com URL, as decisões do Banxico e os parâmetros de ISR e UMA de 2026) e gera os CSVs e a planilha de Excel por trás do modelo semântico. Compara 14 opções entre bancos, SOFIPOs, fintechs, CETES e o S&P 500 via GBM, líquidas da retenção de ISR e dentro dos limites de proteção do IPAB e do Prosofipo. Com 200.000 MXN por um ano, dividir o dinheiro preenchendo primeiro as faixas promocionais com teto rende cerca de 12,4% líquido, contra 6,3% a 8,7% de qualquer produto sozinho. Os dados e o modelo estão prontos; as páginas do relatório ainda estão em construção.",
@@ -653,52 +554,9 @@ export const translations: Record<Locale, Dict> = {
           "Otimizei rotas de distribuição de jornais de última milha para NRC, De Telegraaf, AD e outros, sob rígidas restrições diárias de tempo.",
       },
     ],
-    timelineNodes: [
-      {
-        title: "IBDP, Roterdã (NL)",
-        content:
-          "Diploma do Bacharelado Internacional na Rotterdam International Secondary School, com 33/45 e um prêmio de Excelência em Inglês.",
-        category: "Educação",
-      },
-      {
-        title: "Poliglota: PT / ES / EN / NL",
-        content:
-          "Português e espanhol nativos, inglês C1, neerlandês A1.",
-        category: "Habilidades",
-      },
-      {
-        title: "Tec de Monterrey, ITC",
-        content:
-          "Bacharelado em Ciência e Tecnologia da Computação no Campus Santa Fe, Cidade do México. Média 94/100. Disciplinas de estruturas de dados, bancos de dados, sistemas embarcados e IoT, interconexão de dispositivos e engenharia de software.",
-        category: "Educação",
-      },
-      {
-        title: "Docência e mentoria entre pares",
-        content:
-          "Instrutor de Python para alunos do ensino fundamental, professor de inglês nos Países Baixos e mentor par formado no Tec, acompanhando novos estudantes no primeiro ano.",
-        category: "Experiência",
-      },
-      {
-        title: "IoT e engenharia de sistemas",
-        content:
-          "Um protótipo de estacionamento inteligente com ESP32 e telemetria por MQTT, um lexer baseado em DFA paralelizado com multiprocessing de Python e estruturas de dados em C++.",
-        category: "Projetos",
-      },
-      {
-        title: "START Hack: Aquaroute",
-        content:
-          "Primeiro hackathon. Construí o Aquaroute em 36 horas: um SaaS que roteia caminhões-pipa para as áreas com maior estresse hídrico usando dados climáticos de satélite e uma variação ponderada do algoritmo de Dijkstra.",
-        category: "Projetos",
-      },
-      {
-        title: "Objetivo: CCNA e cibersegurança",
-        content:
-          "A caminho da certificação Cisco CCNA e de um estágio em cibersegurança ou engenharia de redes, com foco em vagas de infraestrutura remotas e globais.",
-        category: "Carreira",
-      },
-    ],
     certNames: [
       "Vencedor geral, Ideathon Teletón 2026",
+      "Networking Academy Learn-A-Thon 2025",
       "Universitas 21 Global Citizenship",
       "Diploma do IB, 33/45",
       "Excellence in English Award",
@@ -776,6 +634,7 @@ export const translations: Record<Locale, Dict> = {
       viewOnLinkedin: "Bekijk op LinkedIn",
       playInBrowser: "Speel in browser",
       visitSite: "Bekijk site",
+      viewReport: "Bekijk rapport",
       benchSequential: "Sequentieel",
       benchParallel: "Parallel",
       benchFaster: "sneller",
@@ -837,11 +696,6 @@ export const translations: Record<Locale, Dict> = {
     },
     leadershipTitle: "Leiderschap en gemeenschap",
     courseworkTitle: "Relevante vakken",
-    timeline: {
-      eyebrow: "Mijn pad tot nu toe",
-      title: "Van het IB-diploma naar het CCNA-traject",
-      hint: "Klik op een knooppunt voor meer",
-    },
     globeCaption: "São Paulo · Rotterdam · Mexico-Stad",
     footer: {
       location:
@@ -857,7 +711,7 @@ export const translations: Record<Locale, Dict> = {
       "Een teamproject van een semester voor het vak TC2005B: een roguelike deckbuilder volledig zelf gebouwd, engine inbegrepen (geen framework). Een HTML5 Canvas-client op een Express REST-API van 28 endpoints, met een MySQL-schema van 745 regels: 12 tabellen, 20 stored procedures, 13 analytische views (ranglijsten, winstpercentages per vijand en moeilijkheidsgraad, kaartpopulariteit) en 7 triggers die spelerstatistieken en speelgeschiedenis synchroon houden. De staat midden in een duel wordt als JSON opgeslagen zodat een run precies hervat waar hij stopte, met cascade-deletes en 35 indexen.",
       "Een browser-Breakout volledig zelf gebouwd op een eigen HTML5 Canvas-engine (geen framework): een OOP-hiërarchie van Ball, Paddle en Brick op een gedeelde GameObject-basis en een kleine Vector-library, aangedreven door een delta-time loop voor framerate-onafhankelijke fysica. De twist: de paddle 30 graden kantelen draait hem via de canvas-transform en stuurt de stuitervector van de bal naar de hoeken. Drie thematische levels (disco, hiphop, rock), elk met eigen sprites en muziek.",
       "Een handgebouwde DFA-lexer (expliciete overgangstabel, geen regex) uitgebreid tot een parallelle syntax-highlighter, gemeten op ongeveer 6x sneller dan een sequentiële basis: 60 Python-bestanden, 8 MB, op 16 cores.",
-      "Deze site. React 19, Tailwind 4 en een statische export-build, met een glasachtige donkere UI over een geanimeerde WebGL-shaderachtergrond, een interactieve three.js-globe, een radiale loopbaanbaan en live linkvoorbeelden.",
+      "Deze site. React 19, Tailwind 4 en een statische export-build, met een glasachtige donkere UI over een geanimeerde WebGL-shaderachtergrond, een interactieve three.js-globe en live linkvoorbeelden.",
       "In uitvoering: de react-admin tutorial doorlopen met Material UI, TypeScript en een data provider op basis van JSONPlaceholder, plus een eigen auth provider. Oefening voor een TC2007B-vakproject voor een overheidspartner die nog niet vaststaat, waarschijnlijk de Mexicaanse Secretaría de Economía of Secretaría de Salud.",
       "Een gamified routinemaatje voor kinderen met een cognitieve beperking en hun verzorgers, gebouwd door een team van vijf in twee dagen tijdens de Ideathon Teletón 2026 in Mexico-Stad, waar het de hoofdprijs won. Het wordt nu door experts beoordeeld, met steun van de Wadhwani Foundation, om er een echt product van te maken. Ik bouwde het werkende prototype: een Python-server zonder dependencies (ThreadingHTTPServer uit de standaardbibliotheek) ontsluit een state machine voor herinneringen via een JSON-API, met één met een lock beveiligde engine-instantie die door twee clients wordt gedeeld. Het ouderpaneel schrijft ernaar (routines toevoegen, bewerken, aanzetten of starten, eigen animaties uploaden als base64-afbeeldingen) en het apparaatscherm pollt /api/state elke 500 ms, dus een wijziging van een ouder bereikt Rex binnen een seconde. Een routine te vaak uitstellen stuurt één melding naar de ouder. De statische demo draait een JavaScript-port van dezelfde engine achter dezelfde API, met opslag in localStorage.",
       "In uitvoering: een Power BI-project over waar 200.000 MXN spaargeld het best naartoe kan. Een Python-buildscript bevat elk cijfer met bron (gedateerde renteobservaties met URL, de rentebesluiten van Banxico en de ISR- en UMA-parameters voor 2026) en genereert de CSV's en het Excel-werkboek achter het semantische model. Het vergelijkt 14 opties bij banken, SOFIPO's, fintechs, CETES en de S&P 500 via GBM, na ISR-inhouding en binnen de beschermingslimieten van IPAB en Prosofipo. Met 200.000 MXN voor een jaar levert een verdeling die eerst de gemaximeerde promotietarieven vult zo'n 12,4% netto op, tegenover 6,3% tot 8,7% voor elk los product. De data en het model zijn klaar; de rapportpagina's worden nog gebouwd.",
@@ -884,52 +738,9 @@ export const translations: Record<Locale, Dict> = {
           "Optimaliseerde last-mile bezorgroutes voor NRC, De Telegraaf, AD en anderen onder strikte dagelijkse tijdsdruk.",
       },
     ],
-    timelineNodes: [
-      {
-        title: "IBDP, Rotterdam (NL)",
-        content:
-          "International Baccalaureate-diploma aan de Rotterdam International Secondary School, met 33/45 en een Excellence in English-prijs.",
-        category: "Onderwijs",
-      },
-      {
-        title: "Polyglot: PT / ES / EN / NL",
-        content:
-          "Portugees en Spaans als moedertaal, Engels C1, Nederlands A1.",
-        category: "Vaardigheden",
-      },
-      {
-        title: "Tec de Monterrey, ITC",
-        content:
-          "Bachelor in Computer Science and Technology aan Campus Santa Fe, Mexico-Stad. GPA 94/100. Vakken in datastructuren, databases, embedded systems en IoT, apparaatinterconnectie en software engineering.",
-        category: "Onderwijs",
-      },
-      {
-        title: "Lesgeven en peer-mentoring",
-        content:
-          "Python-instructeur voor middelbare scholieren, docent Engels in Nederland en afgestudeerd peer-mentor aan Tec die nieuwe studenten door hun eerste jaar begeleidt.",
-        category: "Ervaring",
-      },
-      {
-        title: "IoT en systeemengineering",
-        content:
-          "Een ESP32 smart-parking-prototype met MQTT-telemetrie, een DFA-gebaseerde lexer geparallelliseerd met Python-multiprocessing en datastructuren in C++.",
-        category: "Projecten",
-      },
-      {
-        title: "START Hack: Aquaroute",
-        content:
-          "Eerste hackathon. Aquaroute in 36 uur gebouwd: een SaaS die watertrucks naar de gebieden met de grootste waterschaarste stuurt met satellietklimaatdata en een gewogen variant van Dijkstra's algoritme.",
-        category: "Projecten",
-      },
-      {
-        title: "Doel: CCNA en cybersecurity",
-        content:
-          "Op weg naar de Cisco CCNA-certificering en een stage in cybersecurity of netwerkengineering, met focus op remote, wereldwijde infrastructuurfuncties.",
-        category: "Carrière",
-      },
-    ],
     certNames: [
       "Hoofdprijs, Ideathon Teletón 2026",
+      "Networking Academy Learn-A-Thon 2025",
       "Universitas 21 Global Citizenship",
       "IB-diploma, 33/45",
       "Excellence in English Award",
