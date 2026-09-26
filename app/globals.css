@@ -155,3 +155,16 @@ body {
   .shine:hover::after { animation: none; }
   * { scroll-behavior: auto; }
 }
+
+/* Equalizer bars on the sound toggle: each bar bounces on its own delay. */
+@keyframes sound-bar {
+  0%, 100% { transform: scaleY(0.3); }
+  50% { transform: scaleY(1); }
+}
+.sound-bar {
+  transform-origin: center;
+  animation: sound-bar 0.9s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .sound-bar { animation: none; transform: scaleY(0.6); }
+}

@@ -39,6 +39,8 @@ export interface Dict {
     benchParallel: string;
     benchFaster: string;
     viewCredential: string;
+    soundOn: string;
+    soundOff: string;
   };
   statLabels: Record<string, string>;
   sections: {
@@ -91,6 +93,8 @@ export const translations: Record<Locale, Dict> = {
       benchParallel: "Parallel",
       benchFaster: "faster",
       viewCredential: "View credential",
+      soundOn: "Turn sound off",
+      soundOff: "Turn sound on",
     },
     statLabels: {
       endpoints: "REST endpoints",
@@ -272,6 +276,8 @@ export const translations: Record<Locale, Dict> = {
       benchParallel: "Paralelo",
       benchFaster: "más rápido",
       viewCredential: "Ver credencial",
+      soundOn: "Apagar el sonido",
+      soundOff: "Encender el sonido",
     },
     statLabels: {
       endpoints: "endpoints REST",
@@ -457,6 +463,8 @@ export const translations: Record<Locale, Dict> = {
       benchParallel: "Paralelo",
       benchFaster: "mais rápido",
       viewCredential: "Ver credencial",
+      soundOn: "Desligar o som",
+      soundOff: "Ligar o som",
     },
     statLabels: {
       endpoints: "endpoints REST",
@@ -642,6 +650,8 @@ export const translations: Record<Locale, Dict> = {
       benchParallel: "Parallel",
       benchFaster: "sneller",
       viewCredential: "Bekijk credential",
+      soundOn: "Geluid uit",
+      soundOff: "Geluid aan",
     },
     statLabels: {
       endpoints: "REST-endpoints",

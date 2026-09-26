@@ -32,6 +32,7 @@ import AnimatedProfileCard, {
   type ProfileCardProps,
 } from "@/components/ui/info-card";
 import { LinkPreview } from "@/components/ui/link-preview";
+import { SoundToggle } from "@/components/ui/sound-toggle";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
@@ -58,6 +59,8 @@ const GITHUB_URL = "https://github.com/sant-mell";
 const EMAIL = "sant.mell016@gmail.com";
 const MAILTO_URL = `mailto:${EMAIL}`;
 const CV_URL = "/cv.pdf";
+/** Background track, "Embers Call" by Charmonello. */
+const MUSIC_URL = "/audio/embers-call.mp3";
 const POWERBI_REPORT_URL =
   "https://app.powerbi.com/view?r=eyJrIjoiMDMyNTQ3YWUtODU2OS00MWIzLTg2ZGQtMmY4OTE3OTVlOWJlIiwidCI6ImM2NWEzZWE2LTBmN2MtNDAwYi04OTM0LTVhNmRjMTcwNTY0NSIsImMiOjR9";
 const POWERBI_REPO_URL = "https://github.com/sant-mell/sofipo-savings-powerbi";
@@ -645,6 +648,7 @@ export default function Home() {
       </div>
 
       <LanguageSwitcher locale={locale} setLocale={setLocale} />
+      <SoundToggle src={MUSIC_URL} labelOn={t.ui.soundOn} labelOff={t.ui.soundOff} />
 
       {/* HERO */}
       <section>
