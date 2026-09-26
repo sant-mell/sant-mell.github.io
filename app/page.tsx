@@ -320,9 +320,8 @@ const METRIC_META: Omit<Metric, "label" | "detail">[] = [
   { value: "94", icon: Award },
   { value: "33/45", icon: GraduationCap },
   { value: "2028", icon: TrendingUp },
-  /* Counts the three languages the detail line claims (two native + English C1).
-   * Dutch is disclosed separately, at its real A1 level, in `languageBadges`. */
-  { value: "3", icon: Languages },
+  /* Counts all four languages; the detail line gives each level, Dutch at A1. */
+  { value: "4", icon: Languages },
 ];
 
 /** A skill chip, optionally linked to the work that backs it: `href` opens the
