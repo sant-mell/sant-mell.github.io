@@ -324,9 +324,8 @@ const METRIC_META: Omit<Metric, "label" | "detail">[] = [
   { value: "4", icon: Languages },
 ];
 
-/** A skill chip, optionally linked to the work that backs it: `href` opens the
- * artifact itself, `repoHref` adds a small GitHub link to its source. */
-type Skill = string | { label: string; href: string; repoHref?: string };
+/** A skill chip, optionally linked to the work that backs it. */
+type Skill = string | { label: string; href: string };
 
 interface SkillCluster {
   title: string;
@@ -350,7 +349,7 @@ const SKILL_META: Omit<SkillCluster, "title">[] = [
       "Next.js",
       "React",
       "Node.js",
-      { label: "Power BI", href: POWERBI_REPORT_URL, repoHref: POWERBI_REPO_URL },
+      { label: "Power BI", href: POWERBI_REPORT_URL },
       "Excel",
     ],
   },
@@ -805,22 +804,9 @@ export default function Home() {
                       );
                       if (typeof skill === "string") return badge;
                       return (
-                        <span key={label} className="inline-flex items-center gap-1">
-                          <a href={skill.href} target="_blank" rel="noopener noreferrer">
-                            {badge}
-                          </a>
-                          {skill.repoHref && (
-                            <a
-                              href={skill.repoHref}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              aria-label={`${label} project on GitHub`}
-                              className="rounded-full p-1 text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-                            >
-                              <GithubMark className="h-4 w-4" />
-                            </a>
-                          )}
-                        </span>
+                        <a key={label} href={skill.href} target="_blank" rel="noopener noreferrer">
+                          {badge}
+                        </a>
                       );
                     })}
                   </div>
