@@ -204,7 +204,7 @@ export const translations: Record<Locale, Dict> = {
     metrics: [
       { label: "University GPA", detail: "out of 100, Tec de Monterrey" },
       { label: "IB Diploma", detail: "Excellence in English" },
-      { label: "Expected Graduation", detail: "B.S. Computer Science (ITC)" },
+      { label: "Expected Graduation", detail: "May 2028, B.S. Computer Science (ITC). Degree conferral Jun/Jul 2028." },
       { label: "Languages", detail: "two native, English C1, Dutch A1" },
     ],
     skillTitles: ["Languages", "Systems & Networking", "Tools & Web"],
@@ -390,7 +390,7 @@ export const translations: Record<Locale, Dict> = {
       { label: "Diploma del IB", detail: "Excelencia en Inglés" },
       {
         label: "Graduación prevista",
-        detail: "Lic. en Tecnologías Computacionales (ITC)",
+        detail: "Mayo de 2028, Lic. en Tecnologías Computacionales (ITC). Titulación jun/jul 2028.",
       },
       { label: "Idiomas", detail: "dos nativos, inglés C1, neerlandés A1" },
     ],
@@ -577,7 +577,7 @@ export const translations: Record<Locale, Dict> = {
       { label: "Diploma do IB", detail: "Excelência em Inglês" },
       {
         label: "Formatura prevista",
-        detail: "Bacharelado em Ciência da Computação (ITC)",
+        detail: "Maio de 2028, Bacharelado em Ciência da Computação (ITC). Colação de grau jun/jul 2028.",
       },
       { label: "Idiomas", detail: "dois nativos, inglês C1, neerlandês A1" },
     ],
@@ -764,7 +764,7 @@ export const translations: Record<Locale, Dict> = {
       { label: "IB-diploma", detail: "Excellence in English" },
       {
         label: "Verwachte afstuderen",
-        detail: "Bachelor Informatica (ITC)",
+        detail: "Mei 2028, Bachelor Informatica (ITC). Diploma-uitreiking jun/jul 2028.",
       },
       { label: "Talen", detail: "twee moedertalen, Engels C1, Nederlands A1" },
     ],
