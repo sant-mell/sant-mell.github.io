@@ -109,6 +109,15 @@ type ProjectMeta = Omit<Project, "description"> & { descriptionIndex: number };
 
 const PROJECT_META: ProjectMeta[] = [
   {
+    descriptionIndex: 10,
+    title: "Shadow Sensei (Hack-Nation 2026)",
+    subtitle: "Hackathon · ElevenLabs · React · FastAPI",
+    stack: ["Python", "FastAPI", "React", "TypeScript", "ElevenLabs"],
+    liveUrl: "https://shadow-sensei.vercel.app",
+    liveKind: "demo",
+    repoUrl: "https://github.com/sant-mell/shadow-sensei",
+  },
+  {
     descriptionIndex: 8,
     title: "Rex (Ideathon Teletón 2026)",
     subtitle: "Ideathon · Python · JavaScript",
@@ -290,6 +299,12 @@ interface Certification {
 }
 
 const CERT_META: Omit<Certification, "name">[] = [
+  {
+    issuer: "Hack-Nation, Global AI Hackathon",
+    issuerUrl: "https://hack-nation.ai",
+    date: "Oct 2026",
+    url: "/certificates/hack-nation-7th-global-ai-hackathon.pdf",
+  },
   {
     issuer: "Ideathon Teletón, Mexico City",
     date: "Sep 2026",
@@ -1051,7 +1066,18 @@ export default function Home() {
                 <p className="mt-1 font-mono text-xs text-zinc-700 dark:text-zinc-300">
                   {cert.date}
                 </p>
-                {cert.url && (
+                {cert.url && cert.url.startsWith("/") && (
+                  // Local file (PDF): a screenshot preview can't render it, so link straight to it.
+                  <a
+                    href={cert.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-3 inline-block rounded-full border border-zinc-300 px-3 py-1 text-xs font-medium text-zinc-700 transition-colors hover:bg-zinc-900 hover:text-white dark:border-zinc-600 dark:text-zinc-300 dark:hover:bg-white dark:hover:text-zinc-900"
+                  >
+                    {t.ui.viewCredential}
+                  </a>
+                )}
+                {cert.url && !cert.url.startsWith("/") && (
                   <LinkPreview
                     url={cert.url}
                     className="mt-3 inline-block rounded-full border border-zinc-300 px-3 py-1 text-xs font-medium text-zinc-700 transition-colors hover:bg-zinc-900 hover:text-white dark:border-zinc-600 dark:text-zinc-300 dark:hover:bg-white dark:hover:text-zinc-900"
