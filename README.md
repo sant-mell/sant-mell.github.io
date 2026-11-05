@@ -8,7 +8,7 @@ Live site: https://sant-mell.github.io  ·  CV: [`/cv.pdf`](public/cv.pdf)  ·  
 
 - Native Portuguese and Spanish, English C1, Dutch A1. Sao Paulo roots, IB Diploma in Rotterdam, Computer Science in Mexico City.
 - Computer Science and Technology (ITC) student at Tec de Monterrey, Campus Santa Fe.
-- Open to work, including remote and global roles. Demonstrated strengths in embedded/IoT, full-stack, and parallel computing. Targeting the Cisco CCNA and cybersecurity as next steps.
+- Demonstrated strengths in embedded/IoT, full-stack, and parallel computing. Targeting the Cisco CCNA and cybersecurity as next steps.
 
 ## Tech Stack
 
@@ -24,7 +24,7 @@ Live site: https://sant-mell.github.io  ·  CV: [`/cv.pdf`](public/cv.pdf)  ·  
 
 ## Sections
 
-1. Hero, an animated profile card with an "Open to Work" tag, LinkedIn and email actions, and a CV download.
+1. Hero, an animated profile card with a work-rights tag, LinkedIn and email actions, and a CV download.
 2. Where I'm from, an interactive three.js globe marking Sao Paulo, Rotterdam, and Mexico City, plus language proficiency.
 3. On GitHub, a live GitHub contribution chart with a hover link preview.
 4. Projects, a project grid with live demos, impact figures, a benchmark chart, an architecture diagram, and links to each public repository.
@@ -48,6 +48,7 @@ Live site: https://sant-mell.github.io  ·  CV: [`/cv.pdf`](public/cv.pdf)  ·  
 
 ## Experience
 
+- IT Consumer Intern, Philip Morris México (Nov 2026 to May 2027, expected).
 - English Language Teacher, Pro English BV, Rotterdam (Jul 2025 to present).
 - Computer Science Instructor, Logaritmia MX (Jan 2025 to May 2025).
 - Volunteer and Peer Mentor, Tec de Monterrey (2024 to present).

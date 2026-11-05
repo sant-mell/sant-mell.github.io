@@ -225,9 +225,16 @@ interface Experience {
   period: string;
   location: string;
   detail: string;
+  tags?: string[];
 }
 
-const EXPERIENCE_META: Omit<Experience, "role" | "detail">[] = [
+const EXPERIENCE_META: Omit<Experience, "role" | "detail" | "tags">[] = [
+  {
+    org: "Philip Morris México (PMI)",
+    orgUrl: "https://www.pmi.com",
+    period: "Nov 2026 - May 2027",
+    location: "Mexico City, Mexico",
+  },
   {
     org: "Pro English BV (Engels voor Bengels Summer Camp)",
     orgUrl: "https://engelsvoorbengels.nl/",
@@ -600,7 +607,7 @@ export default function Home() {
     name: "Santiago Aguilar Mello",
     role: t.hero.cardRole,
     avatar: "/profile.jpg",
-    tags: [t.hero.openToWork, ...t.hero.workRights],
+    tags: t.hero.workRights,
     connectUrl: LINKEDIN_URL,
     messageUrl: MAILTO_URL,
   };
@@ -613,6 +620,11 @@ export default function Home() {
     ...e,
     role: t.experiences[i].role,
     detail: t.experiences[i].detail,
+    tags: t.experiences[i].tags,
+    // The end date is a plan, not a fact yet, so it has to read that way in every locale.
+    period: t.experiences[i].periodNote
+      ? `${e.period} (${t.experiences[i].periodNote})`
+      : e.period,
   }));
   const certifications: Certification[] = CERT_META.map((c, i) => ({
     ...c,
@@ -895,6 +907,15 @@ export default function Home() {
                 <p className="mt-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
                   {exp.detail}
                 </p>
+                {exp.tags && (
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {exp.tags.map((tag) => (
+                      <Badge key={tag} variant="secondary">
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                )}
               </div>
             </Reveal>
           ))}

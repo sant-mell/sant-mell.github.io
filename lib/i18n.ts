@@ -23,8 +23,7 @@ export interface Dict {
   hero: {
     prefix: string;
     roles: string[];
-    openToWork: string;
-    /** Work-authorisation chips shown beside "Open to Work" on the hero card. */
+    /** Work-authorisation chips shown on the hero card. */
     workRights: string[];
     cv: string;
     cardRole: string;
@@ -57,7 +56,7 @@ export interface Dict {
   globeCaption: string;
   footer: { location: string; citizenship: string; builtWith: string };
   projectDescriptions: string[];
-  experiences: { role: string; detail: string }[];
+  experiences: { role: string; detail: string; periodNote?: string; tags?: string[] }[];
   certNames: string[];
   metrics: { label: string; detail: string }[];
   skillTitles: string[];
@@ -78,10 +77,9 @@ export const translations: Record<Locale, Dict> = {
         "Systems & IoT developer",
         "Polyglot",
       ],
-      openToWork: "Open to Work",
       workRights: ["Work rights: EU, MX, BR & MERCOSUR"],
       cv: "Download CV (PDF)",
-      cardRole: "Multicultural CS (ITC) student @ Tec de Monterrey, Santa Fe",
+      cardRole: "IT Consumer Intern @ Philip Morris México · Multicultural CS (ITC) student @ Tec de Monterrey, Santa Fe",
     },
     ui: {
       viewOnGithub: "View on GitHub",
@@ -136,7 +134,7 @@ export const translations: Record<Locale, Dict> = {
         eyebrow: "Experience",
         title: "Where I've worked",
         intro:
-          "Teaching English in the Netherlands, Python in a Mexican middle school, and mentoring first-year students at Tec.",
+          "An IT internship at Philip Morris México, teaching English in the Netherlands, Python in a Mexican middle school, and mentoring first-year students at Tec.",
       },
       academics: { eyebrow: "Academics", title: "How I'm doing at Tec" },
       certifications: {
@@ -155,7 +153,7 @@ export const translations: Record<Locale, Dict> = {
     globeCaption: "São Paulo · Rotterdam · Mexico City",
     footer: {
       location:
-        "Greater Mexico City · Open to internships, remote, and global roles",
+        "Greater Mexico City",
       citizenship:
         "Mexican, Brazilian, and Portuguese (EU) citizen · I can work across the EU, EEA, and Switzerland with no sponsorship, and in Mexico and Brazil as a national, with MERCOSUR residence rights across South America",
       builtWith: "Built with Next.js 16, React 19 and Tailwind CSS 4.",
@@ -173,6 +171,13 @@ export const translations: Record<Locale, Dict> = {
       "In progress: a Power BI project on where 200,000 MXN of savings should go. A Python build script holds every sourced figure (dated rate observations, Banxico's rate decisions, 2026 ISR and UMA parameters) and generates the CSVs and Excel workbook behind the semantic model. The rate history is cross-checked against 402 videos of the Germán Mi Amigo Dinero channel from 2023 to 2026: as Banxico cut from 11.25% to 6.50%, SOFIPOs kept 15% headline rates only by shrinking the capped balance to about 10,000 to 25,000 MXN and adding conditions. It compares 14 options across banks, SOFIPOs, fintechs, CETES, and the S&P 500 through GBM, net of ISR withholding and within IPAB and Prosofipo protection limits. At 200,000 MXN for a year, a split that fills capped promotional tiers first nets about 12.4%, against 6.3% to 8.7% for any single product. The report pages are still being built.",
     ],
     experiences: [
+      {
+        role: "IT Consumer Intern",
+        periodNote: "expected",
+        detail:
+          "Hybrid internship through Pro Meritum, Central de Talento Universitario (Fundación Pro Universitaria A.C.), supporting IT for consumer-facing digital platforms and services. 30 hours a week alongside full-time studies.",
+        tags: ["Enterprise IT", "Digital Platforms", "Consumer Technology"],
+      },
       {
         role: "English Language Teacher",
         detail:
@@ -261,10 +266,9 @@ export const translations: Record<Locale, Dict> = {
         "Desarrollador de sistemas e IoT",
         "Políglota",
       ],
-      openToWork: "Disponible para trabajar",
       workRights: ["Permiso laboral: UE, MX, BR y MERCOSUR"],
       cv: "Descargar CV (PDF)",
-      cardRole: "Estudiante multicultural de Tecnologías Computacionales (ITC) en el Tec de Monterrey, Santa Fe",
+      cardRole: "Practicante de TI (IT Consumer) @ Philip Morris México · Estudiante multicultural de Tecnologías Computacionales (ITC) en el Tec de Monterrey, Santa Fe",
     },
     ui: {
       viewOnGithub: "Ver en GitHub",
@@ -320,7 +324,7 @@ export const translations: Record<Locale, Dict> = {
         eyebrow: "Experiencia",
         title: "Dónde he trabajado",
         intro:
-          "Clases de inglés en los Países Bajos, Python en una telesecundaria mexicana y mentoría a estudiantes de primer año en el Tec.",
+          "Prácticas de TI en Philip Morris México, clases de inglés en los Países Bajos, Python en una telesecundaria mexicana y mentoría a estudiantes de primer año en el Tec.",
       },
       academics: { eyebrow: "Académico", title: "Cómo me va en el Tec" },
       certifications: {
@@ -339,7 +343,7 @@ export const translations: Record<Locale, Dict> = {
     globeCaption: "São Paulo · Róterdam · Ciudad de México",
     footer: {
       location:
-        "Zona Metropolitana de la Ciudad de México · Disponible para prácticas, remoto y roles globales",
+        "Zona Metropolitana de la Ciudad de México",
       citizenship:
         "Ciudadano mexicano, brasileño y portugués (UE) · puedo trabajar en la UE, el EEE y Suiza sin patrocinio, y en México y Brasil como nacional, con derecho de residencia MERCOSUR en Sudamérica",
       builtWith: "Hecho con Next.js 16, React 19 y Tailwind CSS 4.",
@@ -357,6 +361,13 @@ export const translations: Record<Locale, Dict> = {
       "En progreso: un proyecto de Power BI sobre dónde conviene poner 200,000 MXN de ahorro. Un script de Python concentra cada dato con su fuente (observaciones de tasas fechadas, las decisiones de Banxico y los parámetros de ISR y UMA 2026) y genera los CSV y el libro de Excel detrás del modelo semántico. El historial de tasas está contrastado con 402 videos del canal Germán Mi Amigo Dinero de 2023 a 2026: mientras Banxico bajaba la tasa de 11.25% a 6.50%, las SOFIPOs mantuvieron tasas anunciadas de 15% solo reduciendo el saldo con tope a unos 10,000 a 25,000 MXN y agregando condiciones. Compara 14 opciones entre bancos, SOFIPOs, fintechs, CETES y el S&P 500 vía GBM, netas de la retención de ISR y dentro de los límites de protección del IPAB y Prosofipo. Con 200,000 MXN a un año, repartir el dinero llenando primero los tramos promocionales con tope rinde cerca de 12.4% neto, contra 6.3% a 8.7% de cualquier producto por sí solo. Las páginas del reporte siguen en construcción.",
     ],
     experiences: [
+      {
+        role: "Practicante de TI (IT Consumer)",
+        periodNote: "previsto",
+        detail:
+          "Prácticas híbridas a través de Pro Meritum, Central de Talento Universitario (Fundación Pro Universitaria A.C.), apoyando a TI en plataformas y servicios digitales orientados al consumidor. 30 horas a la semana junto con mis estudios de tiempo completo.",
+        tags: ["TI empresarial", "Plataformas digitales", "Tecnología de consumo"],
+      },
       {
         role: "Profesor de inglés",
         detail:
@@ -448,10 +459,9 @@ export const translations: Record<Locale, Dict> = {
         "Desenvolvedor de sistemas e IoT",
         "Poliglota",
       ],
-      openToWork: "Disponível para trabalhar",
       workRights: ["Direito de trabalho: UE, MX, BR, MERCOSUL"],
       cv: "Baixar CV (PDF)",
-      cardRole: "Estudante multicultural de CC (ITC) no Tec de Monterrey, Santa Fe",
+      cardRole: "Estagiário de TI (IT Consumer) @ Philip Morris México · Estudante multicultural de CC (ITC) no Tec de Monterrey, Santa Fe",
     },
     ui: {
       viewOnGithub: "Ver no GitHub",
@@ -507,7 +517,7 @@ export const translations: Record<Locale, Dict> = {
         eyebrow: "Experiência",
         title: "Onde trabalhei",
         intro:
-          "Aulas de inglês nos Países Baixos, Python no ensino fundamental no México e mentoria a estudantes de primeiro ano no Tec.",
+          "Estágio de TI na Philip Morris México, aulas de inglês nos Países Baixos, Python no ensino fundamental no México e mentoria a estudantes de primeiro ano no Tec.",
       },
       academics: { eyebrow: "Acadêmico", title: "Como vou no Tec" },
       certifications: {
@@ -526,7 +536,7 @@ export const translations: Record<Locale, Dict> = {
     globeCaption: "São Paulo · Roterdã · Cidade do México",
     footer: {
       location:
-        "Grande Cidade do México · Disponível para estágios, remoto e vagas globais",
+        "Grande Cidade do México",
       citizenship:
         "Cidadão mexicano, brasileiro e português (UE) · posso trabalhar na UE, no EEE e na Suíça sem patrocínio, e no México e no Brasil como nacional, com direito de residência MERCOSUL na América do Sul",
       builtWith: "Feito com Next.js 16, React 19 e Tailwind CSS 4.",
@@ -544,6 +554,13 @@ export const translations: Record<Locale, Dict> = {
       "Em andamento: um projeto de Power BI sobre onde colocar 200.000 MXN de poupança. Um script em Python reúne cada número com sua fonte (observações de taxas datadas, as decisões do Banxico e os parâmetros de ISR e UMA de 2026) e gera os CSVs e a planilha de Excel por trás do modelo semântico. O histórico de taxas é conferido com 402 vídeos do canal Germán Mi Amigo Dinero de 2023 a 2026: enquanto o Banxico cortava a taxa de 11,25% para 6,50%, as SOFIPOs mantiveram taxas anunciadas de 15% só reduzindo o saldo com teto para cerca de 10.000 a 25.000 MXN e adicionando condições. Compara 14 opções entre bancos, SOFIPOs, fintechs, CETES e o S&P 500 via GBM, líquidas da retenção de ISR e dentro dos limites de proteção do IPAB e do Prosofipo. Com 200.000 MXN por um ano, dividir o dinheiro preenchendo primeiro as faixas promocionais com teto rende cerca de 12,4% líquido, contra 6,3% a 8,7% de qualquer produto sozinho. As páginas do relatório ainda estão em construção.",
     ],
     experiences: [
+      {
+        role: "Estagiário de TI (IT Consumer)",
+        periodNote: "previsto",
+        detail:
+          "Estágio híbrido pelo Pro Meritum, Central de Talento Universitario (Fundación Pro Universitaria A.C.), apoiando a TI em plataformas e serviços digitais voltados ao consumidor. 30 horas por semana junto com a graduação em tempo integral.",
+        tags: ["TI corporativa", "Plataformas digitais", "Tecnologia de consumo"],
+      },
       {
         role: "Professor de inglês",
         detail:
@@ -635,10 +652,9 @@ export const translations: Record<Locale, Dict> = {
         "Systeem- en IoT-ontwikkelaar",
         "Polyglot",
       ],
-      openToWork: "Open voor werk",
       workRights: ["Werkrecht: EU, MX, BR en MERCOSUR"],
       cv: "CV downloaden (PDF)",
-      cardRole: "Multiculturele informaticastudent (ITC) aan Tec de Monterrey, Santa Fe",
+      cardRole: "IT-stagiair (IT Consumer) @ Philip Morris México · Multiculturele informaticastudent (ITC) aan Tec de Monterrey, Santa Fe",
     },
     ui: {
       viewOnGithub: "Bekijk op GitHub",
@@ -694,7 +710,7 @@ export const translations: Record<Locale, Dict> = {
         eyebrow: "Ervaring",
         title: "Waar ik heb gewerkt",
         intro:
-          "Engelse les in Nederland, Python op een Mexicaanse middelbare school en begeleiding van eerstejaars studenten aan Tec.",
+          "IT-stage bij Philip Morris México, Engelse les in Nederland, Python op een Mexicaanse middelbare school en begeleiding van eerstejaars studenten aan Tec.",
       },
       academics: { eyebrow: "Studie", title: "Hoe het gaat aan Tec" },
       certifications: {
@@ -713,7 +729,7 @@ export const translations: Record<Locale, Dict> = {
     globeCaption: "São Paulo · Rotterdam · Mexico-Stad",
     footer: {
       location:
-        "Grootstedelijk Mexico-Stad · Open voor stages, remote en wereldwijde functies",
+        "Grootstedelijk Mexico-Stad",
       citizenship:
         "Mexicaans, Braziliaans en Portugees (EU) staatsburger · ik kan zonder sponsoring werken in de EU, de EER en Zwitserland, en in Mexico en Brazilië als staatsburger, met MERCOSUR-verblijfsrecht in Zuid-Amerika",
       builtWith: "Gemaakt met Next.js 16, React 19 en Tailwind CSS 4.",
@@ -731,6 +747,13 @@ export const translations: Record<Locale, Dict> = {
       "In uitvoering: een Power BI-project over waar 200.000 MXN spaargeld het best naartoe kan. Een Python-buildscript bevat elk cijfer met bron (gedateerde renteobservaties, de rentebesluiten van Banxico en de ISR- en UMA-parameters voor 2026) en genereert de CSV's en het Excel-werkboek achter het semantische model. De rentehistorie is gecontroleerd aan de hand van 402 video's van het kanaal Germán Mi Amigo Dinero uit 2023 tot 2026: terwijl Banxico de rente verlaagde van 11,25% naar 6,50%, hielden SOFIPO's hun geadverteerde rente van 15% alleen vast door het gemaximeerde saldo te verkleinen tot zo'n 10.000 à 25.000 MXN en voorwaarden toe te voegen. Het vergelijkt 14 opties bij banken, SOFIPO's, fintechs, CETES en de S&P 500 via GBM, na ISR-inhouding en binnen de beschermingslimieten van IPAB en Prosofipo. Met 200.000 MXN voor een jaar levert een verdeling die eerst de gemaximeerde promotietarieven vult zo'n 12,4% netto op, tegenover 6,3% tot 8,7% voor elk los product. De rapportpagina's worden nog gebouwd.",
     ],
     experiences: [
+      {
+        role: "IT-stagiair (IT Consumer)",
+        periodNote: "verwacht",
+        detail:
+          "Hybride stage via Pro Meritum, Central de Talento Universitario (Fundación Pro Universitaria A.C.), ter ondersteuning van IT voor digitale platforms en diensten voor consumenten. 30 uur per week naast mijn voltijdstudie.",
+        tags: ["Enterprise IT", "Digitale platforms", "Consumententechnologie"],
+      },
       {
         role: "Docent Engels",
         detail:

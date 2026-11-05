@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     template: "%s | Santiago Aguilar Mello",
   },
   description:
-    "Multicultural Computer Science (ITC) student at Tec de Monterrey, Campus Santa Fe, building embedded/IoT systems, full-stack apps, parallel software, and financial data models in SQL and Power BI. Native Portuguese and Spanish, English C1. Currently pursuing the Cisco CCNA and cybersecurity. Open to work, including remote and global roles.",
+    "Multicultural Computer Science (ITC) student at Tec de Monterrey, Campus Santa Fe, building embedded/IoT systems, full-stack apps, parallel software, and financial data models in SQL and Power BI. Native Portuguese and Spanish, English C1. Currently pursuing the Cisco CCNA and cybersecurity.",
   keywords: [
     "Santiago Aguilar Mello",
     "software engineer",
@@ -47,8 +47,6 @@ export const metadata: Metadata = {
     "Mexico City",
     "Estado de Mexico",
     "multilingual",
-    "open to work",
-    "remote",
   ],
   authors: [{ name: "Santiago Aguilar Mello", url: siteUrl }],
   creator: "Santiago Aguilar Mello",
@@ -63,7 +61,7 @@ export const metadata: Metadata = {
     title:
       "Santiago Aguilar Mello | CS Student: Embedded, Full-Stack & Systems",
     description:
-      "Computer Science (ITC) student at Tec de Monterrey, Campus Santa Fe, building embedded/IoT, full-stack, parallel, and data software. Multilingual, pursuing the Cisco CCNA. Open to remote and global work.",
+      "Computer Science (ITC) student at Tec de Monterrey, Campus Santa Fe, building embedded/IoT, full-stack, parallel, and data software. Multilingual, pursuing the Cisco CCNA.",
     locale: "en_US",
     images: [
       {
@@ -83,7 +81,7 @@ export const metadata: Metadata = {
     title:
       "Santiago Aguilar Mello | CS Student: Embedded, Full-Stack & Systems",
     description:
-      "Computer Science (ITC) student at Tec de Monterrey building embedded/IoT, full-stack, and parallel software. Pursuing the Cisco CCNA. Open to remote and global work.",
+      "Computer Science (ITC) student at Tec de Monterrey building embedded/IoT, full-stack, and parallel software. Pursuing the Cisco CCNA.",
     images: ["/opengraph-image"],
   },
   robots: {
@@ -117,7 +115,7 @@ const personJsonLd = {
   email: "mailto:sant.mell016@gmail.com",
   jobTitle: "Computer Science (ITC) Student",
   description:
-    "Multicultural Computer Science (ITC) student building embedded/IoT systems, full-stack apps, and parallel software. Pursuing the Cisco CCNA and cybersecurity. Open to work, including remote and global.",
+    "Multicultural Computer Science (ITC) student building embedded/IoT systems, full-stack apps, and parallel software. Pursuing the Cisco CCNA and cybersecurity.",
   affiliation: {
     "@type": "CollegeOrUniversity",
     name: "Tec de Monterrey, Campus Santa Fe",
@@ -154,10 +152,6 @@ const personJsonLd = {
     "Software Engineering",
     "Computer Science",
   ],
-  seeks: {
-    "@type": "Demand",
-    name: "Software engineering, embedded systems, and full-stack internships; pursuing Cisco CCNA and cybersecurity",
-  },
   sameAs: [
     "https://github.com/sant-mell",
     "https://www.linkedin.com/in/santiago-aguilar-mello/",
