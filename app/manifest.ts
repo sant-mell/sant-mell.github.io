@@ -20,7 +20,7 @@ export default function manifest(): MetadataRoute.Manifest {
       },
       {
         src: "/profile.jpg",
-        sizes: "512x512",
+        sizes: "1200x1200",
         type: "image/jpeg",
       },
     ],

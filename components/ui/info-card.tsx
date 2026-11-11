@@ -125,7 +125,7 @@ function ProfileCard({
             <img
               src={avatar}
               alt={name}
-              style={{ objectPosition: "center 18%" }}
+              style={{ objectPosition: "center" }}
               className="h-full w-full rounded-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
           </div>
