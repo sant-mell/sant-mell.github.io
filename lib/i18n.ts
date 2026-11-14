@@ -83,7 +83,7 @@ export const translations: Record<Locale, Dict> = {
       ],
       workRights: ["Work rights: EU, MX, BR & MERCOSUR"],
       cv: "Download CV (PDF)",
-      cardRole: "IT Consumer Intern @ Philip Morris México · Multicultural CS (ITC) student @ Tec de Monterrey, Santa Fe",
+      cardRole: "IT Consumer Intern @ PMI | CS @ Tec de Monterrey | Co-founder of R.E.X. (Ideathón Teletón 2026 winner), in validation",
     },
     ui: {
       viewOnGithub: "View on GitHub",
@@ -278,7 +278,7 @@ export const translations: Record<Locale, Dict> = {
       ],
       workRights: ["Permiso laboral: UE, MX, BR y MERCOSUR"],
       cv: "Descargar CV (PDF)",
-      cardRole: "Practicante de TI (IT Consumer) @ Philip Morris México · Estudiante multicultural de Tecnologías Computacionales (ITC) en el Tec de Monterrey, Santa Fe",
+      cardRole: "Practicante de IT Consumer @ PMI | CS @ Tec de Monterrey | Cofundador de R.E.X. (ganador del Ideathón Teletón 2026), en validación",
     },
     ui: {
       viewOnGithub: "Ver en GitHub",
@@ -477,7 +477,7 @@ export const translations: Record<Locale, Dict> = {
       ],
       workRights: ["Direito de trabalho: UE, MX, BR, MERCOSUL"],
       cv: "Baixar CV (PDF)",
-      cardRole: "Estagiário de TI (IT Consumer) @ Philip Morris México · Estudante multicultural de CC (ITC) no Tec de Monterrey, Santa Fe",
+      cardRole: "Estagiário de IT Consumer @ PMI | CS @ Tec de Monterrey | Cofundador do R.E.X. (vencedor do Ideathón Teletón 2026), em validação",
     },
     ui: {
       viewOnGithub: "Ver no GitHub",
@@ -676,7 +676,7 @@ export const translations: Record<Locale, Dict> = {
       ],
       workRights: ["Werkrecht: EU, MX, BR en MERCOSUR"],
       cv: "CV downloaden (PDF)",
-      cardRole: "IT-stagiair (IT Consumer) @ Philip Morris México · Multiculturele informaticastudent (ITC) aan Tec de Monterrey, Santa Fe",
+      cardRole: "IT Consumer-stagiair @ PMI | CS @ Tec de Monterrey | Medeoprichter van R.E.X. (winnaar Ideathón Teletón 2026), in validatie",
     },
     ui: {
       viewOnGithub: "Bekijk op GitHub",
