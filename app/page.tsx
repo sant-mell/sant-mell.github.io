@@ -58,6 +58,9 @@ const LINKEDIN_URL = "https://www.linkedin.com/in/santiago-aguilar-mello/";
 const GITHUB_URL = "https://github.com/sant-mell";
 const EMAIL = "sant.mell016@gmail.com";
 const MAILTO_URL = `mailto:${EMAIL}`;
+const PHONE = "+525510031611";
+const WHATSAPP_URL = `https://wa.me/${PHONE.slice(1)}`;
+const TEL_URL = `tel:${PHONE}`;
 const CV_URL = "/cv.pdf";
 /** Background track, "Embers Call" by Charmonello. */
 const MUSIC_URL = "/audio/embers-call.mp3";
@@ -77,6 +80,8 @@ interface Project {
   /** How to label the live link: an in-browser demo ("demo"), a shipped site ("site"),
    * or a public Power BI report ("report"). */
   liveKind?: "demo" | "site" | "report";
+  /** Site of the company that now owns the project (Rex belongs to PixelPals). */
+  companyUrl?: string;
   /** Render the measured sequential-vs-parallel benchmark bars (DFA lexer). */
   benchmark?: boolean;
   /** Ordered stages of a data-flow pipeline, drawn as a compact diagram. */
@@ -122,6 +127,9 @@ const PROJECT_META: ProjectMeta[] = [
     title: "Rex (Ideathon Teletón 2026)",
     subtitle: "Ideathon · Python · JavaScript",
     stack: ["Python", "JavaScript", "HTML / CSS", "Pixel Art"],
+    liveUrl: "https://sant-mell.github.io/rex/index.html",
+    liveKind: "demo",
+    companyUrl: "https://sant-mell.github.io/pixelpals/",
     stats: [
       { valueKey: "winner", key: "ideathonOverall" },
       { value: "11", key: "teamsCompeted" },
@@ -682,6 +690,11 @@ export default function Home() {
           taglinePrefix={t.hero.prefix}
           roles={t.hero.roles}
           cvLabel={t.hero.cv}
+          contacts={[
+            { kind: "email", href: MAILTO_URL, label: t.ui.contactEmail },
+            { kind: "whatsapp", href: WHATSAPP_URL, label: t.ui.contactWhatsapp },
+            { kind: "call", href: TEL_URL, label: t.ui.contactCall },
+          ]}
         />
       </section>
 
@@ -764,6 +777,17 @@ export default function Home() {
                           </>
                         )}
                       </LinkPreview>
+                    )}
+                    {project.companyUrl && (
+                      <a
+                        href={project.companyUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 rounded-full border border-zinc-500 px-3 py-1.5 text-sm font-semibold text-zinc-100 transition-transform hover:scale-105"
+                      >
+                        <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+                        {t.ui.pixelpalsSite}
+                      </a>
                     )}
                     {project.repoUrl && (
                       <LinkPreview

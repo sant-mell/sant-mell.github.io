@@ -1,0 +1,672 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>PixelPals</title>
+<meta name="description" content="PixelPals crea compañeros de pixel para niñas y niños neurodivergentes de 5 a 14 años. Rex es el primero.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Quicksand:wght@400;500;600;700&family=Pixelify+Sans:wght@500;700&display=swap">
+<style>
+/* Layout: a pixel world you walk through top to bottom. Daytime sky hero, a plain page in the middle,
+   and the cave at night at the end. Left-aligned editorial blocks, asymmetric splits, one interactive toy. */
+:root {
+  --sky: #c4ecff;          /* bright morning sky */
+  --page: #fbfeff;
+  --surface: #ffffff;
+  --ink: #2f4b6b;          /* friendly navy */
+  --ink-soft: #5d7590;
+  --rule: #d3ecfa;
+  --line: #9fd8ff;         /* candy outline for boxes */
+  --rex: #3cc46c;          /* Rex shell green */
+  --rex-deep: #1d8a48;
+  --sun: #ffd23f;          /* the YES button */
+  --help: #ffa94d;         /* the HELP button */
+  --later: #4d8dff;        /* the LATER button */
+  --cave: #6b4a33;
+  --num-green: #1f9a52; --num-blue: #2f6fe4; --num-orange: #d4600a; --num-teal: #13866a;
+  --tint-leaf: #effcf1;    /* one candy pastel per section; this one is a very light green */
+  --tint-sun: #fff3bf;
+  --tint-mint: #d8f7e3;
+  --tint-peach: #ffe4d6;
+  --tint-sky: #dcf1ff;
+  --night: #e9e6ff;        /* dusk, light lilac */
+  --night-ink: #33366e;
+  --night-soft: #5b5f9e;
+  --night-rule: #cfcaf6;
+  --cloud: #ffffff; --sunball: #ffd94a;
+  --hill-far: #c4f3b8; --hill-near: #95e393; --grass: #74d67e;
+
+  --f-display: "Nunito", system-ui, sans-serif;
+  --f-body: "Quicksand", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-pixel: "Pixelify Sans", ui-monospace, "Courier New", monospace;
+
+  --step--1: 0.875rem; --step-0: 1.0625rem; --step-1: 1.3rem; --step-2: 1.75rem;
+  --step-3: 2.5rem; --step-4: clamp(2.4rem, 5.6vw, 4.2rem);
+  --wrap: 1120px;
+}
+/* one light, candy look in every theme: the page sets all of its colors itself */
+:root, :root[data-theme="dark"] { color-scheme: light; }
+
+* { box-sizing: border-box; }
+body { background: var(--page); color: var(--ink); font-family: var(--f-body); font-size: var(--step-0); line-height: 1.6; }
+/* pixel sprites: keep their real proportions and show them at whole-number scales (160px art at 1x, 2x) */
+img.px { image-rendering: pixelated; height: auto; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--later); outline-offset: 3px; border-radius: 6px; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 800; line-height: 1.1; margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
+p { margin: 0; }
+.wrap { max-width: var(--wrap); margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+
+/* buttons */
+.btn-main { display: inline-flex; align-items: center; gap: 10px; font-family: var(--f-body); font-weight: 700; font-size: 1.1rem;
+  background: var(--rex); color: #fff; text-decoration: none; padding: 14px 28px 12px; border-radius: 999px;
+  box-shadow: 0 5px 0 var(--rex-deep); transition: transform .12s ease-out, box-shadow .12s ease-out; }
+.btn-main:hover { transform: translateY(2px); box-shadow: 0 3px 0 var(--rex-deep); }
+.btn-main:active { transform: translateY(5px); box-shadow: 0 0 0 var(--rex-deep); }
+.link-quiet { font-weight: 700; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 5px; text-decoration-color: var(--rex); }
+
+/* ---------- nav ---------- */
+.nav { background: var(--sky); }
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 18px; }
+.wordmark { font-family: var(--f-pixel); font-weight: 700; font-size: 1.6rem; text-decoration: none; letter-spacing: .01em; display: flex; align-items: center; gap: 8px; }
+.wordmark i { font-style: normal; color: var(--rex); }
+.nav ul { display: flex; gap: 26px; list-style: none; margin: 0; padding: 0; font-weight: 700; font-size: .98rem; }
+.nav ul a { text-decoration: none; }
+.nav ul a:hover { text-decoration: underline; text-underline-offset: 5px; }
+@media (max-width: 760px) { .nav ul { display: none; } }
+
+/* ---------- hero ---------- */
+.hero { background: var(--sky); position: relative; overflow: hidden; }
+.hero .wrap { display: grid; grid-template-columns: 1.15fr .85fr; align-items: end; gap: 32px; padding-block: 40px 0; position: relative; z-index: 1; }
+.hero-copy { padding-bottom: 96px; min-width: 0; }
+.hero h1 { font-size: var(--step-4); font-weight: 900; max-width: 14ch; }
+.hero .lede { font-size: var(--step-1); line-height: 1.5; color: var(--ink-soft); max-width: 34rem; margin-top: 22px; }
+.hero .lede strong { color: var(--ink); }
+.hero-ctas { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; margin-top: 32px; }
+.laurels { margin-top: 34px; font-size: var(--step--1); color: var(--ink-soft); max-width: 36rem; }
+.laurels b { color: var(--ink); }
+.hero-rex { position: relative; align-self: end; justify-self: center; width: min(320px, 100%); aspect-ratio: 1; margin-bottom: 18px; }
+.hero-rex img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hero-rex .f2 { visibility: hidden; animation: wave 0.9s steps(1) infinite; }
+.hero-rex .f1 { animation: wave 0.9s steps(1) infinite reverse; }
+@keyframes wave { 0%, 49% { visibility: visible; } 50%, 100% { visibility: hidden; } }
+.say-bubble { position: absolute; top: 4%; left: -6%; background: var(--surface); color: var(--ink); font-family: var(--f-pixel); font-weight: 500;
+  font-size: 1.05rem; padding: 10px 14px; border: 3px solid var(--ink); border-radius: 4px; box-shadow: 4px 4px 0 var(--ink); }
+.say-bubble::after { content: ""; position: absolute; right: 26px; bottom: -12px; width: 12px; height: 12px; background: var(--surface);
+  border-right: 3px solid var(--ink); border-bottom: 3px solid var(--ink); transform: rotate(45deg); }
+#clouds { position: absolute; left: 0; top: 0; width: 100%; aspect-ratio: 240 / 80; image-rendering: pixelated; z-index: 0; pointer-events: none; }
+#ground { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 120px; image-rendering: pixelated; z-index: 0; }
+@media (max-width: 820px) {
+  .hero .wrap { grid-template-columns: 1fr; padding-top: 24px; }
+  .hero-copy { padding-bottom: 0; }
+  .hero-rex { width: min(240px, 80%); margin-bottom: 30px; }
+  .say-bubble { left: auto; right: 70%; white-space: nowrap; }
+}
+
+/* ---------- quote ---------- */
+.quote { background: var(--tint-leaf); padding-block: 88px 72px; }
+.quote .wrap { display: grid; grid-template-columns: auto 1fr; gap: 28px; align-items: center; max-width: 900px; }
+.quote img { width: 160px; }
+.quote blockquote { margin: 0; font-family: var(--f-display); font-size: var(--step-3); font-weight: 700; line-height: 1.15; }
+.quote cite { display: block; margin-top: 12px; font-family: var(--f-body); font-style: normal; font-size: var(--step--1); color: var(--ink-soft); font-weight: 700; }
+@media (max-width: 560px) { .quote .wrap { grid-template-columns: 1fr; } .quote img { width: 80px; } }
+
+/* ---------- worlds ---------- */
+.worlds { padding-block: 40px 96px; }
+.sec-head { max-width: 40rem; margin-bottom: 36px; }
+.sec-head h2 { font-size: var(--step-3); }
+.sec-head p { margin-top: 14px; color: var(--ink-soft); font-size: var(--step-1); line-height: 1.5; }
+.world-tabs { display: flex; gap: 28px; flex-wrap: wrap; margin-bottom: 18px; border-bottom: 2px solid var(--rule); }
+.world-tabs button { font: 700 1.05rem var(--f-body); color: var(--ink-soft); background: transparent; border: 0; border-bottom: 4px solid transparent; margin-bottom: -2px; padding: 8px 0 10px; cursor: pointer; }
+.world-tabs button:hover { color: var(--ink); }
+.world-tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--help); }
+.world { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 4px solid var(--line); border-radius: 22px; overflow: hidden; background: var(--surface); }
+/* cave art is 120px; show it at exactly 5x (3x on phones) so its blocks match Rex's */
+.world-art { position: relative; min-height: 340px; background: #7a5434 center bottom / 600px 600px no-repeat; image-rendering: pixelated; }
+.world-art .rex-on { position: absolute; left: 50%; bottom: 4%; width: 320px; transform: translateX(-50%); }
+.world-body { padding: 36px 36px 32px; display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.world-body h3 { font-size: var(--step-2); }
+.world-body p { color: var(--ink-soft); }
+.world-body ul { margin: 0; padding-left: 1.1em; display: grid; gap: 6px; }
+.report { background: #fff4c2; color: #3a2c12; padding: 26px; display: grid; gap: 10px; align-content: center; font-size: .95rem; }
+.report-row { display: grid; grid-template-columns: 52px 1fr auto; gap: 12px; align-items: center; background: #ffffff; border: 3px solid #f2cf5b; border-radius: 12px; padding: 8px 12px; }
+.report-row time { font-variant-numeric: tabular-nums; font-weight: 700; }
+.report-row b { font-family: var(--f-pixel); font-weight: 500; }
+.report small { color: #6b5a44; font-style: italic; }
+.pals { background: var(--night); display: grid; grid-template-columns: repeat(auto-fit, 160px); justify-content: center; align-items: end; gap: 10px; padding: 28px 16px; }
+.pals figure { margin: 0; text-align: center; color: var(--night-ink); font-family: var(--f-pixel); font-size: .95rem; }
+.pals img { width: 160px; }
+.pals .ghost { filter: brightness(0) opacity(.55); }
+.pals .q { display: grid; place-items: center; aspect-ratio: 1; max-width: 150px; margin: 0 auto 6px; border: 3px dashed var(--night-soft); border-radius: 6px; font-size: 2.6rem; color: var(--night-soft); }
+@media (max-width: 760px) { .world { grid-template-columns: 1fr; } .world-art { min-height: 300px; background-size: 360px 360px; } .world-art .rex-on { width: 240px; } .world-body { padding: 26px 22px; } }
+
+/* ---------- numbers ---------- */
+.numbers { background: var(--tint-mint); border-block: 2px solid var(--rule); padding-block: 88px; }
+.numbers .wrap { display: grid; grid-template-columns: 7fr 5fr; gap: 56px; align-items: start; }
+.big-num { font-family: var(--f-display); font-weight: 900; font-size: clamp(4rem, 11vw, 8.5rem); line-height: .9; color: var(--num-green); letter-spacing: -0.03em; }
+.big-num + p { font-size: var(--step-2); font-family: var(--f-display); font-weight: 700; line-height: 1.25; margin-top: 18px; max-width: 22ch; }
+.src { display: block; margin-top: 14px; font-size: var(--step--1); color: var(--ink-soft); }
+.facts { display: grid; gap: 28px; padding-top: 10px; }
+.fact { display: grid; grid-template-columns: 92px 1fr; gap: 16px; align-items: baseline; border-top: 2px solid var(--rule); padding-top: 18px; }
+.fact strong { font-family: var(--f-display); font-size: var(--step-2); font-weight: 900; font-variant-numeric: tabular-nums; }
+.fact:nth-child(1) strong { color: var(--num-blue); }
+.fact:nth-child(2) strong { color: var(--num-orange); }
+.fact:nth-child(3) strong { color: var(--num-teal); }
+.fact p { color: var(--ink-soft); }
+@media (max-width: 820px) { .numbers .wrap { grid-template-columns: 1fr; gap: 40px; } }
+
+/* ---------- toy demo ---------- */
+.how { background: var(--tint-sun); padding-block: 96px; }
+.how .wrap { display: grid; grid-template-columns: 5fr 6fr; gap: 64px; align-items: center; }
+.how-copy { min-width: 0; }
+.how-copy h2 { font-size: var(--step-3); }
+.how-copy > p { margin-top: 16px; color: var(--ink-soft); font-size: var(--step-1); line-height: 1.5; }
+.btn-key { display: grid; gap: 18px; margin-top: 30px; }
+.btn-key div { display: grid; grid-template-columns: 44px 1fr; gap: 14px; align-items: start; }
+.btn-key b { display: block; font-family: var(--f-display); font-size: 1.15rem; font-weight: 800; }
+.btn-key span { color: var(--ink-soft); }
+.chip { width: 40px; height: 40px; display: grid; place-items: center; font-weight: 700; color: #3a2600; }
+.chip.help { background: var(--help); border-radius: 50%; }
+.chip.yes { background: var(--sun); clip-path: polygon(50% 0, 62% 35%, 100% 38%, 70% 60%, 80% 100%, 50% 77%, 20% 100%, 30% 60%, 0 38%, 38% 35%); }
+.chip.later { background: var(--later); border-radius: 10px; color: #fff; }
+
+.toy { justify-self: center; width: min(400px, 100%); background: #2fc06c; border-radius: 44px 44px 56px 56px; padding: 26px 26px 30px;
+  box-shadow: inset 0 -10px 0 #17a355, inset 0 6px 0 #57e08f, 0 10px 0 #075f2f; }
+.bezel { background: #0b3d22; border-radius: 22px; padding: 14px; }
+.screen { position: relative; aspect-ratio: 1 / 0.92; border-radius: 10px; overflow: hidden; background: #fdf3d6; display: grid; grid-template-rows: auto 1fr auto auto; color: #2a2116; }
+.screen.done { background: #fff2b8; }
+.screen.calm { background: #dff0ff; }
+.scr-top { display: flex; justify-content: space-between; padding: 8px 12px 0; font-family: var(--f-pixel); font-size: .85rem; font-variant-numeric: tabular-nums; }
+.scr-top span { display: inline-flex; align-items: center; gap: 4px; }
+.scr-top img { width: 16px; height: 16px; }
+.scr-rex { position: relative; display: grid; place-items: center; min-height: 0; }
+.scr-rex img { width: 160px; height: 160px; }
+.scr-say { font-family: var(--f-pixel); font-weight: 500; font-size: 1.05rem; text-align: center; padding: 0 14px; min-height: 2.8em; line-height: 1.3; }
+.dots { display: flex; gap: 8px; justify-content: center; padding: 6px 0 12px; }
+.dots i { width: 10px; height: 10px; background: #d9c9a3; }
+.dots i.on { background: #2fa85f; }
+.brand-plate { text-align: center; font-family: var(--f-pixel); font-weight: 700; color: #064d27; margin: 14px 0 16px; font-size: 1.1rem; letter-spacing: .04em; }
+.keys { display: flex; justify-content: space-around; align-items: flex-start; }
+.key { background: none; border: 0; padding: 0; cursor: pointer; display: grid; justify-items: center; gap: 8px; font: 700 .85rem var(--f-body); color: #064d27; }
+.key .cap { width: 64px; height: 64px; display: grid; place-items: center; font-size: 1.5rem; font-weight: 800; transition: transform .1s ease-out, box-shadow .1s ease-out; }
+.key.help .cap { background: var(--help); border-radius: 50%; box-shadow: 0 6px 0 #a9640a; color: #4a2b00; }
+.key.yes .cap { width: 76px; height: 76px; background: var(--sun); border-radius: 50%; box-shadow: 0 6px 0 #a97b00; color: #7a5200; font-size: 1.9rem; }
+.key.later .cap { background: var(--later); border-radius: 16px; box-shadow: 0 6px 0 #1a4bb0; color: #fff; }
+.key:active .cap { transform: translateY(5px); box-shadow: 0 1px 0 rgba(0,0,0,.4); }
+.try { text-align: center; font-size: var(--step--1); color: var(--ink-soft); margin-top: 18px; }
+@media (max-width: 860px) { .how .wrap { grid-template-columns: 1fr; gap: 48px; } }
+
+/* ---------- why ---------- */
+.why { background: var(--tint-sky); border-block: 2px solid var(--rule); padding-block: 96px; }
+.why .wrap { display: grid; grid-template-columns: 6fr 5fr; gap: 64px; align-items: center; }
+.why-copy { min-width: 0; }
+.why-copy h2 { font-size: var(--step-3); }
+.why-copy p { margin-top: 18px; color: var(--ink-soft); max-width: 36rem; }
+.why-copy p:first-of-type { color: var(--ink); font-size: var(--step-1); line-height: 1.5; }
+.why-art { position: relative; border: 4px solid var(--line); border-radius: 22px; overflow: hidden; aspect-ratio: 1; max-width: 480px; width: 100%; justify-self: center; }
+.why-art > img:not(.rex-on) { width: 100%; height: 100%; display: block; }
+/* Rex (80px) and the cave (120px) share one block size: 3x, or 4x on wide screens */
+.why-art .rex-on { position: absolute; width: 240px; right: 2%; bottom: 3%; }
+@media (max-width: 860px) { .why .wrap { grid-template-columns: 1fr; gap: 40px; } }
+/* inner size 360px (3x) or 480px (4x); the +8px is the 4px border on each side */
+.why-art { max-width: 368px; }
+@media (min-width: 1140px) { .why-art { max-width: 488px; } .why-art .rex-on { width: 320px; } }
+
+/* ---------- road ---------- */
+.road { padding-block: 96px; }
+.road ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; position: relative; }
+.road ol::before { content: ""; position: absolute; left: 0; right: 0; top: 13px; border-top: 4px dotted var(--rex); }
+.road li { position: relative; padding: 46px 28px 0 0; min-width: 0; }
+.road li::before { content: ""; position: absolute; left: 0; top: 2px; width: 26px; height: 26px; background: var(--page); border: 4px solid var(--rex); }
+.road li.now::before { background: var(--rex); }
+.road time { font-family: var(--f-pixel); font-size: 1rem; color: var(--rex-deep); }
+.road h3 { font-size: var(--step-1); margin-top: 6px; }
+.road p { color: var(--ink-soft); margin-top: 8px; font-size: .98rem; }
+@media (max-width: 760px) {
+  .road ol { grid-template-columns: 1fr; gap: 34px; }
+  .road ol::before { left: 13px; right: auto; top: 0; bottom: 0; border-top: 0; border-left: 4px dotted var(--rex); }
+  .road li { padding: 0 0 0 48px; }
+}
+
+/* ---------- allies: one light logo plate in both themes, the logos are made for white ---------- */
+.allies { background: var(--tint-peach); padding-block: 88px 104px; }
+.allies h2 { font-size: var(--step-3); }
+.ally-plate { --plate: #ffffff; --plate-ink: #2f4b6b; --plate-soft: #5d7590; --plate-rule: #e3f1fa;
+  margin-top: 36px; background: var(--plate); color: var(--plate-ink); border: 4px solid var(--line); border-radius: 22px; overflow: hidden;
+  display: grid; grid-template-columns: 4fr 8fr; }
+.ally-col { padding: 32px 36px; min-width: 0; }
+.ally-col + .ally-col { border-left: 2px solid var(--plate-rule); }
+.ally-col > p { font-weight: 700; margin-bottom: 26px; }
+.logos { display: grid; gap: 34px 40px; align-items: end; }
+.ally-col:first-child .logos { grid-template-columns: 1fr; }
+.ally-col:last-child .logos { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.logos figure { margin: 0; display: grid; gap: 12px; justify-items: start; }
+.logos img { height: 72px; width: auto; max-width: 100%; object-fit: contain; object-position: left bottom; }
+.logos .wad img { height: 92px; }
+.logos .tec img { height: 50px; }
+.logos .cl img { height: 66px; }
+.logos .ao img { height: 60px; }
+.logos figcaption { font-size: .9rem; color: var(--plate-soft); line-height: 1.4; }
+@media (max-width: 860px) {
+  .ally-plate { grid-template-columns: 1fr; }
+  .ally-col + .ally-col { border-left: 0; border-top: 2px solid var(--plate-rule); }
+  .ally-col:first-child .logos { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 520px) {
+  .ally-col { padding: 26px 22px; }
+  .ally-col:first-child .logos, .ally-col:last-child .logos { grid-template-columns: 1fr; }
+}
+
+/* ---------- night ---------- */
+.night { background: var(--night); color: var(--night-ink); padding-block: 88px 0; position: relative; overflow: hidden; }
+.night .wrap { display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: end; }
+.night h2 { font-size: var(--step-4); max-width: 16ch; }
+.night p { margin-top: 18px; color: var(--night-soft); font-size: var(--step-1); max-width: 30rem; }
+.night .hero-ctas { margin-bottom: 0; }
+.night .phone { margin-top: 18px; margin-bottom: 72px; font-size: var(--step-0); color: var(--night-soft); }
+.night .phone a { color: var(--night-ink); font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.night .link-quiet { color: var(--night-ink); text-decoration-color: var(--rex); }
+.night .sleeper { width: 320px; max-width: 60vw; margin-bottom: 32px; }
+#stars { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; }
+.night .wrap { position: relative; }
+footer { background: var(--night); color: var(--night-soft); font-size: var(--step--1); }
+footer .wrap { border-top: 2px solid var(--night-rule); display: flex; flex-wrap: wrap; gap: 10px 28px; justify-content: space-between; padding-block: 24px 32px; }
+footer .wordmark { font-size: 1.15rem; color: var(--night-ink); }
+/* sponsor strip: same logos as the allies panel, quiet and in grayscale */
+footer .wrap { align-items: center; }
+.foot-logos { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 28px; list-style: none; margin: 0; padding: 0; }
+.foot-logos img { display: block; height: 26px; width: auto; filter: grayscale(1) contrast(1.1); opacity: .55; mix-blend-mode: multiply; }
+@media (max-width: 680px) { footer .wrap { flex-direction: column; align-items: flex-start; } .foot-logos { gap: 12px 22px; } .foot-logos img { height: 22px; } }
+@media (max-width: 680px) { .night .wrap { grid-template-columns: 1fr; } .night .sleeper { width: 160px; } .night .phone { margin-bottom: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-rex .f1, .hero-rex .f2 { animation: none; }
+  .hero-rex .f2 { visibility: hidden; }
+  .btn-main, .key .cap { transition: none; }
+}
+</style>
+
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="wordmark" href="#top" aria-label="PixelPals, inicio">Pixel<i>Pals</i></a>
+    <nav aria-label="Secciones">
+      <ul>
+        <li><a href="#rex">Conoce a Rex</a></li>
+        <li><a href="#como">Cómo funciona</a></li>
+        <li><a href="#historia">Nuestra historia</a></li>
+        <li><a href="#aliados">Aliados</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" aria-labelledby="hero-title">
+    <canvas id="clouds" aria-hidden="true"></canvas>
+    <canvas id="ground" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <div class="hero-copy">
+        <h1 id="hero-title">Compañeros de pixel que hacen la rutina junto con tu hijo</h1>
+        <p class="lede">PixelPals crea mascotas digitales para niñas y niños de 5 a 14 años con autismo, TDAH, discapacidad intelectual y otras condiciones del neurodesarrollo. <strong>Rex</strong>, el primero, convierte lavarse los dientes, comer y dormir en algo que se hace en equipo.</p>
+        <div class="hero-ctas">
+          <a class="btn-main" href="#como">Jugar con Rex</a>
+          <a class="link-quiet" href="#mundos">Para familias y terapeutas</a>
+        </div>
+        <p class="laurels">Ganamos el <b>Ideathon Teletón 2026</b>, pasamos a la siguiente ronda de <b>Startup Now!</b> del <b>Tec de Monterrey</b> y estamos en la incubación de <b>Wadhwani Foundation</b>.</p>
+      </div>
+      <div class="hero-rex">
+        <img class="px f1" src="sprites/rex_kid_wave.png" alt="Rex, un pequeño T-Rex verde, saluda con la mano" width="160" height="160">
+        <img class="px f2" src="sprites/rex_kid_wave2.png" alt="" width="160" height="160">
+        <span class="say-bubble" aria-hidden="true">¡Rawr! ¡Hola!</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="quote" aria-label="Lema de Rex">
+    <div class="wrap">
+      <img class="px" src="sprites/rex_kid_cheer.png" alt="" width="160" height="160">
+      <blockquote>“Bracitos cortos, corazón grande.”<cite>Lo que dice Rex cuando algo le cuesta trabajo</cite></blockquote>
+    </div>
+  </section>
+
+  <section class="worlds" id="mundos" aria-labelledby="worlds-title">
+    <div class="wrap">
+      <div class="sec-head" id="rex">
+        <h2 id="worlds-title">Dónde acompaña Rex</h2>
+        <p>Rex acompaña al niño en casa y le cuenta a su terapeuta cómo le fue en la semana.</p>
+      </div>
+      <div class="world-tabs" role="tablist" aria-label="Mundos de PixelPals">
+        <button role="tab" id="t-casa" aria-controls="w-casa" aria-selected="true">En casa</button>
+        <button role="tab" id="t-terapia" aria-controls="w-terapia" aria-selected="false" tabindex="-1">Con su terapeuta</button>
+        <button role="tab" id="t-pals" aria-controls="w-pals" aria-selected="false" tabindex="-1">Los próximos pals</button>
+      </div>
+
+      <div class="world" role="tabpanel" id="w-casa" aria-labelledby="t-casa">
+        <div class="world-art" style="background-image:url('sprites/bg_cave_home.png')">
+          <img class="px rex-on" src="sprites/rex_kid_eat.png" alt="Rex desayuna en su mesa dentro de la cueva" width="160" height="160">
+        </div>
+        <div class="world-body">
+          <h3>Rex tiene hambre, y tu hijo también</h3>
+          <p>Cuando llega la hora, Rex avisa con dibujo, voz, vibración y luz. Cada rutina se parte en pasos de uno en uno. Rex los hace al mismo tiempo que el niño.</p>
+          <ul>
+            <li>Para niñas y niños de 5 a 14 años con autismo, TDAH, síndrome de Down, discapacidad intelectual o parálisis cerebral</li>
+            <li>Cepillarse, desayunar, bañarse, dormir y tomar medicina</li>
+            <li>Cuatro perfiles: normal, alto contraste, bajo estímulo para quien se abruma con luces y sonidos, y un solo botón para quien tiene poca movilidad en las manos</li>
+            <li>Si hoy no se pudo, Rex vuelve a invitar mañana</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="world" role="tabpanel" id="w-terapia" aria-labelledby="t-terapia" hidden>
+        <div class="report" aria-label="Ejemplo de reporte del día">
+          <div class="report-row"><time>07:30</time><b>Cepillarse</b><span>listo</span></div>
+          <div class="report-row"><time>08:05</time><b>Desayuno</b><span>2 pausas</span></div>
+          <div class="report-row"><time>19:40</time><b>Baño</b><span>pidió ayuda</span></div>
+          <div class="report-row"><time>20:30</time><b>Dormir</b><span>listo</span></div>
+          <small>Ejemplo de un día, con datos inventados</small>
+        </div>
+        <div class="world-body">
+          <h3>El resumen del día para quien cuida</h3>
+          <p>Mamá, papá o quien cuida arma las rutinas desde un panel sencillo. Al final del día ve qué se hizo, dónde hubo pausas y cuándo Rex pidió ayuda a un adulto.</p>
+          <p>Ese mismo resumen puede llegar a la terapeuta, para que la próxima sesión empiece con datos de la casa.</p>
+        </div>
+      </div>
+
+      <div class="world" role="tabpanel" id="w-pals" aria-labelledby="t-pals" hidden>
+        <div class="pals" aria-label="Rex y dos compañeros por diseñar">
+          <figure><img class="px" src="sprites/rex_kid_idle.png" alt="Rex" width="160" height="160"><figcaption>Rex</figcaption></figure>
+          <figure><div class="q" aria-hidden="true">?</div><figcaption>Por diseñar</figcaption></figure>
+          <figure><div class="q" aria-hidden="true">?</div><figcaption>Por diseñar</figcaption></figure>
+        </div>
+        <div class="world-body">
+          <h3>Rex es el primero de la familia</h3>
+          <p>Las rutinas no dependen del personaje. Cada pal es un paquete de dibujos, sonidos y voz encima del mismo motor, así que el siguiente compañero puede ser un triceratops o una pterodáctila.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="numbers" aria-labelledby="num-title">
+    <div class="wrap">
+      <div>
+        <h2 id="num-title" class="big-num">1 de 14</h2>
+        <p>personas en México vive con alguna discapacidad.</p>
+        <span class="src">INEGI, ENADID 2023. Son 8.8 millones de personas de 5 años o más.</span>
+      </div>
+      <div class="facts">
+        <div class="fact"><strong>29,073</strong><p>niñas, niños y adolescentes atendió el sistema CRIT Teletón en un año, y casi la mitad llegó por una lesión cerebral.</p></div>
+        <div class="fact"><strong>3</strong><p>botones en Rex: Ayuda, Sí y Después. No hay menús ni texto que leer.</p></div>
+        <div class="fact"><strong>5</strong><p>rutinas listas en el prototipo: cepillarse, desayunar, bañarse, dormir y tomar medicina.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="how" id="como" aria-labelledby="how-title">
+    <div class="wrap">
+      <div class="how-copy">
+        <h2 id="how-title">Tres botones, cada uno con un solo significado</h2>
+        <p>Rex le pregunta al niño si quiere hacer la rutina con él. Pruébalo aquí con la de lavarse los dientes.</p>
+        <div class="btn-key">
+          <div><i class="chip help" aria-hidden="true">?</i><p><b>Ayuda</b><span>Rex escucha y, si hace falta, le avisa a un adulto.</span></p></div>
+          <div><i class="chip yes" aria-hidden="true"></i><p><b>Sí</b><span>Pasa al siguiente paso. Cuando termina la rutina, Rex le da una estrella.</span></p></div>
+          <div><i class="chip later" aria-hidden="true">II</i><p><b>Después</b><span>Rex espera y vuelve a preguntar en un ratito.</span></p></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="toy">
+          <div class="bezel">
+            <div class="screen" id="screen" aria-live="polite">
+              <div class="scr-top"><span id="clock">07:30</span><span><img class="px" src="sprites/icon_star.png" alt="Estrellas"><b id="stars-n">3</b></span></div>
+              <div class="scr-rex"><img class="px" id="toy-rex" src="sprites/rex_kid_talking.png" alt="Rex" width="160" height="160"></div>
+              <p class="scr-say" id="toy-say">¡Rawr! Mis dientes quieren brillar. ¿Nos lavamos juntos?</p>
+              <div class="dots" id="dots" aria-hidden="true"><i></i><i></i><i></i></div>
+            </div>
+          </div>
+          <p class="brand-plate">REX</p>
+          <div class="keys">
+            <button class="key help" data-k="help"><span class="cap" aria-hidden="true">?</span>Ayuda</button>
+            <button class="key yes" data-k="yes"><span class="cap" aria-hidden="true">★</span>Sí</button>
+            <button class="key later" data-k="later"><span class="cap" aria-hidden="true">II</span>Después</button>
+          </div>
+        </div>
+        <p class="try">Con teclado: flecha izquierda para Ayuda, barra espaciadora para Sí, flecha derecha para Después</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="why" id="historia" aria-labelledby="why-title">
+    <div class="wrap">
+      <div class="why-copy">
+        <h2 id="why-title">Nació de algo que los papás repiten todos los días</h2>
+        <p>“Ve a lavarte los dientes.” Muchas familias de niños con discapacidad repiten esa frase varias veces al día, y las rutinas terminan cansando a todos.</p>
+        <p>En septiembre de 2026, cinco estudiantes del Tec de Monterrey tuvimos dos días en el Ideathon Teletón para pensar en eso. Ahí hicimos a Rex, una especie de tamagotchi en el que el niño cuida a Rex haciendo sus propias rutinas con él.</p>
+        <p>Hoy el prototipo corre en el navegador y el dispositivo de bolsillo está en diseño. Ya lo revisaron expertos en Startup Now! del Tec, y ahora buscamos familias con hijas o hijos de 5 a 14 años que quieran probarlo con nosotros antes de que llegue a más casas. Rex apoya las rutinas de casa y no sustituye la terapia ni es un dispositivo médico.</p>
+      </div>
+      <div class="why-art">
+        <img class="px" src="sprites/bg_cave_home.png" alt="" width="240" height="240">
+        <img class="px rex-on" id="story-rex" src="sprites/rex_story_brush.png" alt="Rex se lava los dientes en su cueva" width="80" height="80">
+      </div>
+    </div>
+  </section>
+
+  <section class="road" aria-labelledby="road-title">
+    <div class="wrap">
+      <div class="sec-head"><h2 id="road-title">De septiembre a noviembre de 2026</h2></div>
+      <ol>
+        <li><time datetime="2026-09">Septiembre 2026</time><h3>Primer lugar en el Ideathon Teletón</h3><p>Ganamos entre 11 equipos en la Ciudad de México, con un prototipo hecho en 2 días.</p></li>
+        <li><time datetime="2026-10">Octubre 2026</time><h3>Incubación con Wadhwani Foundation</h3><p>Entramos al programa Ignite para pasar de la idea a un plan de negocio.</p></li>
+        <li class="now"><time datetime="2026-11-05">5 de noviembre de 2026</time><h3>Pasamos a la siguiente ronda de Startup Now! del Tec de Monterrey</h3><p>Varios expertos probaron Rex y nos dieron retroalimentación.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="allies" id="aliados" aria-labelledby="allies-title">
+    <div class="wrap">
+      <h2 id="allies-title">Quiénes nos apoyan</h2>
+      <div class="ally-plate">
+        <div class="ally-col">
+          <p>Nos impulsan</p>
+          <div class="logos">
+            <figure class="wad"><img src="logos/wadhwani.png" alt="Wadhwani Foundation" width="500" height="246" loading="lazy"><figcaption>Incubación en el programa Ignite</figcaption></figure>
+            <figure class="tec"><img src="logos/tec.png" alt="Tecnológico de Monterrey" width="1165" height="307" loading="lazy"><figcaption>Siguiente ronda de Startup Now!</figcaption></figure>
+          </div>
+        </div>
+        <div class="ally-col">
+          <p>Nos premiaron en el Ideathon Teletón 2026</p>
+          <div class="logos">
+            <figure><img src="logos/teleton.png" alt="Fundación Teletón" width="946" height="569" loading="lazy"><figcaption>CRIT Teletón Ciudad de México</figcaption></figure>
+            <figure class="cl"><img src="logos/cluster-ao.png" alt="Clúster Universitario de Alto Nivel Álvaro Obregón" width="242" height="100" loading="lazy"><figcaption>Organizador del Ideathon</figcaption></figure>
+            <figure class="ao"><img src="logos/alcaldia-ao.png" alt="Alcaldía Álvaro Obregón" width="899" height="318" loading="lazy"><figcaption>Anfitrión del Ideathon</figcaption></figure>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="night" aria-labelledby="night-title">
+    <canvas id="stars" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <div>
+        <h2 id="night-title">Queremos probar Rex con más familias</h2>
+        <p>Si tienes una hija o un hijo de 5 a 14 años, eres terapeuta, trabajas en una escuela o quieres invertir en PixelPals, nos encantaría platicar contigo.</p>
+        <div class="hero-ctas">
+          <a class="btn-main" href="https://wa.me/525510031611" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
+          <a class="link-quiet" href="#como">Jugar con Rex</a>
+        </div>
+        <p class="phone">O llámanos al <a href="tel:+525510031611">+52 55 1003 1611</a></p>
+      </div>
+      <img class="px sleeper" id="sleeper" src="sprites/rex_kid_sleeping.png" alt="Rex duerme enroscado en su nido" width="160" height="160">
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="wordmark">PixelPals</span>
+    <ul class="foot-logos" aria-label="Aliados">
+      <li><img src="logos/wadhwani.png" alt="Wadhwani Foundation" width="500" height="246" loading="lazy"></li>
+      <li><img src="logos/tec.png" alt="Tecnológico de Monterrey" width="1165" height="307" loading="lazy"></li>
+      <li><img src="logos/teleton.png" alt="Fundación Teletón" width="946" height="569" loading="lazy"></li>
+      <li><img src="logos/cluster-ao.png" alt="Clúster Universitario de Alto Nivel Álvaro Obregón" width="242" height="100" loading="lazy"></li>
+      <li><img src="logos/alcaldia-ao.png" alt="Alcaldía Álvaro Obregón" width="899" height="318" loading="lazy"></li>
+    </ul>
+    <span>Ciudad de México, 2026</span>
+  </div>
+</footer>
+
+<!-- every frame the script swaps in, written as real image tags so the host resolves their addresses -->
+<div id="frames" hidden aria-hidden="true">
+  <img data-k="rex_kid_talking" src="sprites/rex_kid_talking.png" alt="">
+  <img data-k="rex_kid_toothpaste" src="sprites/rex_kid_toothpaste.png" alt="">
+  <img data-k="rex_kid_brush" src="sprites/rex_kid_brush.png" alt="">
+  <img data-k="rex_kid_brush2" src="sprites/rex_kid_brush2.png" alt="">
+  <img data-k="rex_kid_brush3" src="sprites/rex_kid_brush3.png" alt="">
+  <img data-k="rex_kid_brush4" src="sprites/rex_kid_brush4.png" alt="">
+  <img data-k="rex_kid_rinse" src="sprites/rex_kid_rinse.png" alt="">
+  <img data-k="rex_kid_celebrate" src="sprites/rex_kid_celebrate.png" alt="">
+  <img data-k="rex_kid_idle" src="sprites/rex_kid_idle.png" alt="">
+  <img data-k="rex_kid_listen" src="sprites/rex_kid_listen.png" alt="">
+  <img data-k="rex_kid_listen2" src="sprites/rex_kid_listen2.png" alt="">
+  <img data-k="rex_story_brush" src="sprites/rex_story_brush.png" alt="">
+  <img data-k="rex_story_brush2" src="sprites/rex_story_brush2.png" alt="">
+  <img data-k="rex_story_brush3" src="sprites/rex_story_brush3.png" alt="">
+  <img data-k="rex_story_brush4" src="sprites/rex_story_brush4.png" alt="">
+  <img data-k="rex_kid_sleeping" src="sprites/rex_kid_sleeping.png" alt="">
+  <img data-k="rex_kid_sleeping2" src="sprites/rex_kid_sleeping2.png" alt="">
+</div>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  /* frame name -> address the host already resolved for the hidden image tags above */
+  const frameSrc = k => { const el = document.querySelector('#frames img[data-k="' + k + '"]'); return el ? el.src : 'sprites/' + k + '.png'; };
+
+  /* pixel hills: drawn tiny, scaled up crisp */
+  function drawGround() {
+    const c = document.getElementById('ground'); if (!c) return;
+    const W = 200, H = 30; c.width = W; c.height = H;
+    const g = c.getContext('2d'); g.clearRect(0, 0, W, H);
+    const hill = (color, base, amp, freq, phase) => {
+      g.fillStyle = color;
+      for (let x = 0; x < W; x++) {
+        const y = Math.round(base - amp * (0.5 + 0.5 * Math.sin(x * freq + phase)) - (amp / 3) * Math.sin(x * freq * 2.7 + 1));
+        g.fillRect(x, y, 1, H - y);
+      }
+    };
+    hill(css('--hill-far'), 20, 8, 0.045, 0.6);
+    hill(css('--hill-near'), 25, 5, 0.07, 2.2);
+    g.fillStyle = css('--grass'); g.fillRect(0, 27, W, 3);
+    g.fillStyle = css('--hill-near');
+    for (let x = 3; x < W; x += 11) g.fillRect(x, 26, 1, 1);
+  }
+
+  /* night sky: a few still pixel stars, nothing that blinks */
+  /* hero sky: a pixel sun and a few chunky clouds, drawn tiny and scaled up */
+  function drawClouds() {
+    const c = document.getElementById('clouds'); if (!c) return;
+    const W = 240, H = 80; c.width = W; c.height = H;
+    const g = c.getContext('2d'); g.clearRect(0, 0, W, H);
+    g.fillStyle = css('--sunball');
+    for (let y = -7; y <= 7; y++) for (let x = -7; x <= 7; x++) if (x * x + y * y <= 49) g.fillRect(214 + x, 14 + y, 1, 1);
+    const cloud = (x, y, w) => {
+      g.fillStyle = css('--cloud');
+      g.fillRect(x, y + 3, w, 4);
+      g.fillRect(x + 3, y + 1, w - 8, 3);
+      g.fillRect(x + 6, y - 1, Math.round(w / 3), 3);
+    };
+    cloud(96, 10, 26); cloud(150, 32, 20); cloud(196, 44, 24); cloud(8, 52, 18);
+  }
+
+  function drawStars() {
+    const c = document.getElementById('stars'); if (!c) return;
+    const W = 240, H = 120; c.width = W; c.height = H;
+    const g = c.getContext('2d'); g.clearRect(0, 0, W, H);
+    let s = 7; const r = () => (s = (s * 9301 + 49297) % 233280) / 233280;
+    for (let i = 0; i < 46; i++) { g.fillStyle = r() > .6 ? '#ffc94a' : '#ffffff'; g.fillRect(Math.floor(r() * W), Math.floor(r() * H * .8), 1, 1); }
+    /* pixel crescent moon: a disc minus an offset disc */
+    for (let y = -5; y <= 5; y++) for (let x = -5; x <= 5; x++) {
+      if (x * x + y * y <= 25 && (x - 3) * (x - 3) + (y + 1) * (y + 1) > 18) { g.fillStyle = '#ffd96a'; g.fillRect(204 + x, 18 + y, 1, 1); }
+    }
+  }
+  drawGround(); drawStars(); drawClouds();
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { drawGround(); drawClouds(); });
+  new MutationObserver(() => { drawGround(); drawClouds(); }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+  /* sleeping Rex breathes: two frames, slow */
+  if (!reduce) {
+    /* Rex brushing in the story section: four frames, same speed as the device demo */
+    const sr = document.getElementById('story-rex'); let f = 0;
+    const brush = ['rex_story_brush', 'rex_story_brush2', 'rex_story_brush3', 'rex_story_brush4'];
+    setInterval(() => { f = (f + 1) % brush.length; sr.src = frameSrc(brush[f]); }, 260);
+    const sl = document.getElementById('sleeper'); let k = 0;
+    setInterval(() => { k ^= 1; sl.src = frameSrc(k ? 'rex_kid_sleeping2' : 'rex_kid_sleeping'); }, 1100);
+  }
+
+  /* tabs */
+  const tabs = [...document.querySelectorAll('[role="tab"]')];
+  const select = t => tabs.forEach(b => {
+    const on = b === t; b.setAttribute('aria-selected', on); b.tabIndex = on ? 0 : -1;
+    document.getElementById(b.getAttribute('aria-controls')).hidden = !on;
+  });
+  tabs.forEach((b, i) => {
+    b.addEventListener('click', () => select(b));
+    b.addEventListener('keydown', e => {
+      const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (d) { const n = tabs[(i + d + tabs.length) % tabs.length]; select(n); n.focus(); }
+    });
+  });
+
+  /* the toy: brushing routine */
+  const S = {
+    ask:   { spr: ['rex_kid_talking'], say: '¡Rawr! Mis dientes quieren brillar. ¿Nos lavamos juntos?', step: 0 },
+    paste: { spr: ['rex_kid_toothpaste'], say: 'Primero, pasta en el cepillo.', step: 1 },
+    brush: { spr: ['rex_kid_brush', 'rex_kid_brush2', 'rex_kid_brush3', 'rex_kid_brush4'], say: 'Arriba y abajo, despacito.', step: 2 },
+    rinse: { spr: ['rex_kid_rinse'], say: 'Ahora, a enjuagar.', step: 3 },
+    done:  { spr: ['rex_kid_celebrate'], say: '¡Lo logramos! ¡Eres increíble!', step: 3, cls: 'done' },
+    later: { spr: ['rex_kid_idle'], say: '¡Está bien! Te pregunto en un ratito.', step: 0, cls: 'calm' },
+    help:  { spr: ['rex_kid_listen', 'rex_kid_listen2'], say: 'Te escucho. ¿Llamo a un adulto?', step: 0, cls: 'calm' },
+  };
+  const next = { ask: 'paste', paste: 'brush', brush: 'rinse', rinse: 'done', done: 'ask', later: 'ask', help: 'ask' };
+  const img = document.getElementById('toy-rex'), say = document.getElementById('toy-say'),
+        scr = document.getElementById('screen'), dots = [...document.querySelectorAll('#dots i')],
+        starsN = document.getElementById('stars-n'), clock = document.getElementById('clock');
+  let state = 'ask', frame = 0, timer = null, back = null, stars = 3, mins = 7 * 60 + 30;
+
+  function show(name) {
+    state = name; const s = S[name]; frame = 0;
+    img.src = frameSrc(s.spr[0]); say.textContent = s.say;
+    scr.className = 'screen' + (s.cls ? ' ' + s.cls : '');
+    dots.forEach((d, i) => d.classList.toggle('on', i < s.step));
+    clearInterval(timer); clearTimeout(back);
+    if (s.spr.length > 1 && !reduce) timer = setInterval(() => { frame = (frame + 1) % s.spr.length; img.src = frameSrc(s.spr[frame]); }, 260);
+    if (name === 'later') back = setTimeout(() => show('ask'), 3500);
+  }
+  function press(k) {
+    mins += 1; clock.textContent = String(Math.floor(mins / 60)).padStart(2, '0') + ':' + String(mins % 60).padStart(2, '0');
+    if (k === 'yes') {
+      const n = next[state];
+      if (n === 'done') { stars += 1; starsN.textContent = stars; }
+      show(n);
+    } else if (k === 'later') show(state === 'done' ? 'ask' : 'later');
+    else show(state === 'help' ? 'ask' : 'help');
+  }
+  document.querySelectorAll('.key').forEach(b => b.addEventListener('click', () => press(b.dataset.k)));
+  const toy = document.querySelector('.how');
+  document.addEventListener('keydown', e => {
+    if (e.target.closest('input, textarea, [role="tab"]')) return;
+    const r = toy.getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) return;
+    const k = e.key === 'ArrowLeft' ? 'help' : e.key === 'ArrowRight' ? 'later' : (e.key === ' ' || e.key === 'Enter') && !e.target.closest('a, button') ? 'yes' : null;
+    if (k) { e.preventDefault(); press(k); }
+  });
+})();
+</script>
+
+</body>
+</html>

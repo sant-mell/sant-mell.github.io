@@ -34,6 +34,10 @@ export interface Dict {
     playInBrowser: string;
     visitSite: string;
     viewReport: string;
+    pixelpalsSite: string;
+    contactEmail: string;
+    contactWhatsapp: string;
+    contactCall: string;
     benchSequential: string;
     benchParallel: string;
     benchFaster: string;
@@ -87,6 +91,10 @@ export const translations: Record<Locale, Dict> = {
       playInBrowser: "Play in browser",
       visitSite: "Visit site",
       viewReport: "View report",
+      pixelpalsSite: "PixelPals site",
+      contactEmail: "Email",
+      contactWhatsapp: "WhatsApp",
+      contactCall: "Call",
       benchSequential: "Sequential",
       benchParallel: "Parallel",
       benchFaster: "faster",
@@ -278,6 +286,10 @@ export const translations: Record<Locale, Dict> = {
       playInBrowser: "Jugar en el navegador",
       visitSite: "Ver sitio",
       viewReport: "Ver reporte",
+      pixelpalsSite: "Sitio de PixelPals",
+      contactEmail: "Correo",
+      contactWhatsapp: "WhatsApp",
+      contactCall: "Llamar",
       benchSequential: "Secuencial",
       benchParallel: "Paralelo",
       benchFaster: "más rápido",
@@ -473,6 +485,10 @@ export const translations: Record<Locale, Dict> = {
       playInBrowser: "Jogar no navegador",
       visitSite: "Ver site",
       viewReport: "Ver relatório",
+      pixelpalsSite: "Site da PixelPals",
+      contactEmail: "E-mail",
+      contactWhatsapp: "WhatsApp",
+      contactCall: "Ligar",
       benchSequential: "Sequencial",
       benchParallel: "Paralelo",
       benchFaster: "mais rápido",
@@ -668,6 +684,10 @@ export const translations: Record<Locale, Dict> = {
       playInBrowser: "Speel in browser",
       visitSite: "Bekijk site",
       viewReport: "Bekijk rapport",
+      pixelpalsSite: "PixelPals-site",
+      contactEmail: "E-mail",
+      contactWhatsapp: "WhatsApp",
+      contactCall: "Bellen",
       benchSequential: "Sequentieel",
       benchParallel: "Parallel",
       benchFaster: "sneller",
