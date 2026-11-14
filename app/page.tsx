@@ -122,9 +122,6 @@ const PROJECT_META: ProjectMeta[] = [
     title: "Rex (Ideathon Teletón 2026)",
     subtitle: "Ideathon · Python · JavaScript",
     stack: ["Python", "JavaScript", "HTML / CSS", "Pixel Art"],
-    liveUrl: "https://sant-mell.github.io/rex/index.html",
-    liveKind: "demo",
-    repoUrl: "https://github.com/sant-mell/rex",
     stats: [
       { valueKey: "winner", key: "ideathonOverall" },
       { value: "11", key: "teamsCompeted" },
