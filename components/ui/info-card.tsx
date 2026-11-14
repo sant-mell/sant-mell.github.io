@@ -1,6 +1,6 @@
 "use client"
 
-import { MessageCircle, Download, Mail, Phone } from "lucide-react"
+import { Download, Mail, Phone } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { GooeyText } from "@/components/ui/gooey-text-morphing"
@@ -22,8 +22,14 @@ export interface ProfileCardProps {
   tags?: string[]
   /** LinkedIn connect action, rendered as the LinkedIn logo button. */
   connectUrl: string
-  /** MessageCircle action, typically a mailto: link. */
+  /** Email action, a mailto: link. */
   messageUrl: string
+  /** WhatsApp chat link (wa.me). */
+  whatsappUrl?: string
+  /** Phone call link (tel:). */
+  phoneUrl?: string
+  /** Localized labels for screen readers. */
+  labels?: { email: string; whatsapp: string; call: string }
 }
 
 export interface AnimatedProfileCardProps {
@@ -36,8 +42,6 @@ export interface AnimatedProfileCardProps {
   roles?: string[]
   /** Localized label for the CV download button. */
   cvLabel?: string
-  /** Email, WhatsApp and phone buttons shown right under the card. */
-  contacts?: { href: string; label: string; kind: "email" | "whatsapp" | "call" }[]
 }
 
 /** WhatsApp brand mark (lucide has no brand icons). */
@@ -61,7 +65,6 @@ export default function AnimatedProfileCard({
     "Polyglot",
   ],
   cvLabel = "Download CV (PDF)",
-  contacts = [],
 }: AnimatedProfileCardProps) {
   return (
     <div className="min-h-screen flex flex-col items-center w-full justify-center gap-8 p-4 relative overflow-hidden">
@@ -96,24 +99,6 @@ export default function AnimatedProfileCard({
 
       <ProfileCard {...profile} />
 
-      {contacts.length > 0 && (
-        <div className="relative z-10 flex flex-wrap justify-center gap-3">
-          {contacts.map((c) => (
-            <a
-              key={c.kind}
-              href={c.href}
-              target={c.kind === "whatsapp" ? "_blank" : undefined}
-              rel={c.kind === "whatsapp" ? "noopener noreferrer" : undefined}
-              className="inline-flex items-center gap-2 rounded-full border border-zinc-600 bg-zinc-900/70 px-5 py-2.5 text-sm font-semibold text-zinc-100 backdrop-blur transition-transform hover:scale-105 hover:border-zinc-400 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300"
-            >
-              {c.kind === "email" && <Mail className="h-4 w-4" aria-hidden="true" />}
-              {c.kind === "whatsapp" && <WhatsappMark className="h-4 w-4" />}
-              {c.kind === "call" && <Phone className="h-4 w-4" aria-hidden="true" />}
-              {c.label}
-            </a>
-          ))}
-        </div>
-      )}
 
       {cvUrl && (
         <Button
@@ -145,6 +130,9 @@ function ProfileCard({
   tags = [],
   connectUrl,
   messageUrl,
+  whatsappUrl,
+  phoneUrl,
+  labels = { email: "Email", whatsapp: "WhatsApp", call: "Call" },
 }: ProfileCardProps) {
   return (
     <div className="group relative overflow-hidden rounded-3xl bg-white dark:bg-zinc-800 p-6 w-80 shadow-[12px_12px_24px_rgba(0,0,0,0.15),-12px_-12px_24px_rgba(255,255,255,0.9)] dark:shadow-[12px_12px_24px_rgba(0,0,0,0.3),-12px_-12px_24px_rgba(255,255,255,0.1)] transition-all duration-500 hover:shadow-[20px_20px_40px_rgba(0,0,0,0.2),-20px_-20px_40px_rgba(255,255,255,1)] dark:hover:shadow-[20px_20px_40px_rgba(0,0,0,0.4),-20px_-20px_40px_rgba(255,255,255,0.15)] hover:scale-105 hover:-translate-y-2">
@@ -202,11 +190,31 @@ function ProfileCard({
         </LinkPreview>
         <a
           href={messageUrl}
-          aria-label="Send an email"
+          aria-label={labels.email}
           className="flex-1 rounded-full bg-white dark:bg-zinc-700 py-4 text-sm font-medium text-zinc-700 dark:text-zinc-300 shadow-[6px_6px_12px_rgba(0,0,0,0.1),-6px_-6px_12px_rgba(255,255,255,0.9)] dark:shadow-[6px_6px_12px_rgba(0,0,0,0.2),-6px_-6px_12px_rgba(255,255,255,0.1)] transition-all duration-300 hover:shadow-[2px_2px_4px_rgba(0,0,0,0.05),-2px_-2px_4px_rgba(255,255,255,0.8)] dark:hover:shadow-[2px_2px_4px_rgba(0,0,0,0.15),-2px_-2px_4px_rgba(255,255,255,0.05)] hover:scale-95 active:scale-90 group-hover:bg-zinc-50 dark:group-hover:bg-zinc-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-600 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-zinc-800"
         >
-          <MessageCircle className="mx-auto h-4 w-4 transition-transform duration-300 hover:scale-110" aria-hidden="true" />
+          <Mail className="mx-auto h-4 w-4 transition-transform duration-300 hover:scale-110" aria-hidden="true" />
         </a>
+        {whatsappUrl && (
+        <a
+          href={whatsappUrl}
+          aria-label={labels.whatsapp}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex-1 rounded-full bg-white dark:bg-zinc-700 py-4 text-sm font-medium text-zinc-700 dark:text-zinc-300 shadow-[6px_6px_12px_rgba(0,0,0,0.1),-6px_-6px_12px_rgba(255,255,255,0.9)] dark:shadow-[6px_6px_12px_rgba(0,0,0,0.2),-6px_-6px_12px_rgba(255,255,255,0.1)] transition-all duration-300 hover:shadow-[2px_2px_4px_rgba(0,0,0,0.05),-2px_-2px_4px_rgba(255,255,255,0.8)] dark:hover:shadow-[2px_2px_4px_rgba(0,0,0,0.15),-2px_-2px_4px_rgba(255,255,255,0.05)] hover:scale-95 active:scale-90 group-hover:bg-zinc-50 dark:group-hover:bg-zinc-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-600 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-zinc-800"
+        >
+          <WhatsappMark className="mx-auto h-4 w-4 transition-transform duration-300 hover:scale-110" />
+        </a>
+        )}
+        {phoneUrl && (
+        <a
+          href={phoneUrl}
+          aria-label={labels.call}
+          className="flex-1 rounded-full bg-white dark:bg-zinc-700 py-4 text-sm font-medium text-zinc-700 dark:text-zinc-300 shadow-[6px_6px_12px_rgba(0,0,0,0.1),-6px_-6px_12px_rgba(255,255,255,0.9)] dark:shadow-[6px_6px_12px_rgba(0,0,0,0.2),-6px_-6px_12px_rgba(255,255,255,0.1)] transition-all duration-300 hover:shadow-[2px_2px_4px_rgba(0,0,0,0.05),-2px_-2px_4px_rgba(255,255,255,0.8)] dark:hover:shadow-[2px_2px_4px_rgba(0,0,0,0.15),-2px_-2px_4px_rgba(255,255,255,0.05)] hover:scale-95 active:scale-90 group-hover:bg-zinc-50 dark:group-hover:bg-zinc-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-600 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-zinc-800"
+        >
+          <Phone className="mx-auto h-4 w-4 transition-transform duration-300 hover:scale-110" aria-hidden="true" />
+        </a>
+        )}
       </div>
 
       {/* Animated border on hover */}

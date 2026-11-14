@@ -127,8 +127,6 @@ const PROJECT_META: ProjectMeta[] = [
     title: "Rex (Ideathon Teletón 2026)",
     subtitle: "Ideathon · Python · JavaScript",
     stack: ["Python", "JavaScript", "HTML / CSS", "Pixel Art"],
-    liveUrl: "https://sant-mell.github.io/rex/index.html",
-    liveKind: "demo",
     companyUrl: "https://sant-mell.github.io/pixelpals/",
     stats: [
       { valueKey: "winner", key: "ideathonOverall" },
@@ -630,6 +628,9 @@ export default function Home() {
     tags: t.hero.workRights,
     connectUrl: LINKEDIN_URL,
     messageUrl: MAILTO_URL,
+    whatsappUrl: WHATSAPP_URL,
+    phoneUrl: TEL_URL,
+    labels: { email: t.ui.contactEmail, whatsapp: t.ui.contactWhatsapp, call: t.ui.contactCall },
   };
 
   const projects: Project[] = PROJECT_META.map(({ descriptionIndex, ...p }) => ({
@@ -690,11 +691,6 @@ export default function Home() {
           taglinePrefix={t.hero.prefix}
           roles={t.hero.roles}
           cvLabel={t.hero.cv}
-          contacts={[
-            { kind: "email", href: MAILTO_URL, label: t.ui.contactEmail },
-            { kind: "whatsapp", href: WHATSAPP_URL, label: t.ui.contactWhatsapp },
-            { kind: "call", href: TEL_URL, label: t.ui.contactCall },
-          ]}
         />
       </section>
 
