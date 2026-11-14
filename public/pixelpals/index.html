@@ -136,6 +136,10 @@ p { margin: 0; }
 .report-row time { font-variant-numeric: tabular-nums; font-weight: 700; }
 .report-row b { font-family: var(--f-pixel); font-weight: 500; }
 .report small { color: #6b5a44; font-style: italic; }
+/* school board: same layout as the daily report, in classroom blue */
+.report.school { background: #e3f2ff; color: #1f3550; }
+.report.school .report-row { border-color: #9fd0ff; }
+.report.school small { color: #4a6380; }
 .pals { background: var(--night); display: grid; grid-template-columns: repeat(auto-fit, 160px); justify-content: center; align-items: end; gap: 10px; padding: 28px 16px; }
 .pals figure { margin: 0; text-align: center; color: var(--night-ink); font-family: var(--f-pixel); font-size: .95rem; }
 .pals img { width: 160px; }
@@ -339,13 +343,14 @@ footer .wrap { align-items: center; }
   <section class="worlds" id="mundos" aria-labelledby="worlds-title">
     <div class="wrap">
       <div class="sec-head" id="rex">
-        <h2 id="worlds-title">Dónde acompaña Rex</h2>
-        <p>Rex acompaña al niño en casa y le cuenta a su terapeuta cómo le fue en la semana.</p>
+        <h2 id="worlds-title">Rex en el día a día</h2>
+        <p>Rex acompaña al niño en casa, con su terapeuta, en la escuela y en cualquier lugar al que vaya.</p>
       </div>
       <div class="world-tabs" role="tablist" aria-label="Mundos de PixelPals">
         <button role="tab" id="t-casa" aria-controls="w-casa" aria-selected="true">En casa</button>
         <button role="tab" id="t-terapia" aria-controls="w-terapia" aria-selected="false" tabindex="-1">Con su terapeuta</button>
-        <button role="tab" id="t-pals" aria-controls="w-pals" aria-selected="false" tabindex="-1">Los próximos pals</button>
+        <button role="tab" id="t-escuela" aria-controls="w-escuela" aria-selected="false" tabindex="-1">En la escuela</button>
+        <button role="tab" id="t-pals" aria-controls="w-pals" aria-selected="false" tabindex="-1">Y más</button>
       </div>
 
       <div class="world" role="tabpanel" id="w-casa" aria-labelledby="t-casa">
@@ -379,6 +384,21 @@ footer .wrap { align-items: center; }
         </div>
       </div>
 
+      <div class="world" role="tabpanel" id="w-escuela" aria-labelledby="t-escuela" hidden>
+        <div class="report school" aria-label="Ejemplo de un día de escuela">
+          <div class="report-row"><time>08:00</time><b>Entrada</b><span>listo</span></div>
+          <div class="report-row"><time>08:10</time><b>Lavarse las manos</b><span>listo</span></div>
+          <div class="report-row"><time>10:30</time><b>Recreo</b><span>aviso 5 min antes</span></div>
+          <div class="report-row"><time>13:00</time><b>Salida</b><span>pendiente</span></div>
+          <small>Ejemplo de un día de escuela, con datos inventados</small>
+        </div>
+        <div class="world-body">
+          <h3>Las mismas rutinas en el salón</h3>
+          <p>Los cambios de actividad, como pasar del recreo a la clase, suelen ser difíciles para muchos niños con autismo o TDAH. Rex puede avisar antes de cada cambio con el mismo dibujo y sonido que el niño ya conoce de casa.</p>
+          <p>Es la siguiente parte que queremos probar con maestras y escuelas.</p>
+        </div>
+      </div>
+
       <div class="world" role="tabpanel" id="w-pals" aria-labelledby="t-pals" hidden>
         <div class="pals" aria-label="Rex y dos compañeros por diseñar">
           <figure><img class="px" src="sprites/rex_kid_idle.png" alt="Rex" width="160" height="160"><figcaption>Rex</figcaption></figure>
@@ -386,8 +406,9 @@ footer .wrap { align-items: center; }
           <figure><div class="q" aria-hidden="true">?</div><figcaption>Por diseñar</figcaption></figure>
         </div>
         <div class="world-body">
-          <h3>Rex es el primero de la familia</h3>
-          <p>Las rutinas no dependen del personaje. Cada pal es un paquete de dibujos, sonidos y voz encima del mismo motor, así que el siguiente compañero puede ser un triceratops o una pterodáctila.</p>
+          <h3>Con los abuelos, de viaje y con más compañeros</h3>
+          <p>Rex está pensado para caber en el bolsillo, así que la rutina puede seguir igual en casa de los abuelos o de vacaciones.</p>
+          <p>Las rutinas tampoco dependen del personaje. Cada pal es un paquete de dibujos, sonidos y voz encima del mismo motor, así que el siguiente compañero puede ser un triceratops o una pterodáctila.</p>
         </div>
       </div>
     </div>
