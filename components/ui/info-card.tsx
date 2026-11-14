@@ -60,8 +60,9 @@ export default function AnimatedProfileCard({
   roles = [
     "CS Student",
     "Full-stack developer",
-    "CCNA student",
-    "Systems & IoT developer",
+    "Co-founder of R.E.X.",
+    "Intern @ PMI",
+    "Vice President of SATI",
     "Polyglot",
   ],
   cvLabel = "Download CV (PDF)",
